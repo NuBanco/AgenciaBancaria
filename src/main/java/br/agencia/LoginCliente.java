@@ -17,6 +17,7 @@ public class LoginCliente extends JFrame{
 	private JTextField editUsuario;
 	private JPasswordField editSenha;
 	public LoginCliente() {
+		setBounds(100, 100, 300, 170);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
 		setType(Type.POPUP);
 		setResizable(false);
@@ -53,7 +54,7 @@ public class LoginCliente extends JFrame{
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(editUsuario, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
 								.addComponent(editSenha, 157, 157, 157))))
-					.addContainerGap(65, Short.MAX_VALUE))
+					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -66,9 +67,9 @@ public class LoginCliente extends JFrame{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lbSenha)
 						.addComponent(editSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(18)
 					.addComponent(btnLogin)
-					.addContainerGap(27, Short.MAX_VALUE))
+					.addContainerGap(15, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}
