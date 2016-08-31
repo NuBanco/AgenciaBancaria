@@ -2,6 +2,8 @@ package br.agencia;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -12,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class LoginCliente extends JFrame {
+public class LoginUsuario extends JFrame {
 	/**
 	 * 
 	 */
@@ -20,7 +22,7 @@ public class LoginCliente extends JFrame {
 	private JTextField editUsuario;
 	private JPasswordField editSenha;
 
-	public LoginCliente() {
+	public LoginUsuario() {
 		setBounds(100, 100, 300, 170);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
 		setType(Type.POPUP);
@@ -36,6 +38,15 @@ public class LoginCliente extends JFrame {
 		editSenha.setToolTipText("");
 
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaBackground menuBancario = new TelaBackground(new HomeMenuBancario());
+				menuBancario.setSize(700, 700);
+				menuBancario.setLocationRelativeTo(null);
+				System.out.println("SADFASDA");
+				menuBancario.setVisible(true);
+			}
+		});
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		JLabel lbUsuario = new JLabel("Usu\u00E1rio :");
@@ -73,7 +84,7 @@ public class LoginCliente extends JFrame {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				LoginCliente telaLogin = new LoginCliente();
+				LoginUsuario telaLogin = new LoginUsuario();
 				telaLogin.setLocationRelativeTo(null);
 				telaLogin.setVisible(true);
 			}
