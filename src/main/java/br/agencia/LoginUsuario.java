@@ -41,7 +41,7 @@ public class LoginUsuario extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground menuBancario = new TelaBackground(new HomeMenuBancario());
-				menuBancario.setSize(700, 700);
+				menuBancario.setSize(580, 470);
 				menuBancario.setLocationRelativeTo(null);
 				System.out.println("SADFASDA");
 				menuBancario.setVisible(true);

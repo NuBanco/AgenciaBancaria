@@ -15,7 +15,7 @@ public class HomeMenuBancario extends JPanel {
 	 */
 	private static final long serialVersionUID = 5853409558338193456L;
 
-	public HomeMenuBancario() {  
+	public HomeMenuBancario() {
 		// setBounds(100, 100, 480, 280);
 
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
