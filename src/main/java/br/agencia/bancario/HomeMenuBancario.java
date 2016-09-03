@@ -34,10 +34,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground telaNovaConta = new TelaBackground(new NovaConta());
-				telaNovaConta.setSize(580, 470);
-				telaNovaConta.setLocationRelativeTo(null);
-				telaNovaConta.setVisible(true);
+				TelaBackground novaConta = new TelaBackground(new NovaConta());
+				novaConta.setSize(580, 470);
+				novaConta.setLocationRelativeTo(null);
+				novaConta.setVisible(true);
 			}
 		});
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));
@@ -53,7 +53,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpAgencias = new JButton("6 - Ag\u00EAncias");
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("DDDDDDD");
+				TelaBackground agencias = new TelaBackground(new ListaAgencia());
+				agencias.setSize(580, 470);
+				agencias.setLocationRelativeTo(null);
+				agencias.setVisible(true);
 			}
 		});
 		btnOpAgencias.setFont(new Font("Arial", Font.BOLD, 17));
@@ -61,7 +64,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("EEEEEEE");
+				TelaBackground balanco = new TelaBackground(new Balanco());
+				balanco.setSize(580, 470);
+				balanco.setLocationRelativeTo(null);
+				balanco.setVisible(true);
 			}
 		});
 		btnOpBalanco.setFont(new Font("Arial", Font.BOLD, 17));
@@ -69,10 +75,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground telaBancarios = new TelaBackground(new ListaProfissionais());
-				telaBancarios.setSize(600, 500);
-				telaBancarios.setLocationRelativeTo(null);
-				telaBancarios.setVisible(true);
+				TelaBackground profissionais = new TelaBackground(new ListaProfissional());
+				profissionais.setSize(580, 470);
+				profissionais.setLocationRelativeTo(null);
+				profissionais.setVisible(true);
 			}
 		});
 		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));

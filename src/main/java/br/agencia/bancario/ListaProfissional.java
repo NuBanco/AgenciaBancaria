@@ -9,17 +9,17 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class ListaProfissionais extends JPanel {
+public class ListaProfissional extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4635580930027968770L;
-	private JTable tbGrid;
+	private JTable tbProfissionais;
 
-	public ListaProfissionais() {
+	public ListaProfissional() {
 
-		tbGrid = new JTable();
-		tbGrid.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "Nome", "UserName" }) {
+		tbProfissionais = new JTable();
+		tbProfissionais.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "Nome", "UserName" }) {
 			/**
 			 * 
 			 */
@@ -30,9 +30,9 @@ public class ListaProfissionais extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		tbGrid.getColumnModel().getColumn(0).setResizable(false);
-		tbGrid.getColumnModel().getColumn(0).setPreferredWidth(80);
-		tbGrid.getColumnModel().getColumn(1).setPreferredWidth(80);
+		tbProfissionais.getColumnModel().getColumn(0).setResizable(false);
+		tbProfissionais.getColumnModel().getColumn(0).setPreferredWidth(80);
+		tbProfissionais.getColumnModel().getColumn(1).setPreferredWidth(80);
 
 		JButton btnAdicionar = new JButton("+");
 		btnAdicionar.setFont(new Font("Arial Black", Font.BOLD, 10));
@@ -41,7 +41,7 @@ public class ListaProfissionais extends JPanel {
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addComponent(tbGrid, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+				.addComponent(tbProfissionais, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap(262, Short.MAX_VALUE)
 						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
@@ -49,7 +49,7 @@ public class ListaProfissionais extends JPanel {
 						.addContainerGap()));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addComponent(tbGrid, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tbProfissionais, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.UNRELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
