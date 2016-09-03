@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.bancario.HomeMenuBancario;
+
 public class LoginUsuario extends JFrame {
 	/**
 	 * 

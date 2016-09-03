@@ -1,4 +1,4 @@
-package br.agencia;
+package br.agencia.bancario;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import br.agencia.TelaBackground;
 
 public class HomeMenuBancario extends JPanel {
 	/**
@@ -21,7 +23,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("AAAAAAA");
+				InformacoesConta infConta = new InformacoesConta();
+				infConta.setSize(319, 290);
+				infConta.setLocationRelativeTo(null);
+				infConta.setVisible(true);		
 			}
 		});
 		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
@@ -29,7 +34,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("BBBBBBB");
+				TelaBackground telaNovaConta = new TelaBackground(new NovaConta());
+				telaNovaConta.setSize(580, 470);
+				telaNovaConta.setLocationRelativeTo(null);
+				telaNovaConta.setVisible(true);
 			}
 		});
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));
@@ -61,7 +69,10 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("FFFFFFF");
+				TelaBackground telaBancarios = new TelaBackground(new ListaProfissionais());
+				telaBancarios.setSize(600, 500);
+				telaBancarios.setLocationRelativeTo(null);
+				telaBancarios.setVisible(true);
 			}
 		});
 		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));

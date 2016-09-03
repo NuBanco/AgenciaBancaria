@@ -1,4 +1,4 @@
-package br.agencia;
+package br.agencia.cliente;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
