@@ -14,7 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class NovaConta extends JPanel{
 	/**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = 5210607113046110764L;
 	private JTextField txtNome;
