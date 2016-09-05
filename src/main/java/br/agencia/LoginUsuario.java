@@ -21,6 +21,7 @@ public class LoginUsuario extends JFrame {
 	private static final long serialVersionUID = 7781598968866921968L;
 	private JTextField editUsuario;
 	private JPasswordField editSenha;
+	//
 
 	public LoginUsuario() {
 		setBounds(100, 100, 300, 170);
