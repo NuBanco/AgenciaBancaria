@@ -2,18 +2,17 @@ package br.agencia;
 
 public class Usuario {
 
-	private Integer id;
+	private Integer idUsuario;
 	private String login;
 	private String senha;
-	private Pessoa pessoa;
 	private String senhaOperacao;
 
 	public Integer getId() {
-		return id;
+		return idUsuario;
 	}
 
 	public Usuario setId(Integer id) {
-		this.id = id;
+		this.idUsuario = id;
 		return this;
 	}
 
@@ -32,15 +31,6 @@ public class Usuario {
 
 	public Usuario setSenha(String senha) {
 		this.senha = senha;
-		return this;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public Usuario setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
 		return this;
 	}
 
