@@ -1,9 +1,20 @@
 package br.agencia;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import br.agencia.enums.TipoUsuario;
 
-public class Usuario {
+@Entity
+public class Usuario implements Serializable {
 
+	private static final long serialVersionUID = 6811212106974636541L;
+
+	@Id
+	@GeneratedValue
 	private Integer idUsuario;
 	private String login;
 	private String senha;
