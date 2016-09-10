@@ -12,7 +12,7 @@ public class Conta {
 	private Agencia agencia;
 	private String numero;
 	private Date dataAbertura;
-	private BigDecimal saldoConta;
+	//private BigDecimal saldoConta;
 
 	public Integer getId() {
 		return id;
@@ -54,12 +54,12 @@ public class Conta {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public BigDecimal getSaldoConta() {
-		return saldoConta;
-	}
-
-	public void setSaldoConta(BigDecimal saldoConta) {
-		this.saldoConta = saldoConta;
-	}
+//	public BigDecimal getSaldoConta() {
+//		return saldoConta;
+//	}
+//
+//	public void setSaldoConta(BigDecimal saldoConta) {
+//		this.saldoConta = saldoConta;
+//	}
 
 }
