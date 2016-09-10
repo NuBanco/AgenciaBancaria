@@ -67,6 +67,7 @@ public class LoginUsuario extends JFrame {
 				} catch (Exception execp) {
 					execp.printStackTrace();
 				}
+
 				System.out.println(this.getClass() + "Fim");
 
 				TelaBackground menuBancario = new TelaBackground(new HomeMenuBancario());
