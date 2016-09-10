@@ -59,7 +59,7 @@ public class LoginUsuario extends JFrame {
 
 					// Realiza um loop para exibir todos os registro existentes
 					// no Banco de dados
-					System.out.println("==================  Usuarios Cadastrados ============================");
+					System.out.println("==================  Listando Usuarios Cadastrados ============================");
 					for (Usuario a : listaUsuario) {
 						System.out.println(a);
 					}
