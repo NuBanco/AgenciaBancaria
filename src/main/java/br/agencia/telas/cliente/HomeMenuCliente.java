@@ -24,7 +24,7 @@ public class HomeMenuCliente extends JPanel {
 		JButton btnOpSaque = new JButton("1 - Saque");
 		btnOpSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground saque = new TelaBackground(new OpcoeSaque());
+				TelaBackground saque = new TelaBackground(new OpcoesSaque());
 				saque.setSize(580, 470);
 				saque.setLocationRelativeTo(null);
 				saque.setVisible(true);

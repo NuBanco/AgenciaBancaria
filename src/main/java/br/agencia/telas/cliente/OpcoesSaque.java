@@ -17,13 +17,13 @@ import br.agencia.telas.TelaBackground;
 
 import javax.swing.SwingConstants;
 
-public class OpcoeSaque extends JPanel {
+public class OpcoesSaque extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2914438307389368709L;
 
-	public OpcoeSaque() {
+	public OpcoesSaque() {
 
 		JButton btnOp50 = new JButton("R$ 50,00");
 		btnOp50.setFont(new Font("Arial", Font.BOLD, 17));
