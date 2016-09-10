@@ -24,6 +24,7 @@ public class EncodeSenha {
 		MessageDigest messageDigest = null;
 		try {
 			messageDigest = MessageDigest.getInstance(algorithm);
+			messageDigest.update(message.getBytes());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
