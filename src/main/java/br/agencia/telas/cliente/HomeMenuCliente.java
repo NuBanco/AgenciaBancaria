@@ -1,4 +1,4 @@
-package br.agencia.cliente;
+package br.agencia.telas.cliente;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import br.agencia.telas.TelaBackground;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import br.agencia.TelaBackground;
 
 public class HomeMenuCliente extends JPanel {
 	/**

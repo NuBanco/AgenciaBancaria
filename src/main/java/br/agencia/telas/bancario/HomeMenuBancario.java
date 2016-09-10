@@ -1,4 +1,4 @@
-package br.agencia.bancario;
+package br.agencia.telas.bancario;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import br.agencia.telas.TelaBackground;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import br.agencia.TelaBackground;
 
 public class HomeMenuBancario extends JPanel {
 	/**
@@ -26,8 +27,10 @@ public class HomeMenuBancario extends JPanel {
 				InformacoesConta infConta = new InformacoesConta();
 				infConta.setSize(319, 290);
 				infConta.setLocationRelativeTo(null);
-				infConta.setVisible(true);		
+				infConta.setVisible(true);	
+				
 			}
+			
 		});
 		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
 

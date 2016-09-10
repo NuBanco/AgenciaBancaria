@@ -1,4 +1,4 @@
-package br.agencia.cliente;
+package br.agencia.telas.cliente;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,9 +12,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
 
-import br.agencia.TelaBackground;
+import br.agencia.telas.TelaBackground;
+
+import javax.swing.SwingConstants;
 
 public class OpcoeSaque extends JPanel {
 	/**

@@ -1,4 +1,4 @@
-package br.agencia.cliente;
+package br.agencia.telas.cliente;
 
 import java.awt.Color;
 import java.awt.Font;

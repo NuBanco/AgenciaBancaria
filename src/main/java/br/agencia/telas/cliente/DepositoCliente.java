@@ -1,4 +1,4 @@
-package br.agencia.cliente;
+package br.agencia.telas.cliente;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

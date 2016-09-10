@@ -1,4 +1,4 @@
-package br.agencia.bancario;
+package br.agencia.telas.bancario;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;

@@ -1,4 +1,4 @@
-package br.agencia.bancario;
+package br.agencia.telas.bancario;
 
 import java.awt.Font;
 
