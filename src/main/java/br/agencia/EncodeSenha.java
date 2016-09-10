@@ -4,21 +4,22 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class TesteCriptografia {
+import br.agencia.enums.TipoUsuario;
 
-	private TesteCriptografia() { // default constructor
+public class EncodeSenha {
+
+	public String criptografar(final String valor, final TipoUsuario tipo){
+		String senha = "";
+
+		if (tipo.ordinal() == 0){
+			senha = genMD5(valor);
+		} else {
+			senha = genSHA256(valor);
+		}
+
+		return senha;
 	}
 
-	public static void main(String[] args) { // main
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Informe uma senha  : ");
-		String stringForHashCalculation = scan.nextLine();
-		scan.close();
-		System.out.println("Sua Senha -> " + stringForHashCalculation);
-		System.out.println("MD5   : " + genMD5(stringForHashCalculation));
-		System.out.println("SHA256: " + genSHA256(stringForHashCalculation));
-	}
-	
 	private static String hashString(String message, String algorithm) {
 		MessageDigest messageDigest = null;
 		try {
@@ -38,7 +39,6 @@ public class TesteCriptografia {
 		return hashString(message, "SHA-256");
 	}
 
-	// convert bytes to hex
 	private static String convertBytesToHex(byte[] bytes) {
 		StringBuffer hexString = new StringBuffer();
 		for (int i = 0; i < bytes.length; i++) {
