@@ -3,6 +3,7 @@ package br.agencia.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.Usuario;
+import br.agencia.bdagencia.UsuarioDao;
 import br.agencia.telas.bancario.HomeMenuBancario;
 
 public class LoginUsuario extends JFrame {
@@ -40,17 +43,44 @@ public class LoginUsuario extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				 TelaBackground menuBancario = new TelaBackground(new
-				 HomeMenuBancario()); menuBancario.setSize(580, 470);
-				 menuBancario.setLocationRelativeTo(null);
-				 menuBancario.setVisible(true); dispose();
+				System.out.println(this.getClass() + "Inicio");
 
-/*
-				TelaBackground menuCliente = new TelaBackground(new HomeMenuCliente());
-				menuCliente.setSize(580, 470);
-				menuCliente.setLocationRelativeTo(null);
-				menuCliente.setVisible(true);
-				dispose(); */
+				try {
+					// Cria a instância de um classe de acesso a Dados
+					UsuarioDao dao = new UsuarioDao();
+
+					// Cria um objeto aluno informando apenas o nome
+					Usuario aluno1 = new Usuario();
+					aluno1.setLogin(editUsuario.getText());
+					aluno1.setSenha(editSenha.getText());
+
+					// Consulta a lista de usuários cadastrados no Banco
+					List<Usuario> listaUsuario = dao.listar();
+
+					// Realiza um loop para exibir todos os registro existentes
+					// no Banco de dados
+					System.out.println("==================  Usuarios Cadastrados ============================");
+					for (Usuario a : listaUsuario) {
+						System.out.println(a);
+					}
+
+				} catch (Exception execp) {
+					execp.printStackTrace();
+				}
+				System.out.println(this.getClass() + "Fim");
+
+				TelaBackground menuBancario = new TelaBackground(new HomeMenuBancario());
+				menuBancario.setSize(580, 470);
+				menuBancario.setLocationRelativeTo(null);
+				menuBancario.setVisible(true);
+				dispose();
+
+				/*
+				 * TelaBackground menuCliente = new TelaBackground(new
+				 * HomeMenuCliente()); menuCliente.setSize(580, 470);
+				 * menuCliente.setLocationRelativeTo(null);
+				 * menuCliente.setVisible(true); dispose();
+				 */
 
 			}
 		});
