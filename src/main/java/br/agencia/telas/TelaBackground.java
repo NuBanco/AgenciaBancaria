@@ -81,7 +81,7 @@ public class TelaBackground extends JFrame {
 					.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-		dataHoje.setText(new SimpleDateFormat("dd/MM/yy").format(new Date(System.currentTimeMillis())));
+		dataHoje.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
 		horaAgora.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
 		
 		panelMenu.setLayout(new CardLayout(0, 0));
