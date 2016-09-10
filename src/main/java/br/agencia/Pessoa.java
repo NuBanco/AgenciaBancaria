@@ -9,7 +9,6 @@ public class Pessoa {
 	private Integer idade;
 	private String senha;
 	private String cpf;
-	private TipoUsuario tipoUsuario;
 
 	public Integer getIdade() {
 		return idade;
@@ -53,15 +52,6 @@ public class Pessoa {
 
 	public Pessoa setCpf(String cpf) {
 		this.cpf = cpf;
-		return this;
-	}
-
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public Pessoa setTipoUsuario(TipoUsuario usuario) {
-		this.tipoUsuario = usuario;
 		return this;
 	}
 

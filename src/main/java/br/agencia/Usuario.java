@@ -1,11 +1,14 @@
 package br.agencia;
 
+import br.agencia.enums.TipoUsuario;
+
 public class Usuario {
 
 	private Integer idUsuario;
 	private String login;
 	private String senha;
 	private String senhaOperacao;
+	private TipoUsuario tipoUsuario;
 
 	public Integer getId() {
 		return idUsuario;
@@ -40,6 +43,15 @@ public class Usuario {
 
 	public void setSenhaOperacao(String senhaOperacao) {
 		this.senhaOperacao = senhaOperacao;
+	}
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public Usuario setTipoUsuario(TipoUsuario usuario) {
+		this.tipoUsuario = usuario;
+		return this;
 	}
 
 }
