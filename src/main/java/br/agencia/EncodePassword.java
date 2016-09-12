@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import br.agencia.enums.TipoUsuario;
 
-public class EncodeSenha {
+public class EncodePassword {
 
 	public String criptografar(final String valor, final TipoUsuario tipo){
 		String senha = "";

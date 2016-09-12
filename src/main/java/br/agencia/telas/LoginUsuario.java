@@ -13,7 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.EncodeSenha;
+import br.agencia.EncodePassword;
 import br.agencia.enums.TipoUsuario;
 import br.agencia.telas.bancario.HomeMenuBancario;
 
@@ -42,7 +42,7 @@ public class LoginUsuario extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				EncodeSenha crip = new EncodeSenha();
+				EncodePassword crip = new EncodePassword();
 
 				System.out.println(crip.criptografar(editSenha.getText(), TipoUsuario.BANCARIO));
 
