@@ -1,4 +1,4 @@
-package br.agencia.telas.bancario;
+package br.agencia.view.bancario;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;

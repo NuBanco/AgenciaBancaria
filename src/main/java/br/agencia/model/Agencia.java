@@ -1,4 +1,4 @@
-package br.agencia;
+package br.agencia.model;
 
 public class Agencia {
 

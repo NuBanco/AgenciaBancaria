@@ -1,10 +1,9 @@
-package br.agencia;
+package br.agencia.model;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
-import br.agencia.enums.TipoUsuario;
+import br.agencia.model.enums.TipoUsuario;
 
 public class EncodePassword {
 

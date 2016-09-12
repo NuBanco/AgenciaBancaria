@@ -1,4 +1,4 @@
-package br.agencia.bdagencia;
+package br.agencia.database;
 
 import java.util.ArrayList;
 
@@ -6,11 +6,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+
+import br.agencia.model.Usuario;
+
 import java.util.List;
-
-//import org.hibernate.mapping.List;
-
-import br.agencia.Usuario;
 
 public class UsuarioDao {
 	private Session session;

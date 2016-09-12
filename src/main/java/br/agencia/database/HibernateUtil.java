@@ -1,4 +1,4 @@
-package br.agencia.bdagencia;
+package br.agencia.database;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

@@ -1,14 +1,14 @@
-package br.agencia;
+package br.agencia.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import br.agencia.enums.TipoUsuario;
+import br.agencia.model.enums.TipoUsuario;
 
 @Entity
 @Table(name="usuario")

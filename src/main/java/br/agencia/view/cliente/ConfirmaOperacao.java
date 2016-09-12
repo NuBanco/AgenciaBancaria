@@ -1,4 +1,4 @@
-package br.agencia.telas.cliente;
+package br.agencia.view.cliente;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

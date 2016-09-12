@@ -1,4 +1,4 @@
-package br.agencia.telas;
+package br.agencia.view.main;
 
 import java.awt.CardLayout;
 import java.awt.Font;

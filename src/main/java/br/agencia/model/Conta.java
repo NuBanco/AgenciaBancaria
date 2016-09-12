@@ -1,9 +1,8 @@
-package br.agencia;
+package br.agencia.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-import br.agencia.enums.TipoConta;
+import br.agencia.model.enums.TipoConta;
 
 public class Conta {
 

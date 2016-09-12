@@ -1,4 +1,4 @@
-package br.agencia.telas.cliente;
+package br.agencia.view.cliente;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.telas.TelaBackground;
+import br.agencia.view.main.TelaBackground;
 
 import javax.swing.SwingConstants;
 

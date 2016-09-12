@@ -1,4 +1,4 @@
-package br.agencia.telas;
+package br.agencia.view.main;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,9 +13,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.EncodePassword;
-import br.agencia.enums.TipoUsuario;
-import br.agencia.telas.bancario.HomeMenuBancario;
+import br.agencia.model.EncodePassword;
+import br.agencia.model.enums.TipoUsuario;
+import br.agencia.view.bancario.HomeMenuBancario;
 
 public class LoginUsuario extends JFrame {
 

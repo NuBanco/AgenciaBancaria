@@ -1,6 +1,4 @@
-package br.agencia;
-
-import br.agencia.enums.TipoUsuario;
+package br.agencia.model;
 
 public class Pessoa {
 

@@ -2,7 +2,7 @@ package br.agencia;
 
 import java.awt.EventQueue;
 
-import br.agencia.telas.LoginUsuario;
+import br.agencia.view.main.LoginUsuario;
 
 public class Main {
 

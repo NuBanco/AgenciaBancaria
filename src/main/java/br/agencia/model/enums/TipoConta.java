@@ -1,4 +1,4 @@
-package br.agencia.enums;
+package br.agencia.model.enums;
 
 public enum TipoConta {
 
