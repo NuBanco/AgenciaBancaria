@@ -33,7 +33,7 @@ public class UsuarioDao {
 		try {
 			session = (Session) HibernateUtil.getSessionFactory();
 			session.beginTransaction();
-			session.merge(usuario);
+			session.update(usuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
