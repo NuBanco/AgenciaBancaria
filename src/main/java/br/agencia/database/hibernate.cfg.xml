@@ -24,5 +24,8 @@
 
 		<!-- Lista das entidades que serão persistidas no Banco de Dados-->
 		<mapping class="br.agencia.Usuario" />
+		<mapping class="br.agencia.Agencia" />
+		<mapping class="br.agencia.Conta" />
+		<mapping class="br.agencia.Pessoa" />
 	</session-factory>
 </hibernate-configuration>
