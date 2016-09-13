@@ -1,5 +1,6 @@
 package br.agencia.database;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -7,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
 
-	private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static SessionFactory sessionFactory;
 	private static StandardServiceRegistry registry;
 
 	/* Build */
@@ -26,8 +27,11 @@ public class HibernateUtil {
 	}
 
 	/* Metodo Get */
-	public static SessionFactory getSessionFactory() {
-		return sessionFactory;
+	public static Session getSession() {
+		if (sessionFactory == null){
+			sessionFactory = buildSessionFactory();
+		}
+		return sessionFactory.openSession();
 	}
 
 	/* Destruir Sessao */

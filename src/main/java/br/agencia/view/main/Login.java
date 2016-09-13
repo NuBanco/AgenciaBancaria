@@ -13,22 +13,25 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.database.HibernateUtil;
 import br.agencia.model.EncodePassword;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.bancario.HomeMenuBancario;
 
-public class LoginUsuario extends JFrame {
+public class Login extends JFrame {
 
 	private static final long serialVersionUID = 7781598968866921968L;
 	private JTextField editUsuario;
 	private JPasswordField editSenha;
 
-	public LoginUsuario() {
+	public Login() {
 		setBounds(100, 100, 300, 170);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
 		setType(Type.POPUP);
 		setResizable(false);
 		setTitle("Login");
+
+		HibernateUtil.getSession();
 
 		editUsuario = new JTextField();
 		editUsuario.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -45,6 +48,8 @@ public class LoginUsuario extends JFrame {
 				EncodePassword crip = new EncodePassword();
 
 				System.out.println(crip.criptografar(editSenha.getText(), TipoUsuario.BANCARIO));
+
+				//pass = new CriptoFacgtory().get(tipo).generateHash(value);
 
 //				System.out.println(this.getClass() + "Inicio");
 //

@@ -2,7 +2,7 @@ package br.agencia;
 
 import java.awt.EventQueue;
 
-import br.agencia.view.main.LoginUsuario;
+import br.agencia.view.main.Login;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				LoginUsuario telaLogin = new LoginUsuario();
+				Login telaLogin = new Login();
 				telaLogin.setLocationRelativeTo(null);
 				telaLogin.setVisible(true);
 			}

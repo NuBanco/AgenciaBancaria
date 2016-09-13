@@ -16,7 +16,7 @@ public class UsuarioDao {
 
 	public void incluir(Usuario usuario) {
 		try {
-			session = (Session) HibernateUtil.getSessionFactory();
+			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
 			session.save(usuario);
 			session.getTransaction().commit();
@@ -30,7 +30,7 @@ public class UsuarioDao {
 
 	public void alterar(Usuario usuario) {
 		try {
-			session = (Session) HibernateUtil.getSessionFactory();
+			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
 			session.update(usuario);
 			session.getTransaction().commit();
@@ -44,7 +44,7 @@ public class UsuarioDao {
 
 	public void excluir(Usuario usuario) {
 		try {
-			session = (Session) HibernateUtil.getSessionFactory();
+			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
 			session.delete(usuario);
 			session.getTransaction().commit();
@@ -59,7 +59,7 @@ public class UsuarioDao {
 	public Usuario consultar(int codigo) {
 		Usuario retorno = new Usuario();
 		try {
-			session = (Session) HibernateUtil.getSessionFactory();
+			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
 			retorno = (Usuario) session.get(Usuario.class, codigo);
 			session.getTransaction().commit();
@@ -76,7 +76,7 @@ public class UsuarioDao {
 	public List<Usuario> listar() {
 		List<Usuario> lista = new ArrayList<Usuario>();
 		try {
-			session = (Session) HibernateUtil.getSessionFactory();
+			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
 			lista = (List<Usuario>) session.createCriteria(Usuario.class).list();
 			session.getTransaction().commit();
