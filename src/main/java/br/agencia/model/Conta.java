@@ -1,17 +1,35 @@
 package br.agencia.model;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import br.agencia.model.enums.TipoConta;
 
-public class Conta {
+public class Conta implements Serializable {
 
+	private static final long serialVersionUID = -5010028474742069862L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "cnt_idconta")
 	private Integer id;
+	
+	@Column(name = "cnt_tipoConta")
 	private TipoConta tipoConta;
+	
+	@Column(name = "cnt_agencia")
 	private Agencia agencia;
+	
+	@Column(name = "cnt_numero")
 	private String numero;
+	
+	@Column(name = "cnt_dataAbertura")
 	private Date dataAbertura;
-	//private BigDecimal saldoConta;
+	// private BigDecimal saldoConta;
 
 	public Integer getId() {
 		return id;
@@ -53,12 +71,12 @@ public class Conta {
 		this.dataAbertura = dataAbertura;
 	}
 
-//	public BigDecimal getSaldoConta() {
-//		return saldoConta;
-//	}
-//
-//	public void setSaldoConta(BigDecimal saldoConta) {
-//		this.saldoConta = saldoConta;
-//	}
+	// public BigDecimal getSaldoConta() {
+	// return saldoConta;
+	// }
+	//
+	// public void setSaldoConta(BigDecimal saldoConta) {
+	// this.saldoConta = saldoConta;
+	// }
 
 }

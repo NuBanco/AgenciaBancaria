@@ -11,26 +11,26 @@ import javax.persistence.Table;
 import br.agencia.model.enums.TipoUsuario;
 
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 6811212106974636541L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="idusuario")
+	@Column(name = "usu_idusuario")
 	private Integer idUsuario;
 
-	@Column(name="usu_login")
+	@Column(name = "usu_login")
 	private String login;
 
-	@Column(name="usu_senha")
+	@Column(name = "usu_senha")
 	private String senha;
 
-	@Column(name="usu_senhaOperacao")
+	@Column(name = "usu_senhaOperacao")
 	private String senhaOperacao;
 
-	@Column(name="usu_tipousuario")
+	@Column(name = "usu_tipousuario")
 	private TipoUsuario tipoUsuario;
 
 	public Integer getId() {

@@ -1,11 +1,34 @@
 package br.agencia.model;
 
-public class Pessoa {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "pessoa")
+public class Pessoa implements Serializable {
+
+	private static final long serialVersionUID = -2649068654653715106L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "ps_idpessoa")
 	private Integer id;
+
+	@Column(name = "ps_nome")
 	private String nome;
+
+	@Column(name = "ps_idade")
 	private Integer idade;
+
+	@Column(name = "ps_senha")
 	private String senha;
+
+	@Column(name = "ps_cpf")
 	private String cpf;
 
 	public Integer getIdade() {
