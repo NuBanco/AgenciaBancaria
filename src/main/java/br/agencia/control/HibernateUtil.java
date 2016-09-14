@@ -1,4 +1,4 @@
-package br.agencia.database;
+package br.agencia.control;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

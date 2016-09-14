@@ -1,5 +1,6 @@
 package br.agencia.view.main;
 
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.database.HibernateUtil;
+import br.agencia.control.HibernateUtil;
 import br.agencia.model.EncodePassword;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.bancario.HomeMenuBancario;
@@ -124,5 +125,16 @@ public class Login extends JFrame {
 						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLogin)
 						.addContainerGap(22, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
+	}
+
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				Login telaLogin = new Login();
+				telaLogin.setLocationRelativeTo(null);
+				telaLogin.setVisible(true);
+			}
+		});
 	}
 }

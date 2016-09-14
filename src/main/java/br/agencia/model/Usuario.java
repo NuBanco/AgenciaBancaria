@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "usu_idusuario")
+	@Column(name = "usu_idusuario", columnDefinition = "serial")
 	private Integer idUsuario;
 
 	@Column(name = "usu_login")
