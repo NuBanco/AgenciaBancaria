@@ -23,9 +23,9 @@
 		 -->
 
 		<!-- Lista das entidades que serão persistidas no Banco de Dados-->
-		<mapping class="br.agencia.Usuario" />
-		<mapping class="br.agencia.Agencia" />
-		<mapping class="br.agencia.Conta" />
-		<mapping class="br.agencia.Pessoa" />
+		<mapping class="br.agencia.model.Usuario" />
+		<mapping class="br.agencia.model.Agencia" />
+		<mapping class="br.agencia.model.Conta" />
+		<mapping class="br.agencia.model.Pessoa" />
 	</session-factory>
 </hibernate-configuration>
