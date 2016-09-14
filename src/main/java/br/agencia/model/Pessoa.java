@@ -16,7 +16,7 @@ public class Pessoa implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ps_idpessoa")
+	@Column(name = "ps_idpessoa", columnDefinition = "serial")
 	private Integer id;
 
 	@Column(name = "ps_nome")

@@ -4,18 +4,22 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.agencia.model.enums.TipoConta;
 
+@Entity
+@Table(name = "conta")
 public class Conta implements Serializable {
 
 	private static final long serialVersionUID = -5010028474742069862L;
 
 	@Id
 	@GeneratedValue
-	@Column(name = "cnt_idconta")
+	@Column(name = "cnt_idconta", columnDefinition = "serial")
 	private Integer id;
 	
 	@Column(name = "cnt_tipoConta")

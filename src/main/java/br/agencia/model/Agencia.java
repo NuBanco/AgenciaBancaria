@@ -3,16 +3,20 @@ package br.agencia.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "agencia")
 public class Agencia implements Serializable  {
 
 	private static final long serialVersionUID = 2840564797225804733L;
 	
 	@Id
 	@GeneratedValue
-	@Column(name="ag_idagencia")
+	@Column(name="ag_idagencia", columnDefinition = "serial")
 	private Integer id;
 	
 	@Column(name="ag_codAgencia")
