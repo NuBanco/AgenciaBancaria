@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.HibernateUtil;
-import br.agencia.model.EncodePassword;
+import br.agencia.model.EncodePasswordFactory;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.bancario.HomeMenuBancario;
 
@@ -46,11 +46,9 @@ public class Login extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				EncodePassword crip = new EncodePassword();
+				//EncodePassword crip = new EncodePassword();
 
-				System.out.println(crip.criptografar(editSenha.getText(), TipoUsuario.BANCARIO));
-
-				//pass = new CriptoFacgtory().get(tipo).generateHash(value);
+				System.out.println(new EncodePasswordFactory().create(TipoUsuario.CLIENTE).encode(editSenha.getText()));
 
 //				System.out.println(this.getClass() + "Inicio");
 //
