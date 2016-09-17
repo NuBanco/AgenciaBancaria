@@ -19,6 +19,8 @@ public class Balanco extends JPanel{
 	private JTable tbGrid;
 	public Balanco() {
 		
+		//teste
+		
 		JButton btnRegressaAno = new JButton("I<");
 		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 12));
 		
