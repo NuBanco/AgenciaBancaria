@@ -7,18 +7,16 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import br.agencia.model.Usuario;
-
 import java.util.List;
 
 public class GenericDao {
 	private Session session;
 
-	public void incluir(Usuario usuario) {
+	public void incluir(Object objetoGeneric) {
 		try {
 			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
-			session.save(usuario);
+			session.save(objetoGeneric);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -28,11 +26,11 @@ public class GenericDao {
 		}
 	}
 
-	public void alterar(Usuario usuario) {
+	public void alterar(Object objetoGeneric) {
 		try {
 			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
-			session.update(usuario);
+			session.update(objetoGeneric);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -42,11 +40,11 @@ public class GenericDao {
 		}
 	}
 
-	public void excluir(Usuario usuario) {
+	public void excluir(Object objetoGeneric) {
 		try {
 			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
-			session.delete(usuario);
+			session.delete(objetoGeneric);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -56,12 +54,29 @@ public class GenericDao {
 		}
 	}
 
-	public Usuario consultar(int codigo) {
-		Usuario retorno = new Usuario();
+	public Object consultarById(int idPesquisa) {
+		Object retorno = new Object();
 		try {
 			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
-			retorno = (Usuario) session.get(Usuario.class, codigo);
+			retorno = (Object) session.get(Object.class, idPesquisa);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return retorno;
+	}
+
+	@SuppressWarnings("deprecation")
+	public Object consultarByString(Object objetoGeneric, String textoPesquisa) {
+		Object retorno = new Object();
+		try {
+			session = (Session) HibernateUtil.getSession();
+			session.beginTransaction();
+			retorno = (Object) session.createCriteria(objetoGeneric.getClass()).add(Restrictions.isEmpty(textoPesquisa)).uniqueResult();
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -73,12 +88,12 @@ public class GenericDao {
 	}
 
 	@SuppressWarnings({ "unchecked" })
-	public List<Usuario> listar() {
-		List<Usuario> lista = new ArrayList<Usuario>();
+	public List<Object> listar() {
+		List<Object> lista = new ArrayList<Object>();
 		try {
 			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
-			lista = (List<Usuario>) session.createCriteria(Usuario.class).list();
+			lista = (List<Object>) session.createCriteria(Object.class).list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -89,13 +104,15 @@ public class GenericDao {
 		return lista;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Usuario> listar(Usuario usuario) {
-		Criteria c = session.createCriteria(Usuario.class);
-		if (usuario.getLogin().length() > 0) {
-			c.add(Restrictions.like("nome", usuario.getLogin() + "%"));
-		}
-		c.addOrder(Order.asc("nome"));
-		return (List<Usuario>) c.list();
-	}
+	/*
+	 * Verificar se este metodo sera utilizado
+	 *
+	 * @SuppressWarnings("unchecked") public List<Object> listar(Object
+	 * objetoGeneric) { Criteria criteria =
+	 * session.createCriteria(Object.class); if
+	 * (objetoGeneric.getLogin().length() > 0) {
+	 * criteria.add(Restrictions.like("nome", objetoGeneric.getLogin() + "%"));
+	 * } criteria.addOrder(Order.asc("nome")); return (List<Object>)
+	 * criteria.list(); }
+	 */
 }

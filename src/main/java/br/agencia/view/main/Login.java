@@ -10,12 +10,15 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.control.GenericDao;
 import br.agencia.control.HibernateUtil;
 import br.agencia.model.EncodePasswordFactory;
+import br.agencia.model.Usuario;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.bancario.HomeMenuBancario;
 
@@ -45,7 +48,27 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GenericDao UsuarioDao = new GenericDao();
+				Usuario login = new Usuario();
 
+				if (editUsuario.getText().length() == 0){
+					JOptionPane.showMessageDialog(null, "O campo \"Usuario\" deve ser informado!");
+					return;
+				}
+
+				if (editSenha.getText().length() == 0){
+					JOptionPane.showMessageDialog(null, "O campo \"Senha\" deve ser informado!");
+					return;
+				}
+
+				login = (Usuario) UsuarioDao.consultarByString(new Usuario(), editUsuario.getText());
+
+				if (login == null) {
+					JOptionPane.showMessageDialog(null, "Usuario e/ou senha invalido(s)!");
+					return;
+				}
+
+				JOptionPane.showMessageDialog(null, "XABLAU");
 				//EncodePassword crip = new EncodePassword();
 
 				System.out.println(new EncodePasswordFactory().create(TipoUsuario.CLIENTE).encode(editSenha.getText()));
