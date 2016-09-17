@@ -11,7 +11,7 @@ import br.agencia.model.Usuario;
 
 import java.util.List;
 
-public class UsuarioDao {
+public class GenericDao {
 	private Session session;
 
 	public void incluir(Usuario usuario) {
