@@ -19,6 +19,7 @@ public class InformacoesConta extends JFrame {
 	private JTextField txtAgencia;
 	private JTextField txtConta;
 	private JTextField txtTitular;
+	public static final String ID = "INFCONTA";
 
 	public InformacoesConta() {
 

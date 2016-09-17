@@ -13,13 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.view.main.TelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
 import javax.swing.SwingConstants;
 
 public class OpcoesSaque extends JPanel {
 
 	private static final long serialVersionUID = 2914438307389368709L;
+	public static final String ID = "OPCAOSAQUE";
 
 	public OpcoesSaque() {
 

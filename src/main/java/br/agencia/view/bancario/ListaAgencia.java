@@ -14,6 +14,7 @@ public class ListaAgencia extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -2810545553216015257L;
+	public static final String ID = "LISTAGENCIA";
 	private JTable tbAgencia;
 	public ListaAgencia() {
 		

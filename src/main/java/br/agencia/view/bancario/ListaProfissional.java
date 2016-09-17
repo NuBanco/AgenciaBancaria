@@ -14,6 +14,7 @@ public class ListaProfissional extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -4635580930027968770L;
+	public static final String ID = "LISTPROFISSIONAL";
 	private JTable tbProfissionais;
 
 	public ListaProfissional() {

@@ -17,6 +17,7 @@ public class ConfirmaOperacao extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 3993718123138322069L;
+	public static final String ID = "CONFIRMAOPERACAO";
 
 	public ConfirmaOperacao(JFrame janela) {
 

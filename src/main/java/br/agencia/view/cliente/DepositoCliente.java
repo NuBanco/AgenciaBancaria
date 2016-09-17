@@ -19,6 +19,7 @@ public class DepositoCliente extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 242114627222497452L;
+	public static final String ID = "DEPOSITOCLIENTE";
 	private JTextField txtAgencia;
 	private JTextField txtConta;
 	private JTextField txtTitular;

@@ -1,4 +1,4 @@
-package br.agencia.view.main;
+package br.agencia.view.principal;
 
 import java.awt.EventQueue;
 import java.awt.Font;

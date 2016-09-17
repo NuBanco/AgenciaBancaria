@@ -17,6 +17,7 @@ public class NovaConta extends JPanel{
 	 *  
 	 */
 	private static final long serialVersionUID = 5210607113046110764L;
+	public static final String ID = "NOVACONTA";
 	private JTextField txtNome;
 	private JTextField txtIdade;
 	private JTextField txtCPF;

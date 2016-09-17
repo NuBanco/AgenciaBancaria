@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 public class SaldoCliente extends JPanel{
 
 	private static final long serialVersionUID = -7210132078896245655L;
+	public static final String ID = "SALDOCLIENTE";
 	private JTextField txtDataInicial;
 	private JTextField txtDataFinal;
 	private JTable tbGrid;

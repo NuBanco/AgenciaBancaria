@@ -17,6 +17,8 @@ public class Balanco extends JPanel{
 	private JTextField txtDataInicial;
 	private JTextField txtDataFinal;
 	private JTable tbGrid;
+	public static final String ID = "BALANCO";
+	
 	public Balanco() {
 		
 		//teste

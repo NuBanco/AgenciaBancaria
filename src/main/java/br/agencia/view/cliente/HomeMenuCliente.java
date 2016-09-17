@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-import br.agencia.view.main.TelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
