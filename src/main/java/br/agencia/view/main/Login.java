@@ -60,9 +60,10 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "O campo \"Senha\" deve ser informado!");
 					return;
 				}
-
-				login = (Usuario) UsuarioDao.consultarByString(new Usuario(), editUsuario.getText());
-
+				login.setSenhaOperacao("aaa");
+				login.setLogin("admin");
+				//login = (Usuario) UsuarioDao.consultarByString(new Usuario(), editUsuario.getText());
+				UsuarioDao.incluir(login);
 				if (login == null) {
 					JOptionPane.showMessageDialog(null, "Usuario e/ou senha invalido(s)!");
 					return;

@@ -41,6 +41,7 @@ public class HomeMenuBancario extends JPanel {
 				novaConta.setSize(580, 470);
 				novaConta.setLocationRelativeTo(null);
 				novaConta.setVisible(true);
+				
 			}
 		});
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));

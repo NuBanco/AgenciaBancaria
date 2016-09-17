@@ -18,9 +18,7 @@ import br.agencia.view.main.TelaBackground;
 import javax.swing.SwingConstants;
 
 public class OpcoesSaque extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 2914438307389368709L;
 
 	public OpcoesSaque() {

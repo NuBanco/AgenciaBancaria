@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +21,7 @@ public class TelaBackground extends JFrame {
 	private static final long serialVersionUID = -4312697814718930403L;
 
 	public TelaBackground(JPanel panelDinamico) {
-		// setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eliel\\git\\AgenciaBancaria\\img\\banco-maizena-2.jpg"));
+		ImageIcon logo = new ImageIcon("img\\logo.jpg");
 		setTitle("Banco Tads");
 
 		JLabel lbTitulo = new JLabel("BANCO TADS");
@@ -39,6 +40,9 @@ public class TelaBackground extends JFrame {
 		
 		JLabel horaAgora = new JLabel("New label");
 		horaAgora.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JLabel lblLogo = new JLabel(logo);
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -46,22 +50,24 @@ public class TelaBackground extends JFrame {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+							.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
 							.addContainerGap())
-						.addComponent(panelDivisor, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+						.addComponent(panelDivisor, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(99)
+							.addGap(18)
+							.addComponent(lblLogo)
+							.addGap(35)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lbTitulo)
-									.addPreferredGap(ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
 									.addComponent(dataHoje)
 									.addGap(18)
 									.addComponent(horaAgora)
 									.addGap(11))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lbDescricao)
-									.addContainerGap(373, Short.MAX_VALUE))))))
+									.addContainerGap(211, Short.MAX_VALUE))))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -69,7 +75,9 @@ public class TelaBackground extends JFrame {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lbTitulo)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbTitulo)
+								.addComponent(lblLogo))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lbDescricao))
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
