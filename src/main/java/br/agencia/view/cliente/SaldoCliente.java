@@ -1,18 +1,20 @@
 package br.agencia.view.cliente;
 
-import javax.swing.JPanel;
+import java.awt.Font;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
-public class SaldoCliente extends JPanel{
+import br.agencia.view.principal.AbstractTelaBackground;
+
+public class SaldoCliente extends AbstractTelaBackground{
 
 	private static final long serialVersionUID = -7210132078896245655L;
 	public static final String ID = "SALDOCLIENTE";
@@ -122,5 +124,10 @@ public class SaldoCliente extends JPanel{
 					.addGap(36))
 		);
 		setLayout(groupLayout);
+	}
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

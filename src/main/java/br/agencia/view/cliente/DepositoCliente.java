@@ -1,20 +1,23 @@
 package br.agencia.view.cliente;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import java.awt.Font;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JCheckBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JFormattedTextField;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
-public class DepositoCliente extends JPanel {
+import br.agencia.view.principal.AbstractTelaBackground;
+
+public class DepositoCliente extends AbstractTelaBackground {
 	/**
 	 * 
 	 */
@@ -124,5 +127,11 @@ public class DepositoCliente extends JPanel {
 								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(70, Short.MAX_VALUE)));
 		setLayout(groupLayout);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

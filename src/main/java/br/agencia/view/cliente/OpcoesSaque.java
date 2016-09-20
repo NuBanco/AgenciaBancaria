@@ -12,12 +12,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 import br.agencia.view.principal.AbstractTelaBackground;
 
-import javax.swing.SwingConstants;
-
-public class OpcoesSaque extends JPanel {
+public class OpcoesSaque extends AbstractTelaBackground {
 
 	private static final long serialVersionUID = 2914438307389368709L;
 	public static final String ID = "OPCAOSAQUE";
@@ -123,9 +122,15 @@ public class OpcoesSaque extends JPanel {
 	
 	private void OpcaoSacar( BigDecimal valor ){
 		AbstractTelaBackground saldo = null;
-		saldo = new AbstractTelaBackground(new ConfirmaOperacao(saldo));
+		saldo = new ConfirmaOperacao(saldo);
 		saldo.setSize(580, 470);
 		saldo.setLocationRelativeTo(null);
 		saldo.setVisible(true);					
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

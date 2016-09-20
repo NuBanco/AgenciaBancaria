@@ -14,9 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
 public class SenhaCliente extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 3187868024721495012L;
 	private JPasswordField txtSenha;
 

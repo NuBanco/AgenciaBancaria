@@ -6,16 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-
-import br.agencia.view.principal.AbstractTelaBackground;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import br.agencia.view.principal.AbstractTelaBackground;
+
 public class HomeMenuCliente extends AbstractTelaBackground {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = 5853409558338193456L;
 
 	public HomeMenuCliente() {
@@ -24,7 +21,7 @@ public class HomeMenuCliente extends AbstractTelaBackground {
 		JButton btnOpSaque = new JButton("1 - Saque");
 		btnOpSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AbstractTelaBackground saque = new AbstractTelaBackground(new OpcoesSaque());
+				AbstractTelaBackground saque = OpcoesSaque();
 				saque.setSize(580, 470);
 				saque.setLocationRelativeTo(null);
 				saque.setVisible(true);
@@ -109,6 +106,12 @@ public class HomeMenuCliente extends AbstractTelaBackground {
 										GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		setLayout(groupLayout);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	// public static void main(String[] args) {

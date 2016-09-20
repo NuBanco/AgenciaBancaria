@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class ConfirmaOperacao extends JPanel {
-	/**
-	 * 
-	 */
+import br.agencia.view.principal.AbstractTelaBackground;
+
+public class ConfirmaOperacao extends AbstractTelaBackground {
+
 	private static final long serialVersionUID = 3993718123138322069L;
 	public static final String ID = "CONFIRMAOPERACAO";
 
@@ -58,5 +58,11 @@ public class ConfirmaOperacao extends JPanel {
 				.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
 				.addComponent(btnOpImprimir, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)));
 		setLayout(groupLayout);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
