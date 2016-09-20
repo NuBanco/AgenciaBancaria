@@ -91,47 +91,47 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		});
 		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));
 
-//		GroupLayout groupLayout = new GroupLayout(this);
-//		groupLayout.setHonorsVisibility(false);
-//		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-//				.addGroup(groupLayout.createSequentialGroup().addGap(28)
-//						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-//								.addComponent(btnOpInformacoesConta, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-//								.addComponent(btnOpNovaConta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-//										Short.MAX_VALUE)
-//								.addComponent(btnOpClientes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-//										Short.MAX_VALUE))
-//						.addGap(124)
-//						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-//								.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 180,
-//										GroupLayout.PREFERRED_SIZE)
-//								.addComponent(btnOpBalanco, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-//								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 180,
-//										GroupLayout.PREFERRED_SIZE))
-//						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-//		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-//				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-//						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-//								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE,
-//										50, GroupLayout.PREFERRED_SIZE)
-//								.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 50,
-//										GroupLayout.PREFERRED_SIZE))
-//						.addGap(59)
-//						.addGroup(
-//								groupLayout.createParallelGroup(Alignment.LEADING)
-//										.addComponent(btnOpBalanco, GroupLayout.PREFERRED_SIZE, 50,
-//												GroupLayout.PREFERRED_SIZE)
-//										.addComponent(btnOpNovaConta, GroupLayout.PREFERRED_SIZE, 50,
-//												GroupLayout.PREFERRED_SIZE))
-//						.addGap(56)
-//						.addGroup(
-//								groupLayout.createParallelGroup(Alignment.LEADING)
-//										.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50,
-//												GroupLayout.PREFERRED_SIZE)
-//										.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50,
-//												GroupLayout.PREFERRED_SIZE))
-//						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-//		setLayout(groupLayout);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHonorsVisibility(false);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(28)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnOpInformacoesConta, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+								.addComponent(btnOpNovaConta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addComponent(btnOpClientes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE))
+						.addGap(124)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 180,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnOpBalanco, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 180,
+										GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE,
+										50, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 50,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(59)
+						.addGroup(
+								groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnOpBalanco, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnOpNovaConta, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE))
+						.addGap(56)
+						.addGroup(
+								groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		setLayout(groupLayout);
 
 		getPanelMenu().add(btnOpInformacoesConta);
 		getPanelMenu().add(btnOpNovaConta);
@@ -140,8 +140,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		getPanelMenu().add(btnOpBalanco);
 		getPanelMenu().add(btnOpProfissionais);
 
-		getPanelMenu().setSize(580, 470);;
-		getPanelMenu().setVisible(true);
+		getPanelMenu().setSize(200, 87);;
 	}
 
 	@Override
@@ -149,14 +148,4 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		return painelPrincipal;
 	}
 
-	// public static void main(String[] args) {
-	//
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// HomeMenuBancario menuBancario = new HomeMenuBancario();
-	// menuBancario.setLocationRelativeTo(null);
-	// menuBancario.setVisible(true);
-	// }
-	// });
-	// }
 }

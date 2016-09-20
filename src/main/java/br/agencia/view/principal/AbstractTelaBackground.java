@@ -32,8 +32,6 @@ public abstract class AbstractTelaBackground extends JFrame {
 		lbDescricao.setFont(new Font("Arial", Font.PLAIN, 14));
 		lbDescricao.setEnabled(false);
 
-		JPanel panelDivisor = new JPanel();
-
 		JLabel dataHoje = new JLabel("data");
 		dataHoje.setFont(new Font("Arial", Font.BOLD, 14));
 
@@ -46,27 +44,24 @@ public abstract class AbstractTelaBackground extends JFrame {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
+					.addGap(28)
+					.addComponent(lblLogo)
+					.addGap(35)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-							.addContainerGap())
-						.addComponent(panelDivisor, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbTitulo)
+							.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+							.addComponent(dataHoje)
 							.addGap(18)
-							.addComponent(lblLogo)
-							.addGap(35)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lbTitulo)
-									.addPreferredGap(ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-									.addComponent(dataHoje)
-									.addGap(18)
-									.addComponent(horaAgora)
-									.addGap(11))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lbDescricao)
-									.addContainerGap(211, Short.MAX_VALUE))))))
+							.addComponent(horaAgora)
+							.addGap(11))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbDescricao)
+							.addContainerGap(258, Short.MAX_VALUE))))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -82,16 +77,14 @@ public abstract class AbstractTelaBackground extends JFrame {
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 							.addComponent(dataHoje)
 							.addComponent(horaAgora)))
-					.addGap(29)
-					.addComponent(panelDivisor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		dataHoje.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
 		horaAgora.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
 
-		panelMenu.setLayout(new CardLayout(0, 0));
+		panelMenu.setLayout(new CardLayout(200, 87));
 		getContentPane().setLayout(groupLayout);
 	}
 
