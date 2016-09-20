@@ -5,13 +5,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import br.agencia.view.principal.AbstractTelaBackground;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class ListaProfissional extends JPanel {
+public class ListaProfissional extends AbstractTelaBackground {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4635580930027968770L;
 	public static final String ID = "LISTPROFISSIONAL";
@@ -22,7 +25,7 @@ public class ListaProfissional extends JPanel {
 		tbProfissionais = new JTable();
 		tbProfissionais.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "Nome", "UserName" }) {
 			/**
-			 * 
+			 *
 			 */
 			private static final long serialVersionUID = 4430186584413459932L;
 			boolean[] columnEditables = new boolean[] { false, true };
@@ -57,5 +60,11 @@ public class ListaProfissional extends JPanel {
 								.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		setLayout(groupLayout);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

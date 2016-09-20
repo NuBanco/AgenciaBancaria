@@ -6,13 +6,16 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import br.agencia.view.principal.AbstractTelaBackground;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class NovaConta extends JPanel{
+public class NovaConta extends AbstractTelaBackground{
 	/**
 	 *
 	 */
@@ -146,5 +149,11 @@ public class NovaConta extends JPanel{
 					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 import br.agencia.view.principal.AbstractTelaBackground;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class HomeMenuBancario extends AbstractTelaBackground {
@@ -22,6 +23,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 	public HomeMenuBancario() {
 
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
+		JOptionPane.showMessageDialog(null, btnOpInformacoesConta);
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InformacoesConta infConta = new InformacoesConta();
@@ -37,7 +39,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AbstractTelaBackground novaConta = new AbstractTelaBackground(new NovaConta());
+				NovaConta novaConta = new NovaConta();
 				novaConta.setSize(580, 470);
 				novaConta.setLocationRelativeTo(null);
 				novaConta.setVisible(true);
@@ -57,7 +59,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		JButton btnOpAgencias = new JButton("6 - Ag\u00EAncias");
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AbstractTelaBackground agencias = new AbstractTelaBackground(new ListaAgencia());
+				ListaAgencia agencias = new ListaAgencia();
 				agencias.setSize(580, 470);
 				agencias.setLocationRelativeTo(null);
 				agencias.setVisible(true);
@@ -68,7 +70,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AbstractTelaBackground balanco = new AbstractTelaBackground(new Balanco());
+				Balanco balanco = new Balanco();
 				balanco.setSize(580, 470);
 				balanco.setLocationRelativeTo(null);
 				balanco.setVisible(true);
@@ -79,7 +81,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AbstractTelaBackground profissionais = new AbstractTelaBackground(new ListaProfissional());
+				ListaProfissional profissionais = new ListaProfissional();
 				profissionais.setSize(580, 470);
 				profissionais.setLocationRelativeTo(null);
 				profissionais.setVisible(true);

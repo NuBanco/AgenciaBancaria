@@ -8,78 +8,81 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import br.agencia.view.principal.AbstractTelaBackground;
+
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 
-public class Balanco extends JPanel{
+public class Balanco extends AbstractTelaBackground{
 
 	private JTextField txtDataInicial;
 	private JTextField txtDataFinal;
 	private JTable tbGrid;
 	public static final String ID = "BALANCO";
-	
+
 	public Balanco() {
-		
+
 		//teste
-		
+
 		JButton btnRegressaAno = new JButton("I<");
 		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		JButton btnRegressaMes = new JButton("<<");
 		btnRegressaMes.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		JButton btnRegressaDia = new JButton("<");
 		btnRegressaDia.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		txtDataInicial = new JTextField();
 		txtDataInicial.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtDataInicial.setEditable(false);
 		txtDataInicial.setColumns(10);
-		
+
 		txtDataFinal = new JTextField();
 		txtDataFinal.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtDataFinal.setEditable(false);
 		txtDataFinal.setColumns(10);
-		
+
 		JButton btnAvancaDia = new JButton(">");
 		btnAvancaDia.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		JButton btnAvancaMes = new JButton(">>");
 		btnAvancaMes.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		JButton btnAvancaAno = new JButton(">I");
 		btnAvancaAno.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		JButton btnImprimir = new JButton("");
 		btnImprimir.setFont(new Font("Arial", Font.BOLD, 12));
-		
+
 		JLabel lblsaldoPerodoR = new JLabel("(=)Saldo em Caixa R$");
 		lblsaldoPerodoR.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lbValorSaldo = new JLabel("0,00");
 		lbValorSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbValorSaldo.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		tbGrid = new JTable();
-		
+
 		JLabel lbValorDepositos = new JLabel("0,00");
 		lbValorDepositos.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbValorDepositos.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lbTotalDepositos = new JLabel("(+) Total Dep\u00F3sitos R$");
 		lbTotalDepositos.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lbValorSaques = new JLabel("0,00");
 		lbValorSaques.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbValorSaques.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lbTotalSaquesR = new JLabel("(-)Total Saques R$");
 		lbTotalSaquesR.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JComboBox<Object> cbbAgencia = new JComboBox<Object>();
 		cbbAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
-		
+
 		JLabel lblAg = new JLabel("Ag\u00EAncia:");
 		lblAg.setFont(new Font("Arial", Font.BOLD, 14));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -165,5 +168,11 @@ public class Balanco extends JPanel{
 					.addGap(57))
 		);
 		setLayout(groupLayout);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -5,19 +5,22 @@ import javax.swing.JTable;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
+
+import br.agencia.view.principal.AbstractTelaBackground;
+
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
-public class ListaAgencia extends JPanel{
+public class ListaAgencia extends AbstractTelaBackground {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2810545553216015257L;
 	public static final String ID = "LISTAGENCIA";
 	private JTable tbAgencia;
 	public ListaAgencia() {
-		
+
 		tbAgencia = new JTable();
 		tbAgencia.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -27,10 +30,10 @@ public class ListaAgencia extends JPanel{
 				"Nome", "N\u00FAmero", "Cidade"
 			}
 		));
-		
+
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JButton btnAdicionar = new JButton("+");
 		btnAdicionar.setFont(new Font("Arial", Font.BOLD, 14));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -54,5 +57,10 @@ public class ListaAgencia extends JPanel{
 					.addGap(15))
 		);
 		setLayout(groupLayout);
+	}
+	@Override
+	public JPanel getPanelMenu() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
