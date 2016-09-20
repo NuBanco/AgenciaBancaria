@@ -15,9 +15,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TelaBackground extends JFrame {
 
-	/**
-	* 
-	*/
 	private static final long serialVersionUID = -4312697814718930403L;
 
 	public TelaBackground(JPanel panelDinamico) {
@@ -34,15 +31,15 @@ public class TelaBackground extends JFrame {
 		JPanel panelDivisor = new JPanel();
 
 		JPanel panelMenu = new JPanel();
-		
+
 		JLabel dataHoje = new JLabel("data");
 		dataHoje.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel horaAgora = new JLabel("New label");
 		horaAgora.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lblLogo = new JLabel(logo);
-		
+
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -91,7 +88,7 @@ public class TelaBackground extends JFrame {
 		);
 		dataHoje.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
 		horaAgora.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
-		
+
 		panelMenu.setLayout(new CardLayout(0, 0));
 		panelMenu.add(panelDinamico);
 		getContentPane().setLayout(groupLayout);
