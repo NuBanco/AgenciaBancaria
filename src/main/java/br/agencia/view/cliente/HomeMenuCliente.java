@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-import br.agencia.view.principal.TelaBackground;
+import br.agencia.view.principal.AbstractTelaBackground;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class HomeMenuCliente extends JPanel {
+public class HomeMenuCliente extends AbstractTelaBackground {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5853409558338193456L;
 
@@ -24,7 +24,7 @@ public class HomeMenuCliente extends JPanel {
 		JButton btnOpSaque = new JButton("1 - Saque");
 		btnOpSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground saque = new TelaBackground(new OpcoesSaque());
+				AbstractTelaBackground saque = new AbstractTelaBackground(new OpcoesSaque());
 				saque.setSize(580, 470);
 				saque.setLocationRelativeTo(null);
 				saque.setVisible(true);

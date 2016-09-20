@@ -7,19 +7,19 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-import br.agencia.view.principal.TelaBackground;
+import br.agencia.view.principal.AbstractTelaBackground;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class HomeMenuBancario extends JPanel {
+public class HomeMenuBancario extends AbstractTelaBackground {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5853409558338193456L;
+	protected JPanel painelPrincipal = null;
 
 	public HomeMenuBancario() {
-		// setBounds(100, 100, 480, 280);
 
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
@@ -27,21 +27,21 @@ public class HomeMenuBancario extends JPanel {
 				InformacoesConta infConta = new InformacoesConta();
 				infConta.setSize(319, 290);
 				infConta.setLocationRelativeTo(null);
-				infConta.setVisible(true);	
-				
+				infConta.setVisible(true);
+
 			}
-			
+
 		});
 		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground novaConta = new TelaBackground(new NovaConta());
+				AbstractTelaBackground novaConta = new AbstractTelaBackground(new NovaConta());
 				novaConta.setSize(580, 470);
 				novaConta.setLocationRelativeTo(null);
 				novaConta.setVisible(true);
-				
+
 			}
 		});
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));
@@ -57,7 +57,7 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpAgencias = new JButton("6 - Ag\u00EAncias");
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground agencias = new TelaBackground(new ListaAgencia());
+				AbstractTelaBackground agencias = new AbstractTelaBackground(new ListaAgencia());
 				agencias.setSize(580, 470);
 				agencias.setLocationRelativeTo(null);
 				agencias.setVisible(true);
@@ -68,7 +68,7 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground balanco = new TelaBackground(new Balanco());
+				AbstractTelaBackground balanco = new AbstractTelaBackground(new Balanco());
 				balanco.setSize(580, 470);
 				balanco.setLocationRelativeTo(null);
 				balanco.setVisible(true);
@@ -79,7 +79,7 @@ public class HomeMenuBancario extends JPanel {
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground profissionais = new TelaBackground(new ListaProfissional());
+				AbstractTelaBackground profissionais = new AbstractTelaBackground(new ListaProfissional());
 				profissionais.setSize(580, 470);
 				profissionais.setLocationRelativeTo(null);
 				profissionais.setVisible(true);
@@ -127,6 +127,18 @@ public class HomeMenuBancario extends JPanel {
 												GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		setLayout(groupLayout);
+
+		getPanelMenu().add(btnOpInformacoesConta);
+		getPanelMenu().add(btnOpNovaConta);
+		getPanelMenu().add(btnOpClientes);
+		getPanelMenu().add(btnOpAgencias);
+		getPanelMenu().add(btnOpBalanco);
+		getPanelMenu().add(btnOpProfissionais);
+	}
+
+	@Override
+	public JPanel getPanelMenu() {
+		return painelPrincipal;
 	}
 
 	// public static void main(String[] args) {

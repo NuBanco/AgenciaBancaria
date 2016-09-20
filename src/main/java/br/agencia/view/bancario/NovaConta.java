@@ -14,7 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class NovaConta extends JPanel{
 	/**
-	 *  
+	 *
 	 */
 	private static final long serialVersionUID = 5210607113046110764L;
 	public static final String ID = "NOVACONTA";
@@ -25,57 +25,58 @@ public class NovaConta extends JPanel{
 	private JPasswordField txtSenhaOperacoes;
 	private JPasswordField txtSenhaConta;
 	private JLabel lbSenhaOperacoes;
+
 	public NovaConta() {
-		
+
 		txtNome = new JTextField();
 		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNome.setColumns(10);
-		
+
 		JLabel lbIdade = new JLabel("Idade:");
 		lbIdade.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		txtIdade = new JTextField();
 		txtIdade.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtIdade.setColumns(10);
-		
+
 		txtCPF = new JTextField();
 		txtCPF.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtCPF.setColumns(10);
-		
+
 		JLabel lblUsername = new JLabel("CPF:");
 		lblUsername.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JButton btnConfirme = new JButton("Confirme");
 		btnConfirme.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
+
 		JLabel lbAgencia = new JLabel("AG:");
 		lbAgencia.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtAgencia.setColumns(10);
-		
+
 		JLabel lblTipoConta = new JLabel("Tipo Conta:");
 		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JComboBox<String> cbbTipoConta = new JComboBox<String>();
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
 		cbbTipoConta.setModel(new DefaultComboBoxModel<String>(new String[] {"Conta Corrente", "Conta Poupan\u00E7a", "Conta Sal\u00E1rio"}));
 		cbbTipoConta.setSelectedIndex(0);
 		cbbTipoConta.setMaximumRowCount(3);
-		
+
 		txtSenhaOperacoes = new JPasswordField();
 		txtSenhaOperacoes.setFont(new Font("Arial", Font.PLAIN, 14));
-		
+
 		txtSenhaConta = new JPasswordField();
 		txtSenhaConta.setFont(new Font("Arial", Font.PLAIN, 14));
-		
+
 		lbSenhaOperacoes = new JLabel("Senha opera\u00E7\u00F5es:");
 		lbSenhaOperacoes.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lbSenhaConta = new JLabel("Senha Conta:");
 		lbSenhaConta.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JLabel lbNome = new JLabel("Nome:");
 		lbNome.setFont(new Font("Arial", Font.BOLD, 14));
 		GroupLayout groupLayout = new GroupLayout(this);

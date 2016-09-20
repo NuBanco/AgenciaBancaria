@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -19,10 +18,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.control.GenericDao;
 import br.agencia.control.HibernateUtil;
 import br.agencia.model.EncodePasswordFactory;
+import br.agencia.model.TelaFactory;
 import br.agencia.model.Usuario;
 import br.agencia.model.enums.TipoUsuario;
-import br.agencia.view.bancario.HomeMenuBancario;
-import br.agencia.view.cliente.HomeMenuCliente;
 
 public class Login extends JFrame {
 
@@ -55,12 +53,12 @@ public class Login extends JFrame {
 				Usuario usuarioLogin = new Usuario();
 				String senhaLogin = "";
 
-				if (editUsuario.getText().length() == 0){
+				if (editUsuario.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "O campo \"Usuario\" deve ser informado!");
 					return;
 				}
 
-				if (editSenha.getText().length() == 0){
+				if (editSenha.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "O campo \"Senha\" deve ser informado!");
 					return;
 				}
@@ -74,18 +72,19 @@ public class Login extends JFrame {
 
 				senhaLogin = new EncodePasswordFactory().create(TipoUsuario.CLIENTE).encode(editSenha.getText());
 
-				if (!senhaLogin.equals(usuarioLogin.getSenha())){
+				if (!senhaLogin.equals(usuarioLogin.getSenha())) {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
 					return;
 				}
 
-				TelaBackground tela = new TelaBackground(getTipoTela(usuarioLogin.getTipoUsuario()));
+				JFrame tela = new TelaFactory().create(usuarioLogin.getTipoUsuario());
 				tela.setSize(580, 470);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 				dispose();
 			}
 		});
+
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		JLabel lbUsuario = new JLabel("Usu\u00E1rio :");
@@ -117,15 +116,6 @@ public class Login extends JFrame {
 						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLogin)
 						.addContainerGap(22, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
-	}
-
-	protected JPanel getTipoTela(TipoUsuario tipoUsuario) {
-		if (tipoUsuario.equals(TipoUsuario.BANCARIO)){
-			return new HomeMenuBancario();
-		} else if (tipoUsuario.equals(TipoUsuario.CLIENTE)){
-			return new HomeMenuCliente();
-		}
-		return null;
 	}
 
 	protected Usuario buscaUsuarioBanco() {

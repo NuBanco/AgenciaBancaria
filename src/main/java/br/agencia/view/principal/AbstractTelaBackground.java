@@ -13,11 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class TelaBackground extends JFrame {
+public abstract class AbstractTelaBackground extends JFrame {
 
 	private static final long serialVersionUID = -4312697814718930403L;
+	protected JPanel panelMenu = new JPanel();
 
-	public TelaBackground(JPanel panelDinamico) {
+	public abstract JPanel getPanelMenu();
+
+	public AbstractTelaBackground() {
+
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
 		setTitle("Banco Tads");
 
@@ -29,8 +33,6 @@ public class TelaBackground extends JFrame {
 		lbDescricao.setEnabled(false);
 
 		JPanel panelDivisor = new JPanel();
-
-		JPanel panelMenu = new JPanel();
 
 		JLabel dataHoje = new JLabel("data");
 		dataHoje.setFont(new Font("Arial", Font.BOLD, 14));
@@ -90,7 +92,8 @@ public class TelaBackground extends JFrame {
 		horaAgora.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
 
 		panelMenu.setLayout(new CardLayout(0, 0));
-		panelMenu.add(panelDinamico);
 		getContentPane().setLayout(groupLayout);
 	}
+
+
 }

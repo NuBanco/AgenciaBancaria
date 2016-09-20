@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.view.principal.TelaBackground;
+import br.agencia.view.principal.AbstractTelaBackground;
 
 import javax.swing.SwingConstants;
 
@@ -122,8 +122,8 @@ public class OpcoesSaque extends JPanel {
 	}
 	
 	private void OpcaoSacar( BigDecimal valor ){
-		TelaBackground saldo = null;
-		saldo = new TelaBackground(new ConfirmaOperacao(saldo));
+		AbstractTelaBackground saldo = null;
+		saldo = new AbstractTelaBackground(new ConfirmaOperacao(saldo));
 		saldo.setSize(580, 470);
 		saldo.setLocationRelativeTo(null);
 		saldo.setVisible(true);					
