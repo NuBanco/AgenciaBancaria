@@ -28,6 +28,8 @@ public class Login extends JFrame {
 	private JTextField editUsuario;
 	private JPasswordField editSenha;
 
+	private GenericDao UsuarioDao = new GenericDao();
+
 	public Login() {
 		setBounds(100, 100, 300, 170);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
@@ -48,8 +50,8 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GenericDao UsuarioDao = new GenericDao();
-				Usuario login = new Usuario();
+				Usuario usuarioLogin = new Usuario();
+				String senhaLogin = "":
 
 				if (editUsuario.getText().length() == 0){
 					JOptionPane.showMessageDialog(null, "O campo \"Usuario\" deve ser informado!");
@@ -60,46 +62,21 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "O campo \"Senha\" deve ser informado!");
 					return;
 				}
-				login.setSenhaOperacao("aaa");
-				login.setLogin("admin");
-				//login = (Usuario) UsuarioDao.consultarByString(new Usuario(), editUsuario.getText());
-				UsuarioDao.incluir(login);
-				if (login == null) {
-					JOptionPane.showMessageDialog(null, "Usuario e/ou senha invalido(s)!");
+
+				usuarioLogin = buscaUsuarioBanco();
+
+				if (usuarioLogin == null) {
+					JOptionPane.showMessageDialog(null, "Usuario nao cadastrado!");
 					return;
 				}
 
-				JOptionPane.showMessageDialog(null, "XABLAU");
-				//EncodePassword crip = new EncodePassword();
+				senhaLogin = new EncodePasswordFactory().create(TipoUsuario.CLIENTE).encode(editSenha.getText());
 
-				System.out.println(new EncodePasswordFactory().create(TipoUsuario.CLIENTE).encode(editSenha.getText()));
+				if (senhaLogin.equals(usuarioLogin.getSenha())){
+					JOptionPane.showMessageDialog(null, "Senha invalida!");
+					return;
+				}
 
-//				System.out.println(this.getClass() + "Inicio");
-//
-//				try {
-//					// Cria a instância de um classe de acesso a Dados
-//					UsuarioDao dao = new UsuarioDao();
-//
-//					// Cria um objeto aluno informando apenas o nome
-//					Usuario aluno1 = new Usuario();
-//					aluno1.setLogin(editUsuario.getText());
-//					aluno1.setSenha(editSenha.getText());
-//
-//					// Consulta a lista de usuários cadastrados no Banco
-//					List<Usuario> listaUsuario = dao.listar();
-//
-//					// Realiza um loop para exibir todos os registro existentes
-//					// no Banco de dados
-//					System.out.println("==================  Listando Usuarios Cadastrados ============================");
-//					for (Usuario a : listaUsuario) {
-//						System.out.println(a);
-//					}
-//
-//				} catch (Exception execp) {
-//					execp.printStackTrace();
-//				}
-//
-//				System.out.println(this.getClass() + "Fim");
 
 				TelaBackground menuBancario = new TelaBackground(new HomeMenuBancario());
 				menuBancario.setSize(580, 470);
@@ -107,12 +84,11 @@ public class Login extends JFrame {
 				menuBancario.setVisible(true);
 				dispose();
 
-				/*
-				 * TelaBackground menuCliente = new TelaBackground(new
-				 * HomeMenuCliente()); menuCliente.setSize(580, 470);
-				 * menuCliente.setLocationRelativeTo(null);
-				 * menuCliente.setVisible(true); dispose();
-				 */
+
+				TelaBackground menuCliente = new TelaBackground(new
+				HomeMenuCliente()); menuCliente.setSize(580, 470);
+				menuCliente.setLocationRelativeTo(null);
+				menuCliente.setVisible(true); dispose();
 
 			}
 		});
@@ -147,6 +123,15 @@ public class Login extends JFrame {
 						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLogin)
 						.addContainerGap(22, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
+	}
+
+	protected Usuario buscaUsuarioBanco() {
+		String loginQuery = "";
+
+		loginQuery = "from Usuario where usu_login like '" + editUsuario.getText() + "'";
+
+		return (Usuario) UsuarioDao.consultarByString(loginQuery);
+
 	}
 
 	public static void main(String[] args) {

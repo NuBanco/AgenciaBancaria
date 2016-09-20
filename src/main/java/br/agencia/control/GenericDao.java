@@ -1,13 +1,11 @@
 package br.agencia.control;
 
 import java.util.ArrayList;
-
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-
 import java.util.List;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 
 public class GenericDao {
 	private Session session;
@@ -71,20 +69,24 @@ public class GenericDao {
 	}
 
 	@SuppressWarnings("deprecation")
-	public Object consultarByString(Object objetoGeneric, String textoPesquisa) {
-		Object retorno = new Object();
+	public Object consultarByString(String parameterQuery) {
+		List<Object> list = new ArrayList<>();
 		try {
 			session = (Session) HibernateUtil.getSession();
 			session.beginTransaction();
-			retorno = (Object) session.createCriteria(objetoGeneric.getClass()).add(Restrictions.isEmpty(textoPesquisa)).uniqueResult();
+			list = session.createQuery(parameterQuery).list();
+			for (Object retorno: list) {
+	            return retorno;
+	        }
+			//retorno = (Object) session.createCriteria(objetoGeneric.getClass()).add(Restrictions.isEmpty(textoPesquisa)).uniqueResult();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			//session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return retorno;
+		return null;
 	}
 
 	@SuppressWarnings({ "unchecked" })
