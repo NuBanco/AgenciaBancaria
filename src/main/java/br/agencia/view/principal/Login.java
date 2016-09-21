@@ -52,7 +52,9 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Usuario usuarioLogin = new Usuario();
 				String senhaLogin = "";
-
+				
+				editUsuario.setText(editUsuario.getText().trim());
+				
 				if (editUsuario.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "O campo \"Usuario\" deve ser informado!");
 					return;
@@ -78,7 +80,7 @@ public class Login extends JFrame {
 				}
 
 				JFrame tela = new TelaFactory().create(usuarioLogin.getTipoUsuario());
-				tela.setSize(580, 470);
+				tela.setSize(600, 400);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
 

@@ -30,15 +30,16 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		JPanel panel = new JPanel();
 
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(3, 2, 0, 0));
+		panel.setLayout(null);
 
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
+		btnOpInformacoesConta.setBounds(83, 62, 180, 30);
 		panel.add(btnOpInformacoesConta);
 
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InformacoesConta infConta = new InformacoesConta();
-				infConta.setSize(319, 290);
+				infConta.setSize(500, 350);
 				infConta.setLocationRelativeTo(null);
 				infConta.setVisible(true);
 
@@ -48,6 +49,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
+		btnOpBalanco.setBounds(293, 62, 180, 30);
 		panel.add(btnOpBalanco);
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,6 +62,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		btnOpBalanco.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
+		btnOpProfissionais.setBounds(83, 116, 180, 30);
 		panel.add(btnOpProfissionais);
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,6 +75,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
+		btnOpNovaConta.setBounds(293, 116, 180, 30);
 		panel.add(btnOpNovaConta);
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,6 +89,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpAgencias = new JButton("6 - Ag\u00EAncias");
+		btnOpAgencias.setBounds(83, 176, 180, 30);
 		panel.add(btnOpAgencias);
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,6 +102,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		btnOpAgencias.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpClientes = new JButton("3 - Clientes");
+		btnOpClientes.setBounds(293, 176, 180, 30);
 		panel.add(btnOpClientes);
 		btnOpClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,9 +113,9 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout
-				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 470, Short.MAX_VALUE));
+				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 570, Short.MAX_VALUE));
 		groupLayout
-				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 292, Short.MAX_VALUE));
+				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 370, Short.MAX_VALUE));
 		groupLayout.setHonorsVisibility(false);
 
 		// panel.setLayout(groupLayout);
