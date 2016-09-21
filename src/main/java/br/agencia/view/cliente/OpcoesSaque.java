@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,13 +23,16 @@ public class OpcoesSaque extends JPanel {
 
 	public OpcoesSaque() {
 		
-		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+		JPanel panel = new JPanel();
+
+		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 
 		JButton btnOp50 = new JButton("R$ 50,00");
 		btnOp50.setFont(new Font("Arial", Font.BOLD, 17));
 		btnOp50.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OpcaoSacar(new BigDecimal(50.00));
+				//OpcaoSacar(new BigDecimal(50.00));
 			}
 		});
 
@@ -38,7 +40,7 @@ public class OpcoesSaque extends JPanel {
 		btnOp100.setFont(new Font("Arial", Font.BOLD, 17));
 		btnOp100.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OpcaoSacar(new BigDecimal(50.00));
+				//OpcaoSacar(new BigDecimal(50.00));
 			}
 		});
 		
@@ -46,7 +48,7 @@ public class OpcoesSaque extends JPanel {
 		btnOp500.setFont(new Font("Arial", Font.BOLD, 17));
 		btnOp500.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OpcaoSacar(new BigDecimal(50.00));
+				//OpcaoSacar(new BigDecimal(50.00));
 			}
 		});
 		
@@ -58,7 +60,7 @@ public class OpcoesSaque extends JPanel {
 		btnConfirme.setFont(new Font("Arial", Font.BOLD, 14));
 		btnConfirme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OpcaoSacar(new BigDecimal(txtValor.getText()));
+				//OpcaoSacar(new BigDecimal(txtValor.getText()));
 			}
 		});
 
@@ -123,11 +125,11 @@ public class OpcoesSaque extends JPanel {
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 	
-	private void OpcaoSacar( BigDecimal valor ){
-		TelaBackground saldo = null;
-		saldo = new ConfirmaOperacao(saldo);
-		saldo.setSize(580, 470);
-		saldo.setLocationRelativeTo(null);
-		saldo.setVisible(true);					
-	}
+//	private void OpcaoSacar( BigDecimal valor ){
+//		OpcoesSaque saldo = null;
+//		saldo = new ConfirmaOperacao(saldo);
+//		saldo.setSize(580, 470);
+//		saldo.setLocation(null);
+//		saldo.setVisible(true);					
+//	}
 }

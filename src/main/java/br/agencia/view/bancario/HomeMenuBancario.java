@@ -31,7 +31,7 @@ public class HomeMenuBancario extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
 				InformacoesConta infConta = new InformacoesConta();
-				infConta.setSize(500, 350);
+				infConta.setSize(500, 400);
 				infConta.setVisible(true);
 
 			}

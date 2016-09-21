@@ -1,5 +1,6 @@
 package br.agencia.view.cliente;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,8 @@ public class ConfirmaOperacao extends JPanel {
 	public static final String ID = "CONFIRMAOPERACAO";
 
 	public ConfirmaOperacao(JFrame janela) {
+		
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JLabel lbOperacao = new JLabel("Opera\u00E7\u00E3o $opera\u00E7\u00E3o realizada com sucesso!");
 		lbOperacao.setFont(new Font("Arial", Font.PLAIN, 17));

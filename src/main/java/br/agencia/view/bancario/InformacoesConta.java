@@ -24,7 +24,7 @@ public class InformacoesConta extends JPanel {
 
 	public InformacoesConta() {
 
-		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+		//TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -49,50 +49,70 @@ public class InformacoesConta extends JPanel {
 		txtTitular = new JTextField();
 		txtTitular.setColumns(10);
 
-		JButton btnConfirme = new JButton("Confirme");
+		JButton btnConfirme = new JButton("Confirmar");
 		btnConfirme.setFont(new Font("Arial", Font.PLAIN, 14));
 
 		JLabel lblTitular = new JLabel("Titular");
 		lblTitular.setFont(new Font("Arial", Font.BOLD, 14));
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(30).addGroup(
-						groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(btnConfirme)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(txtTitular, Alignment.LEADING)
-										.addComponent(lbTipoConta, Alignment.LEADING).addComponent(cbbTipoConta,
-												Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGroup(Alignment.LEADING, groupLayout
-												.createSequentialGroup().addGroup(groupLayout
-														.createParallelGroup(Alignment.LEADING)
-														.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addComponent(lbAgncia))
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(lbConta)
-														.addComponent(txtConta, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-										.addComponent(lblTitular, Alignment.LEADING)))
-				.addContainerGap(34, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(29)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbAgncia)
-								.addComponent(lbConta))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lbTipoConta).addGap(3)
-						.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18).addComponent(lblTitular).addGap(2)
-						.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18).addComponent(btnConfirme).addContainerGap(32, Short.MAX_VALUE)));
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(30)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnVoltar)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnConfirme))
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(lbTipoConta)
+									.addComponent(cbbTipoConta, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblTitular)
+									.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap(182, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbAgncia)
+								.addComponent(txtAgencia, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbConta)
+								.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
+							.addGap(107))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(29)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbAgncia)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbConta)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lbTipoConta)
+					.addGap(3)
+					.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblTitular)
+					.addGap(2)
+					.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnConfirme)
+						.addComponent(btnVoltar))
+					.addContainerGap(71, Short.MAX_VALUE))
+		);
+		//TelaBackground.getPanelMenu().
+		setLayout(groupLayout);
 	}
-
 }
