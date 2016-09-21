@@ -25,11 +25,7 @@ public class InformacoesConta extends JPanel {
 	private JTextField txtTitular;
 	public static final String ID = "INFCONTA";
 
-	protected JPanel painelPrincipal = null;
-
 	public InformacoesConta() {
-
-		painelPrincipal = new JPanel();
 
 		JPanel panel = new JPanel();
 

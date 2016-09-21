@@ -24,11 +24,7 @@ public class Balanco extends JPanel {
 	private JTable tbGrid;
 	public static final String ID = "BALANCO";
 
-	protected JPanel painelPrincipal = null;
-
 	public Balanco() {
-
-		painelPrincipal = new JPanel();
 
 		JPanel panel = new JPanel();
 

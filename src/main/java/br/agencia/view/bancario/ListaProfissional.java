@@ -1,16 +1,17 @@
 package br.agencia.view.bancario;
 
-import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Font;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import br.agencia.view.principal.TelaBackground;
-
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ListaProfissional extends JPanel {
 	/**
@@ -21,6 +22,11 @@ public class ListaProfissional extends JPanel {
 	private JTable tbProfissionais;
 
 	public ListaProfissional() {
+
+		JPanel panel = new JPanel();
+
+		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 
 		tbProfissionais = new JTable();
 		tbProfissionais.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "Nome", "UserName" }) {
@@ -43,7 +49,7 @@ public class ListaProfissional extends JPanel {
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 14));
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(tbProfissionais, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap(262, Short.MAX_VALUE)
@@ -59,6 +65,6 @@ public class ListaProfissional extends JPanel {
 								.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }

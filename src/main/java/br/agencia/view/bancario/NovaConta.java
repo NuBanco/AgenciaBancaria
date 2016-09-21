@@ -1,19 +1,20 @@
 package br.agencia.view.bancario;
 
-import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Font;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.view.principal.TelaBackground;
-
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class NovaConta extends JPanel {
 	/**
@@ -30,6 +31,11 @@ public class NovaConta extends JPanel {
 	private JLabel lbSenhaOperacoes;
 
 	public NovaConta() {
+
+		JPanel panel = new JPanel();
+
+		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 
 		txtNome = new JTextField();
 		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -83,7 +89,7 @@ public class NovaConta extends JPanel {
 
 		JLabel lbNome = new JLabel("Nome:");
 		lbNome.setFont(new Font("Arial", Font.BOLD, 14));
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout
 				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout
@@ -152,7 +158,7 @@ public class NovaConta extends JPanel {
 								.addComponent(txtSenhaOperacoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
 						.addGap(18).addComponent(btnConfirme).addContainerGap(12, Short.MAX_VALUE)));
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
 }
