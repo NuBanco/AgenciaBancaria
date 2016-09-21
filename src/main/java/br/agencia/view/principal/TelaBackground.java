@@ -15,14 +15,30 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
-public abstract class AbstractTelaBackground extends JFrame {
+public class TelaBackground extends JFrame {
 
 	private static final long serialVersionUID = -4312697814718930403L;
-	protected JPanel panelMenu = new JPanel();
 
-	public abstract JPanel getPanelMenu();
+	private static JFrame telaPrincipal;
+	protected static JPanel panelMenu = new JPanel();
 
-	public AbstractTelaBackground() {
+	public static JFrame getTelaPrincipal() {
+		if (telaPrincipal == null){
+			telaPrincipal = new TelaBackground();
+		}
+		return telaPrincipal;
+	}
+
+	public static JPanel getPanelMenu(){
+		return panelMenu;
+	}
+
+	public static void clearPanelMenu(){
+		getPanelMenu().removeAll();
+	}
+
+
+	public TelaBackground() {
 
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
 		setTitle("Banco Tads");
@@ -68,5 +84,8 @@ public abstract class AbstractTelaBackground extends JFrame {
 		panel.add(dataHoje);
 		panel.add(horaAgora);
 		panel.add(lbDescricao);
+
+ 		getContentPane().add(getPanelMenu(), BorderLayout.CENTER);
+ 		panelMenu.setLayout(null);
 	}
 }

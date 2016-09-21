@@ -12,9 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.view.principal.AbstractTelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
-public class SaldoCliente extends AbstractTelaBackground{
+public class SaldoCliente extends TelaBackground{
 
 	private static final long serialVersionUID = -7210132078896245655L;
 	public static final String ID = "SALDOCLIENTE";

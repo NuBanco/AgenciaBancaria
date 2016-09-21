@@ -1,5 +1,6 @@
 package br.agencia.view.bancario;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
@@ -8,12 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class InformacoesConta extends JFrame {
+import br.agencia.view.principal.TelaBackground;
+
+public class InformacoesConta extends JPanel {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8293231784772338084L;
 	private JTextField txtAgencia;
@@ -21,7 +25,16 @@ public class InformacoesConta extends JFrame {
 	private JTextField txtTitular;
 	public static final String ID = "INFCONTA";
 
+	protected JPanel painelPrincipal = null;
+
 	public InformacoesConta() {
+
+		painelPrincipal = new JPanel();
+
+		JPanel panel = new JPanel();
+
+		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -51,7 +64,7 @@ public class InformacoesConta extends JFrame {
 
 		JLabel lblTitular = new JLabel("Titular");
 		lblTitular.setFont(new Font("Arial", Font.BOLD, 14));
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
 				.createSequentialGroup().addGap(30).addGroup(
 						groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(btnConfirme)
@@ -89,6 +102,7 @@ public class InformacoesConta extends JFrame {
 						.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
 						.addGap(18).addComponent(btnConfirme).addContainerGap(32, Short.MAX_VALUE)));
-		getContentPane().setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
+
 }

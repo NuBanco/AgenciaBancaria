@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.view.principal.AbstractTelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
-public class ConfirmaOperacao extends AbstractTelaBackground {
+public class ConfirmaOperacao extends TelaBackground {
 
 	private static final long serialVersionUID = 3993718123138322069L;
 	public static final String ID = "CONFIRMAOPERACAO";

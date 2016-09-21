@@ -15,9 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.view.principal.AbstractTelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
-public class DepositoCliente extends AbstractTelaBackground {
+public class DepositoCliente extends TelaBackground {
 	/**
 	 * 
 	 */

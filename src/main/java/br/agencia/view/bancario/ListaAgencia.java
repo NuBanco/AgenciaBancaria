@@ -6,13 +6,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
 
-import br.agencia.view.principal.AbstractTelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
-public class ListaAgencia extends AbstractTelaBackground {
+public class ListaAgencia extends JPanel {
 	/**
 	 *
 	 */
@@ -58,9 +58,5 @@ public class ListaAgencia extends AbstractTelaBackground {
 		);
 		setLayout(groupLayout);
 	}
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

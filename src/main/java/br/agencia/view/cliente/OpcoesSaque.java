@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.view.principal.AbstractTelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
-public class OpcoesSaque extends AbstractTelaBackground {
+public class OpcoesSaque extends TelaBackground {
 
 	private static final long serialVersionUID = 2914438307389368709L;
 	public static final String ID = "OPCAOSAQUE";
@@ -121,7 +121,7 @@ public class OpcoesSaque extends AbstractTelaBackground {
 	}
 	
 	private void OpcaoSacar( BigDecimal valor ){
-		AbstractTelaBackground saldo = null;
+		TelaBackground saldo = null;
 		saldo = new ConfirmaOperacao(saldo);
 		saldo.setSize(580, 470);
 		saldo.setLocationRelativeTo(null);

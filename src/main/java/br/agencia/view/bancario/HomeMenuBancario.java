@@ -6,31 +6,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-
-import br.agencia.view.principal.AbstractTelaBackground;
-
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
 
-public class HomeMenuBancario extends AbstractTelaBackground {
+import br.agencia.view.principal.TelaBackground;
+
+public class HomeMenuBancario extends JPanel {
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 5853409558338193456L;
-	protected JPanel painelPrincipal = null;
 
 	public HomeMenuBancario() {
 
-		painelPrincipal = new JPanel();
-
 		JPanel panel = new JPanel();
 
-		getContentPane().add(panel, BorderLayout.CENTER);
+		panel = TelaBackground.getPanelMenu();
 		panel.setLayout(null);
+		panel.setVisible(true);
 
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
 		btnOpInformacoesConta.setBounds(83, 62, 180, 30);
@@ -38,9 +31,9 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
 				InformacoesConta infConta = new InformacoesConta();
 				infConta.setSize(500, 350);
-				infConta.setLocationRelativeTo(null);
 				infConta.setVisible(true);
 
 			}
@@ -53,9 +46,9 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		panel.add(btnOpBalanco);
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
 				Balanco balanco = new Balanco();
 				balanco.setSize(580, 470);
-				balanco.setLocationRelativeTo(null);
 				balanco.setVisible(true);
 			}
 		});
@@ -66,9 +59,10 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		panel.add(btnOpProfissionais);
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
 				ListaProfissional profissionais = new ListaProfissional();
 				profissionais.setSize(580, 470);
-				profissionais.setLocationRelativeTo(null);
+				profissionais.setLocation(null);
 				profissionais.setVisible(true);
 			}
 		});
@@ -79,9 +73,10 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		panel.add(btnOpNovaConta);
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
 				NovaConta novaConta = new NovaConta();
 				novaConta.setSize(580, 470);
-				novaConta.setLocationRelativeTo(null);
+				novaConta.setLocation(null);
 				novaConta.setVisible(true);
 
 			}
@@ -93,9 +88,10 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		panel.add(btnOpAgencias);
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
 				ListaAgencia agencias = new ListaAgencia();
 				agencias.setSize(580, 470);
-				agencias.setLocationRelativeTo(null);
+				agencias.setLocation(null);
 				agencias.setVisible(true);
 			}
 		});
@@ -130,11 +126,6 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		// panel.setSize(370, 260);
 
 		// getPanelMenu().add(panel);
-	}
-
-	@Override
-	public JPanel getPanelMenu() {
-		return painelPrincipal;
 	}
 
 }

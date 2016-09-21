@@ -6,13 +6,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import br.agencia.view.principal.AbstractTelaBackground;
+import br.agencia.view.principal.TelaBackground;
 
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class ListaProfissional extends AbstractTelaBackground {
+public class ListaProfissional extends JPanel {
 	/**
 	 *
 	 */
@@ -60,11 +60,5 @@ public class ListaProfissional extends AbstractTelaBackground {
 								.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		setLayout(groupLayout);
-	}
-
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
