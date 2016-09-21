@@ -81,6 +81,7 @@ public class Login extends JFrame {
 				tela.setSize(580, 470);
 				tela.setLocationRelativeTo(null);
 				tela.setVisible(true);
+
 				dispose();
 			}
 		});

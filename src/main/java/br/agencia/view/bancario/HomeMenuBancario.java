@@ -12,6 +12,7 @@ import br.agencia.view.principal.AbstractTelaBackground;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.BorderLayout;
 
 public class HomeMenuBancario extends AbstractTelaBackground {
 	/**
@@ -22,8 +23,16 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 
 	public HomeMenuBancario() {
 
+		painelPrincipal = new JPanel();
+
+		JPanel panel = new JPanel();
+
+		getContentPane().add(panel, BorderLayout.CENTER);
+
+		getContentPane().add(panel, BorderLayout.CENTER);
+
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
-		JOptionPane.showMessageDialog(null, btnOpInformacoesConta);
+
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InformacoesConta infConta = new InformacoesConta();
@@ -88,6 +97,7 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 			}
 		});
 		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));
+
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHonorsVisibility(false);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -128,14 +138,19 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 										.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50,
 												GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		setLayout(groupLayout);
 
-		getPanelMenu().add(btnOpInformacoesConta);
-		getPanelMenu().add(btnOpNovaConta);
-		getPanelMenu().add(btnOpClientes);
-		getPanelMenu().add(btnOpAgencias);
-		getPanelMenu().add(btnOpBalanco);
-		getPanelMenu().add(btnOpProfissionais);
+//		panel.setLayout(groupLayout);
+//
+//		panel.add(btnOpInformacoesConta);
+//		panel.add(btnOpNovaConta);
+//		panel.add(btnOpClientes);
+//		panel.add(btnOpAgencias);
+//		panel.add(btnOpBalanco);
+//		panel.add(btnOpProfissionais);
+//
+//		panel.setSize(370, 260);
+
+		getPanelMenu().add(panel);
 	}
 
 	@Override
@@ -143,14 +158,4 @@ public class HomeMenuBancario extends AbstractTelaBackground {
 		return painelPrincipal;
 	}
 
-	// public static void main(String[] args) {
-	//
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// HomeMenuBancario menuBancario = new HomeMenuBancario();
-	// menuBancario.setLocationRelativeTo(null);
-	// menuBancario.setVisible(true);
-	// }
-	// });
-	// }
 }
