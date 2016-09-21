@@ -7,7 +7,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,9 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.view.principal.TelaBackground;
 
 public class InformacoesConta extends JPanel {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = -8293231784772338084L;
 	private JTextField txtAgencia;
 	private JTextField txtConta;
@@ -27,10 +24,7 @@ public class InformacoesConta extends JPanel {
 
 	public InformacoesConta() {
 
-		JPanel panel = new JPanel();
-
-		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));

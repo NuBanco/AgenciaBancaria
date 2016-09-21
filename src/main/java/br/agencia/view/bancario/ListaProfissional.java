@@ -14,25 +14,18 @@ import javax.swing.table.DefaultTableModel;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaProfissional extends JPanel {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = -4635580930027968770L;
 	public static final String ID = "LISTPROFISSIONAL";
 	private JTable tbProfissionais;
 
 	public ListaProfissional() {
 
-		JPanel panel = new JPanel();
-
-		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		tbProfissionais = new JTable();
 		tbProfissionais.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "Nome", "UserName" }) {
-			/**
-			 *
-			 */
+
 			private static final long serialVersionUID = 4430186584413459932L;
 			boolean[] columnEditables = new boolean[] { false, true };
 

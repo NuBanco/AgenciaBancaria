@@ -14,7 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.view.principal.TelaBackground;
 
-public class ConfirmaOperacao extends TelaBackground {
+public class ConfirmaOperacao extends JPanel {
 
 	private static final long serialVersionUID = 3993718123138322069L;
 	public static final String ID = "CONFIRMAOPERACAO";
@@ -36,7 +36,7 @@ public class ConfirmaOperacao extends TelaBackground {
 		});
 
 		JButton btnOpImprimir = new JButton("");
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(33)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -57,12 +57,7 @@ public class ConfirmaOperacao extends TelaBackground {
 						.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 				.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
 				.addComponent(btnOpImprimir, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)));
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

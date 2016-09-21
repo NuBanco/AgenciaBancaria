@@ -1,5 +1,6 @@
 package br.agencia.view.cliente;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,12 +17,14 @@ import javax.swing.SwingConstants;
 
 import br.agencia.view.principal.TelaBackground;
 
-public class OpcoesSaque extends TelaBackground {
+public class OpcoesSaque extends JPanel {
 
 	private static final long serialVersionUID = 2914438307389368709L;
 	public static final String ID = "OPCAOSAQUE";
 
 	public OpcoesSaque() {
+		
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JButton btnOp50 = new JButton("R$ 50,00");
 		btnOp50.setFont(new Font("Arial", Font.BOLD, 17));
@@ -71,7 +74,7 @@ public class OpcoesSaque extends TelaBackground {
 		txtValor.setFont(new Font("Arial", Font.PLAIN, 16));
 		txtValor.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtValor.setText("R$ 0,00");
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -117,7 +120,7 @@ public class OpcoesSaque extends TelaBackground {
 								.addComponent(txtValor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 	
 	private void OpcaoSacar( BigDecimal valor ){
@@ -126,11 +129,5 @@ public class OpcoesSaque extends TelaBackground {
 		saldo.setSize(580, 470);
 		saldo.setLocationRelativeTo(null);
 		saldo.setVisible(true);					
-	}
-
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

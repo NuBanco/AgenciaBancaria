@@ -14,19 +14,14 @@ import javax.swing.table.DefaultTableModel;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaAgencia extends JPanel {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = -2810545553216015257L;
 	public static final String ID = "LISTAGENCIA";
 	private JTable tbAgencia;
 
 	public ListaAgencia() {
 
-		JPanel panel = new JPanel();
-
-		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		tbAgencia = new JTable();
 		tbAgencia.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },

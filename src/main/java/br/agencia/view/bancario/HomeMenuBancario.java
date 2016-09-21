@@ -12,9 +12,7 @@ import javax.swing.JPanel;
 import br.agencia.view.principal.TelaBackground;
 
 public class HomeMenuBancario extends JPanel {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = 5853409558338193456L;
 
 	public HomeMenuBancario() {

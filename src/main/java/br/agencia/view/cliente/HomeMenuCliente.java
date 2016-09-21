@@ -11,19 +11,25 @@ import javax.swing.JPanel;
 
 import br.agencia.view.principal.TelaBackground;
 
-public class HomeMenuCliente extends TelaBackground {
+public class HomeMenuCliente extends JPanel {
 
 	private static final long serialVersionUID = 5853409558338193456L;
 
 	public HomeMenuCliente() {
-		// setBounds(100, 100, 480, 280);
+		
+		JPanel panel = new JPanel();
+
+		panel = TelaBackground.getPanelMenu();
+		panel.setLayout(null);
+		panel.setVisible(true);
 
 		JButton btnOpSaque = new JButton("1 - Saque");
 		btnOpSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground saque = OpcoesSaque();
+				TelaBackground.clearPanelMenu();
+				OpcoesSaque saque = new OpcoesSaque();
 				saque.setSize(580, 470);
-				saque.setLocationRelativeTo(null);
+				saque.setLocation(null);
 				saque.setVisible(true);
 			}
 		});
@@ -32,7 +38,11 @@ public class HomeMenuCliente extends TelaBackground {
 		JButton btnOpSaldo = new JButton("2 - Saldo");
 		btnOpSaldo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				TelaBackground.clearPanelMenu();
+				SaldoCliente saldoCliente = new SaldoCliente();
+				saldoCliente.setSize(580, 470);
+				saldoCliente.setLocation(null);
+				saldoCliente.setVisible(true);
 			}
 		});
 		btnOpSaldo.setFont(new Font("Arial", Font.BOLD, 17));
@@ -68,7 +78,7 @@ public class HomeMenuCliente extends TelaBackground {
 			}
 		});
 		btnOpTransferencia.setFont(new Font("Arial", Font.BOLD, 17));
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHonorsVisibility(false);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(28)
@@ -105,14 +115,9 @@ public class HomeMenuCliente extends TelaBackground {
 								.addComponent(btnOpDeposito, GroupLayout.PREFERRED_SIZE, 50,
 										GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	// public static void main(String[] args) {
 	//

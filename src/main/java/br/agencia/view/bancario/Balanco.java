@@ -19,6 +19,7 @@ import javax.swing.JComboBox;
 
 public class Balanco extends JPanel {
 
+	private static final long serialVersionUID = -1100684363335673889L;
 	private JTextField txtDataInicial;
 	private JTextField txtDataFinal;
 	private JTable tbGrid;
@@ -26,12 +27,7 @@ public class Balanco extends JPanel {
 
 	public Balanco() {
 
-		JPanel panel = new JPanel();
-
-		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-
-		// teste
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JButton btnRegressaAno = new JButton("I<");
 		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 12));

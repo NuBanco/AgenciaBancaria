@@ -17,9 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.view.principal.TelaBackground;
 
 public class NovaConta extends JPanel {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = 5210607113046110764L;
 	public static final String ID = "NOVACONTA";
 	private JTextField txtNome;
@@ -32,10 +30,7 @@ public class NovaConta extends JPanel {
 
 	public NovaConta() {
 
-		JPanel panel = new JPanel();
-
-		TelaBackground.getPanelMenu().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		txtNome = new JTextField();
 		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));

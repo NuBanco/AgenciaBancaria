@@ -1,5 +1,6 @@
 package br.agencia.view.cliente;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 
 import javax.swing.DefaultComboBoxModel;
@@ -17,10 +18,8 @@ import javax.swing.SwingConstants;
 
 import br.agencia.view.principal.TelaBackground;
 
-public class DepositoCliente extends TelaBackground {
-	/**
-	 * 
-	 */
+public class DepositoCliente extends JPanel {
+
 	private static final long serialVersionUID = 242114627222497452L;
 	public static final String ID = "DEPOSITOCLIENTE";
 	private JTextField txtAgencia;
@@ -28,6 +27,8 @@ public class DepositoCliente extends TelaBackground {
 	private JTextField txtTitular;
 
 	public DepositoCliente() {
+		
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JLabel lbValorDeposito = new JLabel("Informe o valor a ser depositado:");
 		lbValorDeposito.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -74,7 +75,7 @@ public class DepositoCliente extends TelaBackground {
 		txtTitular = new JTextField();
 		txtTitular.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtTitular.setColumns(10);
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap()
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -126,12 +127,7 @@ public class DepositoCliente extends TelaBackground {
 						.addPreferredGap(ComponentPlacement.RELATED).addComponent(txtTitular,
 								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(70, Short.MAX_VALUE)));
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

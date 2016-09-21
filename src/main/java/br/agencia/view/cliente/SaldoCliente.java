@@ -1,5 +1,6 @@
 package br.agencia.view.cliente;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
@@ -14,7 +15,7 @@ import javax.swing.SwingConstants;
 
 import br.agencia.view.principal.TelaBackground;
 
-public class SaldoCliente extends TelaBackground{
+public class SaldoCliente extends JPanel{
 
 	private static final long serialVersionUID = -7210132078896245655L;
 	public static final String ID = "SALDOCLIENTE";
@@ -22,6 +23,8 @@ public class SaldoCliente extends TelaBackground{
 	private JTextField txtDataFinal;
 	private JTable tbGrid;
 	public SaldoCliente() {
+		
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 		
 		JButton btnRegressaAno = new JButton("I<");
 		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 12));
@@ -62,7 +65,7 @@ public class SaldoCliente extends TelaBackground{
 		
 		JLabel lblSaldoCliente = new JLabel("Saldo Cliente");
 		lblSaldoCliente.setFont(new Font("Arial", Font.BOLD, 14));
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -123,11 +126,6 @@ public class SaldoCliente extends TelaBackground{
 					.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 					.addGap(36))
 		);
-		setLayout(groupLayout);
-	}
-	@Override
-	public JPanel getPanelMenu() {
-		// TODO Auto-generated method stub
-		return null;
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }
