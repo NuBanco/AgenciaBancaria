@@ -7,8 +7,18 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
+import br.agencia.model.Agencia;
+
 public class GenericDao {
 	private Session session;
+	private static GenericDao genericDao;
+
+	public static GenericDao getGenericDao() {
+		if (genericDao == null){
+			genericDao = new GenericDao();
+		}
+		return genericDao;
+	}
 
 	public void incluir(Object objetoGeneric) {
 		try {
@@ -78,15 +88,18 @@ public class GenericDao {
 			for (Object retorno: list) {
 	            return retorno;
 	        }
-			//retorno = (Object) session.createCriteria(objetoGeneric.getClass()).add(Restrictions.isEmpty(textoPesquisa)).uniqueResult();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			//session.getTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 		return null;
+	}
+
+	public static Object find (String queryText){
+		return GenericDao.getGenericDao().consultarByString(queryText);
 	}
 
 	@SuppressWarnings({ "unchecked" })

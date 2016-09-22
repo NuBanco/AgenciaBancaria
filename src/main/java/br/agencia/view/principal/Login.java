@@ -28,8 +28,6 @@ public class Login extends JFrame {
 	private JTextField editUsuario;
 	private JPasswordField editSenha;
 
-	private GenericDao UsuarioDao = new GenericDao();
-
 	public Login() {
 		setBounds(100, 100, 300, 170);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
@@ -65,7 +63,7 @@ public class Login extends JFrame {
 					return;
 				}
 
-				usuarioLogin = buscaUsuarioBanco();
+				usuarioLogin = (Usuario) GenericDao.find("from Usuario where usu_login like '" + editUsuario.getText() + "'");
 
 				if (usuarioLogin == null) {
 					JOptionPane.showMessageDialog(null, "Usuario nao cadastrado!");
@@ -80,7 +78,7 @@ public class Login extends JFrame {
 				}
 
 				new TelaFactory().create(usuarioLogin.getTipoUsuario());
-				TelaBackground.getTelaPrincipal().setSize(600, 400);
+				TelaBackground.getTelaPrincipal().setSize(600, 500);
 				TelaBackground.getTelaPrincipal().setLocationRelativeTo(null);
 				TelaBackground.getTelaPrincipal().setVisible(true);
 
@@ -119,15 +117,6 @@ public class Login extends JFrame {
 						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLogin)
 						.addContainerGap(22, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
-	}
-
-	protected Usuario buscaUsuarioBanco() {
-		String loginQuery = "";
-
-		loginQuery = "from Usuario where usu_login like '" + editUsuario.getText() + "'";
-
-		return (Usuario) UsuarioDao.consultarByString(loginQuery);
-
 	}
 
 	public static void main(String[] args) {
