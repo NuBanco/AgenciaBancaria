@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TelaBackground extends JFrame {
 
@@ -31,6 +34,7 @@ public class TelaBackground extends JFrame {
 	}
 
 	public static void clearPanelMenu() {
+		getPanelMenu().setLayout(null);
 		getPanelMenu().removeAll();
 		getPanelMenu().updateUI();
 	}
@@ -62,27 +66,92 @@ public class TelaBackground extends JFrame {
 
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JLabel lbTitulo = new JLabel("BANCO TADS");
 		lbTitulo.setFont(new Font("Arial", Font.BOLD, 26));
-		panel.add(lbTitulo);
-		panel.add(lblLogo);
-
-		JLabel label = new JLabel("");
-		panel.add(label);
-
-		JLabel label_1 = new JLabel("");
-		panel.add(label_1);
-
-		JLabel label_2 = new JLabel("");
-		panel.add(label_2);
-
-		JLabel label_3 = new JLabel("");
-		panel.add(label_3);
-		panel.add(dataHoje);
-		panel.add(horaAgora);
-		panel.add(lbDescricao);
+		
+		JLabel lblAgencia = new JLabel("Ag\u00EAncia     :");
+		lblAgencia.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JLabel lblTipoConta = new JLabel("Tipo Conta:");
+		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JLabel lblSaldo = new JLabel("Saldo         :");
+		lblSaldo.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbTitulo, Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lbDescricao)
+							.addPreferredGap(ComponentPlacement.RELATED, 60, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(145)
+							.addComponent(dataHoje)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(horaAgora)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblAgencia)
+									.addGap(18)
+									.addComponent(lblNewLabel_3))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblTipoConta)
+									.addGap(18)
+									.addComponent(lblNewLabel_4))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblSaldo)
+									.addGap(18)
+									.addComponent(lblNewLabel_5)))
+							.addGap(45))))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(dataHoje)
+								.addComponent(horaAgora))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblAgencia)
+								.addComponent(lblNewLabel_3))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblTipoConta)
+								.addComponent(lblNewLabel_4))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblSaldo)
+								.addComponent(lblNewLabel_5)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lbTitulo)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lbDescricao)))))
+					.addGap(45))
+		);
+		gl_panel.setHonorsVisibility(false);
+		panel.setLayout(gl_panel);
 
 		getContentPane().add(getPanelMenu(), BorderLayout.CENTER);
 		panelMenu.setLayout(null);

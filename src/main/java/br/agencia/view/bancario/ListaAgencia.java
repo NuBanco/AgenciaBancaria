@@ -34,6 +34,12 @@ public class ListaAgencia extends JPanel {
 
 		JButton btnAdicionar = new JButton("+");
 		btnAdicionar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new NovaAgencia());
+			}
+		});
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
