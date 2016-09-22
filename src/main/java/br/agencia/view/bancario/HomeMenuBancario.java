@@ -85,7 +85,8 @@ public class HomeMenuBancario extends JPanel {
 		panel.add(btnOpClientes);
 		btnOpClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("CCCCCCC");
+				TelaBackground.clearPanelMenu();
+				createPanel(new ListaClientes());
 			}
 		});
 		btnOpClientes.setFont(new Font("Arial", Font.BOLD, 17));
@@ -97,18 +98,8 @@ public class HomeMenuBancario extends JPanel {
 				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 370, Short.MAX_VALUE));
 		groupLayout.setHonorsVisibility(false);
 
-		// panel.setLayout(groupLayout);
-
-		// panel.add(btnOpInformacoesConta);
-		// panel.add(btnOpNovaConta);
-		// panel.add(btnOpClientes);
-		// panel.add(btnOpAgencias);
-		// panel.add(btnOpBalanco);
-		// panel.add(btnOpProfissionais);
-
-		// panel.setSize(370, 260);
-
-		// getPanelMenu().add(panel);
+		// panel.
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
 	private void createPanel(final JPanel panel) {
