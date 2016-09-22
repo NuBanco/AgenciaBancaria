@@ -1,19 +1,16 @@
 package br.agencia.view.principal;
 
-import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
 
 public class TelaBackground extends JFrame {
 
@@ -23,22 +20,24 @@ public class TelaBackground extends JFrame {
 	protected static JPanel panelMenu = new JPanel();
 
 	public static JFrame getTelaPrincipal() {
-		if (telaPrincipal == null){
+		if (telaPrincipal == null) {
 			telaPrincipal = new TelaBackground();
 		}
 		return telaPrincipal;
 	}
 
-	public static JPanel getPanelMenu(){
+	public static JPanel getPanelMenu() {
 		return panelMenu;
 	}
 
-	public static void clearPanelMenu(){
+	public static void clearPanelMenu() {
 		getPanelMenu().removeAll();
+		getPanelMenu().updateUI();
 	}
 
-
 	public TelaBackground() {
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
 		setTitle("Banco Tads");
@@ -85,7 +84,7 @@ public class TelaBackground extends JFrame {
 		panel.add(horaAgora);
 		panel.add(lbDescricao);
 
- 		getContentPane().add(getPanelMenu(), BorderLayout.CENTER);
- 		panelMenu.setLayout(null);
+		getContentPane().add(getPanelMenu(), BorderLayout.CENTER);
+		panelMenu.setLayout(null);
 	}
 }

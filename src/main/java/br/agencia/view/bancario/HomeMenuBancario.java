@@ -30,10 +30,7 @@ public class HomeMenuBancario extends JPanel {
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				InformacoesConta infConta = new InformacoesConta();
-				infConta.setSize(500, 400);
-				infConta.setVisible(true);
-
+				createPanel(new InformacoesConta());
 			}
 
 		});
@@ -45,9 +42,7 @@ public class HomeMenuBancario extends JPanel {
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				Balanco balanco = new Balanco();
-				balanco.setSize(580, 470);
-				balanco.setVisible(true);
+				createPanel(new Balanco());
 			}
 		});
 		btnOpBalanco.setFont(new Font("Arial", Font.BOLD, 17));
@@ -58,10 +53,7 @@ public class HomeMenuBancario extends JPanel {
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				ListaProfissional profissionais = new ListaProfissional();
-				profissionais.setSize(580, 470);
-				profissionais.setLocation(null);
-				profissionais.setVisible(true);
+				createPanel(new ListaProfissional());
 			}
 		});
 		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));
@@ -72,11 +64,7 @@ public class HomeMenuBancario extends JPanel {
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				NovaConta novaConta = new NovaConta();
-				novaConta.setSize(580, 470);
-				novaConta.setLocation(null);
-				novaConta.setVisible(true);
-
+				createPanel(new NovaConta());
 			}
 		});
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));
@@ -87,10 +75,7 @@ public class HomeMenuBancario extends JPanel {
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				ListaAgencia agencias = new ListaAgencia();
-				agencias.setSize(580, 470);
-				agencias.setLocation(null);
-				agencias.setVisible(true);
+				createPanel(new ListaAgencia());
 			}
 		});
 		btnOpAgencias.setFont(new Font("Arial", Font.BOLD, 17));
@@ -124,6 +109,11 @@ public class HomeMenuBancario extends JPanel {
 		// panel.setSize(370, 260);
 
 		// getPanelMenu().add(panel);
+	}
+
+	private void createPanel(final JPanel panel) {
+		panel.setSize(580, 470);
+		panel.setVisible(true);
 	}
 
 }
