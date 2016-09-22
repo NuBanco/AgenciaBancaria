@@ -50,7 +50,11 @@ public class HomeMenuCliente extends JPanel {
 		JButton btnOpDeposito = new JButton("3 - Dep\u00F3sitos");
 		btnOpDeposito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("CCCCCCC");
+				TelaBackground.clearPanelMenu();
+				DepositoCliente deposito = new DepositoCliente();
+				deposito.setSize(580, 470);
+				deposito.setLocation(null);
+				deposito.setVisible(true);
 			}
 		});
 		btnOpDeposito.setFont(new Font("Arial", Font.BOLD, 17));
