@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
 public class ConfirmaOperacao extends JPanel {
@@ -34,7 +35,8 @@ public class ConfirmaOperacao extends JPanel {
 		btnOpRetornar.setFont(new Font("Arial", Font.BOLD, 17));
 		btnOpRetornar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
 

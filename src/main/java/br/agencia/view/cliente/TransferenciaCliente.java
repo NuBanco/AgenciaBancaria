@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 
 import br.agencia.view.principal.TelaBackground;
 
-public class TransferenciaCliente extends JPanel{
+public class TransferenciaCliente extends JPanel {
 
 	private static final long serialVersionUID = 6069759280137589329L;
 	private JTextField txtAgencia;
@@ -29,8 +29,8 @@ public class TransferenciaCliente extends JPanel{
 	private JTextField txtTitular;
 	private JFormattedTextField txtValor;
 
-	public TransferenciaCliente(){
-		
+	public TransferenciaCliente() {
+
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JLabel lblContaDestino = new JLabel("Conta de destino/Cr\u00E9dito");
@@ -48,7 +48,8 @@ public class TransferenciaCliente extends JPanel{
 
 		JComboBox cbbTipoConta = new JComboBox();
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
-		cbbTipoConta.setModel(new DefaultComboBoxModel(new String[] {"Conta Corrente", "Conta Poupan\u00E7a", "Conta Eletr\u00F4nica"}));
+		cbbTipoConta.setModel(new DefaultComboBoxModel(
+				new String[] { "Conta Corrente", "Conta Poupan\u00E7a", "Conta Eletr\u00F4nica" }));
 		cbbTipoConta.setSelectedIndex(0);
 		cbbTipoConta.setMaximumRowCount(3);
 
@@ -83,90 +84,83 @@ public class TransferenciaCliente extends JPanel{
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JLabel lblConta = new JLabel("Conta:");
 		lblConta.setFont(new Font("Arial", Font.BOLD, 14));
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
-		
-		
+
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+								.createSequentialGroup().addGroup(groupLayout
+										.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, 178,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(TipoConta, GroupLayout.PREFERRED_SIZE, 151,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, 137,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtTitular, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+										.addComponent(lblValor).addComponent(txtValor))
+								.addGap(18)
+								.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnVoltar).addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-								.addComponent(TipoConta, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtTitular, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-								.addComponent(lblValor)
-								.addComponent(txtValor))
-							.addGap(18)
-							.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnVoltar)
-							.addContainerGap())
+								.addComponent(lblContaDestino, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addGap(281))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblContaDestino, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(281))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblAgencia, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblConta)
-								.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(216, Short.MAX_VALUE))))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(20)
-					.addComponent(lblContaDestino, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblAgencia)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblConta)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(8)
-					.addComponent(TipoConta)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblTitular)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblValor)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtValor, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(254, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnConfirmar)
-						.addComponent(btnVoltar))
-					.addGap(21))
-		);
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblAgencia, GroupLayout.PREFERRED_SIZE, 49,
+												GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lblConta)
+										.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, 98,
+												GroupLayout.PREFERRED_SIZE))
+								.addContainerGap(216, Short.MAX_VALUE)))));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(20)
+						.addComponent(lblContaDestino, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup().addComponent(lblAgencia)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup().addComponent(lblConta)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(txtConta,
+												GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)))
+						.addGap(8).addComponent(TipoConta).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblTitular)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblValor)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(txtValor, GroupLayout.PREFERRED_SIZE, 21,
+								GroupLayout.PREFERRED_SIZE)
+						.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap(254, Short.MAX_VALUE).addGroup(groupLayout
+						.createParallelGroup(Alignment.BASELINE).addComponent(btnConfirmar).addComponent(btnVoltar))
+						.addGap(21)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 

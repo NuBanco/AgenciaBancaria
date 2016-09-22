@@ -64,7 +64,8 @@ public class PagamentoCliente extends JPanel {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
 
