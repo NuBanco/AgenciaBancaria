@@ -24,7 +24,7 @@ public class InformacoesConta extends JPanel {
 
 	public InformacoesConta() {
 
-		//TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -57,7 +57,7 @@ public class InformacoesConta extends JPanel {
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -112,7 +112,6 @@ public class InformacoesConta extends JPanel {
 						.addComponent(btnVoltar))
 					.addContainerGap(71, Short.MAX_VALUE))
 		);
-		//TelaBackground.getPanelMenu().
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }

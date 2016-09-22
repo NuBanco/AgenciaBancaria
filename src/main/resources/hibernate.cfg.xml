@@ -27,5 +27,6 @@
 		<mapping class="br.agencia.model.Agencia" />
 		<mapping class="br.agencia.model.Conta" />
 		<mapping class="br.agencia.model.Pessoa" />
+		<mapping class="br.agencia.model.MovimentoConta" />
 	</session-factory>
 </hibernate-configuration>

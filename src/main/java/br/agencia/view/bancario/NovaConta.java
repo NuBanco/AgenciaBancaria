@@ -50,7 +50,7 @@ public class NovaConta extends JPanel {
 		JLabel lblUsername = new JLabel("CPF:");
 		lblUsername.setFont(new Font("Arial", Font.BOLD, 14));
 
-		JButton btnConfirme = new JButton("Confirme");
+		JButton btnConfirme = new JButton("Confirmar");
 		btnConfirme.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JLabel lbAgencia = new JLabel("AG:");
@@ -84,75 +84,80 @@ public class NovaConta extends JPanel {
 
 		JLabel lbNome = new JLabel("Nome:");
 		lbNome.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout
-				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout
-								.createSequentialGroup().addGap(
-										21)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lbNome)
-										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-												.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 390,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED, 57, Short.MAX_VALUE))
-										.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
-												.createParallelGroup(Alignment.LEADING).addComponent(lbSenhaConta)
-												.addComponent(lbAgencia, GroupLayout.PREFERRED_SIZE, 37,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lbIdade, GroupLayout.PREFERRED_SIZE, 48,
-														GroupLayout.PREFERRED_SIZE)
-												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-														.addComponent(txtSenhaConta, Alignment.LEADING)
-														.addComponent(txtAgencia, Alignment.LEADING)
-														.addComponent(txtIdade, Alignment.LEADING,
-																GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
-												.addGap(18)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-														.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 48,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblTipoConta, GroupLayout.PREFERRED_SIZE, 108,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lbSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 131,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(cbbTipoConta, 0, 202, Short.MAX_VALUE)
-														.addComponent(txtCPF).addComponent(txtSenhaOperacoes)
-														.addComponent(btnConfirme, Alignment.TRAILING,
-																GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
-												.addPreferredGap(ComponentPlacement.RELATED, 44, Short.MAX_VALUE)))
-								.addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(17).addComponent(lbNome)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbIdade)
-								.addComponent(lblUsername))
-						.addPreferredGap(ComponentPlacement.RELATED)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(21)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbSenhaConta)
+								.addComponent(lbAgencia, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbIdade, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(txtSenhaConta, Alignment.LEADING)
+									.addComponent(txtAgencia, Alignment.LEADING)
+									.addComponent(txtIdade, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTipoConta, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(10)
+										.addComponent(btnVoltar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
+									.addComponent(cbbTipoConta, 0, 202, Short.MAX_VALUE)
+									.addComponent(txtCPF)
+									.addComponent(txtSenhaOperacoes))))
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbAgencia)
-								.addComponent(lblTipoConta))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(11)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbSenhaConta)
-								.addComponent(lbSenhaOperacoes))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtSenhaConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtSenhaOperacoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(18).addComponent(btnConfirme).addContainerGap(12, Short.MAX_VALUE)));
+							.addComponent(lbNome)
+							.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(17)
+					.addComponent(lbNome)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbIdade)
+						.addComponent(lblUsername))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbAgencia)
+						.addComponent(lblTipoConta))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbSenhaConta)
+						.addComponent(lbSenhaOperacoes))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtSenhaConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtSenhaOperacoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(22, Short.MAX_VALUE))
+		);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
