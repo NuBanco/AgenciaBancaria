@@ -2,6 +2,8 @@ package br.agencia.view.bancario;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -42,8 +44,17 @@ public class ListaProfissional extends JPanel {
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 14));
-		
+
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new HomeMenuBancario());
+			}
+
+		});
+
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
