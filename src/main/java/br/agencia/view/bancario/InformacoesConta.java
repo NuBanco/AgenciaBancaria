@@ -1,22 +1,19 @@
 package br.agencia.view.bancario;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.view.principal.TelaBackground;
-
-public class InformacoesConta extends JPanel {
+public class InformacoesConta extends JFrame {
 
 	private static final long serialVersionUID = -8293231784772338084L;
 	private JTextField txtAgencia;
@@ -25,18 +22,37 @@ public class InformacoesConta extends JPanel {
 	public static final String ID = "INFCONTA";
 
 	public InformacoesConta() {
-
-		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+		
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtAgencia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres="0987654321-";
+				if(!caracteres.contains(e.getKeyChar()+"")){
+					e.consume();
+				}							
+			}
+		});
 		txtAgencia.setColumns(10);
 
 		JLabel lbAgncia = new JLabel("AG:");
 		lbAgncia.setFont(new Font("Arial", Font.BOLD, 14));
+		
 
 		txtConta = new JTextField();
 		txtConta.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtConta.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres="0987654321-";
+				if(!caracteres.contains(e.getKeyChar()+"")){
+					e.consume();
+				}							
+			}
+		});
 		txtConta.setColumns(10);
 
 		JLabel lbConta = new JLabel("Conta:");
@@ -52,22 +68,13 @@ public class InformacoesConta extends JPanel {
 		txtTitular.setColumns(10);
 
 		JButton btnConfirme = new JButton("Confirmar");
-		btnConfirme.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnConfirme.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JLabel lblTitular = new JLabel("Titular");
 		lblTitular.setFont(new Font("Arial", Font.BOLD, 14));
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new HomeMenuBancario());
-			}
-		});
 
-
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -75,20 +82,17 @@ public class InformacoesConta extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnVoltar)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnConfirme))
+								.addComponent(btnConfirme)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 									.addComponent(lbTipoConta)
 									.addComponent(cbbTipoConta, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addComponent(lblTitular)
 									.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)))
-							.addContainerGap(182, Short.MAX_VALUE))
+							.addContainerGap(91, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lbAgncia)
-								.addComponent(txtAgencia, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+								.addComponent(txtAgencia, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lbConta)
@@ -117,11 +121,9 @@ public class InformacoesConta extends JPanel {
 					.addGap(2)
 					.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnConfirme)
-						.addComponent(btnVoltar))
-					.addContainerGap(71, Short.MAX_VALUE))
+					.addComponent(btnConfirme)
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		getContentPane().setLayout(groupLayout);
 	}
 }

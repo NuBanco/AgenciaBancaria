@@ -29,11 +29,14 @@ public class HomeMenuBancario extends JPanel {
 
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground.clearPanelMenu();
-				createPanel(new InformacoesConta());
+				InformacoesConta popUp = new InformacoesConta();
+				popUp.setSize(400, 300);
+				popUp.setLocationRelativeTo(null);
+				popUp.setVisible(true);
+				//btnOpInformacoesConta.setEnabled(false);
 			}
-
 		});
+		
 		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
