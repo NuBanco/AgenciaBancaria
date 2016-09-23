@@ -207,7 +207,7 @@ public class NovaConta extends JPanel {
 		}
 
 		Agencia agenciaValidar = (Agencia) GenericDao
-				.find(String.format("from Agencia where ag_codAgencia like '%s'", txtAgencia.getText()));
+				.consultarByString(String.format("from Agencia where ag_codAgencia like '%s'", txtAgencia.getText()));
 
 		if (agenciaValidar == null) {
 			JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
@@ -215,7 +215,7 @@ public class NovaConta extends JPanel {
 		}
 
 		Usuario usuarioValidar = (Usuario) GenericDao
-				.find("from Usuario where usu_login like '" + txtNome.getText() + "'");
+				.consultarByString("from Usuario where usu_login like '" + txtNome.getText() + "'");
 
 		JOptionPane.showMessageDialog(null, usuarioValidar.getLogin());
 		return true;

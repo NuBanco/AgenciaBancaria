@@ -3,9 +3,9 @@ package br.agencia.model;
 import br.agencia.view.principal.Login;
 
 public class UserLogged extends Usuario{
-	private static UserLogged usuarioLogado;
+	private static Usuario usuarioLogado;
 
-	public static UserLogged getUsuarioLogado() {
+	public static Usuario getUsuarioLogado() {
 		if (usuarioLogado == null){
 			new Login();
 		}
@@ -14,7 +14,7 @@ public class UserLogged extends Usuario{
 
 	public static Usuario setNewUser(Usuario usuarioLogin) {
 		if (getUsuarioLogado() == null){
-			usuarioLogado = (UserLogged) usuarioLogin;
+			usuarioLogado = usuarioLogin;
 		}
 		return getUsuarioLogado();
 	}

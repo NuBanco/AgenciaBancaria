@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
+import br.agencia.control.GenericDao;
+import br.agencia.model.Agencia;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaAgencia extends JPanel {
@@ -22,8 +26,11 @@ public class ListaAgencia extends JPanel {
 	private JTable tbAgencia;
 
 	public ListaAgencia() {
+		List <Agencia> agencias = new ArrayList<>();
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+
+		agencias = (List<Agencia>) GenericDao.listar("");
 
 		tbAgencia = new JTable();
 		tbAgencia.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },

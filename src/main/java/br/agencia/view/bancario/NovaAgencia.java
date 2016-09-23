@@ -133,7 +133,7 @@ public class NovaAgencia extends JPanel {
 		}
 
 		Agencia agenciaValidar = (Agencia) GenericDao
-				.find(String.format("from Agencia where ag_codAgencia like '%s'", txtNumero.getText()));
+				.consultarByString(String.format("from Agencia where ag_codAgencia like '%s'", txtNumero.getText()));
 
 		if (agenciaValidar != null) {
 			JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", txtNumero.getText()));

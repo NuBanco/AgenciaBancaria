@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import br.agencia.model.Agencia;
 
 public class GenericDao {
-	private Session session;
 	private static GenericDao genericDao;
 
 	public static GenericDao getGenericDao() {
@@ -22,99 +21,84 @@ public class GenericDao {
 
 	public void incluir(Object objetoGeneric) {
 		try {
-			session = (Session) HibernateUtil.getSession();
-			session.beginTransaction();
-			session.save(objetoGeneric);
-			session.getTransaction().commit();
+			HibernateUtil.getSession().beginTransaction();
+			HibernateUtil.getSession().save(objetoGeneric);
+			HibernateUtil.getSession().getTransaction().commit();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
+			HibernateUtil.getSession().close();
 		}
 	}
 
 	public void alterar(Object objetoGeneric) {
 		try {
-			session = (Session) HibernateUtil.getSession();
-			session.beginTransaction();
-			session.update(objetoGeneric);
-			session.getTransaction().commit();
+			HibernateUtil.getSession().beginTransaction();
+			HibernateUtil.getSession().update(objetoGeneric);
+			HibernateUtil.getSession().getTransaction().commit();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
+			HibernateUtil.getSession().close();
 		}
 	}
 
 	public void excluir(Object objetoGeneric) {
 		try {
-			session = (Session) HibernateUtil.getSession();
-			session.beginTransaction();
-			session.delete(objetoGeneric);
-			session.getTransaction().commit();
+			HibernateUtil.getSession().beginTransaction();
+			HibernateUtil.getSession().delete(objetoGeneric);
+			HibernateUtil.getSession().getTransaction().commit();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
+			HibernateUtil.getSession().close();
 		}
 	}
 
 	public Object consultarById(int idPesquisa) {
 		Object retorno = new Object();
 		try {
-			session = (Session) HibernateUtil.getSession();
-			session.beginTransaction();
-			retorno = (Object) session.get(Object.class, idPesquisa);
-			session.getTransaction().commit();
+			retorno = (Object) HibernateUtil.getSession().get(Object.class, idPesquisa);
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
+			HibernateUtil.getSession().close();
 		}
 		return retorno;
 	}
 
-	@SuppressWarnings("deprecation")
-	public Object consultarByString(String parameterQuery) {
+	public static Object consultarByString(String parameterQuery) {
 		List<Object> list = new ArrayList<>();
 		try {
-			session = (Session) HibernateUtil.getSession();
-			session.beginTransaction();
-			list = session.createQuery(parameterQuery).list();
+			HibernateUtil.getSession().beginTransaction();
+			list = HibernateUtil.getSession().createQuery(parameterQuery).list();
 			for (Object retorno: list) {
 	            return retorno;
 	        }
-			session.getTransaction().commit();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
+			HibernateUtil.getSession().close();
 		}
 		return null;
 	}
 
-	public static Object find (String queryText){
-		return GenericDao.getGenericDao().consultarByString(queryText);
-	}
 
-	@SuppressWarnings({ "unchecked" })
-	public List<Object> listar() {
+	public static List<?> listar(String parameterQuery) {
 		List<Object> lista = new ArrayList<Object>();
 		try {
-			session = (Session) HibernateUtil.getSession();
-			session.beginTransaction();
-			lista = (List<Object>) session.createCriteria(Object.class).list();
-			session.getTransaction().commit();
+			lista = HibernateUtil.getSession().createQuery(parameterQuery).list();
+			return lista;
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
+			HibernateUtil.getSession().close();
 		}
 		return lista;
 	}
