@@ -11,10 +11,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.control.GenericDao;
+import br.agencia.model.Agencia;
 import br.agencia.view.principal.TelaBackground;
 
 public class NovaAgencia extends JPanel {
@@ -31,8 +34,19 @@ public class NovaAgencia extends JPanel {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
+				if (validarNovaAgencia()) {
+					Agencia agenciaIncluir = new Agencia();
+					agenciaIncluir.setNome(txtNome.getText());
+					agenciaIncluir.setCodAgencia(txtNumero.getText());
+					agenciaIncluir.setCidade(txtCidade.getText());
 
+					GenericDao.getGenericDao().incluir(agenciaIncluir);
+
+					txtNome.setText("");
+					txtNumero.setText("");
+					txtCidade.setText("");
+				}
+			}
 		});
 
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 14));
@@ -110,5 +124,22 @@ public class NovaAgencia extends JPanel {
 												.addComponent(btnConfirmar).addComponent(btnVoltar))
 										.addContainerGap(51, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+	}
+
+	protected boolean validarNovaAgencia() {
+		if (txtNome.getText().length() == 0 || txtNumero.getText().length() == 0 || txtCidade.getText().length() == 0) {
+			JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
+			return false;
+		}
+
+		Agencia agenciaValidar = (Agencia) GenericDao
+				.find(String.format("from Agencia where ag_codAgencia like '%s'", txtNumero.getText()));
+
+		if (agenciaValidar != null) {
+			JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", txtNumero.getText()));
+			return false;
+		}
+
+		return true;
 	}
 }

@@ -206,15 +206,16 @@ public class NovaConta extends JPanel {
 			return false;
 		}
 
-		Agencia agenciaValidar = (Agencia) GenericDao.find("from Agencia where ag_codAgencia like '" + txtAgencia.getText() + "'");
+		Agencia agenciaValidar = (Agencia) GenericDao
+				.find(String.format("from Agencia where ag_codAgencia like '%s'", txtAgencia.getText()));
 
 		if (agenciaValidar == null) {
 			JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
 			return false;
 		}
 
-		Usuario usuarioValidar = (Usuario) GenericDao.find("from Usuario where usu_login like '" + txtNome.getText() + "'");
-
+		Usuario usuarioValidar = (Usuario) GenericDao
+				.find("from Usuario where usu_login like '" + txtNome.getText() + "'");
 
 		JOptionPane.showMessageDialog(null, usuarioValidar.getLogin());
 		return true;
