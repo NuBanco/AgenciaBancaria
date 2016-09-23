@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.agencia.model.enums.TipoUsuario;
@@ -32,6 +34,10 @@ public class Usuario implements Serializable {
 
 	@Column(name = "usu_tipousuario")
 	private TipoUsuario tipoUsuario;
+
+	@OneToOne
+	@JoinColumn(name = "usu_idPessoa")
+	private Pessoa pessoa;
 
 	public Integer getId() {
 		return idUsuario;

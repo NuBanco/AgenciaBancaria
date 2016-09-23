@@ -19,6 +19,7 @@ import br.agencia.control.GenericDao;
 import br.agencia.control.HibernateUtil;
 import br.agencia.model.EncodePasswordFactory;
 import br.agencia.model.TelaFactory;
+import br.agencia.model.UserLogged;
 import br.agencia.model.Usuario;
 import br.agencia.model.enums.TipoUsuario;
 
@@ -63,7 +64,7 @@ public class Login extends JFrame {
 					return;
 				}
 
-				usuarioLogin = (Usuario) GenericDao.find("from Usuario where usu_login like '" + editUsuario.getText() + "'");
+				usuarioLogin = (Usuario) GenericDao.find(String.format("from Usuario where usu_login like '%s'", editUsuario.getText()));
 
 				if (usuarioLogin == null) {
 					JOptionPane.showMessageDialog(null, "Usuario nao cadastrado!");
@@ -76,6 +77,8 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
 					return;
 				}
+
+				UserLogged.setNewUser(usuarioLogin);
 
 				new TelaFactory().create(usuarioLogin.getTipoUsuario());
 				TelaBackground.getTelaPrincipal().setSize(600, 500);
