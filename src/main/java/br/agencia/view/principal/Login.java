@@ -64,8 +64,8 @@ public class Login extends JFrame {
 					return;
 				}
 
-				usuarioLogin = (Usuario) GenericDao
-						.consultarByString(String.format("from Usuario where usu_login like '%s'", editUsuario.getText()));
+				usuarioLogin = (Usuario) GenericDao.consultarByString(
+						String.format("from Usuario where usu_login like '%s'", editUsuario.getText()));
 
 				if (usuarioLogin == null) {
 					JOptionPane.showMessageDialog(null, "Usuario nao cadastrado!");

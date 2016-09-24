@@ -9,85 +9,82 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-public class MovimentoConta {
+@Entity
+@Table(name = "movimento")
+public class MovimentoConta implements Serializable {
 
-	@Entity
-	@Table(name = "movimento")
-	public class MovimentacaoConta implements Serializable {
+	private static final long serialVersionUID = 4502731648071395420L;
 
-		private static final long serialVersionUID = 4502731648071395420L;
-		@Id
-		@GeneratedValue
-		@Column(name = "mvt_idMovimento", columnDefinition = "serial")
-		private Integer idMovimento;
-		@Column(name = "mvt_conta")
-		private Conta conta;
-		@Column(name = "mvt_tipoMovimento")
-		private String tipoMovimento;
-		@Column(name = "mvt_dataEvento")
-		private Date dataEvento;
-		@Column(name = "mvt_horaEvento")
-		private Time horaEvento;
-		@Column(name = "mvt_valor")
-		private BigDecimal valor;
-		@Column(name = "mvt_descricao")
-		private String descricaoOperacao;
+	@Id
+	@GeneratedValue
+	@Column(name = "mov_idmovimento", columnDefinition = "serial")
+	private Integer idMovimento;
 
-		public Conta getConta() {
-			return conta;
-		}
+	@Column(name = "mov_tipoMovimento")
+	private String tipoMovimento;
 
-		public MovimentacaoConta setConta(Conta conta) {
-			this.conta = conta;
-			return this;
-		}
+	@Column(name = "mov_dataEvento")
+	private Date dataEvento;
 
-		public String getTipoMovimento() {
-			return tipoMovimento;
-		}
+	@Column(name = "mov_horaEvento")
+	private Time horaEvento;
 
-		public MovimentacaoConta setTipoMOvimento(String tipoMovimento) {
-			this.tipoMovimento = tipoMovimento;
-			return this;
-		}
+	@Column(name = "mov_valor")
+	private BigDecimal valor;
 
-		public Date getDataEvento() {
-			return dataEvento;
-		}
+	@Column(name = "mov_descricao")
+	private String descricaoOperacao;
 
-		public MovimentacaoConta setDataEvento(Date dataEvento) {
-			this.dataEvento = dataEvento;
-			return this;
-		}
+	@OneToOne
+	@JoinColumn(name = "mov_idconta")
+	private Conta conta;
 
-		public Time getHoraEvento() {
-			return horaEvento;
-		}
-
-		public MovimentacaoConta setHoraEvento(Time horaEvento) {
-			this.horaEvento = horaEvento;
-			return this;
-		}
-
-		public BigDecimal getValor() {
-			return valor;
-		}
-
-		public MovimentacaoConta setValor(BigDecimal valor) {
-			this.valor = valor;
-			return this;
-		}
-
-		public String getDescricaoOperacao() {
-			return descricaoOperacao;
-		}
-
-		public MovimentacaoConta setDescricaoOperacao(String descricaoOperacao) {
-			this.descricaoOperacao = descricaoOperacao;
-			return this;
-		}
+	public String getTipoMovimento() {
+		return tipoMovimento;
 	}
 
+	public MovimentoConta setTipoMOvimento(String tipoMovimento) {
+		this.tipoMovimento = tipoMovimento;
+		return this;
+	}
+
+	public Date getDataEvento() {
+		return dataEvento;
+	}
+
+	public MovimentoConta setDataEvento(Date dataEvento) {
+		this.dataEvento = dataEvento;
+		return this;
+	}
+
+	public Time getHoraEvento() {
+		return horaEvento;
+	}
+
+	public MovimentoConta setHoraEvento(Time horaEvento) {
+		this.horaEvento = horaEvento;
+		return this;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public MovimentoConta setValor(BigDecimal valor) {
+		this.valor = valor;
+		return this;
+	}
+
+	public String getDescricaoOperacao() {
+		return descricaoOperacao;
+	}
+
+	public MovimentoConta setDescricaoOperacao(String descricaoOperacao) {
+		this.descricaoOperacao = descricaoOperacao;
+		return this;
+	}
 }

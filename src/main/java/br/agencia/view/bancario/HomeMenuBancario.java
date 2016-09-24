@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.agencia.view.principal.TelaBackground;
@@ -33,10 +34,8 @@ public class HomeMenuBancario extends JPanel {
 				popUp.setSize(400, 300);
 				popUp.setLocationRelativeTo(null);
 				popUp.setVisible(true);
-				//btnOpInformacoesConta.setEnabled(false);
 			}
 		});
-		
 		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
@@ -94,14 +93,13 @@ public class HomeMenuBancario extends JPanel {
 		});
 		btnOpClientes.setFont(new Font("Arial", Font.BOLD, 17));
 
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout
 				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 570, Short.MAX_VALUE));
 		groupLayout
 				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGap(0, 370, Short.MAX_VALUE));
 		groupLayout.setHonorsVisibility(false);
 
-		// panel.
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 

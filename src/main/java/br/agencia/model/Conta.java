@@ -3,10 +3,14 @@ package br.agencia.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.agencia.model.enums.TipoConta;
@@ -19,28 +23,32 @@ public class Conta implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "cnt_idconta", columnDefinition = "serial")
-	private Integer id;
-	
-	@Column(name = "cnt_tipoConta")
+	@Column(name = "con_idconta", columnDefinition = "serial")
+	private Integer idConta;
+
+	@Column(name = "con_tipoConta")
 	private TipoConta tipoConta;
-	
-	@Column(name = "cnt_agencia")
-	private Agencia agencia;
-	
-	@Column(name = "cnt_numero")
+
+	@Column(name = "con_numero")
 	private String numero;
-	
-	@Column(name = "cnt_dataAbertura")
+
+	@Column(name = "con_dataAbertura")
 	private Date dataAbertura;
-	// private BigDecimal saldoConta;
+
+	@OneToOne
+	@JoinColumn(name = "con_idPessoa")
+	private Pessoa pessoa;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "con_idagencia")
+	private Agencia agencia;
 
 	public Integer getId() {
-		return id;
+		return idConta;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer idConta) {
+		this.idConta = idConta;
 	}
 
 	public TipoConta getTipoConta() {

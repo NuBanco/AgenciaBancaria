@@ -1,9 +1,9 @@
 INSERT INTO pessoa(
-            ps_cpf, ps_idade, ps_nome, ps_senha)
-    VALUES ('00000000000', 99, 'admin', '1');
+            pes_cpf, pes_idade, pes_nome, pes_senhaOperacao)
+    VALUES ('00000000000', 99, 'admin', '123456');
 
 INSERT INTO usuario(
-            usu_login, usu_senha, usu_senhaoperacao, usu_tipousuario,
+            usu_login, usu_senha, usu_tipousuario,
             usu_idpessoa)
-    VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 0, 1);
+    VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1);
 

@@ -17,20 +17,32 @@ public class Pessoa implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ps_idpessoa", columnDefinition = "serial")
+	@Column(name = "pes_idpessoa", columnDefinition = "serial")
 	private Integer id;
 
-	@Column(name = "ps_nome")
+	@Column(name = "pes_nome")
 	private String nome;
 
-	@Column(name = "ps_idade")
+	@Column(name = "pes_idade")
 	private Integer idade;
 
-	@Column(name = "ps_senha")
+	@Column(name = "pes_senha")
 	private String senha;
 
-	@Column(name = "ps_cpf")
+	@Column(name = "pes_cpf")
 	private String cpf;
+
+	@Column(name = "pes_senhaOperacao")
+	private String senhaOperacao;
+
+
+	public String getSenhaOperacao() {
+		return senhaOperacao;
+	}
+
+	public void setSenhaOperacao(String senhaOperacao) {
+		this.senhaOperacao = senhaOperacao;
+	}
 
 	public Integer getIdade() {
 		return idade;

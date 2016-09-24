@@ -2,10 +2,13 @@ package br.agencia.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,19 +16,19 @@ import javax.persistence.Table;
 public class Agencia implements Serializable  {
 
 	private static final long serialVersionUID = 2840564797225804733L;
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="ag_idagencia", columnDefinition = "serial")
+	@Column(name="age_idagencia", columnDefinition = "serial")
 	private Integer id;
-	
-	@Column(name="ag_codAgencia")
+
+	@Column(name="age_numAgencia")
 	private String codAgencia;
-	
-	@Column(name="ag_nome")
+
+	@Column(name="age_nome")
 	private String nome;
-	
-	@Column(name="ag_cidade")
+
+	@Column(name="age_cidade")
 	private String cidade;
 
 	public Integer getId() {

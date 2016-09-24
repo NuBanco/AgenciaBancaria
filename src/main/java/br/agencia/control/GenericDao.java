@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import br.agencia.model.Agencia;
 
 public class GenericDao {
+	private static Session session;
 	private static GenericDao genericDao;
 
 	public static GenericDao getGenericDao() {
@@ -21,69 +22,75 @@ public class GenericDao {
 
 	public void incluir(Object objetoGeneric) {
 		try {
-			HibernateUtil.getSession().beginTransaction();
-			HibernateUtil.getSession().save(objetoGeneric);
-			HibernateUtil.getSession().getTransaction().commit();
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			session.save(objetoGeneric);
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			HibernateUtil.getSession().getTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			HibernateUtil.getSession().close();
+			session.close();
 		}
 	}
 
 	public void alterar(Object objetoGeneric) {
 		try {
-			HibernateUtil.getSession().beginTransaction();
-			HibernateUtil.getSession().update(objetoGeneric);
-			HibernateUtil.getSession().getTransaction().commit();
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			session.update(objetoGeneric);
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			HibernateUtil.getSession().getTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			HibernateUtil.getSession().close();
+			session.close();
 		}
 	}
 
 	public void excluir(Object objetoGeneric) {
 		try {
-			HibernateUtil.getSession().beginTransaction();
-			HibernateUtil.getSession().delete(objetoGeneric);
-			HibernateUtil.getSession().getTransaction().commit();
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			session.delete(objetoGeneric);
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			HibernateUtil.getSession().getTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			HibernateUtil.getSession().close();
+			session.close();
 		}
 	}
 
 	public Object consultarById(int idPesquisa) {
 		Object retorno = new Object();
 		try {
-			retorno = (Object) HibernateUtil.getSession().get(Object.class, idPesquisa);
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			retorno = (Object) session.get(Object.class, idPesquisa);
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			HibernateUtil.getSession().getTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			HibernateUtil.getSession().close();
+			session.close();
 		}
 		return retorno;
 	}
 
+
 	public static Object consultarByString(String parameterQuery) {
 		List<Object> list = new ArrayList<>();
 		try {
-			HibernateUtil.getSession().beginTransaction();
-			list = HibernateUtil.getSession().createQuery(parameterQuery).list();
+			session = HibernateUtil.getSession();
+			list = session.createQuery(parameterQuery).list();
 			for (Object retorno: list) {
 	            return retorno;
 	        }
 		} catch (Exception e) {
-			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			HibernateUtil.getSession().close();
+			session.close();
 		}
 		return null;
 	}
@@ -92,13 +99,13 @@ public class GenericDao {
 	public static List<?> listar(String parameterQuery) {
 		List<Object> lista = new ArrayList<Object>();
 		try {
-			lista = HibernateUtil.getSession().createQuery(parameterQuery).list();
+			session = HibernateUtil.getSession();
+			lista = session.createQuery(parameterQuery).list();
 			return lista;
 		} catch (Exception e) {
-			HibernateUtil.getSession().getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
-			HibernateUtil.getSession().close();
+			session.close();
 		}
 		return lista;
 	}

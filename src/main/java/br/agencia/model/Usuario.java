@@ -29,9 +29,6 @@ public class Usuario implements Serializable {
 	@Column(name = "usu_senha")
 	private String senha;
 
-	@Column(name = "usu_senhaOperacao")
-	private String senhaOperacao;
-
 	@Column(name = "usu_tipousuario")
 	private TipoUsuario tipoUsuario;
 
@@ -64,14 +61,6 @@ public class Usuario implements Serializable {
 	public Usuario setSenha(String senha) {
 		this.senha = senha;
 		return this;
-	}
-
-	public String getSenhaOperacao() {
-		return senhaOperacao;
-	}
-
-	public void setSenhaOperacao(String senhaOperacao) {
-		this.senhaOperacao = senhaOperacao;
 	}
 
 	public TipoUsuario getTipoUsuario() {

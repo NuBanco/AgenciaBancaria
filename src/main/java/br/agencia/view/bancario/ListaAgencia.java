@@ -26,15 +26,24 @@ public class ListaAgencia extends JPanel {
 	private JTable tbAgencia;
 
 	public ListaAgencia() {
-		List <Agencia> agencias = new ArrayList<>();
+		List<Agencia> agencias = new ArrayList<>();
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
-		agencias = (List<Agencia>) GenericDao.listar("");
+		agencias = (List<Agencia>) GenericDao.listar("from Agencia");
 
 		tbAgencia = new JTable();
 		tbAgencia.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
 				new String[] { "Nome", "N\u00FAmero", "Cidade" }));
+
+		String coluna[] = { "Nome", "Numero", "Cidade" };
+
+		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
+
+		agencias.forEach(agencia -> modelo
+				.addRow(new String[] { agencia.getNome(), agencia.getCodAgencia(), agencia.getCidade() }));
+
+		tbAgencia.setModel(modelo);
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 14));

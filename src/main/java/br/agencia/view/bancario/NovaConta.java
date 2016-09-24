@@ -33,6 +33,7 @@ public class NovaConta extends JPanel {
 	private JPasswordField txtSenhaOperacoes;
 	private JPasswordField txtSenhaConta;
 	private JLabel lbSenhaOperacoes;
+	private JTextField txtUsername;
 
 	public NovaConta() {
 
@@ -43,7 +44,7 @@ public class NovaConta extends JPanel {
 		txtNome.setColumns(10);
 
 		JLabel lbIdade = new JLabel("Idade:");
-		lbIdade.setFont(new Font("Arial", Font.BOLD, 14));
+		lbIdade.setFont(new Font("Arial", Font.BOLD, 12));
 
 		txtIdade = new JTextField();
 		txtIdade.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -54,17 +55,17 @@ public class NovaConta extends JPanel {
 		txtCPF.setColumns(10);
 
 		JLabel lblUsername = new JLabel("CPF:");
-		lblUsername.setFont(new Font("Arial", Font.BOLD, 14));
+		lblUsername.setFont(new Font("Arial", Font.BOLD, 12));
 
 		JLabel lbAgencia = new JLabel("AG:");
-		lbAgencia.setFont(new Font("Arial", Font.BOLD, 14));
+		lbAgencia.setFont(new Font("Arial", Font.BOLD, 12));
 
 		txtAgencia = new JTextField();
 		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtAgencia.setColumns(10);
 
 		JLabel lblTipoConta = new JLabel("Tipo Conta:");
-		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 12));
 
 		JComboBox<String> cbbTipoConta = new JComboBox<String>();
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -80,13 +81,13 @@ public class NovaConta extends JPanel {
 		txtSenhaConta.setFont(new Font("Arial", Font.PLAIN, 14));
 
 		lbSenhaOperacoes = new JLabel("Senha opera\u00E7\u00F5es:");
-		lbSenhaOperacoes.setFont(new Font("Arial", Font.BOLD, 14));
+		lbSenhaOperacoes.setFont(new Font("Arial", Font.BOLD, 12));
 
 		JLabel lbSenhaConta = new JLabel("Senha Conta:");
-		lbSenhaConta.setFont(new Font("Arial", Font.BOLD, 14));
+		lbSenhaConta.setFont(new Font("Arial", Font.BOLD, 12));
 
 		JLabel lbNome = new JLabel("Nome:");
-		lbNome.setFont(new Font("Arial", Font.BOLD, 14));
+		lbNome.setFont(new Font("Arial", Font.BOLD, 12));
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -104,67 +105,128 @@ public class NovaConta extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				if (validarInformacoes()) {
-					// prossegue;
+					JOptionPane.showMessageDialog(null, "parece que criou");
 				}
 
 			}
 		});
 
+		txtUsername = new JTextField();
+		txtUsername.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtUsername.setColumns(10);
+
+		JLabel lblUsername_1 = new JLabel("Username");
+		lblUsername_1.setFont(new Font("Arial", Font.BOLD, 12));
+
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout
-				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
-						groupLayout
-								.createSequentialGroup().addGap(
-										21)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addGroup(groupLayout
-												.createSequentialGroup().addGroup(
-														groupLayout.createParallelGroup(Alignment.LEADING)
-																.addComponent(lbSenhaConta)
-																.addComponent(lbAgencia, GroupLayout.PREFERRED_SIZE, 37,
-																		GroupLayout.PREFERRED_SIZE)
-																.addComponent(lbIdade,
-																		GroupLayout.PREFERRED_SIZE, 48,
-																		GroupLayout.PREFERRED_SIZE)
+				.setHorizontalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(
+										groupLayout.createSequentialGroup().addGap(21).addGroup(groupLayout
+												.createParallelGroup(Alignment.LEADING, false).addGroup(groupLayout
+														.createSequentialGroup()
+														.addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 399,
+																GroupLayout.PREFERRED_SIZE)
+														.addContainerGap())
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+														.addGroup(groupLayout.createSequentialGroup()
 																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.TRAILING, false)
-																		.addComponent(txtSenhaConta, Alignment.LEADING)
-																		.addComponent(txtAgencia, Alignment.LEADING)
-																		.addComponent(txtIdade, Alignment.LEADING,
-																				GroupLayout.DEFAULT_SIZE, 173,
-																				Short.MAX_VALUE)))
-												.addGap(18)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(lbSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 131,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblTipoConta, GroupLayout.PREFERRED_SIZE, 108,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 48,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(groupLayout
-																.createParallelGroup(Alignment.TRAILING, false)
-																.addGroup(groupLayout.createSequentialGroup().addGap(10)
-																		.addComponent(btnVoltar,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addPreferredGap(ComponentPlacement.RELATED)
-																		.addComponent(btnConfirme,
-																				GroupLayout.PREFERRED_SIZE, 104,
+																		.createParallelGroup(Alignment.LEADING)
+																		.addComponent(txtSenhaConta, 185, 185, 185)
+																		.addComponent(lbSenhaConta))
+																.addGap(12)
+																.addGroup(groupLayout
+																		.createParallelGroup(Alignment.LEADING)
+																		.addComponent(lbSenhaOperacoes,
+																				GroupLayout.PREFERRED_SIZE, 131,
+																				GroupLayout.PREFERRED_SIZE)
+																		.addComponent(txtSenhaOperacoes, 202, 202, 202)
+																		.addGroup(groupLayout.createSequentialGroup()
+																				.addGap(10)
+																				.addComponent(btnVoltar,
+																						GroupLayout.PREFERRED_SIZE, 82,
+																						GroupLayout.PREFERRED_SIZE)
+																				.addPreferredGap(
+																						ComponentPlacement.RELATED)
+																				.addComponent(btnConfirme,
+																						GroupLayout.PREFERRED_SIZE, 104,
+																						GroupLayout.PREFERRED_SIZE)))
+																.addContainerGap())
+														.addGroup(groupLayout.createSequentialGroup()
+																.addGroup(groupLayout
+																		.createParallelGroup(Alignment.LEADING, false)
+																		.addComponent(lbNome)
+																		.addGroup(groupLayout.createSequentialGroup()
+																				.addGroup(groupLayout
+																						.createParallelGroup(
+																								Alignment.LEADING)
+																						.addComponent(lbAgencia,
+																								GroupLayout.PREFERRED_SIZE,
+																								37,
+																								GroupLayout.PREFERRED_SIZE)
+																						.addGroup(groupLayout
+																								.createParallelGroup(
+																										Alignment.TRAILING,
+																										false)
+																								.addComponent(
+																										txtAgencia,
+																										Alignment.LEADING)
+																								.addComponent(txtIdade,
+																										Alignment.LEADING,
+																										GroupLayout.DEFAULT_SIZE,
+																										173,
+																										Short.MAX_VALUE))
+																						.addComponent(lbIdade,
+																								GroupLayout.PREFERRED_SIZE,
+																								48,
+																								GroupLayout.PREFERRED_SIZE))
+																				.addGap(24)
+																				.addGroup(groupLayout
+																						.createParallelGroup(
+																								Alignment.LEADING,
+																								false)
+																						.addComponent(lblTipoConta,
+																								GroupLayout.PREFERRED_SIZE,
+																								108,
+																								GroupLayout.PREFERRED_SIZE)
+																						.addGroup(groupLayout
+																								.createParallelGroup(
+																										Alignment.LEADING,
+																										false)
+																								.addComponent(
+																										lblUsername,
+																										GroupLayout.PREFERRED_SIZE,
+																										48,
+																										GroupLayout.PREFERRED_SIZE)
+																								.addGroup(groupLayout
+																										.createParallelGroup(
+																												Alignment.LEADING,
+																												false)
+																										.addComponent(
+																												cbbTipoConta,
+																												Alignment.TRAILING,
+																												GroupLayout.PREFERRED_SIZE,
+																												202,
+																												GroupLayout.PREFERRED_SIZE)
+																										.addComponent(
+																												txtCPF,
+																												202,
+																												202,
+																												202)))))
+																		.addComponent(txtNome,
+																				GroupLayout.PREFERRED_SIZE, 399,
 																				GroupLayout.PREFERRED_SIZE))
-																.addComponent(cbbTipoConta, 0, 202, Short.MAX_VALUE)
-																.addComponent(txtCPF).addComponent(txtSenhaOperacoes))))
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(lbNome).addComponent(txtNome, GroupLayout.PREFERRED_SIZE,
-														390, GroupLayout.PREFERRED_SIZE)))
-								.addContainerGap()));
+																.addGap(38))
+														.addGroup(groupLayout.createSequentialGroup()
+																.addComponent(lblUsername_1).addContainerGap())))));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(17).addComponent(lbNome)
+				.addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lbNome)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbIdade)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lbIdade)
 								.addComponent(lblUsername))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -172,7 +234,7 @@ public class NovaConta extends JPanel {
 										GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lbAgencia)
 								.addComponent(lblTipoConta))
 						.addPreferredGap(ComponentPlacement.RELATED)
@@ -181,7 +243,10 @@ public class NovaConta extends JPanel {
 										GroupLayout.PREFERRED_SIZE)
 								.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
-						.addGap(11)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblUsername_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+						.addGap(7).addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbSenhaConta)
 								.addComponent(lbSenhaOperacoes))
 						.addPreferredGap(ComponentPlacement.RELATED)
@@ -190,24 +255,24 @@ public class NovaConta extends JPanel {
 										GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtSenhaOperacoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(22, Short.MAX_VALUE)));
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+						.addGap(9)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
 	protected boolean validarInformacoes() {
 		if (txtNome.getText().length() == 0 || txtIdade.getText().length() == 0 || txtCPF.getText().length() == 0
-				|| txtAgencia.getText().length() == 0 || txtSenhaOperacoes.getText().length() == 0
-				|| txtSenhaConta.getText().length() == 0) {
+				|| txtAgencia.getText().length() == 0 || txtUsername.getText().length() == 0
+				|| txtSenhaOperacoes.getText().length() == 0 || txtSenhaConta.getText().length() == 0) {
 			JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
 			return false;
 		}
 
 		Agencia agenciaValidar = (Agencia) GenericDao
-				.consultarByString(String.format("from Agencia where ag_codAgencia like '%s'", txtAgencia.getText()));
+				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", txtAgencia.getText()));
 
 		if (agenciaValidar == null) {
 			JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
@@ -215,9 +280,13 @@ public class NovaConta extends JPanel {
 		}
 
 		Usuario usuarioValidar = (Usuario) GenericDao
-				.consultarByString("from Usuario where usu_login like '" + txtNome.getText() + "'");
+				.consultarByString("from Usuario where usu_login like '" + txtUsername.getText() + "'");
 
-		JOptionPane.showMessageDialog(null, usuarioValidar.getLogin());
+		if (usuarioValidar != null){
+			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja possui uma conta!", txtUsername.getText()));
+			return false;
+		}
+
 		return true;
 	}
 }
