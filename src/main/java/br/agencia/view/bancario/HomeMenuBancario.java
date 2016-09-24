@@ -95,38 +95,37 @@ public class HomeMenuBancario extends JPanel {
 		btnOpClientes.setFont(new Font("Arial", Font.BOLD, 23));
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(82)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnOpNovaConta, GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
-						.addComponent(btnOpClientes, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-						.addComponent(btnOpInformacoesConta, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-					.addGap(68)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnOpBalanco, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-						.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 230, Short.MAX_VALUE)
-						.addComponent(btnOpAgencias, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
-					.addGap(90))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(98)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(50)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOpNovaConta, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnOpBalanco, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-					.addGap(41)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(111))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(82)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnOpNovaConta, GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
+								.addComponent(btnOpClientes, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+								.addComponent(btnOpInformacoesConta, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+						.addGap(68)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnOpBalanco, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 230, Short.MAX_VALUE)
+								.addComponent(btnOpAgencias, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+						.addGap(90)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(98)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE,
+										50, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 50,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(50)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnOpNovaConta, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+								.addComponent(btnOpBalanco, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+						.addGap(41)
+						.addGroup(
+								groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE))
+						.addGap(111)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
