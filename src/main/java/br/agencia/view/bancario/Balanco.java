@@ -28,7 +28,7 @@ public class Balanco extends JPanel {
 
 	public Balanco() {
 
-		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+		TelaBackground.getPanelMenu().add(new JPanel(), SwingConstants.CENTER);
 
 		JButton btnRegressaAno = new JButton("I<");
 		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 12));
