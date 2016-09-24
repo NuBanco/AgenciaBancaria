@@ -134,7 +134,8 @@ public class NovaConta extends JPanel {
 					Conta novaConta = new Conta();
 					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
 							.setTipoConta(TipoConta.valueOf(cbbTipoConta.getSelectedItem().toString()))
-							.setAgencia(agenciaValidar).setPessoa(novaPessoa).setNumero(String.valueOf(getNumeroContaDisponivel()));
+							.setAgencia(agenciaValidar).setPessoa(novaPessoa)
+							.setNumero(String.valueOf(getNumeroContaDisponivel()));
 
 					new ContaFacade(novaPessoa, novoUsuario, novaConta);
 
