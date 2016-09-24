@@ -32,14 +32,20 @@ public class ListaClientes extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 
 		tbGrid = new JTable();
-		tbGrid.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null }, },
-				new String[] { "Tipo Conta", "Agencia", "Numero", "Titular", "Aberta em", "Saldo" }));
 		tbGrid.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbGrid.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tbGrid);
 
 		List<Conta> contas = (List<Conta>) GenericDao.listar("from Conta");
-		
+
+		String coluna[] = { "Tipo Conta", "Agencia", "Numero", "Titular", "Aberta em", "Saldo" };
+		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
+
+		contas.forEach(
+				conta -> modelo.addRow(new String[] { conta.getTipoConta().toString(), conta.getAgencia().getNome(),
+						conta.getNumero(), conta.getPessoa().getNome(), conta.getDataAbertura().toString(), "0" }));
+
+		tbGrid.setModel(modelo);
 
 		JButton btnImprimir = new JButton("");
 		btnImprimir.addActionListener(new ActionListener() {
