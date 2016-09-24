@@ -131,7 +131,7 @@ public class HomeMenuBancario extends JPanel {
 						.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addGap(48))
 		);
-		groupLayout.setHonorsVisibility(false);
+		//groupLayout.setHonorsVisibility(false);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 

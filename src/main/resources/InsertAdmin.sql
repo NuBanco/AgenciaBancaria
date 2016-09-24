@@ -5,5 +5,5 @@ INSERT INTO pessoa(
 INSERT INTO usuario(
             usu_login, usu_senha, usu_tipousuario,
             usu_idpessoa)
-    VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1);
+    VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0, 1);
 

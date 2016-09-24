@@ -72,7 +72,8 @@ public class Login extends JFrame {
 					return;
 				}
 
-				senhaLogin = new EncodePasswordFactory().create(TipoUsuario.CLIENTE).encode(editSenha.getText());
+				senhaLogin = new EncodePasswordFactory().create(usuarioLogin.getTipoUsuario()).encode(editSenha.getText());
+				System.out.println(senhaLogin);
 
 				if (!senhaLogin.equals(usuarioLogin.getSenha())) {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
