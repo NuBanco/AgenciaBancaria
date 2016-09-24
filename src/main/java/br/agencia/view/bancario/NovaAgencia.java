@@ -66,7 +66,7 @@ public class NovaAgencia extends JPanel {
 		txtNumero.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				String caracteres = "0987654321-";
+				String caracteres = "0987654321";
 				if (!caracteres.contains(e.getKeyChar() + "")) {
 					e.consume();
 				}

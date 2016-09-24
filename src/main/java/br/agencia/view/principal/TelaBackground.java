@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.model.UserLogged;
 import br.agencia.model.Usuario;
+import br.agencia.model.enums.TipoUsuario;
 
 public class TelaBackground extends JFrame {
 
@@ -29,6 +30,7 @@ public class TelaBackground extends JFrame {
 		if (telaPrincipal == null) {
 			telaPrincipal = new TelaBackground();
 		}
+		configuraCabecalhoPadrao();
 		return telaPrincipal;
 	}
 
@@ -41,11 +43,14 @@ public class TelaBackground extends JFrame {
 		getPanelMenu().removeAll();
 		getPanelMenu().updateUI();
 	}
+	
+	private static JLabel dataHoje;
+	private static JLabel lblAgencia;
+	private static JLabel lblTipoConta;
+	private static JLabel lblSaldo;
 
 	public TelaBackground() {
 		
-		configuraCabecalhoPadrao();
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
@@ -56,7 +61,7 @@ public class TelaBackground extends JFrame {
 
 		JLabel lblLogo = new JLabel(logo);
 
-		JLabel dataHoje = new JLabel("data");
+		dataHoje = new JLabel("data");
 		dataHoje.setFont(new Font("Arial", Font.BOLD, 14));
 
 		dataHoje.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
@@ -75,13 +80,13 @@ public class TelaBackground extends JFrame {
 		JLabel lbTitulo = new JLabel("BANCO TADS");
 		lbTitulo.setFont(new Font("Arial", Font.BOLD, 26));
 
-		JLabel lblAgencia = new JLabel("Ag\u00EAncia     :");
+		lblAgencia = new JLabel("Ag\u00EAncia     :");
 		lblAgencia.setFont(new Font("Arial", Font.BOLD, 14));
 
-		JLabel lblTipoConta = new JLabel("Tipo Conta:");
+		lblTipoConta = new JLabel("Tipo Conta:");
 		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 14));
 
-		JLabel lblSaldo = new JLabel("Saldo         :");
+		lblSaldo = new JLabel("Saldo         :");
 		lblSaldo.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JLabel lblNewLabel_3 = new JLabel("New label");
@@ -141,14 +146,21 @@ public class TelaBackground extends JFrame {
 		panelMenu.setLayout(null);
 	}
 
-	private void configuraCabecalhoPadrao(){
+	public static void configuraCabecalhoPadrao(){
 		
 		Usuario tipoUsuario = new Usuario();
-		
 		tipoUsuario = UserLogged.getUsuarioLogado();
 		
-		JOptionPane.showMessageDialog(null,tipoUsuario.getLogin());
+		if(tipoUsuario.getTipoUsuario() == TipoUsuario.BANCARIO){
+			dataHoje.setVisible(false); 
+			lblAgencia.setVisible(false);
+			lblTipoConta.setVisible(false);
+			lblSaldo.setVisible(false);
+		}else{
+			JOptionPane.showMessageDialog(null,"CLIENTE");
+		}
 	
 	}
+	
 
 }
