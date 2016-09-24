@@ -37,7 +37,7 @@ public class HomeMenuBancario extends JPanel {
 				popUp.setVisible(true);
 			}
 		});
-		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 17));
+		btnOpInformacoesConta.setFont(new Font("Arial", Font.BOLD, 23));
 
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
 		btnOpBalanco.setBounds(293, 62, 180, 30);
@@ -48,7 +48,7 @@ public class HomeMenuBancario extends JPanel {
 				createPanel(new Balanco());
 			}
 		});
-		btnOpBalanco.setFont(new Font("Arial", Font.BOLD, 17));
+		btnOpBalanco.setFont(new Font("Arial", Font.BOLD, 23));
 
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
 		btnOpProfissionais.setBounds(83, 116, 180, 30);
@@ -59,7 +59,7 @@ public class HomeMenuBancario extends JPanel {
 				createPanel(new ListaProfissional());
 			}
 		});
-		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 17));
+		btnOpProfissionais.setFont(new Font("Arial", Font.BOLD, 23));
 
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
 		btnOpNovaConta.setBounds(293, 116, 180, 30);
@@ -70,7 +70,7 @@ public class HomeMenuBancario extends JPanel {
 				createPanel(new NovaConta());
 			}
 		});
-		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 17));
+		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 23));
 
 		JButton btnOpAgencias = new JButton("6 - Ag\u00EAncias");
 		btnOpAgencias.setBounds(83, 176, 180, 30);
@@ -81,7 +81,7 @@ public class HomeMenuBancario extends JPanel {
 				createPanel(new ListaAgencia());
 			}
 		});
-		btnOpAgencias.setFont(new Font("Arial", Font.BOLD, 17));
+		btnOpAgencias.setFont(new Font("Arial", Font.BOLD, 23));
 
 		JButton btnOpClientes = new JButton("3 - Clientes");
 		btnOpClientes.setBounds(293, 176, 180, 30);
@@ -92,46 +92,40 @@ public class HomeMenuBancario extends JPanel {
 				createPanel(new ListaClientes());
 			}
 		});
-		btnOpClientes.setFont(new Font("Arial", Font.BOLD, 17));
+		btnOpClientes.setFont(new Font("Arial", Font.BOLD, 23));
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnOpNovaConta, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnOpClientes, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
-					.addGap(97)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnOpBalanco, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(50)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOpNovaConta, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpBalanco, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(41)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(48))
-		);
-		//groupLayout.setHonorsVisibility(false);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(82)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnOpNovaConta, GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
+								.addComponent(btnOpClientes, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+								.addComponent(btnOpInformacoesConta, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+						.addGap(68)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnOpBalanco, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE, 230, Short.MAX_VALUE)
+								.addComponent(btnOpAgencias, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+						.addGap(90)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(98)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnOpProfissionais, GroupLayout.PREFERRED_SIZE,
+										50, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnOpInformacoesConta, GroupLayout.PREFERRED_SIZE, 50,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(50)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnOpNovaConta, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+								.addComponent(btnOpBalanco, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+						.addGap(41)
+						.addGroup(
+								groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnOpClientes, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnOpAgencias, GroupLayout.PREFERRED_SIZE, 50,
+												GroupLayout.PREFERRED_SIZE))
+						.addGap(111)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 

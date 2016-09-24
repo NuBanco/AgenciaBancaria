@@ -57,7 +57,7 @@ public class TelaBackground extends JFrame {
 		setTitle("Banco Tads");
 
 		JPanel panel = new JPanel();
-		panel.setSize(500, 250);
+		panel.setSize(700, 250);
 
 		JLabel lblLogo = new JLabel(logo);
 
