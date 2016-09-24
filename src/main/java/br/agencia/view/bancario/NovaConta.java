@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -16,9 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
-
 import br.agencia.control.GenericDao;
 import br.agencia.model.Agencia;
 import br.agencia.model.Conta;
@@ -34,14 +30,14 @@ public class NovaConta extends JPanel {
 
 	private static final long serialVersionUID = 5210607113046110764L;
 	public static final String ID = "NOVACONTA";
-	private JTextField txtNome;
-	private JTextField txtIdade;
-	private JTextField txtCPF;
-	private JTextField txtAgencia;
-	private JPasswordField txtSenhaOperacoes;
-	private JPasswordField txtSenhaConta;
+	private JTextField tfNome;
+	private JTextField tfIdade;
+	private JTextField tfCPF;
+	private JTextField tfAgencia;
+	private JPasswordField tfSenhaOperacoes;
+	private JPasswordField tfSenhaConta;
 	private JLabel lbSenhaOperacoes;
-	private JTextField txtUsername;
+	private JTextField tfUsername;
 	private JComboBox<String> cbbTipoConta;
 
 	Agencia agenciaValidar = null;
@@ -50,63 +46,63 @@ public class NovaConta extends JPanel {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
-		txtNome = new JTextField();
-		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtNome.setColumns(10);
+		tfNome = new JTextField();
+		tfNome.setFont(new Font("Arial", Font.PLAIN, 15));
+		tfNome.setColumns(10);
 
 		JLabel lbIdade = new JLabel("Idade:");
-		lbIdade.setFont(new Font("Arial", Font.BOLD, 12));
+		lbIdade.setFont(new Font("Arial", Font.BOLD, 15));
 
-		txtIdade = new JTextField();
-		txtIdade.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIdade.setColumns(10);
+		tfIdade = new JTextField();
+		tfIdade.setFont(new Font("Arial", Font.PLAIN, 15));
+		tfIdade.setColumns(10);
 
-		txtCPF = new JTextField();
-		txtCPF.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtCPF.setColumns(10);
+		tfCPF = new JTextField();
+		tfCPF.setFont(new Font("Arial", Font.PLAIN, 15));
+		tfCPF.setColumns(10);
 
-		JLabel lblUsername = new JLabel("CPF:");
-		lblUsername.setFont(new Font("Arial", Font.BOLD, 12));
+		JLabel lbCPF = new JLabel("CPF:");
+		lbCPF.setFont(new Font("Arial", Font.BOLD, 15));
 
 		JLabel lbAgencia = new JLabel("AG:");
-		lbAgencia.setFont(new Font("Arial", Font.BOLD, 12));
+		lbAgencia.setFont(new Font("Arial", Font.BOLD, 15));
 
-		txtAgencia = new JTextField();
-		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtAgencia.setColumns(10);
+		tfAgencia = new JTextField();
+		tfAgencia.setFont(new Font("Arial", Font.PLAIN, 15));
+		tfAgencia.setColumns(10);
 
-		JLabel lblTipoConta = new JLabel("Tipo Conta:");
-		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 12));
+		JLabel lbTipoConta = new JLabel("Tipo Conta:");
+		lbTipoConta.setFont(new Font("Arial", Font.BOLD, 15));
 
 		cbbTipoConta = new JComboBox(TipoConta.values());
-		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
+		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 16));
 		cbbTipoConta.setSelectedIndex(0);
 		cbbTipoConta.setMaximumRowCount(3);
 
-		txtSenhaOperacoes = new JPasswordField();
-		txtSenhaOperacoes.setFont(new Font("Arial", Font.PLAIN, 14));
+		tfSenhaOperacoes = new JPasswordField();
+		tfSenhaOperacoes.setFont(new Font("Arial", Font.PLAIN, 15));
 
-		txtSenhaConta = new JPasswordField();
-		txtSenhaConta.setFont(new Font("Arial", Font.PLAIN, 14));
+		tfSenhaConta = new JPasswordField();
+		tfSenhaConta.setFont(new Font("Arial", Font.PLAIN, 15));
 
-		lbSenhaOperacoes = new JLabel("Senha opera\u00E7\u00F5es:");
-		lbSenhaOperacoes.setFont(new Font("Arial", Font.BOLD, 12));
+		lbSenhaOperacoes = new JLabel("Senha Opera\u00E7\u00F5es:");
+		lbSenhaOperacoes.setFont(new Font("Arial", Font.BOLD, 15));
 
 		JLabel lbSenhaConta = new JLabel("Senha Conta:");
-		lbSenhaConta.setFont(new Font("Arial", Font.BOLD, 12));
+		lbSenhaConta.setFont(new Font("Arial", Font.BOLD, 15));
 
 		JLabel lbNome = new JLabel("Nome:");
-		lbNome.setFont(new Font("Arial", Font.BOLD, 12));
+		lbNome.setFont(new Font("Arial", Font.BOLD, 15));
 
-		txtUsername = new JTextField();
-		txtUsername.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtUsername.setColumns(10);
+		tfUsername = new JTextField();
+		tfUsername.setFont(new Font("Arial", Font.PLAIN, 15));
+		tfUsername.setColumns(10);
 
-		JLabel lblUsername_1 = new JLabel("Username");
-		lblUsername_1.setFont(new Font("Arial", Font.BOLD, 12));
+		JLabel lbUsername = new JLabel("Username");
+		lbUsername.setFont(new Font("Arial", Font.BOLD, 15));
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -117,19 +113,19 @@ public class NovaConta extends JPanel {
 		});
 
 		JButton btnConfirme = new JButton("Confirmar");
-		btnConfirme.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnConfirme.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (validarInformacoes()) {
 
 					Pessoa novaPessoa = new Pessoa();
-					novaPessoa.setNome(txtNome.getText()).setIdade(Integer.parseInt(txtIdade.getText()))
-							.setCpf(txtCPF.getText()).setSenhaOperacao(txtSenhaOperacoes.getText());
+					novaPessoa.setNome(tfNome.getText()).setIdade(Integer.parseInt(tfIdade.getText()))
+							.setCpf(tfCPF.getText()).setSenhaOperacao(tfSenhaOperacoes.getText());
 
 					Usuario novoUsuario = new Usuario();
-					novoUsuario.setLogin(txtUsername.getText())
-							.setSenha(new EncodePasswordClient().encode(txtSenhaConta.getText()))
+					novoUsuario.setLogin(tfUsername.getText())
+							.setSenha(new EncodePasswordClient().encode(tfSenhaConta.getText()))
 							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
 					Conta novaConta = new Conta();
 					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
@@ -148,149 +144,103 @@ public class NovaConta extends JPanel {
 			}
 		});
 
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout
-				.setHorizontalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(
-										groupLayout.createSequentialGroup().addGap(21).addGroup(groupLayout
-												.createParallelGroup(Alignment.LEADING, false).addGroup(groupLayout
-														.createSequentialGroup()
-														.addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 399,
-																GroupLayout.PREFERRED_SIZE)
-														.addContainerGap())
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-														.addGroup(groupLayout.createSequentialGroup()
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.LEADING)
-																		.addComponent(txtSenhaConta, 185, 185, 185)
-																		.addComponent(lbSenhaConta))
-																.addGap(12)
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.LEADING)
-																		.addComponent(lbSenhaOperacoes,
-																				GroupLayout.PREFERRED_SIZE, 131,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(txtSenhaOperacoes, 202, 202, 202)
-																		.addGroup(groupLayout.createSequentialGroup()
-																				.addGap(10)
-																				.addComponent(btnVoltar,
-																						GroupLayout.PREFERRED_SIZE, 82,
-																						GroupLayout.PREFERRED_SIZE)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED)
-																				.addComponent(btnConfirme,
-																						GroupLayout.PREFERRED_SIZE, 104,
-																						GroupLayout.PREFERRED_SIZE)))
-																.addContainerGap())
-														.addGroup(groupLayout.createSequentialGroup()
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.LEADING, false)
-																		.addComponent(lbNome)
-																		.addGroup(groupLayout.createSequentialGroup()
-																				.addGroup(groupLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(lbAgencia,
-																								GroupLayout.PREFERRED_SIZE,
-																								37,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(groupLayout
-																								.createParallelGroup(
-																										Alignment.TRAILING,
-																										false)
-																								.addComponent(
-																										txtAgencia,
-																										Alignment.LEADING)
-																								.addComponent(txtIdade,
-																										Alignment.LEADING,
-																										GroupLayout.DEFAULT_SIZE,
-																										173,
-																										Short.MAX_VALUE))
-																						.addComponent(lbIdade,
-																								GroupLayout.PREFERRED_SIZE,
-																								48,
-																								GroupLayout.PREFERRED_SIZE))
-																				.addGap(24)
-																				.addGroup(groupLayout
-																						.createParallelGroup(
-																								Alignment.LEADING,
-																								false)
-																						.addComponent(lblTipoConta,
-																								GroupLayout.PREFERRED_SIZE,
-																								108,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(groupLayout
-																								.createParallelGroup(
-																										Alignment.LEADING,
-																										false)
-																								.addComponent(
-																										lblUsername,
-																										GroupLayout.PREFERRED_SIZE,
-																										48,
-																										GroupLayout.PREFERRED_SIZE)
-																								.addGroup(groupLayout
-																										.createParallelGroup(
-																												Alignment.LEADING,
-																												false)
-																										.addComponent(
-																												cbbTipoConta,
-																												Alignment.TRAILING,
-																												GroupLayout.PREFERRED_SIZE,
-																												202,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtCPF,
-																												202,
-																												202,
-																												202)))))
-																		.addComponent(txtNome,
-																				GroupLayout.PREFERRED_SIZE, 399,
-																				GroupLayout.PREFERRED_SIZE))
-																.addGap(38))
-														.addGroup(groupLayout.createSequentialGroup()
-																.addComponent(lblUsername_1).addContainerGap())))));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(5).addComponent(lbNome)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lbIdade)
-								.addComponent(lblUsername))
-						.addPreferredGap(ComponentPlacement.RELATED)
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(60)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbUsername)
+							.addContainerGap())
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lbAgencia)
-								.addComponent(lblTipoConta))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblUsername_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-						.addGap(7).addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbSenhaConta)
-								.addComponent(lbSenhaOperacoes))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtSenhaConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtSenhaOperacoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-						.addGap(9)));
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lbNome)
+								.addContainerGap())
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(tfNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(lbIdade, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+												.addComponent(tfIdade, 197, 197, Short.MAX_VALUE)
+												.addComponent(lbAgencia, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+												.addComponent(tfAgencia))
+											.addGap(48)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbTipoConta, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lbCPF, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+												.addComponent(tfCPF, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
+												.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+											.addGap(31)
+											.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
+									.addGap(80))
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(tfUsername, Alignment.LEADING)
+										.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbSenhaConta)
+												.addComponent(tfSenhaConta, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
+											.addGap(43)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(tfSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lbSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))))
+									.addContainerGap(156, Short.MAX_VALUE))))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lbNome)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tfNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbIdade)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tfIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbCPF)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tfCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbAgencia)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tfAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbTipoConta)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(28)
+					.addComponent(lbUsername, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tfUsername, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbSenhaConta)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(tfSenhaConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tfSenhaOperacoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lbSenhaOperacoes)
+							.addGap(30)))
+					.addGap(33)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addGap(25))
+		);
+		// TelaBackground.getPanelMenu().
+		setLayout(groupLayout);
 	}
 
 	protected int getNumeroContaDisponivel() {
@@ -306,26 +256,26 @@ public class NovaConta extends JPanel {
 	}
 
 	protected void limparTela() {
-		txtAgencia.setText("");
-		txtCPF.setText("");
-		txtIdade.setText("");
-		txtNome.setText("");
-		txtSenhaConta.setText("");
-		txtSenhaOperacoes.setText("");
-		txtUsername.setText("");
+		tfAgencia.setText("");
+		tfCPF.setText("");
+		tfIdade.setText("");
+		tfNome.setText("");
+		tfSenhaConta.setText("");
+		tfSenhaOperacoes.setText("");
+		tfUsername.setText("");
 		cbbTipoConta.setSelectedIndex(0);
 	}
 
 	protected boolean validarInformacoes() {
-		if (txtNome.getText().length() == 0 || txtIdade.getText().length() == 0 || txtCPF.getText().length() == 0
-				|| txtAgencia.getText().length() == 0 || txtUsername.getText().length() == 0
-				|| txtSenhaOperacoes.getText().length() == 0 || txtSenhaConta.getText().length() == 0) {
+		if (tfNome.getText().length() == 0 || tfIdade.getText().length() == 0 || tfCPF.getText().length() == 0
+				|| tfAgencia.getText().length() == 0 || tfUsername.getText().length() == 0
+				|| tfSenhaOperacoes.getText().length() == 0 || tfSenhaConta.getText().length() == 0) {
 			JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
 			return false;
 		}
 
 		agenciaValidar = (Agencia) GenericDao
-				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", txtAgencia.getText()));
+				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
 
 		if (agenciaValidar == null) {
 			JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
@@ -333,15 +283,14 @@ public class NovaConta extends JPanel {
 		}
 
 		Usuario usuarioValidar = (Usuario) GenericDao
-				.consultarByString("from Usuario where usu_login like '" + txtUsername.getText() + "'");
+				.consultarByString("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
 		if (usuarioValidar != null) {
-			JOptionPane.showMessageDialog(null,
-					String.format("Usuario %s ja possui uma conta!", txtUsername.getText()));
+			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja possui uma conta!", tfUsername.getText()));
 			return false;
 		}
 
-		if (txtSenhaOperacoes.getText().length() != 6) {
+		if (tfSenhaOperacoes.getText().length() != 6) {
 			JOptionPane.showMessageDialog(null, "A senha de operações do usuario deve possuir SEIS digitos!");
 			return false;
 		}
