@@ -4,8 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -19,7 +20,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.Agencia;
+import br.agencia.model.Conta;
+import br.agencia.model.ContaFacade;
+import br.agencia.model.EncodePasswordClient;
+import br.agencia.model.Pessoa;
 import br.agencia.model.Usuario;
+import br.agencia.model.enums.TipoConta;
+import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.principal.TelaBackground;
 
 public class NovaConta extends JPanel {
@@ -34,6 +41,8 @@ public class NovaConta extends JPanel {
 	private JPasswordField txtSenhaConta;
 	private JLabel lbSenhaOperacoes;
 	private JTextField txtUsername;
+
+	Agencia agenciaValidar = null;
 
 	public NovaConta() {
 
@@ -67,10 +76,11 @@ public class NovaConta extends JPanel {
 		JLabel lblTipoConta = new JLabel("Tipo Conta:");
 		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 12));
 
-		JComboBox<String> cbbTipoConta = new JComboBox<String>();
+		JComboBox<String> cbbTipoConta = new JComboBox(TipoConta.values());
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
-		cbbTipoConta.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Conta Corrente", "Conta Poupan\u00E7a", "Conta Sal\u00E1rio" }));
+		// cbbTipoConta.setModel(new DefaultComboBoxModel<String>(
+		// new String[] {TipoConta.CORRENTE.name(), TipoConta.ELETRONICA.name(),
+		// TipoConta.POUPANCA.name() }));
 		cbbTipoConta.setSelectedIndex(0);
 		cbbTipoConta.setMaximumRowCount(3);
 
@@ -89,6 +99,13 @@ public class NovaConta extends JPanel {
 		JLabel lbNome = new JLabel("Nome:");
 		lbNome.setFont(new Font("Arial", Font.BOLD, 12));
 
+		txtUsername = new JTextField();
+		txtUsername.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtUsername.setColumns(10);
+
+		JLabel lblUsername_1 = new JLabel("Username");
+		lblUsername_1.setFont(new Font("Arial", Font.BOLD, 12));
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnVoltar.addActionListener(new ActionListener() {
@@ -105,18 +122,25 @@ public class NovaConta extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				if (validarInformacoes()) {
-					JOptionPane.showMessageDialog(null, "parece que criou");
+
+					Pessoa novaPessoa = new Pessoa();
+					novaPessoa.setNome(txtNome.getText()).setIdade(Integer.parseInt(txtIdade.getText()))
+							.setCpf(txtCPF.getText()).setSenhaOperacao(txtSenhaOperacoes.getText());
+
+					Usuario novoUsuario = new Usuario();
+					novoUsuario.setLogin(txtUsername.getText())
+							.setSenha(new EncodePasswordClient().encode(txtSenhaConta.getText()))
+							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
+					Conta novaConta = new Conta();
+					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
+							.setTipoConta(TipoConta.valueOf(cbbTipoConta.getSelectedItem().toString()))
+							.setAgencia(agenciaValidar).setPessoa(novaPessoa);
+
+					new ContaFacade(novaPessoa, novoUsuario, novaConta);
 				}
 
 			}
 		});
-
-		txtUsername = new JTextField();
-		txtUsername.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtUsername.setColumns(10);
-
-		JLabel lblUsername_1 = new JLabel("Username");
-		lblUsername_1.setFont(new Font("Arial", Font.BOLD, 12));
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout
@@ -271,7 +295,7 @@ public class NovaConta extends JPanel {
 			return false;
 		}
 
-		Agencia agenciaValidar = (Agencia) GenericDao
+		agenciaValidar = (Agencia) GenericDao
 				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", txtAgencia.getText()));
 
 		if (agenciaValidar == null) {
@@ -282,8 +306,9 @@ public class NovaConta extends JPanel {
 		Usuario usuarioValidar = (Usuario) GenericDao
 				.consultarByString("from Usuario where usu_login like '" + txtUsername.getText() + "'");
 
-		if (usuarioValidar != null){
-			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja possui uma conta!", txtUsername.getText()));
+		if (usuarioValidar != null) {
+			JOptionPane.showMessageDialog(null,
+					String.format("Usuario %s ja possui uma conta!", txtUsername.getText()));
 			return false;
 		}
 

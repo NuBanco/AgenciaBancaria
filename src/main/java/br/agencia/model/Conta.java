@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +30,7 @@ public class Conta implements Serializable {
 	@Column(name = "con_tipoConta")
 	private TipoConta tipoConta;
 
-	@Column(name = "con_numero")
+	@Column(name = "con_numero", columnDefinition = "serial")
 	private String numero;
 
 	@Column(name = "con_dataAbertura")
@@ -47,48 +48,48 @@ public class Conta implements Serializable {
 		return idConta;
 	}
 
-	public void setId(Integer idConta) {
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public Conta setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+		return this;
+	}
+
+	public Conta setId(Integer idConta) {
 		this.idConta = idConta;
+		return this;
 	}
 
 	public TipoConta getTipoConta() {
 		return tipoConta;
 	}
 
-	public void setTipoConta(TipoConta tipoConta) {
+	public Conta setTipoConta(TipoConta tipoConta) {
 		this.tipoConta = tipoConta;
+		return this;
 	}
 
 	public Agencia getAgencia() {
 		return agencia;
 	}
 
-	public void setAgencia(Agencia agencia) {
+	public Conta setAgencia(Agencia agencia) {
 		this.agencia = agencia;
+		return this;
 	}
 
 	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
 	public Date getDataAbertura() {
 		return dataAbertura;
 	}
 
-	public void setDataAbertura(Date dataAbertura) {
+	public Conta setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
+		return this;
 	}
-
-	// public BigDecimal getSaldoConta() {
-	// return saldoConta;
-	// }
-	//
-	// public void setSaldoConta(BigDecimal saldoConta) {
-	// this.saldoConta = saldoConta;
-	// }
-
 }

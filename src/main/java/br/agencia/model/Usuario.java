@@ -36,6 +36,14 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "usu_idPessoa")
 	private Pessoa pessoa;
 
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
 	public Integer getId() {
 		return idUsuario;
 	}

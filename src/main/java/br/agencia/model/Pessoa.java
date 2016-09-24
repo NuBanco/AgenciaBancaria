@@ -26,9 +26,6 @@ public class Pessoa implements Serializable {
 	@Column(name = "pes_idade")
 	private Integer idade;
 
-	@Column(name = "pes_senha")
-	private String senha;
-
 	@Column(name = "pes_cpf")
 	private String cpf;
 
@@ -59,15 +56,6 @@ public class Pessoa implements Serializable {
 
 	public Pessoa setNome(String nome) {
 		this.nome = nome;
-		return this;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public Pessoa setSenha(String senha) {
-		this.senha = senha;
 		return this;
 	}
 
