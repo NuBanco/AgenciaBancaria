@@ -23,7 +23,6 @@ import br.agencia.view.principal.TelaBackground;
 public class ListaProfissional extends JPanel {
 
 	private static final long serialVersionUID = -4635580930027968770L;
-	private JTable tbProfissionais;
 
 	public ListaProfissional() {
 
@@ -31,7 +30,7 @@ public class ListaProfissional extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		tbProfissionais = new JTable();
+		JTable tbProfissionais = new JTable();
 		tbProfissionais.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbProfissionais.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
