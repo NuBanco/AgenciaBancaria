@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,7 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
+import br.agencia.control.GenericDao;
+import br.agencia.model.Conta;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaClientes extends JPanel {
@@ -26,10 +30,22 @@ public class ListaClientes extends JPanel {
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JScrollPane scrollPane = new JScrollPane();
+
 		tbGrid = new JTable();
 		tbGrid.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbGrid.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tbGrid);
+
+		List<Conta> contas = (List<Conta>) GenericDao.listar("from Conta");
+
+		String coluna[] = { "Tipo Conta", "Agencia", "Numero", "Titular", "Aberta em", "Saldo" };
+		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
+
+		contas.forEach(
+				conta -> modelo.addRow(new String[] { conta.getTipoConta().toString(), conta.getAgencia().getNome(),
+						conta.getNumero(), conta.getPessoa().getNome(), conta.getDataAbertura().toString(), "0" }));
+
+		tbGrid.setModel(modelo);
 
 		JButton btnImprimir = new JButton("");
 		btnImprimir.addActionListener(new ActionListener() {
