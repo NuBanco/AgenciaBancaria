@@ -30,7 +30,7 @@ public class Conta implements Serializable {
 	@Column(name = "con_tipoConta")
 	private TipoConta tipoConta;
 
-	@Column(name = "con_numero", columnDefinition = "serial")
+	@Column(name = "con_numero")
 	private String numero;
 
 	@Column(name = "con_dataAbertura")
@@ -82,6 +82,10 @@ public class Conta implements Serializable {
 
 	public String getNumero() {
 		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public Date getDataAbertura() {

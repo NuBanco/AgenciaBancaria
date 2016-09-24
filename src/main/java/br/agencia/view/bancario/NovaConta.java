@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.GroupLayout;
@@ -17,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.Agencia;
@@ -41,6 +42,7 @@ public class NovaConta extends JPanel {
 	private JPasswordField txtSenhaConta;
 	private JLabel lbSenhaOperacoes;
 	private JTextField txtUsername;
+	private JComboBox<String> cbbTipoConta;
 
 	Agencia agenciaValidar = null;
 
@@ -76,11 +78,8 @@ public class NovaConta extends JPanel {
 		JLabel lblTipoConta = new JLabel("Tipo Conta:");
 		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 12));
 
-		JComboBox<String> cbbTipoConta = new JComboBox(TipoConta.values());
+		cbbTipoConta = new JComboBox(TipoConta.values());
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
-		// cbbTipoConta.setModel(new DefaultComboBoxModel<String>(
-		// new String[] {TipoConta.CORRENTE.name(), TipoConta.ELETRONICA.name(),
-		// TipoConta.POUPANCA.name() }));
 		cbbTipoConta.setSelectedIndex(0);
 		cbbTipoConta.setMaximumRowCount(3);
 
@@ -113,6 +112,7 @@ public class NovaConta extends JPanel {
 
 				TelaBackground.clearPanelMenu();
 				TelaBackground.getPanelMenu().add(new HomeMenuBancario());
+
 			}
 		});
 
@@ -134,9 +134,14 @@ public class NovaConta extends JPanel {
 					Conta novaConta = new Conta();
 					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
 							.setTipoConta(TipoConta.valueOf(cbbTipoConta.getSelectedItem().toString()))
-							.setAgencia(agenciaValidar).setPessoa(novaPessoa);
+							.setAgencia(agenciaValidar).setPessoa(novaPessoa).setNumero(String.valueOf(getNumeroContaDisponivel()));
 
 					new ContaFacade(novaPessoa, novoUsuario, novaConta);
+
+					JOptionPane.showMessageDialog(null,
+							String.format("Conta %s criada com sucesso!", novaConta.getNumero()));
+
+					limparTela();
 				}
 
 			}
@@ -287,6 +292,29 @@ public class NovaConta extends JPanel {
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
+	protected int getNumeroContaDisponivel() {
+		int numeroConta = (int) (10000 * Math.random());
+		Conta buscaConta = (Conta) GenericDao.getGenericDao()
+				.consultarByString(String.format("from Conta where con_numero LIKE '%s'", numeroConta));
+
+		if (buscaConta == null) {
+			return numeroConta;
+		}
+
+		return getNumeroContaDisponivel();
+	}
+
+	protected void limparTela() {
+		txtAgencia.setText("");
+		txtCPF.setText("");
+		txtIdade.setText("");
+		txtNome.setText("");
+		txtSenhaConta.setText("");
+		txtSenhaOperacoes.setText("");
+		txtUsername.setText("");
+		cbbTipoConta.setSelectedIndex(0);
+	}
+
 	protected boolean validarInformacoes() {
 		if (txtNome.getText().length() == 0 || txtIdade.getText().length() == 0 || txtCPF.getText().length() == 0
 				|| txtAgencia.getText().length() == 0 || txtUsername.getText().length() == 0
@@ -309,6 +337,11 @@ public class NovaConta extends JPanel {
 		if (usuarioValidar != null) {
 			JOptionPane.showMessageDialog(null,
 					String.format("Usuario %s ja possui uma conta!", txtUsername.getText()));
+			return false;
+		}
+
+		if (txtSenhaOperacoes.getText().length() != 6) {
+			JOptionPane.showMessageDialog(null, "A senha de operações do usuario deve possuir SEIS digitos!");
 			return false;
 		}
 

@@ -44,9 +44,7 @@ public class NovaAgencia extends JPanel {
 
 					JOptionPane.showMessageDialog(null, String.format("Agencia %s criada com sucesso!", txtNome.getText()));
 
-					txtNome.setText("");
-					txtNumero.setText("");
-					txtCidade.setText("");
+					limparTela();
 				}
 			}
 		});
@@ -126,6 +124,12 @@ public class NovaAgencia extends JPanel {
 												.addComponent(btnConfirmar).addComponent(btnVoltar))
 										.addContainerGap(51, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+	}
+
+	protected void limparTela() {
+		txtNome.setText("");
+		txtNumero.setText("");
+		txtCidade.setText("");
 	}
 
 	protected boolean validarNovaAgencia() {
