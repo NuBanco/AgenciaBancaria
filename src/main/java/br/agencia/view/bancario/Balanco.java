@@ -21,9 +21,9 @@ import br.agencia.view.principal.TelaBackground;
 public class Balanco extends JPanel {
 
 	private static final long serialVersionUID = -1100684363335673889L;
-	private JTextField txtDataInicial;
-	private JTextField txtDataFinal;
-	private JTable tbGrid;
+	private JTextField tfDataInicial;
+	private JTextField tfDataFinal;
+	private JTable tbBalanco;
 	public static final String ID = "BALANCO";
 
 	public Balanco() {
@@ -31,67 +31,61 @@ public class Balanco extends JPanel {
 		TelaBackground.getPanelMenu().add(new JPanel(), SwingConstants.CENTER);
 
 		JButton btnRegressaAno = new JButton("I<");
-		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 12));
+		btnRegressaAno.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JButton btnRegressaMes = new JButton("<<");
-		btnRegressaMes.setFont(new Font("Arial", Font.BOLD, 12));
+		btnRegressaMes.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JButton btnRegressaDia = new JButton("<");
-		btnRegressaDia.setFont(new Font("Arial", Font.BOLD, 12));
+		btnRegressaDia.setFont(new Font("Arial", Font.BOLD, 14));
 
-		txtDataInicial = new JTextField();
-		txtDataInicial.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtDataInicial.setEditable(false);
-		txtDataInicial.setColumns(10);
+		tfDataInicial = new JTextField();
+		tfDataInicial.setFont(new Font("Arial", Font.PLAIN, 14));
+		tfDataInicial.setEditable(false);
+		tfDataInicial.setColumns(10);
 
-		txtDataFinal = new JTextField();
-		txtDataFinal.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtDataFinal.setEditable(false);
-		txtDataFinal.setColumns(10);
+		tfDataFinal = new JTextField();
+		tfDataFinal.setFont(new Font("Arial", Font.PLAIN, 14));
+		tfDataFinal.setEditable(false);
+		tfDataFinal.setColumns(10);
 
 		JButton btnAvancaDia = new JButton(">");
-		btnAvancaDia.setFont(new Font("Arial", Font.BOLD, 12));
+		btnAvancaDia.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JButton btnAvancaMes = new JButton(">>");
-		btnAvancaMes.setFont(new Font("Arial", Font.BOLD, 12));
+		btnAvancaMes.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JButton btnAvancaAno = new JButton(">I");
-		btnAvancaAno.setFont(new Font("Arial", Font.BOLD, 12));
+		btnAvancaAno.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JButton btnImprimir = new JButton("");
 		btnImprimir.setFont(new Font("Arial", Font.BOLD, 12));
 
-		JLabel lblsaldoPerodoR = new JLabel("(=)Saldo em Caixa R$");
-		lblsaldoPerodoR.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbSaldoPerodoCaixa = new JLabel("(=)Saldo em Caixa R$");
+		lbSaldoPerodoCaixa.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbValorSaldo = new JLabel("0,00");
 		lbValorSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbValorSaldo.setFont(new Font("Arial", Font.BOLD, 14));
+		lbValorSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 
-		tbGrid = new JTable();
+		tbBalanco = new JTable();
 
 		JLabel lbValorDepositos = new JLabel("0,00");
 		lbValorDepositos.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbValorDepositos.setFont(new Font("Arial", Font.BOLD, 14));
+		lbValorDepositos.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbTotalDepositos = new JLabel("(+) Total Dep\u00F3sitos R$");
-		lbTotalDepositos.setFont(new Font("Arial", Font.BOLD, 14));
+		lbTotalDepositos.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbValorSaques = new JLabel("0,00");
 		lbValorSaques.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbValorSaques.setFont(new Font("Arial", Font.BOLD, 14));
+		lbValorSaques.setFont(new Font("Arial", Font.BOLD, 16));
 
-		JLabel lbTotalSaquesR = new JLabel("(-)Total Saques R$");
-		lbTotalSaquesR.setFont(new Font("Arial", Font.BOLD, 14));
-
-		JComboBox<Object> cbbAgencia = new JComboBox<Object>();
-		cbbAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
-
-		JLabel lblAg = new JLabel("Ag\u00EAncia:");
-		lblAg.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbTotalSaques = new JLabel("(-)Total Saques R$");
+		lbTotalSaques.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -100,156 +94,91 @@ public class Balanco extends JPanel {
 
 		});
 
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(lblAg)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(cbbAgencia, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnImprimir))
-						.addGroup(
-								groupLayout.createSequentialGroup().addContainerGap()
-										.addGroup(
-												groupLayout.createParallelGroup(Alignment.LEADING, false)
-														.addComponent(tbGrid, GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addGroup(groupLayout
-																.createSequentialGroup()
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.LEADING, false)
-																		.addGroup(groupLayout.createSequentialGroup()
-																				.addGroup(groupLayout
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addComponent(lbTotalSaquesR)
-																						.addComponent(lbTotalDepositos))
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED)
-																				.addGroup(groupLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								lbValorSaques,
-																								GroupLayout.PREFERRED_SIZE,
-																								85,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								lbValorDepositos,
-																								GroupLayout.PREFERRED_SIZE,
-																								85,
-																								GroupLayout.PREFERRED_SIZE)))
-																		.addGroup(groupLayout.createSequentialGroup()
-																				.addComponent(btnRegressaAno,
-																						GroupLayout.PREFERRED_SIZE, 50,
-																						GroupLayout.PREFERRED_SIZE)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED)
-																				.addComponent(btnRegressaMes,
-																						GroupLayout.PREFERRED_SIZE, 50,
-																						GroupLayout.PREFERRED_SIZE)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED)
-																				.addComponent(btnRegressaDia,
-																						GroupLayout.PREFERRED_SIZE,
-																						50, GroupLayout.PREFERRED_SIZE)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED)
-																				.addComponent(
-																						txtDataInicial, 0, 75,
-																						Short.MAX_VALUE)))
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.LEADING, false)
-																		.addGroup(
-																				groupLayout.createSequentialGroup()
-																						.addPreferredGap(
-																								ComponentPlacement.RELATED)
-																						.addGroup(groupLayout
-																								.createParallelGroup(
-																										Alignment.LEADING)
-																								.addGroup(groupLayout
-																										.createSequentialGroup()
-																										.addComponent(
-																												txtDataFinal,
-																												GroupLayout.PREFERRED_SIZE,
-																												75,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												btnAvancaDia,
-																												GroupLayout.PREFERRED_SIZE,
-																												50,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												btnAvancaMes,
-																												GroupLayout.PREFERRED_SIZE,
-																												50,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												btnAvancaAno,
-																												GroupLayout.PREFERRED_SIZE,
-																												50,
-																												GroupLayout.PREFERRED_SIZE))
-																								.addGroup(groupLayout
-																										.createSequentialGroup()
-																										.addComponent(
-																												lblsaldoPerodoR)
-																										.addPreferredGap(
-																												ComponentPlacement.UNRELATED)
-																										.addComponent(
-																												lbValorSaldo,
-																												GroupLayout.PREFERRED_SIZE,
-																												85,
-																												GroupLayout.PREFERRED_SIZE))))
-																		.addGroup(Alignment.TRAILING,
-																				groupLayout.createSequentialGroup()
-																						.addPreferredGap(
-																								ComponentPlacement.RELATED,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE)
-																						.addComponent(btnVoltar)
-																						.addGap(64)))))))
-				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblAg).addComponent(
-								cbbAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnImprimir, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(tbGrid, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE).addGap(3)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnRegressaAno, GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE)
-						.addComponent(btnRegressaMes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addComponent(btnRegressaDia, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addComponent(txtDataInicial, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtDataFinal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAvancaDia, GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE)
-						.addComponent(btnAvancaMes, GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE)
-						.addComponent(btnAvancaAno, GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbTotalDepositos, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbValorDepositos, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblsaldoPerodoR, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbTotalSaquesR, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbValorSaques, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnVoltar))
-				.addGap(57)));
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(20)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(tbBalanco, GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnRegressaAno, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addGap(4)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(2)
+											.addComponent(btnRegressaMes, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(btnRegressaDia, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(tfDataInicial, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(174)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbValorSaques, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lbValorDepositos, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(lbTotalSaques)
+									.addComponent(lbTotalDepositos)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(tfDataFinal, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnAvancaDia, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lbSaldoPerodoCaixa))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnAvancaMes, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnAvancaAno, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(20))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(611, Short.MAX_VALUE)
+					.addComponent(btnVoltar)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(20)
+					.addComponent(tbBalanco, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnImprimir, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE, false)
+								.addComponent(btnAvancaAno, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+								.addComponent(btnAvancaMes, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnAvancaDia, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tfDataFinal, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+								.addComponent(btnRegressaAno, GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE)
+								.addComponent(btnRegressaMes, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+								.addComponent(btnRegressaDia, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+								.addComponent(tfDataInicial, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+							.addGap(28)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbTotalDepositos, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbValorDepositos, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbSaldoPerodoCaixa, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbTotalSaques, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbValorSaques, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+							.addGap(4)))
+					.addGap(13)
+					.addComponent(btnVoltar)
+					.addContainerGap())
+		);
+		//TelaBackground.getPanelMenu().
+		setLayout(groupLayout);
 	}
 }
