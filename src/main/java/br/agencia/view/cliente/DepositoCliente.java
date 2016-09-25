@@ -4,24 +4,24 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
+import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
-import javax.swing.text.MaskFormatter;
 
 import br.agencia.control.GenericDao;
+import br.agencia.model.Agencia;
 import br.agencia.model.Conta;
+import br.agencia.model.JNumberFormatField;
 import br.agencia.model.UserLogged;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.view.principal.TelaBackground;
@@ -30,28 +30,27 @@ public class DepositoCliente extends JPanel {
 
 	private static final long serialVersionUID = 242114627222497452L;
 	private JComboBox<String> cbbTipoConta;
-	private JFormattedTextField tfValor = null;
+	private JNumberFormatField tfValor = null;
 	private JTextField tfAgencia;
 	private JTextField tfConta;
 	private JTextField tfTitular;
 
+	private Agencia agenciaDeposito;
 	private Conta contaDeposito;
 
 	public DepositoCliente() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
-		JLabel lbValorDeposito = new JLabel("Informe o valor a ser depositado:");
-		lbValorDeposito.setFont(new Font("Arial", Font.BOLD, 16));
-
 		JCheckBox chkContaLogada = new JCheckBox("Conta logada");
 		chkContaLogada.setFont(new Font("Arial", Font.BOLD, 16));
 		chkContaLogada.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
 					contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
 							"from Conta where con_idPessoa = %d", UserLogged.getUsuarioLogado().getPessoa().getId()));
-					tfAgencia.setText(contaDeposito.getAgencia().getNome());
+					tfAgencia.setText(contaDeposito.getAgencia().getCodAgencia());
 					tfConta.setText(contaDeposito.getNumero());
 					tfTitular.setText(contaDeposito.getPessoa().getNome());
 					cbbTipoConta.setSelectedItem(contaDeposito.getTipoConta());
@@ -69,20 +68,15 @@ public class DepositoCliente extends JPanel {
 
 					tfAgencia.enable(true);
 					tfConta.enable(true);
-					//tfTitular.enable(true);
-					//cbbTipoConta.enable(true);
 
 				}
 			}
 		});
 		chkContaLogada.setSelected(false);
 
-		try {
-			tfValor = new JFormattedTextField(new MaskFormatter("###.###.###,##"));
-		} catch (ParseException e1) {
-			JOptionPane.showMessageDialog(null, "Erro ao realizar o parser do valor!");
-		}
-
+		JLabel lbValorDeposito = new JLabel("Informe o valor a ser depositado:");
+		lbValorDeposito.setFont(new Font("Arial", Font.BOLD, 16));
+		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);;
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -107,16 +101,7 @@ public class DepositoCliente extends JPanel {
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 16));
 		cbbTipoConta.setSelectedIndex(0);
 		cbbTipoConta.setMaximumRowCount(3);
-
-		JButton btnConfirmar = new JButton("Confirme");
-		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Conta contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
-						"from Conta where con_idPessoa = %d", UserLogged.getUsuarioLogado().getPessoa().getId()));
-
-			}
-		});
+		cbbTipoConta.enable(false);
 
 		JLabel lbTitular = new JLabel("Titular:");
 		lbTitular.setFont(new Font("Arial", Font.BOLD, 16));
@@ -124,6 +109,35 @@ public class DepositoCliente extends JPanel {
 		tfTitular = new JTextField();
 		tfTitular.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfTitular.setColumns(10);
+		tfTitular.enable(false);
+
+		JButton btnConfirmar = new JButton("Confirme");
+		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JOptionPane.showMessageDialog(null, tfValor.getText());
+
+				agenciaDeposito = (Agencia) GenericDao.getGenericDao().consultarByQuery(
+						String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
+				if (agenciaDeposito == null) {
+					JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
+					return;
+				}
+
+				contaDeposito = (Conta) GenericDao.getGenericDao()
+						.consultarByQuery(String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
+								tfConta.getText().trim(), agenciaDeposito.getId()));
+
+				if (contaDeposito == null) {
+					JOptionPane.showMessageDialog(null, "Conta nao encontrada!");
+					return;
+				}
+
+				tfTitular.setText(contaDeposito.getPessoa().getNome());
+				cbbTipoConta.setSelectedItem(contaDeposito.getTipoConta());
+			}
+		});
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
