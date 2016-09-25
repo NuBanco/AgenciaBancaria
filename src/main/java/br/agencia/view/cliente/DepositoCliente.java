@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -13,20 +13,23 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+import javax.swing.text.MaskFormatter;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.Conta;
 import br.agencia.model.UserLogged;
+import br.agencia.model.enums.TipoConta;
 import br.agencia.view.principal.TelaBackground;
 
 public class DepositoCliente extends JPanel {
 
 	private static final long serialVersionUID = 242114627222497452L;
+	private JComboBox<String> cbbTipoConta;
+	private JFormattedTextField tfValor = null;
 	private JTextField tfAgencia;
 	private JTextField tfConta;
 	private JTextField tfTitular;
@@ -48,16 +51,35 @@ public class DepositoCliente extends JPanel {
 					tfAgencia.setText(contaDeposito.getAgencia().getNome());
 					tfConta.setText(contaDeposito.getNumero());
 					tfTitular.setText(contaDeposito.getPessoa().getNome());
+					cbbTipoConta.setSelectedItem(contaDeposito.getTipoConta());
+
+					tfAgencia.enable(false);
+					tfConta.enable(false);
+					tfTitular.enable(false);
+					cbbTipoConta.enable(false);
+
 				} else {
 					tfAgencia.setText("");
 					tfConta.setText("");
 					tfTitular.setText("");
+					cbbTipoConta.setSelectedIndex(0);
+
+					tfAgencia.enable(true);
+					tfConta.enable(true);
+					tfTitular.enable(true);
+					cbbTipoConta.enable(true);
+
 				}
 			}
 		});
-		chkContaLogada.setSelected(true);
+		chkContaLogada.setSelected(false);
 
-		JFormattedTextField tfValor = new JFormattedTextField();
+		try {
+			tfValor = new JFormattedTextField(new MaskFormatter("###.###.###,##"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -78,12 +100,10 @@ public class DepositoCliente extends JPanel {
 		JLabel lbTipoConta = new JLabel("Tipo Conta:");
 		lbTipoConta.setFont(new Font("Arial", Font.BOLD, 16));
 
-		JComboBox<String> cbbTipoConta = new JComboBox<String>();
+		cbbTipoConta = new JComboBox(TipoConta.values());
 		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 16));
-		cbbTipoConta.setMaximumRowCount(3);
-		cbbTipoConta.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Conta Corrente", "Conta Poupan\u00E7a", "Conta Eletr\u00F4nica" }));
 		cbbTipoConta.setSelectedIndex(0);
+		cbbTipoConta.setMaximumRowCount(3);
 
 		JButton btnConfirmar = new JButton("Confirme");
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
