@@ -27,29 +27,32 @@ public class NovaAgencia extends JPanel {
 	private JTextField txtNumero;
 	private JTextField txtCidade;
 
-	public NovaAgencia() {
-
+	public NovaAgencia(Agencia agencia) {
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarNovaAgencia()) {
-					Agencia agenciaIncluir = new Agencia();
-					agenciaIncluir.setNome(txtNome.getText());
-					agenciaIncluir.setCodAgencia(txtNumero.getText());
-					agenciaIncluir.setCidade(txtCidade.getText());
+					agencia.setNome(txtNome.getText());
+					agencia.setCodAgencia(txtNumero.getText());
+					agencia.setCidade(txtCidade.getText());
 
-					GenericDao.getGenericDao().incluir(agenciaIncluir);
-
-					JOptionPane.showMessageDialog(null, String.format("Agencia %s criada com sucesso!", txtNome.getText()));
+					if (agencia.getId() != null) {
+						GenericDao.getGenericDao().incluir(agencia);
+						JOptionPane.showMessageDialog(null,
+								String.format("Agencia %s criada com sucesso!", txtNome.getText()));
+					} else {
+						GenericDao.getGenericDao().alterar(agencia);
+						JOptionPane.showMessageDialog(null,
+								String.format("Agencia %s alterada com sucesso!", txtNome.getText()));
+					}
 
 					limparTela();
 				}
 			}
 		});
-
-		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 14));
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.BOLD, 14));
@@ -72,11 +75,18 @@ public class NovaAgencia extends JPanel {
 				}
 			}
 		});
+
 		txtNumero.setColumns(10);
 
 		txtCidade = new JTextField();
 		txtCidade.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtCidade.setColumns(10);
+
+		if (agencia.getId() != null) {
+			txtNome.setText(agencia.getNome());
+			txtNumero.setText(agencia.getCodAgencia());
+			txtCidade.setText(agencia.getCidade());
+		}
 
 		JLabel lblCidade = new JLabel("Cidade");
 		lblCidade.setFont(new Font("Arial", Font.BOLD, 14));
@@ -124,6 +134,7 @@ public class NovaAgencia extends JPanel {
 												.addComponent(btnConfirmar).addComponent(btnVoltar))
 										.addContainerGap(51, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+
 	}
 
 	protected void limparTela() {
