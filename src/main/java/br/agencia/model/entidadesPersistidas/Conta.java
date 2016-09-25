@@ -14,8 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.agencia.control.GenericDao;
 import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
+import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.AtualizarSaldo;
 
 @Entity
@@ -118,9 +120,10 @@ public class Conta implements Serializable{
 		return saldo;
 	}
 
-	public Conta setSaldo(BigDecimal valor) {
-		new AtualizarSaldo(this, valor);
-		this.saldo = valor;
+	public Conta setSaldo(BigDecimal valor, TipoMovimento tipoMovimento) {
+		new AtualizarSaldo(this, valor, tipoMovimento);
+		this.saldo.add(valor);
+		GenericDao.getGenericDao().alterar(this);
 		return this;
 	}
 

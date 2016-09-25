@@ -2,8 +2,7 @@ package br.agencia.model.entidadesPersistidas;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.agencia.model.enums.TipoMovimento;
 
 @Entity
 @Table(name = "movimento")
@@ -25,13 +26,10 @@ public class MovimentoConta implements Serializable {
 	private Integer idMovimento;
 
 	@Column(name = "mov_tipoMovimento")
-	private String tipoMovimento;
+	private TipoMovimento tipoMovimento;
 
 	@Column(name = "mov_dataEvento")
 	private Date dataEvento;
-
-	@Column(name = "mov_horaEvento")
-	private Time horaEvento;
 
 	@Column(name = "mov_valor")
 	private BigDecimal valor;
@@ -40,11 +38,11 @@ public class MovimentoConta implements Serializable {
 	@JoinColumn(name = "mov_idconta")
 	private Conta conta;
 
-	public String getTipoMovimento() {
+	public TipoMovimento getTipoMovimento() {
 		return tipoMovimento;
 	}
 
-	public MovimentoConta setTipoMovimento(String tipoMovimento) {
+	public MovimentoConta setTipoMovimento(TipoMovimento tipoMovimento) {
 		this.tipoMovimento = tipoMovimento;
 		return this;
 	}
@@ -58,12 +56,12 @@ public class MovimentoConta implements Serializable {
 		return this;
 	}
 
-	public Time getHoraEvento() {
-		return horaEvento;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public MovimentoConta setHoraEvento(Time horaEvento) {
-		this.horaEvento = horaEvento;
+	public MovimentoConta setConta(Conta conta) {
+		this.conta = conta;
 		return this;
 	}
 

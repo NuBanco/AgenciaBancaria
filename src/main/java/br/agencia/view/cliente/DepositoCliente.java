@@ -22,6 +22,7 @@ import br.agencia.control.GenericDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoConta;
+import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
@@ -138,7 +139,7 @@ public class DepositoCliente extends JPanel {
 					return;
 				}
 
-				contaDeposito.setSaldo(tfValor.getValue());
+				contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
 
 				tfTitular.setText(contaDeposito.getPessoa().getNome());
 				cbbTipoConta.setSelectedItem(contaDeposito.getTipoConta());
