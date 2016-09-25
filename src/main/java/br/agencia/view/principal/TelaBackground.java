@@ -60,7 +60,7 @@ public class TelaBackground extends JFrame {
 		setTitle("Banco Tads");
 
 		JPanel panel = new JPanel();
-		panel.setSize(700, 250);
+		panel.setSize(700, 200);
 
 		JLabel lbLogo = new JLabel(logo);
 
@@ -99,60 +99,76 @@ public class TelaBackground extends JFrame {
 		lbResutSaldo = new JLabel();
 		lbResutSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 		
+		JLabel lbDivisor = new JLabel("-");
+		lbDivisor.setFont(new Font("Arial Black", Font.BOLD, 16));
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel
-						.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lbLogo, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbTitulo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lbLogo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lbTitulo, Alignment.TRAILING).addGroup(gl_panel
-												.createSequentialGroup().addComponent(lbDescricao).addPreferredGap(
-														ComponentPlacement.RELATED, 60, GroupLayout.PREFERRED_SIZE)))
-								.addPreferredGap(ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(lbAgencia).addGap(18).addComponent(lbResultAgencia))
-										.addGroup(gl_panel.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(lbTipoConta)
-												.addGap(18).addComponent(lbResultConta))
-										.addGroup(gl_panel.createSequentialGroup().addComponent(lbSaldo).addGap(18)
-												.addComponent(lbResutSaldo)))
-								.addGap(45))
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addComponent(dataHoje)
-								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(horaAtual).addGap(37)))));
+							.addComponent(lbDescricao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(60)))
+					.addGap(91)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbSaldo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addGap(2)
+										.addComponent(lbAgencia, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addComponent(lbTipoConta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbResultAgencia, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+								.addComponent(lbResutSaldo, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+								.addComponent(lbResultConta, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+							.addContainerGap())
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(dataHoje)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lbDivisor)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(horaAtual)
+							.addGap(24))))
+		);
 		gl_panel.setVerticalGroup(
-				gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_panel.createSequentialGroup()
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(dataHoje).addComponent(horaAtual))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel.createSequentialGroup().addGap(23)
-														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-																.addComponent(lbResultAgencia).addComponent(lbAgencia))
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-																.addComponent(lbResultConta).addComponent(lbTipoConta))
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-																.addComponent(lbSaldo).addComponent(lbResutSaldo)))
-												.addGroup(gl_panel.createSequentialGroup()
-														.addPreferredGap(ComponentPlacement.RELATED).addGroup(
-																gl_panel.createParallelGroup(Alignment.LEADING)
-																		.addGroup(gl_panel.createSequentialGroup()
-																				.addComponent(lbTitulo)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED)
-																				.addComponent(lbDescricao))
-																		.addComponent(lbLogo,
-																				GroupLayout.PREFERRED_SIZE, 92,
-																				GroupLayout.PREFERRED_SIZE))))
-										.addGap(45)));
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(25)
+							.addComponent(lbTitulo)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lbDescricao))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(dataHoje)
+								.addComponent(horaAtual)
+								.addComponent(lbDivisor))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbAgencia)
+								.addComponent(lbResultAgencia))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbTipoConta)
+								.addComponent(lbResultConta))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbSaldo)
+								.addComponent(lbResutSaldo))
+							.addGap(17))
+						.addComponent(lbLogo, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+					.addContainerGap())
+		);
 		gl_panel.setHonorsVisibility(false);
 		panel.setLayout(gl_panel);
 
@@ -175,5 +191,4 @@ public class TelaBackground extends JFrame {
 		}
 
 	}
-
 }

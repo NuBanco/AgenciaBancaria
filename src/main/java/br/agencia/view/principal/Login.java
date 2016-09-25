@@ -31,7 +31,7 @@ public class Login extends JFrame {
 	private JPasswordField tfSenha;
 
 	public Login() {
-		setBounds(100, 100, 370, 180);
+		setBounds(100, 100, 350, 250);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
 		setType(Type.POPUP);
 		setResizable(false);
@@ -96,31 +96,46 @@ public class Login extends JFrame {
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 18));
 
 		JLabel lbUsuario = new JLabel("Usu\u00E1rio :");
-		lbUsuario.setFont(new Font("Arial", Font.BOLD, 16));
+		lbUsuario.setFont(new Font("Arial", Font.BOLD, 18));
 
 		JLabel lbSenha = new JLabel("Senha :");
-		lbSenha.setFont(new Font("Arial", Font.BOLD, 16));
+		lbSenha.setFont(new Font("Arial", Font.BOLD, 18));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(26)
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(lbUsuario)
-										.addComponent(lbSenha))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(tfSenha).addComponent(tfUsuario, GroupLayout.DEFAULT_SIZE, 219,
-												Short.MAX_VALUE))))
-				.addContainerGap(39, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(22)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbUsuario)
-								.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbSenha)
-								.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addGap(18).addComponent(btnLogin).addContainerGap(21, Short.MAX_VALUE)));
+							.addComponent(lbSenha)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lbUsuario)
+									.addGap(229))
+								.addGroup(Alignment.LEADING, groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(tfUsuario, Alignment.LEADING)
+									.addComponent(tfSenha, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+									.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
+					.addGap(1))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(22)
+					.addComponent(lbUsuario)
+					.addGap(18)
+					.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(14)
+					.addComponent(lbSenha)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnLogin)
+					.addContainerGap(121, Short.MAX_VALUE))
+		);
 		getContentPane().setLayout(groupLayout);
 	}
 

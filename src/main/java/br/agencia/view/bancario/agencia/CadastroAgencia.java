@@ -40,8 +40,8 @@ public class CadastroAgencia extends JPanel {
 					agencia.setCidade(tfCidade.getText());
 
 					gravarAgencia(agencia);
-
-					limparTela();
+					TelaBackground.clearPanelMenu();
+					TelaBackground.getPanelMenu().add(new ListaAgencia());
 				}
 			}
 		});
@@ -93,45 +93,40 @@ public class CadastroAgencia extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(108)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnVoltar)
-							.addGap(26)
-							.addComponent(btnConfirmar))
-						.addGroup(Alignment.TRAILING, groupLayout.createParallelGroup(Alignment.TRAILING)
-							.addComponent(lbNome, Alignment.LEADING)
-							.addComponent(tfNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-							.addComponent(tfNumero, Alignment.LEADING)
-							.addComponent(lbNumero, Alignment.LEADING)
-							.addComponent(tfCidade, Alignment.LEADING)
-							.addComponent(lbCidade, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
-					.addGap(95))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGap(23)
-					.addComponent(lbNome)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tfNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(32)
-					.addComponent(lbNumero)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addComponent(lbCidade)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(119)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnConfirmar)
-						.addComponent(btnVoltar))
-					.addContainerGap(67, Short.MAX_VALUE))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(108)
+						.addGroup(groupLayout
+								.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+										groupLayout.createSequentialGroup().addComponent(btnVoltar).addGap(26)
+												.addComponent(btnConfirmar))
+								.addGroup(Alignment.TRAILING,
+										groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(lbNome, Alignment.LEADING)
+												.addComponent(tfNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 497,
+														Short.MAX_VALUE)
+												.addComponent(tfNumero, Alignment.LEADING)
+												.addComponent(lbNumero, Alignment.LEADING)
+												.addComponent(tfCidade, Alignment.LEADING).addComponent(lbCidade,
+														Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 87,
+														GroupLayout.PREFERRED_SIZE)))
+						.addGap(95)));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+								groupLayout.createSequentialGroup().addGap(23).addComponent(lbNome)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(tfNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(32).addComponent(lbNumero).addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(28).addComponent(lbCidade).addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(119)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(btnConfirmar).addComponent(btnVoltar))
+										.addContainerGap(67, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 
 	}
@@ -159,8 +154,8 @@ public class CadastroAgencia extends JPanel {
 		}
 
 		if (agencia.getId() == null) {
-			Agencia agenciaValidar = (Agencia) GenericDao.consultarByQuery(
-					String.format("from Agencia where age_numAgencia like '%s'", tfNumero.getText()));
+			Agencia agenciaValidar = (Agencia) GenericDao
+					.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'", tfNumero.getText()));
 
 			if (agenciaValidar != null) {
 				JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", tfNumero.getText()));
