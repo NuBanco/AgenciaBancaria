@@ -101,52 +101,47 @@ public class Login extends JFrame {
 		JLabel lbSenha = new JLabel("Senha :");
 		lbSenha.setFont(new Font("Arial", Font.BOLD, 18));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(26)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lbSenha)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lbUsuario)
-									.addGap(229))
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addGap(26)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup().addComponent(lbSenha)
+								.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
+								.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup().addComponent(lbUsuario).addGap(229))
 								.addGroup(Alignment.LEADING, groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(tfUsuario, Alignment.LEADING)
-									.addComponent(tfSenha, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-									.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
-					.addGap(1))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addComponent(lbUsuario)
-					.addGap(18)
-					.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(14)
-					.addComponent(lbSenha)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnLogin)
-					.addContainerGap(121, Short.MAX_VALUE))
-		);
+										.addComponent(tfUsuario, Alignment.LEADING)
+										.addComponent(tfSenha, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 288,
+												Short.MAX_VALUE)
+										.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91,
+												GroupLayout.PREFERRED_SIZE)))
+								.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
+				.addGap(1)));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(22).addComponent(lbUsuario)
+										.addGap(18)
+										.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(14).addComponent(lbSenha).addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(18).addComponent(btnLogin).addContainerGap(121, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
 	}
 
 	private void validarAdmin() {
-		Usuario usuarioAdmin = new Usuario();
-		Pessoa pessoaAdmin = new Pessoa();
-		pessoaAdmin.setCpf("00000000000").setIdade(99).setNome("ADMIN").setSenhaOperacao("123456");
-		usuarioAdmin.setLogin("admin").setSenha("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918")
-				.setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(pessoaAdmin);
-		GenericDao.getGenericDao().incluir(pessoaAdmin);
-		GenericDao.getGenericDao().incluir(usuarioAdmin);
+		Usuario usuarioAdmin = (Usuario) GenericDao.consultarByQuery("from Usuario where usu_login like 'admin'");
+		if (usuarioAdmin == null) {
+			usuarioAdmin = new Usuario();
+			Pessoa pessoaAdmin = new Pessoa();
+			pessoaAdmin.setCpf("00000000000").setIdade(99).setNome("ADMIN").setSenhaOperacao("123456");
+			usuarioAdmin.setLogin("admin").setSenha("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918")
+					.setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(pessoaAdmin);
+			GenericDao.getGenericDao().incluir(pessoaAdmin);
+			GenericDao.getGenericDao().incluir(usuarioAdmin);
+		}
 	}
 
 	public static void main(String[] args) {

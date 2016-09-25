@@ -31,7 +31,7 @@ public class TelaBackground extends JFrame {
 	private static JLabel lbAgencia;
 	private static JLabel lbTipoConta;
 	private static JLabel lbSaldo;
-    private static JNumberFormatField lbResutSaldo = null; 
+    private static JNumberFormatField lbResutSaldo = null;
 	private static JLabel lbResultAgencia;
 	private static JLabel lbResultConta;
 	public static Conta contaCliente;
@@ -193,13 +193,10 @@ public class TelaBackground extends JFrame {
 			contaCliente = UsuarioLogado.getContaUsuarioLogado();
 			lbResultAgencia.setText(contaCliente.getAgencia().getCodAgencia());
 			lbResultConta.setText(contaCliente.getTipoConta().name());
-			
-			if (contaCliente.getSaldo() == null) {
-				JOptionPane.showMessageDialog(null,"NULOOO");
-			}else {
-				JOptionPane.showMessageDialog(null,contaCliente.getSaldo());
-			}
+			lbResutSaldo.enable(false);
 			lbResutSaldo.setText(contaCliente.getSaldo().toString());
+
+			//JOptionPane.showMessageDialog(null, contaCliente.getSaldo());
 		}
 	}
 }
