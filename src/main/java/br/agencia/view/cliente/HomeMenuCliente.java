@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.agencia.view.principal.TelaBackground;
@@ -27,8 +26,7 @@ public class HomeMenuCliente extends JPanel {
 				createPanel(new OpcoesSaque());
 			}
 		});
-		btnOpSaque.setFont(new Font("Arial", Font.BOLD, 23));
-//		TelaBackground.getPanelMenu().add(btnOpSaque);
+		btnOpSaque.setFont(new Font("Arial", Font.BOLD, 22));
 
 		JButton btnOpSaldo = new JButton("2 - Saldo");
 		btnOpSaldo.setBounds(293, 116, 180, 30);
@@ -38,10 +36,9 @@ public class HomeMenuCliente extends JPanel {
 				createPanel(new SaldoCliente());
 			}
 		});
-		btnOpSaldo.setFont(new Font("Arial", Font.BOLD, 23));
-//		TelaBackground.getPanelMenu().add(btnOpSaldo);
+		btnOpSaldo.setFont(new Font("Arial", Font.BOLD, 22));
 
-		JButton btnOpDeposito = new JButton("3 - Depositos");
+		JButton btnOpDeposito = new JButton("3 - Dep\u00F3sitos");
 		btnOpDeposito.setBounds(293, 176, 180, 30);
 		btnOpDeposito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -49,10 +46,9 @@ public class HomeMenuCliente extends JPanel {
 				createPanel(new DepositoCliente());
 			}
 		});
-		btnOpDeposito.setFont(new Font("Arial", Font.BOLD, 23));
-//		TelaBackground.getPanelMenu().add(btnOpDeposito);
+		btnOpDeposito.setFont(new Font("Arial", Font.BOLD, 22));
 
-		JButton btnOpTransferencia = new JButton("4 - Transferencias");
+		JButton btnOpTransferencia = new JButton("4 - Transfer\u00EAncias");
 		btnOpTransferencia.setBounds(83, 116, 180, 30);
 		btnOpTransferencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,8 +56,7 @@ public class HomeMenuCliente extends JPanel {
 				createPanel(new TransferenciaCliente());
 			}
 		});
-		btnOpTransferencia.setFont(new Font("Arial", Font.BOLD, 23));
-//		TelaBackground.getPanelMenu().add(btnOpTransferencia);
+		btnOpTransferencia.setFont(new Font("Arial", Font.BOLD, 22));
 
 		JButton btnOpPagamento = new JButton("5 - Pagamentos");
 		btnOpPagamento.setBounds(293, 62, 180, 30);
@@ -71,8 +66,7 @@ public class HomeMenuCliente extends JPanel {
 				createPanel(new PagamentoCliente());
 			}
 		});
-		btnOpPagamento.setFont(new Font("Arial", Font.BOLD, 23));
-//		TelaBackground.getPanelMenu().add(btnOpPagamento);
+		btnOpPagamento.setFont(new Font("Arial", Font.BOLD, 22));
 
 		JButton btnOpFinalizar = new JButton("6 - Finalizar");
 		btnOpFinalizar.setBounds(83, 176, 180, 30);
@@ -80,8 +74,7 @@ public class HomeMenuCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 23));
-//		TelaBackground.getPanelMenu().add(btnOpFinalizar);
+		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 22));
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -116,7 +109,6 @@ public class HomeMenuCliente extends JPanel {
 												GroupLayout.PREFERRED_SIZE))
 						.addGap(111)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
-//		TelaBackground.getPanelMenu().setVisible(true);
 	}
 
 	private void createPanel(final JPanel panel) {

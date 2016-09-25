@@ -4,27 +4,24 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
+import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.text.MaskFormatter;
-import javax.swing.SwingConstants;
 
+import br.agencia.model.JNumberFormatField;
 import br.agencia.view.principal.TelaBackground;
 
 public class PagamentoCliente extends JPanel {
 
 	private static final long serialVersionUID = -3894477076695872825L;
 	private JTextField tfCodigoDeBarra;
-	private JFormattedTextField tfValor;
+	private JNumberFormatField tfValor = null;
 
 	public PagamentoCliente() {
 
@@ -37,13 +34,8 @@ public class PagamentoCliente extends JPanel {
 		tfCodigoDeBarra.setFont(new Font("Arial", Font.PLAIN, 17));
 		tfCodigoDeBarra.setColumns(10);
 
-		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
+		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 17));
-		try {
-			tfValor = new JFormattedTextField(new MaskFormatter("###.###.###,##"));
-		} catch (ParseException e1) {
-			JOptionPane.showMessageDialog(null, "Erro ao realizar o parser do valor!");
-		}
 
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {

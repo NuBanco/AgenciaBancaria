@@ -4,25 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
+import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.text.MaskFormatter;
-import javax.swing.SwingConstants;
 
+import br.agencia.model.JNumberFormatField;
 import br.agencia.view.principal.TelaBackground;
 
 public class OpcoesSaque extends JPanel {
 
 	private static final long serialVersionUID = 2914438307389368709L;
-	private JFormattedTextField tfValor;
+	private JNumberFormatField tfValor = null;
 
 	public OpcoesSaque() {
 
@@ -52,8 +49,6 @@ public class OpcoesSaque extends JPanel {
 			}
 		});
 
-		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
-
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
@@ -71,13 +66,8 @@ public class OpcoesSaque extends JPanel {
 		JLabel lbValorEspecifico = new JLabel("Informe outro valor:");
 		lbValorEspecifico.setFont(new Font("Arial", Font.BOLD, 16));
 
+		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 16));
-		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
-		try {
-			tfValor = new JFormattedTextField(new MaskFormatter("###.###.###,##"));
-		} catch (ParseException e1) {
-			JOptionPane.showMessageDialog(null, "Erro ao realizar o parser do valor!");
-		}
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -86,9 +76,9 @@ public class OpcoesSaque extends JPanel {
 				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
-
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
-		GroupLayout groupLayout = new GroupLayout(this);
+
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap()
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -138,8 +128,7 @@ public class OpcoesSaque extends JPanel {
 						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap(40, Short.MAX_VALUE)));
-		//TelaBackground.getPanelMenu().
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
 	// private void OpcaoSacar( BigDecimal valor ){
