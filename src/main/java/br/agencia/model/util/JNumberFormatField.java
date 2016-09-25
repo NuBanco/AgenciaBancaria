@@ -91,7 +91,7 @@ public class JNumberFormatField extends JTextField {
 			}
 		});// formato
 			// inicial
-		setText("0");
+		setText("");
 		setCaretPosition(getText().length());
 	}
 

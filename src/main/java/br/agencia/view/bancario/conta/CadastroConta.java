@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,15 +25,15 @@ import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.ContaFacade;
+import br.agencia.model.util.JNumberFormatField;
 import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
 public class CadastroConta extends JPanel {
 
 	private static final long serialVersionUID = 5210607113046110764L;
-	public static final String ID = "NOVACONTA";
 	private JTextField tfNome;
-	private JTextField tfIdade;
+	private JNumberFormatField tfIdade = null;
 	private JTextField tfCPF;
 	private JTextField tfAgencia;
 	private JPasswordField tfSenhaOperacoes;
@@ -54,7 +55,8 @@ public class CadastroConta extends JPanel {
 		JLabel lbIdade = new JLabel("Idade:");
 		lbIdade.setFont(new Font("Arial", Font.BOLD, 16));
 
-		tfIdade = new JTextField();
+		tfIdade = new JNumberFormatField(new DecimalFormat("###")).setLimit(3);
+		tfIdade.setText("");
 		tfIdade.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfIdade.setColumns(10);
 

@@ -3,6 +3,7 @@ package br.agencia.view.principal;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 import javax.swing.GroupLayout;
@@ -10,13 +11,14 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.control.GenericDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoUsuario;
+import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
 
 public class TelaBackground extends JFrame {
@@ -29,7 +31,7 @@ public class TelaBackground extends JFrame {
 	private static JLabel lbAgencia;
 	private static JLabel lbTipoConta;
 	private static JLabel lbSaldo;
-	private static JLabel lbResutSaldo;
+    private static JNumberFormatField lbResutSaldo = null; 
 	private static JLabel lbResultAgencia;
 	private static JLabel lbResultConta;
 	public static Conta contaCliente;
@@ -99,7 +101,8 @@ public class TelaBackground extends JFrame {
 		lbResultConta = new JLabel();
 		lbResultConta.setFont(new Font("Arial", Font.BOLD, 16));
 
-		lbResutSaldo = new JLabel();
+		lbResutSaldo = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
+		//lbResutSaldo = new JLabel();
 		lbResutSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbDivisor = new JLabel("-");
@@ -187,11 +190,16 @@ public class TelaBackground extends JFrame {
 			lbResultConta.setVisible(false);
 			lbResultAgencia.setVisible(false);
 		} else {
-			contaCliente = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
-					"from Conta where con_idPessoa = %d", UsuarioLogado.getUsuarioLogado().getPessoa().getId()));
-
+			contaCliente = UsuarioLogado.getContaUsuarioLogado();
 			lbResultAgencia.setText(contaCliente.getAgencia().getCodAgencia());
 			lbResultConta.setText(contaCliente.getTipoConta().name());
+			
+			if (contaCliente.getSaldo() == null) {
+				JOptionPane.showMessageDialog(null,"NULOOO");
+			}else {
+				JOptionPane.showMessageDialog(null,contaCliente.getSaldo());
+			}
+			lbResutSaldo.setText(contaCliente.getSaldo().toString());
 		}
 	}
 }
