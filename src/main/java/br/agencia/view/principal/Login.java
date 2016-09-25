@@ -26,11 +26,11 @@ import br.agencia.model.enums.TipoUsuario;
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 7781598968866921968L;
-	private JTextField editUsuario;
-	private JPasswordField editSenha;
+	private JTextField tfUsuario;
+	private JPasswordField tfSenha;
 
 	public Login() {
-		setBounds(100, 100, 300, 170);
+		setBounds(100, 100, 370, 180);
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 13));
 		setType(Type.POPUP);
 		setResizable(false);
@@ -38,13 +38,13 @@ public class Login extends JFrame {
 
 		HibernateUtil.getSession();
 
-		editUsuario = new JTextField();
-		editUsuario.setFont(new Font("Arial", Font.PLAIN, 13));
-		editUsuario.setColumns(10);
+		tfUsuario = new JTextField();
+		tfUsuario.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfUsuario.setColumns(10);
 
-		editSenha = new JPasswordField();
-		editSenha.setFont(new Font("Arial", Font.PLAIN, 13));
-		editSenha.setToolTipText("");
+		tfSenha = new JPasswordField();
+		tfSenha.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfSenha.setToolTipText("");
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -52,27 +52,27 @@ public class Login extends JFrame {
 				Usuario usuarioLogin = new Usuario();
 				String senhaLogin = "";
 
-				editUsuario.setText(editUsuario.getText().trim());
+				tfUsuario.setText(tfUsuario.getText().trim());
 
-				if (editUsuario.getText().length() == 0) {
+				if (tfUsuario.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "O campo \"Usuario\" deve ser informado!");
 					return;
 				}
 
-				if (editSenha.getText().length() == 0) {
+				if (tfSenha.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "O campo \"Senha\" deve ser informado!");
 					return;
 				}
 
 				usuarioLogin = (Usuario) GenericDao.consultarByString(
-						String.format("from Usuario where usu_login like '%s'", editUsuario.getText()));
+						String.format("from Usuario where usu_login like '%s'", tfUsuario.getText()));
 
 				if (usuarioLogin == null) {
 					JOptionPane.showMessageDialog(null, "Usuario nao cadastrado!");
 					return;
 				}
 
-				senhaLogin = new EncodePasswordFactory().create(usuarioLogin.getTipoUsuario()).encode(editSenha.getText());
+				senhaLogin = new EncodePasswordFactory().create(usuarioLogin.getTipoUsuario()).encode(tfSenha.getText());
 
 				if (!senhaLogin.equals(usuarioLogin.getSenha())) {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
@@ -90,36 +90,45 @@ public class Login extends JFrame {
 			}
 		});
 
-		btnLogin.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnLogin.setFont(new Font("Arial", Font.PLAIN, 18));
 
 		JLabel lbUsuario = new JLabel("Usu\u00E1rio :");
-		lbUsuario.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbUsuario.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbSenha = new JLabel("Senha :");
-		lbSenha.setFont(new Font("Arial", Font.PLAIN, 17));
+		lbSenha.setFont(new Font("Arial", Font.BOLD, 16));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(26)
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(lbUsuario)
-										.addComponent(lbSenha))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(editUsuario, GroupLayout.PREFERRED_SIZE, 157,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(editSenha, 157, 157, 157))))
-				.addContainerGap(39, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(22)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbUsuario)
-								.addComponent(editUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbSenha)
-								.addComponent(editSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnLogin)
-						.addContainerGap(22, Short.MAX_VALUE)));
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lbUsuario)
+								.addComponent(lbSenha))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(tfSenha)
+								.addComponent(tfUsuario, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))))
+					.addContainerGap(39, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(22)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbUsuario)
+						.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbSenha)
+						.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(btnLogin)
+					.addContainerGap(21, Short.MAX_VALUE))
+		);
 		getContentPane().setLayout(groupLayout);
 	}
 
