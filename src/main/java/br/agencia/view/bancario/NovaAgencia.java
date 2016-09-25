@@ -39,15 +39,7 @@ public class NovaAgencia extends JPanel {
 					agencia.setCodAgencia(txtNumero.getText());
 					agencia.setCidade(txtCidade.getText());
 
-					if (agencia.getId() == null) {
-						GenericDao.getGenericDao().incluir(agencia);
-						JOptionPane.showMessageDialog(null,
-								String.format("Agencia %s criada com sucesso!", txtNome.getText()));
-					} else {
-						GenericDao.getGenericDao().alterar(agencia);
-						JOptionPane.showMessageDialog(null,
-								String.format("Agencia %s alterada com sucesso!", txtNome.getText()));
-					}
+					gravarAgencia(agencia);
 
 					limparTela();
 				}
@@ -135,6 +127,18 @@ public class NovaAgencia extends JPanel {
 										.addContainerGap(51, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 
+	}
+
+	protected void gravarAgencia(Agencia agencia) {
+		if (agencia.getId() == null) {
+			GenericDao.getGenericDao().incluir(agencia);
+			JOptionPane.showMessageDialog(null,
+					String.format("Agencia %s criada com sucesso!", txtNome.getText()));
+		} else {
+			GenericDao.getGenericDao().alterar(agencia);
+			JOptionPane.showMessageDialog(null,
+					String.format("Agencia %s alterada com sucesso!", txtNome.getText()));
+		}
 	}
 
 	protected void limparTela() {
