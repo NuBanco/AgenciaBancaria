@@ -92,7 +92,7 @@ public class NovaAgencia extends JPanel {
 			}
 		});
 
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -132,8 +132,7 @@ public class NovaAgencia extends JPanel {
 						.addComponent(btnVoltar))
 					.addContainerGap(67, Short.MAX_VALUE))
 		);
-		//TelaBackground.getPanelMenu().
-		setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 
 	}
 

@@ -30,7 +30,7 @@ public class ListaAgencia extends JPanel {
 	private JTable tbAgencia;
 
 	public ListaAgencia() {
-		
+
 		List<Agencia> agencias = new ArrayList<>();
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
@@ -53,11 +53,13 @@ public class ListaAgencia extends JPanel {
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground.clearPanelMenu();
-				Agencia agenciaEditar = (Agencia) GenericDao
-						.consultarByString(String.format("from Agencia where age_numAgencia like '%s'",
-								tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
-				TelaBackground.getPanelMenu().add(new NovaAgencia(agenciaEditar));
+				if (tbAgencia.getSelectedRow() != -1) {
+					TelaBackground.clearPanelMenu();
+					Agencia agenciaEditar = (Agencia) GenericDao
+							.consultarByString(String.format("from Agencia where age_numAgencia like '%s'",
+									tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
+					TelaBackground.getPanelMenu().add(new NovaAgencia(agenciaEditar));
+				}
 			}
 		});
 
@@ -85,7 +87,7 @@ public class ListaAgencia extends JPanel {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(tbAgencia, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 680,
+								.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 680,
 										Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup().addComponent(btnVoltar)
 										.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -97,7 +99,7 @@ public class ListaAgencia extends JPanel {
 				.setVerticalGroup(
 						groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-										.addComponent(tbAgencia, GroupLayout.PREFERRED_SIZE, 343,
+										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 343,
 												GroupLayout.PREFERRED_SIZE)
 										.addGap(34)
 										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)

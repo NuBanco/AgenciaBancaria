@@ -19,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.Agencia;
-import br.agencia.model.EncodePasswordClient;
+import br.agencia.model.EncodePasswordBanking;
 import br.agencia.model.Pessoa;
 import br.agencia.model.Usuario;
 import br.agencia.model.enums.TipoConta;
@@ -104,8 +104,8 @@ public class NovoProfissional extends JPanel {
 
 				if (validarInformacoes(usuario)) {
 
-					if (usuario.getId() == null) {
-						senhaAuxiliar = new EncodePasswordClient().encode(tfSenhaConta.getText());
+					if (usuario.getId() == null || tfSenhaConta.getText().length() != 0) {
+						senhaAuxiliar = new EncodePasswordBanking().encode(tfSenhaConta.getText());
 					}
 
 					Pessoa novaPessoa = new Pessoa();
@@ -119,6 +119,7 @@ public class NovoProfissional extends JPanel {
 
 					limparTela();
 
+					TelaBackground.clearPanelMenu();
 					TelaBackground.getPanelMenu().add(new ListaProfissional());
 				}
 
