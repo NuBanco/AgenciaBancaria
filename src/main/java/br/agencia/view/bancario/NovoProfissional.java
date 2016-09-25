@@ -118,6 +118,8 @@ public class NovoProfissional extends JPanel {
 					gravarUsuario(usuario);
 
 					limparTela();
+
+					TelaBackground.getPanelMenu().add(new ListaProfissional());
 				}
 
 			}
