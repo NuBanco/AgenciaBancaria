@@ -29,7 +29,6 @@ public class OpcoesSaque extends JPanel {
 		btnOp50.setFont(new Font("Arial", Font.BOLD, 20));
 		btnOp50.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// OpcaoSacar(new BigDecimal(50.00));
 			}
 		});
 
