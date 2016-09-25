@@ -10,9 +10,11 @@ import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.agencia.control.GenericDao;
@@ -33,11 +35,10 @@ public class ListaAgencia extends JPanel {
 		agencias = (List<Agencia>) GenericDao.listar("from Agencia");
 
 		tbAgencia = new JTable();
-		tbAgencia.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
-				new String[] { "Nome", "N\u00FAmero", "Cidade" }));
+		tbAgencia.setFont(new Font("Arial", Font.PLAIN, 13));
+		tbAgencia.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		String coluna[] = { "Nome", "Numero", "Cidade" };
-
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
 
 		agencias.forEach(agencia -> modelo
@@ -47,13 +48,21 @@ public class ListaAgencia extends JPanel {
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
+				Agencia agenciaEditar = (Agencia) GenericDao.consultarByString(
+						String.format("from Agencia where age_numAgencia like '%s'", tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
+				TelaBackground.getPanelMenu().add(new NovaAgencia(agenciaEditar));
+			}
+		});
 
 		JButton btnAdicionar = new JButton("+");
 		btnAdicionar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new NovaAgencia());
+				TelaBackground.getPanelMenu().add(new NovaAgencia(new Agencia()));
 			}
 		});
 

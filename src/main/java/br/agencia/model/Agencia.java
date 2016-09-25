@@ -23,7 +23,7 @@ public class Agencia implements Serializable  {
 	private Integer id;
 
 	@Column(name="age_numAgencia")
-	private String codAgencia;
+	private String numAgencia;
 
 	@Column(name="age_nome")
 	private String nome;
@@ -59,11 +59,11 @@ public class Agencia implements Serializable  {
 	}
 
 	public String getCodAgencia() {
-		return codAgencia;
+		return numAgencia;
 	}
 
-	public Agencia setCodAgencia(String codAgencia) {
-		this.codAgencia = codAgencia;
+	public Agencia setCodAgencia(String numAgencia) {
+		this.numAgencia = numAgencia;
 		return this;
 	}
 
