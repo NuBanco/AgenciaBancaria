@@ -1,19 +1,20 @@
 package br.agencia.model.entidadesPersistidas;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
 
 @Entity
@@ -35,6 +36,12 @@ public class Conta implements Serializable {
 
 	@Column(name = "con_dataAbertura")
 	private Date dataAbertura;
+
+	@Column(name = "con_situacao")
+	private SituacaoConta situacaoConta;
+
+	@Column(name = "con_saldo")
+	private BigDecimal saldo;
 
 	@OneToOne
 	@JoinColumn(name = "con_idPessoa")
@@ -96,4 +103,23 @@ public class Conta implements Serializable {
 		this.dataAbertura = dataAbertura;
 		return this;
 	}
+
+	public SituacaoConta getSituacaoConta() {
+		return situacaoConta;
+	}
+
+	public Conta setSituacaoConta(SituacaoConta situacaoConta) {
+		this.situacaoConta = situacaoConta;
+		return this;
+	}
+
+	public BigDecimal getSaldo() {
+		return saldo;
+	}
+
+	public Conta setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
+		return this;
+	}
+
 }
