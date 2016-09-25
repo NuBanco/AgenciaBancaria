@@ -16,16 +16,16 @@ import javax.swing.border.LineBorder;
 public class SenhaCliente extends JFrame {
 
 	private static final long serialVersionUID = 3187868024721495012L;
-	private JPasswordField txtSenha;
+	private JPasswordField tfSenha;
 
 	public SenhaCliente() {
 
-		txtSenha = new JPasswordField();
-		txtSenha.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtSenha.setEditable(false);
+		tfSenha = new JPasswordField();
+		tfSenha.setFont(new Font("Arial", Font.PLAIN, 14));
+		tfSenha.setEditable(false);
 
-		JLabel lblDigiteSuaSenha = new JLabel("Digite sua senha utilizando o teclado virtual");
-		lblDigiteSuaSenha.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbDigiteSuaSenha = new JLabel("Digite sua senha utilizando o teclado virtual");
+		lbDigiteSuaSenha.setFont(new Font("Arial", Font.BOLD, 18));
 
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 20));
@@ -37,27 +37,27 @@ public class SenhaCliente extends JFrame {
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDigiteSuaSenha)
+								.addComponent(lbDigiteSuaSenha)
 								.addGroup(groupLayout.createSequentialGroup()
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 												.addComponent(btnConfirmar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(txtSenha, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-														165, Short.MAX_VALUE))
+												.addComponent(tfSenha, Alignment.LEADING, GroupLayout.PREFERRED_SIZE,
+														165, GroupLayout.PREFERRED_SIZE))
 										.addGap(18).addComponent(panel, GroupLayout.PREFERRED_SIZE, 248,
 												GroupLayout.PREFERRED_SIZE)))
-						.addGap(128)));
+						.addContainerGap(19, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(21).addComponent(lblDigiteSuaSenha)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(21).addComponent(lbDigiteSuaSenha).addGap(18)
+						.addGroup(groupLayout
+								.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE,
-												30, GroupLayout.PREFERRED_SIZE)
+										.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 30,
+												GroupLayout.PREFERRED_SIZE)
 										.addGap(11).addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 40,
 												GroupLayout.PREFERRED_SIZE))
 								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(117, Short.MAX_VALUE)));
+						.addContainerGap(102, Short.MAX_VALUE)));
 
 		JButton btn0 = new JButton("0");
 		btn0.setFont(new Font("Arial", Font.BOLD, 15));

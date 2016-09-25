@@ -69,7 +69,6 @@ public class Balanco extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 		tbBalanco = new JTable();
-		// scrollPane.setViewportView(tbBalanco);
 
 		JLabel lbValorDepositos = new JLabel("0,00");
 		lbValorDepositos.setHorizontalAlignment(SwingConstants.RIGHT);
