@@ -34,7 +34,7 @@ public class NovaAgencia extends JPanel {
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 14));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (validarNovaAgencia()) {
+				if (validarNovaAgencia(agencia)) {
 					agencia.setNome(txtNome.getText());
 					agencia.setCodAgencia(txtNumero.getText());
 					agencia.setCidade(txtCidade.getText());
@@ -132,12 +132,10 @@ public class NovaAgencia extends JPanel {
 	protected void gravarAgencia(Agencia agencia) {
 		if (agencia.getId() == null) {
 			GenericDao.getGenericDao().incluir(agencia);
-			JOptionPane.showMessageDialog(null,
-					String.format("Agencia %s criada com sucesso!", txtNome.getText()));
+			JOptionPane.showMessageDialog(null, String.format("Agencia %s criada com sucesso!", txtNome.getText()));
 		} else {
 			GenericDao.getGenericDao().alterar(agencia);
-			JOptionPane.showMessageDialog(null,
-					String.format("Agencia %s alterada com sucesso!", txtNome.getText()));
+			JOptionPane.showMessageDialog(null, String.format("Agencia %s alterada com sucesso!", txtNome.getText()));
 		}
 	}
 
@@ -147,18 +145,20 @@ public class NovaAgencia extends JPanel {
 		txtCidade.setText("");
 	}
 
-	protected boolean validarNovaAgencia() {
+	protected boolean validarNovaAgencia(Agencia agencia) {
 		if (txtNome.getText().length() == 0 || txtNumero.getText().length() == 0 || txtCidade.getText().length() == 0) {
 			JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
 			return false;
 		}
 
-		Agencia agenciaValidar = (Agencia) GenericDao
-				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", txtNumero.getText()));
+		if (agencia.getId() == null) {
+			Agencia agenciaValidar = (Agencia) GenericDao.consultarByString(
+					String.format("from Agencia where age_numAgencia like '%s'", txtNumero.getText()));
 
-		if (agenciaValidar != null) {
-			JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", txtNumero.getText()));
-			return false;
+			if (agenciaValidar != null) {
+				JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", txtNumero.getText()));
+				return false;
+			}
 		}
 
 		return true;
