@@ -16,62 +16,63 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class InformacoesConta extends JFrame {
 
 	private static final long serialVersionUID = -8293231784772338084L;
-	private JTextField txtAgencia;
-	private JTextField txtConta;
-	private JTextField txtTitular;
+	private JTextField tfAgencia;
+	private JTextField tfConta;
+	private JTextField tfTitular;
 	public static final String ID = "INFCONTA";
 
 	public InformacoesConta() {
 		
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		txtAgencia = new JTextField();
-		txtAgencia.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtAgencia.addKeyListener(new KeyAdapter() {
+		tfAgencia = new JTextField();
+		tfAgencia.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfAgencia.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				String caracteres="0987654321-";
+				String caracteres="0987654321";
 				if(!caracteres.contains(e.getKeyChar()+"")){
 					e.consume();
 				}							
 			}
 		});
-		txtAgencia.setColumns(10);
+		tfAgencia.setColumns(10);
 
-		JLabel lbAgncia = new JLabel("AG:");
-		lbAgncia.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbAgncia = new JLabel("Ag\u00EAncia:");
+		lbAgncia.setFont(new Font("Arial", Font.BOLD, 16));
 		
 
-		txtConta = new JTextField();
-		txtConta.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtConta.addKeyListener(new KeyAdapter() {
+		tfConta = new JTextField();
+		tfConta.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfConta.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				String caracteres="0987654321-";
+				String caracteres="0987654321";
 				if(!caracteres.contains(e.getKeyChar()+"")){
 					e.consume();
 				}							
 			}
 		});
-		txtConta.setColumns(10);
+		tfConta.setColumns(10);
 
 		JLabel lbConta = new JLabel("Conta:");
-		lbConta.setFont(new Font("Arial", Font.BOLD, 14));
+		lbConta.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JComboBox<String> cbbTipoConta = new JComboBox<String>();
-		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
+		cbbTipoConta.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JLabel lbTipoConta = new JLabel("Tipo Conta:");
-		lbTipoConta.setFont(new Font("Arial", Font.BOLD, 14));
+		lbTipoConta.setFont(new Font("Arial", Font.BOLD, 16));
 
-		txtTitular = new JTextField();
-		txtTitular.setColumns(10);
+		tfTitular = new JTextField();
+		tfTitular.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tfTitular.setColumns(10);
 
 		JButton btnConfirme = new JButton("Confirmar");
-		btnConfirme.setFont(new Font("Arial", Font.BOLD, 14));
+		btnConfirme.setFont(new Font("Arial", Font.PLAIN, 18));
 
-		JLabel lblTitular = new JLabel("Titular");
-		lblTitular.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbTitular = new JLabel("Titular:");
+		lbTitular.setFont(new Font("Arial", Font.BOLD, 16));
 
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -81,23 +82,19 @@ public class InformacoesConta extends JFrame {
 					.addGap(30)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnConfirme)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(lbTipoConta)
-									.addComponent(cbbTipoConta, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblTitular)
-									.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)))
-							.addContainerGap(91, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lbAgncia)
-								.addComponent(txtAgencia, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(tfAgencia, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+							.addGap(28)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lbConta)
-								.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
-							.addGap(107))))
+								.addComponent(lbConta, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tfConta, GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
+						.addComponent(btnConfirme, Alignment.TRAILING)
+						.addComponent(lbTipoConta)
+						.addComponent(lbTitular)
+						.addComponent(cbbTipoConta, 0, 313, Short.MAX_VALUE)
+						.addComponent(tfTitular, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+					.addGap(27))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -107,22 +104,22 @@ public class InformacoesConta extends JFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lbAgncia)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tfAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lbConta)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(tfConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lbTipoConta)
 					.addGap(3)
 					.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(lblTitular)
+					.addComponent(lbTitular)
 					.addGap(2)
-					.addComponent(txtTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(tfTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnConfirme)
-					.addContainerGap(32, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}

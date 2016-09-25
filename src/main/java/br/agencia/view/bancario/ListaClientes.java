@@ -23,7 +23,7 @@ import br.agencia.view.principal.TelaBackground;
 public class ListaClientes extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable tbGrid;
+	private JTable tbContas;
 
 	public ListaClientes() {
 
@@ -31,10 +31,10 @@ public class ListaClientes extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		tbGrid = new JTable();
-		tbGrid.setFont(new Font("Arial", Font.PLAIN, 13));
-		tbGrid.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(tbGrid);
+		tbContas = new JTable();
+		tbContas.setFont(new Font("Arial", Font.PLAIN, 13));
+		tbContas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(tbContas);
 
 		List<Conta> contas = (List<Conta>) GenericDao.listar("from Conta");
 
@@ -45,9 +45,10 @@ public class ListaClientes extends JPanel {
 				conta -> modelo.addRow(new String[] { conta.getTipoConta().toString(), conta.getAgencia().getNome(),
 						conta.getNumero(), conta.getPessoa().getNome(), conta.getDataAbertura().toString(), "0" }));
 
-		tbGrid.setModel(modelo);
+		tbContas.setModel(modelo);
 
 		JButton btnImprimir = new JButton("");
+		btnImprimir.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -55,7 +56,7 @@ public class ListaClientes extends JPanel {
 		});
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -64,24 +65,27 @@ public class ListaClientes extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(561, Short.MAX_VALUE)
+					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnVoltar)
+					.addContainerGap())
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnImprimir)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnVoltar).addGap(14)));
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 208,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 26,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(btnVoltar))
-										.addContainerGap(55, Short.MAX_VALUE)));
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnImprimir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnVoltar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(30, Short.MAX_VALUE))
+		);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
-
 	}
 
 }
