@@ -128,6 +128,7 @@ public class NovaConta extends JPanel {
 							.setSenha(new EncodePasswordClient().encode(tfSenhaConta.getText()))
 							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
 					Conta novaConta = new Conta();
+					//novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
 					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
 							.setTipoConta(TipoConta.valueOf(cbbTipoConta.getSelectedItem().toString()))
 							.setAgencia(agenciaValidar).setPessoa(novaPessoa)

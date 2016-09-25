@@ -125,7 +125,7 @@ public class HomeMenuBancario extends JPanel {
 	}
 
 	private void createPanel(final JPanel panel) {
-		panel.setSize(580, 470);
+		panel.setSize(700, 450);
 		panel.setVisible(true);
 	}
 

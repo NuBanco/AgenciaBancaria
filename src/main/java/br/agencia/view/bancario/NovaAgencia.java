@@ -53,7 +53,7 @@ public class NovaAgencia extends JPanel {
 		tfNome.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfNome.setColumns(10);
 
-		JLabel lbNumero = new JLabel("N\u00FAmero");
+		JLabel lbNumero = new JLabel("N\u00FAmero:");
 		lbNumero.setFont(new Font("Arial", Font.BOLD, 16));
 
 		tfNumero = new JTextField();
@@ -80,7 +80,7 @@ public class NovaAgencia extends JPanel {
 			tfCidade.setText(agencia.getCidade());
 		}
 
-		JLabel lbCidade = new JLabel("Cidade");
+		JLabel lbCidade = new JLabel("Cidade:");
 		lbCidade.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JButton btnVoltar = new JButton("Voltar");

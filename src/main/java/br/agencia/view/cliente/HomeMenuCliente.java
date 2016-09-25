@@ -16,21 +16,12 @@ public class HomeMenuCliente extends JPanel {
 	private static final long serialVersionUID = 5853409558338193456L;
 
 	public HomeMenuCliente() {
-		
-		JPanel panel = new JPanel();
-
-		panel = TelaBackground.getPanelMenu();
-		panel.setLayout(null);
-		panel.setVisible(true);
 
 		JButton btnOpSaque = new JButton("1 - Saque");
 		btnOpSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				OpcoesSaque saque = new OpcoesSaque();
-				saque.setSize(580, 470);
-				saque.setLocation(null);
-				saque.setVisible(true);
+				createPanel(new OpcoesSaque());
 			}
 		});
 		btnOpSaque.setFont(new Font("Arial", Font.BOLD, 17));
@@ -39,10 +30,7 @@ public class HomeMenuCliente extends JPanel {
 		btnOpSaldo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				SaldoCliente saldoCliente = new SaldoCliente();
-				saldoCliente.setSize(580, 470);
-				saldoCliente.setLocation(null);
-				saldoCliente.setVisible(true);
+				createPanel(new SaldoCliente());
 			}
 		});
 		btnOpSaldo.setFont(new Font("Arial", Font.BOLD, 17));
@@ -51,10 +39,7 @@ public class HomeMenuCliente extends JPanel {
 		btnOpDeposito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				DepositoCliente deposito = new DepositoCliente();
-				deposito.setSize(580, 470);
-				deposito.setLocation(null);
-				deposito.setVisible(true);
+				createPanel(new DepositoCliente());
 			}
 		});
 		btnOpDeposito.setFont(new Font("Arial", Font.BOLD, 17));
@@ -62,7 +47,6 @@ public class HomeMenuCliente extends JPanel {
 		JButton btnOpFinalizar = new JButton("6 - Finalizar");
 		btnOpFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 			}
 		});
 		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 17));
@@ -70,7 +54,8 @@ public class HomeMenuCliente extends JPanel {
 		JButton btnOpPagamento = new JButton("5 - Pagamentos");
 		btnOpPagamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				TelaBackground.clearPanelMenu();
+				createPanel(new PagamentoCliente());
 			}
 		});
 		btnOpPagamento.setFont(new Font("Arial", Font.BOLD, 17));
@@ -78,59 +63,51 @@ public class HomeMenuCliente extends JPanel {
 		JButton btnOpTransferencia = new JButton("4 - Transfer\u00EAncias");
 		btnOpTransferencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				TelaBackground.clearPanelMenu();
+				createPanel(new TransferenciaCliente());
 			}
 		});
 		btnOpTransferencia.setFont(new Font("Arial", Font.BOLD, 17));
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHonorsVisibility(false);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(28)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnOpSaque, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-								.addComponent(btnOpSaldo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addComponent(btnOpDeposito, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE))
-						.addGap(124)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnOpFinalizar, GroupLayout.PREFERRED_SIZE, 180,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnOpPagamento, GroupLayout.PREFERRED_SIZE, 180,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 180,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 50,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnOpSaque, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-						.addGap(59)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnOpPagamento, GroupLayout.PREFERRED_SIZE, 50,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnOpSaldo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-						.addGap(56)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnOpFinalizar, GroupLayout.PREFERRED_SIZE, 50,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnOpDeposito, GroupLayout.PREFERRED_SIZE, 50,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(114)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpSaque, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+						.addComponent(btnOpSaldo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnOpDeposito, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+					.addGap(124)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpFinalizar, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+						.addComponent(btnOpPagamento, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+						.addComponent(btnOpTransferencia, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+					.addGap(102))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(89)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnOpSaque, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(59)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpPagamento, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnOpSaldo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(56)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpFinalizar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnOpDeposito, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(96, Short.MAX_VALUE))
+		);
+//		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		setLayout(groupLayout);
 	}
 
-
-	// public static void main(String[] args) {
-	//
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// HomeMenuBancario menuBancario = new HomeMenuBancario();
-	// menuBancario.setLocationRelativeTo(null);
-	// menuBancario.setVisible(true);
-	// }
-	// });
-	// }
+	private void createPanel(final JPanel panel) {
+		panel.setSize(700, 450);
+		panel.setVisible(true);
+	}
 }
