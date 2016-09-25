@@ -23,9 +23,15 @@ public class TelaBackground extends JFrame {
 
 	private static JFrame telaPrincipal;
 	private static JLabel dataHoje;
-	private static JLabel lblAgencia;
-	private static JLabel lblTipoConta;
-	private static JLabel lblSaldo;
+	private static JLabel horaAtual;	
+	private static JLabel lbAgencia;
+	private static JLabel lbTipoConta;
+	private static JLabel lbSaldo;
+	private static JLabel lbResutSaldo;
+	private static JLabel lbResultAgencia;
+	private static JLabel lbResultConta;
+	
+
 	protected static JPanel panelMenu = new JPanel();
 
 	public static JFrame getTelaPrincipal() {
@@ -56,16 +62,15 @@ public class TelaBackground extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setSize(700, 250);
 
-		JLabel lblLogo = new JLabel(logo);
+		JLabel lbLogo = new JLabel(logo);
 
 		dataHoje = new JLabel("data");
-		dataHoje.setFont(new Font("Arial", Font.BOLD, 14));
+		dataHoje.setFont(new Font("Arial", Font.BOLD, 16));
 
 		dataHoje.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
 
-		JLabel horaAgora = new JLabel("New label");
-		horaAgora.setFont(new Font("Arial", Font.BOLD, 14));
-		horaAgora.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
+		horaAtual.setFont(new Font("Arial", Font.BOLD, 16));
+		horaAtual.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
 
 		JLabel lbDescricao = new JLabel("Um dia fica pronto");
 		lbDescricao.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -77,65 +82,73 @@ public class TelaBackground extends JFrame {
 		JLabel lbTitulo = new JLabel("BANCO TADS");
 		lbTitulo.setFont(new Font("Arial", Font.BOLD, 26));
 
-		lblAgencia = new JLabel("Ag\u00EAncia     :");
-		lblAgencia.setFont(new Font("Arial", Font.BOLD, 14));
+		lbAgencia = new JLabel("Ag\u00EAncia     :");
+		lbAgencia.setFont(new Font("Arial", Font.BOLD, 16));
 
-		lblTipoConta = new JLabel("Tipo Conta:");
-		lblTipoConta.setFont(new Font("Arial", Font.BOLD, 14));
+		lbTipoConta = new JLabel("Tipo Conta:");
+		lbTipoConta.setFont(new Font("Arial", Font.BOLD, 16));
 
-		lblSaldo = new JLabel("Saldo         :");
-		lblSaldo.setFont(new Font("Arial", Font.BOLD, 14));
+		lbSaldo = new JLabel("Saldo          :");
+		lbSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 
-		JLabel lblNewLabel_3 = new JLabel("New label");
-
-		JLabel lblNewLabel_4 = new JLabel("New label");
-
-		JLabel lblNewLabel_5 = new JLabel("New label");
+		lbResultAgencia.setFont(new Font("Arial", Font.BOLD, 16));
+		lbResultConta.setFont(new Font("Arial", Font.BOLD, 16));
+		lbResutSaldo.setFont(new Font("Arial", Font.BOLD, 16));
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
-				.createSequentialGroup().addContainerGap()
-				.addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE).addGap(18)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lbTitulo, Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup().addComponent(lbDescricao)
-								.addPreferredGap(ComponentPlacement.RELATED, 60, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup().addGap(145).addComponent(dataHoje)
-								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(horaAgora)
-								.addContainerGap())
-						.addGroup(Alignment.TRAILING,
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lbLogo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(lbTitulo, Alignment.TRAILING).addGroup(gl_panel
+												.createSequentialGroup().addComponent(lbDescricao).addPreferredGap(
+														ComponentPlacement.RELATED, 60, GroupLayout.PREFERRED_SIZE)))
+								.addPreferredGap(ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel.createSequentialGroup()
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(lbAgencia).addGap(18).addComponent(lbResultAgencia))
+										.addGroup(gl_panel.createSequentialGroup()
+												.addPreferredGap(ComponentPlacement.RELATED).addComponent(lbTipoConta)
+												.addGap(18).addComponent(lbResultConta))
+										.addGroup(gl_panel.createSequentialGroup().addComponent(lbSaldo).addGap(18)
+												.addComponent(lbResutSaldo)))
+								.addGap(45))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup().addComponent(dataHoje)
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(horaAtual).addGap(37)))));
+		gl_panel.setVerticalGroup(
+				gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(
 								gl_panel.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+												.addComponent(dataHoje).addComponent(horaAtual))
+										.addPreferredGap(
+												ComponentPlacement.RELATED)
 										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel.createSequentialGroup().addComponent(lblAgencia)
-														.addGap(18).addComponent(lblNewLabel_3))
-												.addGroup(gl_panel.createSequentialGroup().addComponent(lblTipoConta)
-														.addGap(18).addComponent(lblNewLabel_4))
-												.addGroup(gl_panel.createSequentialGroup().addComponent(lblSaldo)
-														.addGap(18).addComponent(lblNewLabel_5)))
-										.addGap(45)))));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(dataHoje).addComponent(horaAgora))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblAgencia).addComponent(lblNewLabel_3))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblTipoConta).addComponent(lblNewLabel_4))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblSaldo).addComponent(lblNewLabel_5)))
-								.addGroup(gl_panel.createSequentialGroup().addContainerGap()
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-												.addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 92,
-														GroupLayout.PREFERRED_SIZE)
-												.addGroup(gl_panel.createSequentialGroup().addComponent(lbTitulo)
+												.addGroup(gl_panel.createSequentialGroup().addGap(23)
+														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+																.addComponent(lbResultAgencia).addComponent(lbAgencia))
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(lbDescricao)))))
-						.addGap(45)));
+														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+																.addComponent(lbResultConta).addComponent(lbTipoConta))
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+																.addComponent(lbSaldo).addComponent(lbResutSaldo)))
+												.addGroup(gl_panel.createSequentialGroup()
+														.addPreferredGap(ComponentPlacement.RELATED).addGroup(
+																gl_panel.createParallelGroup(Alignment.LEADING)
+																		.addGroup(gl_panel.createSequentialGroup()
+																				.addComponent(lbTitulo)
+																				.addPreferredGap(
+																						ComponentPlacement.RELATED)
+																				.addComponent(lbDescricao))
+																		.addComponent(lbLogo,
+																				GroupLayout.PREFERRED_SIZE, 92,
+																				GroupLayout.PREFERRED_SIZE))))
+										.addGap(45)));
 		gl_panel.setHonorsVisibility(false);
 		panel.setLayout(gl_panel);
 
@@ -149,12 +162,12 @@ public class TelaBackground extends JFrame {
 		tipoUsuario = UsuarioLogado.getUsuarioLogado();
 
 		if (tipoUsuario.getTipoUsuario() == TipoUsuario.BANCARIO) {
-			dataHoje.setVisible(false);
-			lblAgencia.setVisible(false);
-			lblTipoConta.setVisible(false);
-			lblSaldo.setVisible(false);
-		} else {
-			//
+			lbAgencia.setVisible(false);
+			lbTipoConta.setVisible(false);
+			lbSaldo.setVisible(false);
+			lbResutSaldo.setVisible(false);
+			lbResultConta.setVisible(false);
+			lbResultAgencia.setVisible(false);
 		}
 
 	}
