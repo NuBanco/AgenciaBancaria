@@ -21,7 +21,7 @@ import br.agencia.model.EncodePasswordFactory;
 import br.agencia.model.TelaFactory;
 import br.agencia.model.UserLogged;
 import br.agencia.model.Usuario;
-import br.agencia.model.enums.TipoUsuario;
+import br.agencia.view.cliente.HomeMenuCliente;
 
 public class Login extends JFrame {
 

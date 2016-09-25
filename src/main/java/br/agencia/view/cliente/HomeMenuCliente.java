@@ -17,6 +17,8 @@ public class HomeMenuCliente extends JPanel {
 	private static final long serialVersionUID = 5853409558338193456L;
 
 	public HomeMenuCliente() {
+		createPanel(TelaBackground.getPanelMenu());
+
 		JButton btnOpSaque = new JButton("1 - Saque");
 		btnOpSaque.setBounds(83, 62, 180, 30);
 		btnOpSaque.addActionListener(new ActionListener() {
