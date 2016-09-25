@@ -39,7 +39,7 @@ public class NovaAgencia extends JPanel {
 					agencia.setCodAgencia(txtNumero.getText());
 					agencia.setCidade(txtCidade.getText());
 
-					if (agencia.getId() != null) {
+					if (agencia.getId() == null) {
 						GenericDao.getGenericDao().incluir(agencia);
 						JOptionPane.showMessageDialog(null,
 								String.format("Agencia %s criada com sucesso!", txtNome.getText()));
@@ -150,7 +150,7 @@ public class NovaAgencia extends JPanel {
 		}
 
 		Agencia agenciaValidar = (Agencia) GenericDao
-				.consultarByString(String.format("from Agencia where age_codAgencia like '%s'", txtNumero.getText()));
+				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", txtNumero.getText()));
 
 		if (agenciaValidar != null) {
 			JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", txtNumero.getText()));
