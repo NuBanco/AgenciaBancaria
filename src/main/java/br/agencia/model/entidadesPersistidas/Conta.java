@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.enums.SituacaoConta;
@@ -22,7 +23,7 @@ import br.agencia.model.util.AtualizarSaldo;
 
 @Entity
 @Table(name = "conta")
-public class Conta implements Serializable{
+public class Conta implements Serializable {
 
 	private static final long serialVersionUID = -5010028474742069862L;
 
@@ -122,7 +123,12 @@ public class Conta implements Serializable{
 
 	public Conta setSaldo(BigDecimal valor, TipoMovimento tipoMovimento) {
 		new AtualizarSaldo(this, valor, tipoMovimento);
-		this.saldo.add(valor);
+
+		if (this.saldo == null) {
+			saldo = new BigDecimal(0F);
+		}
+
+		this.saldo.add(new BigDecimal(valor.toString()));
 		GenericDao.getGenericDao().alterar(this);
 		return this;
 	}

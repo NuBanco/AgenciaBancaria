@@ -139,10 +139,13 @@ public class DepositoCliente extends JPanel {
 					return;
 				}
 
-				contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
-
 				tfTitular.setText(contaDeposito.getPessoa().getNome());
 				cbbTipoConta.setSelectedItem(contaDeposito.getTipoConta());
+
+				contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
+
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.DEPOSITO));
 			}
 		});
 
