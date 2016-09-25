@@ -23,8 +23,11 @@ public class TelaBackground extends JFrame {
 	private static final long serialVersionUID = -4312697814718930403L;
 
 	private static JFrame telaPrincipal;
+	private static JLabel dataHoje;
+	private static JLabel lblAgencia;
+	private static JLabel lblTipoConta;
+	private static JLabel lblSaldo;
 	protected static JPanel panelMenu = new JPanel();
-	Usuario usuarioLogin = new Usuario();
 
 	public static JFrame getTelaPrincipal() {
 		if (telaPrincipal == null) {
@@ -43,14 +46,9 @@ public class TelaBackground extends JFrame {
 		getPanelMenu().removeAll();
 		getPanelMenu().updateUI();
 	}
-	
-	private static JLabel dataHoje;
-	private static JLabel lblAgencia;
-	private static JLabel lblTipoConta;
-	private static JLabel lblSaldo;
 
 	public TelaBackground() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
@@ -146,21 +144,20 @@ public class TelaBackground extends JFrame {
 		panelMenu.setLayout(null);
 	}
 
-	public static void configuraCabecalhoPadrao(){
-		
+	public static void configuraCabecalhoPadrao() {
+
 		Usuario tipoUsuario = new Usuario();
 		tipoUsuario = UserLogged.getUsuarioLogado();
-		
-		if(tipoUsuario.getTipoUsuario() == TipoUsuario.BANCARIO){
-			dataHoje.setVisible(false); 
+
+		if (tipoUsuario.getTipoUsuario() == TipoUsuario.BANCARIO) {
+			dataHoje.setVisible(false);
 			lblAgencia.setVisible(false);
 			lblTipoConta.setVisible(false);
 			lblSaldo.setVisible(false);
-		}else{
-			JOptionPane.showMessageDialog(null,"CLIENTE");
+		} else {
+			JOptionPane.showMessageDialog(null, "CLIENTE");
 		}
-	
+
 	}
-	
 
 }
