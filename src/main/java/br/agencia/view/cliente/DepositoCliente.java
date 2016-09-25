@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -34,6 +35,8 @@ public class DepositoCliente extends JPanel {
 	private JTextField tfConta;
 	private JTextField tfTitular;
 
+	private Conta contaDeposito;
+
 	public DepositoCliente() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
@@ -46,7 +49,7 @@ public class DepositoCliente extends JPanel {
 		chkContaLogada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
-					Conta contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
+					contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
 							"from Conta where con_idPessoa = %d", UserLogged.getUsuarioLogado().getPessoa().getId()));
 					tfAgencia.setText(contaDeposito.getAgencia().getNome());
 					tfConta.setText(contaDeposito.getNumero());
@@ -66,8 +69,8 @@ public class DepositoCliente extends JPanel {
 
 					tfAgencia.enable(true);
 					tfConta.enable(true);
-					tfTitular.enable(true);
-					cbbTipoConta.enable(true);
+					//tfTitular.enable(true);
+					//cbbTipoConta.enable(true);
 
 				}
 			}
@@ -77,9 +80,9 @@ public class DepositoCliente extends JPanel {
 		try {
 			tfValor = new JFormattedTextField(new MaskFormatter("###.###.###,##"));
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao realizar o parser do valor!");
 		}
+
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -107,6 +110,13 @@ public class DepositoCliente extends JPanel {
 
 		JButton btnConfirmar = new JButton("Confirme");
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Conta contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
+						"from Conta where con_idPessoa = %d", UserLogged.getUsuarioLogado().getPessoa().getId()));
+
+			}
+		});
 
 		JLabel lbTitular = new JLabel("Titular:");
 		lbTitular.setFont(new Font("Arial", Font.BOLD, 16));
