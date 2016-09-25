@@ -36,6 +36,7 @@ public class NovoProfissional extends JPanel {
 	private JPasswordField tfSenhaConta;
 	private JLabel lbSenhaOperacoes;
 	private JTextField tfUsername;
+	private String senhaAuxiliar;
 
 	Agencia agenciaValidar = null;
 
@@ -43,7 +44,7 @@ public class NovoProfissional extends JPanel {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
-		String senhaAuxiliar = usuario.getSenha();
+		senhaAuxiliar = usuario.getSenha();
 
 		tfNome = new JTextField();
 		tfNome.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -103,17 +104,16 @@ public class NovoProfissional extends JPanel {
 
 				if (validarInformacoes(usuario)) {
 
+					if (usuario.getId() == null) {
+						senhaAuxiliar = new EncodePasswordClient().encode(tfSenhaConta.getText());
+					}
+
 					Pessoa novaPessoa = new Pessoa();
 					novaPessoa.setNome(tfNome.getText()).setIdade(Integer.parseInt(tfIdade.getText()))
-							.setSenhaOperacao(tfSenhaOperacoes.getText()).setCpf("");
+							.setSenhaOperacao(tfSenhaOperacoes.getText()).setCpf("").setId(usuario.getPessoa().getId());
 
-					usuario.setLogin(tfUsername.getText()).setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(novaPessoa);
-
-					if (usuario.getId() == null) {
-						usuario.setSenha(new EncodePasswordClient().encode(tfSenhaConta.getText()));
-					} else {
-						usuario.setSenha(senhaAuxiliar);
-					}
+					usuario.setLogin(tfUsername.getText()).setSenha(senhaAuxiliar).setTipoUsuario(TipoUsuario.BANCARIO)
+							.setPessoa(novaPessoa);
 
 					gravarUsuario(usuario);
 
@@ -214,9 +214,11 @@ public class NovoProfissional extends JPanel {
 
 	protected void gravarUsuario(Usuario usuario) {
 		if (usuario.getId() == null) {
+			GenericDao.getGenericDao().incluir(usuario.getPessoa());
 			GenericDao.getGenericDao().incluir(usuario);
 			JOptionPane.showMessageDialog(null, String.format("Usuario %s criado com sucesso!", tfNome.getText()));
 		} else {
+			GenericDao.getGenericDao().alterar(usuario.getPessoa());
 			GenericDao.getGenericDao().alterar(usuario);
 			JOptionPane.showMessageDialog(null, String.format("Usuario %s alterado com sucesso!", tfNome.getText()));
 		}
@@ -238,12 +240,14 @@ public class NovoProfissional extends JPanel {
 			return false;
 		}
 
-		Usuario usuarioValidar = (Usuario) GenericDao
-				.consultarByString("from Usuario where usu_login like '" + tfUsername.getText() + "'");
+		if (usuario.getId() == null) {
+			Usuario usuarioValidar = (Usuario) GenericDao
+					.consultarByString("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
-		if (usuarioValidar != null) {
-			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja cadastrado!", tfUsername.getText()));
-			return false;
+			if (usuarioValidar != null) {
+				JOptionPane.showMessageDialog(null, String.format("Usuario %s ja cadastrado!", tfUsername.getText()));
+				return false;
+			}
 		}
 
 		if (tfSenhaOperacoes.getText().length() != 8) {
