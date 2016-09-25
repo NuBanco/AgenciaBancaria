@@ -82,7 +82,7 @@ public class Login extends JFrame {
 				UserLogged.setNewUser(usuarioLogin);
 
 				new TelaFactory().create(usuarioLogin.getTipoUsuario());
-				TelaBackground.getTelaPrincipal().setSize(600, 500);
+				TelaBackground.getTelaPrincipal().setSize(700, 650);
 				TelaBackground.getTelaPrincipal().setLocationRelativeTo(null);
 				TelaBackground.getTelaPrincipal().setVisible(true);
 
