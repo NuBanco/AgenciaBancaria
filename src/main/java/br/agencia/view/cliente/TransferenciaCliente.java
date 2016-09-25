@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
+import br.agencia.model.util.JNumberFormatField;
 import br.agencia.view.principal.TelaBackground;
 
 public class TransferenciaCliente extends JPanel {
@@ -27,7 +29,7 @@ public class TransferenciaCliente extends JPanel {
 	private JTextField tfAgencia;
 	private JTextField tfConta;
 	private JTextField tfTitular;
-	private JFormattedTextField tfValor;
+	private JNumberFormatField tfValor = null;
 
 	public TransferenciaCliente() {
 
@@ -64,16 +66,7 @@ public class TransferenciaCliente extends JPanel {
 		tfTitular.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfTitular.setColumns(10);
 
-		tfValor = new JFormattedTextField();
-		tfValor.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				String caractererNumerico = "0987654321.,";
-				if (!caractererNumerico.contains(e.getKeyChar() + "")) {
-					e.consume();
-				}
-			}
-		});
+		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
 		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 16));
 
