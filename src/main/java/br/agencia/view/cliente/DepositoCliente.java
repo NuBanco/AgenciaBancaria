@@ -49,9 +49,7 @@ public class DepositoCliente extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
-					contaDeposito = (Conta) GenericDao.getGenericDao()
-							.consultarByQuery(String.format("from Conta where con_idPessoa = %d",
-									UsuarioLogado.getUsuarioLogado().getPessoa().getId()));
+					contaDeposito = UsuarioLogado.getContaUsuarioLogado();
 					tfAgencia.setText(contaDeposito.getAgencia().getCodAgencia());
 					tfConta.setText(contaDeposito.getNumero());
 					tfTitular.setText(contaDeposito.getPessoa().getNome());
