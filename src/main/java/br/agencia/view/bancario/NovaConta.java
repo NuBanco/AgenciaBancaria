@@ -98,7 +98,7 @@ public class NovaConta extends JPanel {
 		tfUsername.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfUsername.setColumns(10);
 
-		JLabel lbUsername = new JLabel("Username");
+		JLabel lbUsername = new JLabel("Username:");
 		lbUsername.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -158,18 +158,18 @@ public class NovaConta extends JPanel {
 								.addComponent(lbNome)
 								.addContainerGap())
 							.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 									.addGroup(groupLayout.createSequentialGroup()
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 											.addComponent(lbSenhaConta)
 											.addComponent(tfSenhaConta, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+										.addGap(17)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(lbSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-											.addComponent(tfSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(lbSenhaOperacoes, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+											.addComponent(tfSenhaOperacoes, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)))
 									.addComponent(tfUsername, GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
 									.addComponent(tfNome, GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-									.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 											.addComponent(lbIdade, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 											.addComponent(tfIdade, 197, 197, Short.MAX_VALUE)
@@ -177,14 +177,15 @@ public class NovaConta extends JPanel {
 											.addComponent(tfAgencia, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
 										.addGap(48)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(lbCPF, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-												.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-													.addComponent(tfCPF)
-													.addPreferredGap(ComponentPlacement.RELATED))
-												.addComponent(lbTipoConta, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-												.addComponent(cbbTipoConta, 0, 293, Short.MAX_VALUE))))
-									.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+											.addComponent(lbTipoConta, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbCPF, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+													.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(tfCPF, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+														.addPreferredGap(ComponentPlacement.RELATED))
+													.addComponent(cbbTipoConta, 0, 293, Short.MAX_VALUE)))))
+									.addGroup(groupLayout.createSequentialGroup()
 										.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 										.addGap(31)
 										.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
@@ -207,7 +208,7 @@ public class NovaConta extends JPanel {
 							.addComponent(lbCPF)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(tfCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+					.addGap(25)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lbAgencia)
@@ -235,7 +236,7 @@ public class NovaConta extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-					.addGap(25))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}

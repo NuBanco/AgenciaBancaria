@@ -75,7 +75,7 @@ public class NovoProfissional extends JPanel {
 		tfUsername.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfUsername.setColumns(10);
 
-		JLabel lbUsername = new JLabel("Username");
+		JLabel lbUsername = new JLabel("Username:");
 		lbUsername.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -119,7 +119,7 @@ public class NovoProfissional extends JPanel {
 			}
 		});
 
-		GroupLayout groupLayout = new GroupLayout(this);
+		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(60)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -205,8 +205,7 @@ public class NovoProfissional extends JPanel {
 								.addComponent(btnConfirme, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(216, Short.MAX_VALUE)));
-		setLayout(groupLayout);
-		// TelaBackground.getPanelMenu().setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
 	protected int getNumeroContaDisponivel() {
