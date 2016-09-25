@@ -69,6 +69,7 @@ public class TelaBackground extends JFrame {
 
 		dataHoje.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
 
+		horaAtual = new JLabel("");
 		horaAtual.setFont(new Font("Arial", Font.BOLD, 16));
 		horaAtual.setText(new SimpleDateFormat("hh:MM").format(new Date(System.currentTimeMillis())));
 
@@ -91,8 +92,11 @@ public class TelaBackground extends JFrame {
 		lbSaldo = new JLabel("Saldo          :");
 		lbSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 
+		lbResultAgencia = new JLabel();
 		lbResultAgencia.setFont(new Font("Arial", Font.BOLD, 16));
+		lbResultConta = new JLabel();
 		lbResultConta.setFont(new Font("Arial", Font.BOLD, 16));
+		lbResutSaldo = new JLabel();
 		lbResutSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
