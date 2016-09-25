@@ -37,8 +37,9 @@ public class Pessoa implements Serializable {
 		return senhaOperacao;
 	}
 
-	public void setSenhaOperacao(String senhaOperacao) {
+	public Pessoa setSenhaOperacao(String senhaOperacao) {
 		this.senhaOperacao = senhaOperacao;
+		return this;
 	}
 
 	public Integer getIdade() {

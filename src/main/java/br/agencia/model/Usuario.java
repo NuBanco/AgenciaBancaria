@@ -40,8 +40,9 @@ public class Usuario implements Serializable {
 		return pessoa;
 	}
 
-	public void setPessoa(Pessoa pessoa) {
+	public Usuario setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+		return this;
 	}
 
 	public Integer getId() {

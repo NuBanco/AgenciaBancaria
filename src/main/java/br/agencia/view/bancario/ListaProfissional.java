@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -46,14 +47,27 @@ public class ListaProfissional extends JPanel {
 		tbProfissionais.getColumnModel().getColumn(0).setResizable(false);
 
 		JButton btnAdicionar = new JButton("+");
-		btnAdicionar.setFont(new Font("Arial", Font.BOLD, 16));
+		btnAdicionar.setFont(new Font("Arial", Font.BOLD, 15));
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new NovoProfissional(new Usuario()));
+			}
+		});
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new NovoProfissional());
+				if (tbProfissionais.getSelectedRow() != -1) {
+					TelaBackground.clearPanelMenu();
+
+					String usuarioSelecionado = (String) tbProfissionais.getValueAt(tbProfissionais.getSelectedRow(),
+							1);
+					Usuario usuarioEditar = (Usuario) GenericDao.consultarByString(
+							String.format("from Usuario where usu_login like '%s'", usuarioSelecionado));
+					TelaBackground.getPanelMenu().add(new NovoProfissional(usuarioEditar));
+				}
 			}
 		});
 
@@ -69,32 +83,28 @@ public class ListaProfissional extends JPanel {
 		scrollPane.setViewportView(tbProfissionais);
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnVoltar)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addGap(28))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 430,
+										Short.MAX_VALUE)
+								.addGroup(Alignment.TRAILING,
+										groupLayout.createSequentialGroup().addComponent(btnVoltar)
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 92,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdicionar,
+														GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
+						.addGap(27)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+						.addGap(28)));
 
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 

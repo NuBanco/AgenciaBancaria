@@ -19,8 +19,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.Agencia;
-import br.agencia.model.Conta;
-import br.agencia.model.ContaFacade;
 import br.agencia.model.EncodePasswordClient;
 import br.agencia.model.Pessoa;
 import br.agencia.model.Usuario;
@@ -31,7 +29,7 @@ import br.agencia.view.principal.TelaBackground;
 public class NovoProfissional extends JPanel {
 
 	private static final long serialVersionUID = 5210607113046110764L;
-	public static final String ID = "NOVACONTA";
+
 	private JTextField tfNome;
 	private JTextField tfIdade;
 	private JPasswordField tfSenhaOperacoes;
@@ -41,9 +39,11 @@ public class NovoProfissional extends JPanel {
 
 	Agencia agenciaValidar = null;
 
-	public NovoProfissional() {
+	public NovoProfissional(Usuario usuario) {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+
+		String senhaAuxiliar = usuario.getSenha();
 
 		tfNome = new JTextField();
 		tfNome.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -78,13 +78,20 @@ public class NovoProfissional extends JPanel {
 		JLabel lbUsername = new JLabel("Username:");
 		lbUsername.setFont(new Font("Arial", Font.BOLD, 16));
 
+		if (usuario.getId() != null) {
+			tfIdade.setText(usuario.getPessoa().getIdade().toString());
+			tfNome.setText(usuario.getPessoa().getNome());
+			tfSenhaOperacoes.setText(usuario.getPessoa().getSenhaOperacao());
+			tfUsername.setText(usuario.getLogin());
+		}
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new HomeMenuBancario());
+				TelaBackground.getPanelMenu().add(new ListaProfissional());
 
 			}
 		});
@@ -94,24 +101,21 @@ public class NovoProfissional extends JPanel {
 		btnConfirme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (validarInformacoes()) {
+				if (validarInformacoes(usuario)) {
 
 					Pessoa novaPessoa = new Pessoa();
 					novaPessoa.setNome(tfNome.getText()).setIdade(Integer.parseInt(tfIdade.getText()))
-							.setSenhaOperacao(tfSenhaOperacoes.getText());
+							.setSenhaOperacao(tfSenhaOperacoes.getText()).setCpf("");
 
-					Usuario novoUsuario = new Usuario();
-					novoUsuario.setLogin(tfUsername.getText())
-							.setSenha(new EncodePasswordClient().encode(tfSenhaConta.getText()))
-							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
-					Conta novaConta = new Conta();
-					novaConta.setDataAbertura(new Date(System.currentTimeMillis())).setAgencia(agenciaValidar)
-							.setPessoa(novaPessoa).setNumero(String.valueOf(getNumeroContaDisponivel()));
+					usuario.setLogin(tfUsername.getText()).setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(novaPessoa);
 
-					new ContaFacade(novaPessoa, novoUsuario, novaConta);
+					if (usuario.getId() == null) {
+						usuario.setSenha(new EncodePasswordClient().encode(tfSenhaConta.getText()));
+					} else {
+						usuario.setSenha(senhaAuxiliar);
+					}
 
-					JOptionPane.showMessageDialog(null,
-							String.format("Conta %s criada com sucesso!", novaConta.getNumero()));
+					gravarUsuario(usuario);
 
 					limparTela();
 				}
@@ -208,16 +212,14 @@ public class NovoProfissional extends JPanel {
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
-	protected int getNumeroContaDisponivel() {
-		int numeroConta = (int) (10000 * Math.random());
-		Conta buscaConta = (Conta) GenericDao.getGenericDao()
-				.consultarByString(String.format("from Conta where con_numero LIKE '%s'", numeroConta));
-
-		if (buscaConta == null) {
-			return numeroConta;
+	protected void gravarUsuario(Usuario usuario) {
+		if (usuario.getId() == null) {
+			GenericDao.getGenericDao().incluir(usuario);
+			JOptionPane.showMessageDialog(null, String.format("Usuario %s criado com sucesso!", tfNome.getText()));
+		} else {
+			GenericDao.getGenericDao().alterar(usuario);
+			JOptionPane.showMessageDialog(null, String.format("Usuario %s alterado com sucesso!", tfNome.getText()));
 		}
-
-		return getNumeroContaDisponivel();
 	}
 
 	protected void limparTela() {
@@ -228,9 +230,10 @@ public class NovoProfissional extends JPanel {
 		tfUsername.setText("");
 	}
 
-	protected boolean validarInformacoes() {
-		if (tfNome.getText().length() == 0 || tfIdade.getText().length() == 0 || tfUsername.getText().length() == 0
-				|| tfSenhaOperacoes.getText().length() == 0 || tfSenhaConta.getText().length() == 0) {
+	protected boolean validarInformacoes(Usuario usuario) {
+		if ((tfNome.getText().length() == 0 || tfIdade.getText().length() == 0 || tfUsername.getText().length() == 0
+				|| tfSenhaOperacoes.getText().length() == 0)
+				|| (tfSenhaConta.getText().trim().length() == 0 && usuario.getId() == null)) {
 			JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
 			return false;
 		}
@@ -239,12 +242,12 @@ public class NovoProfissional extends JPanel {
 				.consultarByString("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
 		if (usuarioValidar != null) {
-			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja possui uma conta!", tfUsername.getText()));
+			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja cadastrado!", tfUsername.getText()));
 			return false;
 		}
 
-		if (tfSenhaOperacoes.getText().length() != 6) {
-			JOptionPane.showMessageDialog(null, "A senha de operações do usuario deve possuir SEIS digitos!");
+		if (tfSenhaOperacoes.getText().length() != 8) {
+			JOptionPane.showMessageDialog(null, "A senha de operações do usuario deve possuir OITO digitos!");
 			return false;
 		}
 

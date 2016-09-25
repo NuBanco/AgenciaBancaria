@@ -19,15 +19,9 @@ public class HomeMenuBancario extends JPanel {
 
 	public HomeMenuBancario() {
 
-		JPanel panel = new JPanel();
-
-		panel = TelaBackground.getPanelMenu();
-		panel.setLayout(null);
-		panel.setVisible(true);
-
 		JButton btnOpInformacoesConta = new JButton("1 - Informacoes");
 		btnOpInformacoesConta.setBounds(83, 62, 180, 30);
-		panel.add(btnOpInformacoesConta);
+		TelaBackground.getPanelMenu().add(btnOpInformacoesConta);
 
 		btnOpInformacoesConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -41,7 +35,7 @@ public class HomeMenuBancario extends JPanel {
 
 		JButton btnOpBalanco = new JButton("5 - Balan\u00E7o");
 		btnOpBalanco.setBounds(293, 62, 180, 30);
-		panel.add(btnOpBalanco);
+		TelaBackground.getPanelMenu().add(btnOpBalanco);
 		btnOpBalanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -52,7 +46,7 @@ public class HomeMenuBancario extends JPanel {
 
 		JButton btnOpProfissionais = new JButton("4 - Profissionais");
 		btnOpProfissionais.setBounds(83, 116, 180, 30);
-		panel.add(btnOpProfissionais);
+		TelaBackground.getPanelMenu().add(btnOpProfissionais);
 		btnOpProfissionais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -63,7 +57,7 @@ public class HomeMenuBancario extends JPanel {
 
 		JButton btnOpNovaConta = new JButton("2 - Nova Conta");
 		btnOpNovaConta.setBounds(293, 116, 180, 30);
-		panel.add(btnOpNovaConta);
+		TelaBackground.getPanelMenu().add(btnOpNovaConta);
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -74,7 +68,7 @@ public class HomeMenuBancario extends JPanel {
 
 		JButton btnOpAgencias = new JButton("6 - Ag\u00EAncias");
 		btnOpAgencias.setBounds(83, 176, 180, 30);
-		panel.add(btnOpAgencias);
+		TelaBackground.getPanelMenu().add(btnOpAgencias);
 		btnOpAgencias.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -85,7 +79,7 @@ public class HomeMenuBancario extends JPanel {
 
 		JButton btnOpClientes = new JButton("3 - Clientes");
 		btnOpClientes.setBounds(293, 176, 180, 30);
-		panel.add(btnOpClientes);
+		TelaBackground.getPanelMenu().add(btnOpClientes);
 		btnOpClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -127,6 +121,7 @@ public class HomeMenuBancario extends JPanel {
 												GroupLayout.PREFERRED_SIZE))
 						.addGap(111)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		TelaBackground.getPanelMenu().setVisible(true);
 	}
 
 	private void createPanel(final JPanel panel) {
