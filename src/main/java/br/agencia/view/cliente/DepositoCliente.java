@@ -48,8 +48,9 @@ public class DepositoCliente extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
-					contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
-							"from Conta where con_idPessoa = %d", UsuarioLogado.getUsuarioLogado().getPessoa().getId()));
+					contaDeposito = (Conta) GenericDao.getGenericDao()
+							.consultarByQuery(String.format("from Conta where con_idPessoa = %d",
+									UsuarioLogado.getUsuarioLogado().getPessoa().getId()));
 					tfAgencia.setText(contaDeposito.getAgencia().getCodAgencia());
 					tfConta.setText(contaDeposito.getNumero());
 					tfTitular.setText(contaDeposito.getPessoa().getNome());
@@ -136,6 +137,8 @@ public class DepositoCliente extends JPanel {
 					JOptionPane.showMessageDialog(null, "Conta nao encontrada!");
 					return;
 				}
+
+				contaDeposito.setSaldo(tfValor.getValue());
 
 				tfTitular.setText(contaDeposito.getPessoa().getNome());
 				cbbTipoConta.setSelectedItem(contaDeposito.getTipoConta());

@@ -128,7 +128,8 @@ public class Login extends JFrame {
 		Usuario usuarioAdmin = new Usuario();
 		Pessoa pessoaAdmin = new Pessoa();
 		pessoaAdmin.setCpf("00000000000").setIdade(99).setNome("ADMIN").setSenhaOperacao("123456");
-		usuarioAdmin.setLogin("admin").setSenha("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918").setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(pessoaAdmin);
+		usuarioAdmin.setLogin("admin").setSenha("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918")
+				.setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(pessoaAdmin);
 		GenericDao.getGenericDao().incluir(pessoaAdmin);
 		GenericDao.getGenericDao().incluir(usuarioAdmin);
 	}

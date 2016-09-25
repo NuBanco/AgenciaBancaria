@@ -16,10 +16,11 @@ import javax.persistence.Table;
 
 import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
+import br.agencia.model.util.AtualizarSaldo;
 
 @Entity
 @Table(name = "conta")
-public class Conta implements Serializable {
+public class Conta implements Serializable{
 
 	private static final long serialVersionUID = -5010028474742069862L;
 
@@ -118,6 +119,7 @@ public class Conta implements Serializable {
 	}
 
 	public Conta setSaldo(BigDecimal saldo) {
+		new AtualizarSaldo(this);
 		this.saldo = saldo;
 		return this;
 	}

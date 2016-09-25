@@ -4,7 +4,7 @@
 	<session-factory>
 		<!-- dados de Conexão com o Banco -->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/NuBanco</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/NuBanco</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">postgres</property>
 
@@ -23,10 +23,10 @@
 		 -->
 
 		<!-- Lista das entidades que serão persistidas no Banco de Dados-->
-		<mapping class="br.agencia.model.Usuario" />
-		<mapping class="br.agencia.model.Agencia" />
-		<mapping class="br.agencia.model.Conta" />
-		<mapping class="br.agencia.model.Pessoa" />
-		<mapping class="br.agencia.model.MovimentoConta" />
+		<mapping class="br.agencia.model.entidadesPersistidas.Usuario" />
+		<mapping class="br.agencia.model.entidadesPersistidas.Agencia" />
+		<mapping class="br.agencia.model.entidadesPersistidas.Conta" />
+		<mapping class="br.agencia.model.entidadesPersistidas.Pessoa" />
+		<mapping class="br.agencia.model.entidadesPersistidas.MovimentoConta" />
 	</session-factory>
 </hibernate-configuration>
