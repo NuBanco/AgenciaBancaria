@@ -64,7 +64,7 @@ public class ListaProfissional extends JPanel {
 
 					String usuarioSelecionado = (String) tbProfissionais.getValueAt(tbProfissionais.getSelectedRow(),
 							1);
-					Usuario usuarioEditar = (Usuario) GenericDao.consultarByString(
+					Usuario usuarioEditar = (Usuario) GenericDao.consultarByQuery(
 							String.format("from Usuario where usu_login like '%s'", usuarioSelecionado));
 					TelaBackground.getPanelMenu().add(new NovoProfissional(usuarioEditar));
 				}

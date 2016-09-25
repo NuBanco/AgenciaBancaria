@@ -245,7 +245,7 @@ public class NovaConta extends JPanel {
 	protected int getNumeroContaDisponivel() {
 		int numeroConta = (int) (10000 * Math.random());
 		Conta buscaConta = (Conta) GenericDao.getGenericDao()
-				.consultarByString(String.format("from Conta where con_numero LIKE '%s'", numeroConta));
+				.consultarByQuery(String.format("from Conta where con_numero LIKE '%s'", numeroConta));
 
 		if (buscaConta == null) {
 			return numeroConta;
@@ -274,7 +274,7 @@ public class NovaConta extends JPanel {
 		}
 
 		agenciaValidar = (Agencia) GenericDao
-				.consultarByString(String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
+				.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
 
 		if (agenciaValidar == null) {
 			JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
@@ -282,7 +282,7 @@ public class NovaConta extends JPanel {
 		}
 
 		Usuario usuarioValidar = (Usuario) GenericDao
-				.consultarByString("from Usuario where usu_login like '" + tfUsername.getText() + "'");
+				.consultarByQuery("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
 		if (usuarioValidar != null) {
 			JOptionPane.showMessageDialog(null, String.format("Usuario %s ja possui uma conta!", tfUsername.getText()));

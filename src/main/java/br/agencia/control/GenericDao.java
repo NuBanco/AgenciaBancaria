@@ -79,7 +79,7 @@ public class GenericDao {
 	}
 
 
-	public static Object consultarByString(String parameterQuery) {
+	public static Object consultarByQuery(String parameterQuery) {
 		List<Object> list = new ArrayList<>();
 		try {
 			session = HibernateUtil.getSession();

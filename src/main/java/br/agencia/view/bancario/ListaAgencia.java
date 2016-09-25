@@ -56,7 +56,7 @@ public class ListaAgencia extends JPanel {
 				if (tbAgencia.getSelectedRow() != -1) {
 					TelaBackground.clearPanelMenu();
 					Agencia agenciaEditar = (Agencia) GenericDao
-							.consultarByString(String.format("from Agencia where age_numAgencia like '%s'",
+							.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'",
 									tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
 					TelaBackground.getPanelMenu().add(new NovaAgencia(agenciaEditar));
 				}

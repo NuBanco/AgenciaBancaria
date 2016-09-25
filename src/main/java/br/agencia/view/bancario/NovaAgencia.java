@@ -159,7 +159,7 @@ public class NovaAgencia extends JPanel {
 		}
 
 		if (agencia.getId() == null) {
-			Agencia agenciaValidar = (Agencia) GenericDao.consultarByString(
+			Agencia agenciaValidar = (Agencia) GenericDao.consultarByQuery(
 					String.format("from Agencia where age_numAgencia like '%s'", tfNumero.getText()));
 
 			if (agenciaValidar != null) {

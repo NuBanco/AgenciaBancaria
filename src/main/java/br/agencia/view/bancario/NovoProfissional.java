@@ -245,7 +245,7 @@ public class NovoProfissional extends JPanel {
 
 		if (usuario.getId() == null) {
 			Usuario usuarioValidar = (Usuario) GenericDao
-					.consultarByString("from Usuario where usu_login like '" + tfUsername.getText() + "'");
+					.consultarByQuery("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
 			if (usuarioValidar != null) {
 				JOptionPane.showMessageDialog(null, String.format("Usuario %s ja cadastrado!", tfUsername.getText()));

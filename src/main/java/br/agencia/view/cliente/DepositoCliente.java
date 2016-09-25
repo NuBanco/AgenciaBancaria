@@ -13,11 +13,15 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
+import br.agencia.control.GenericDao;
+import br.agencia.model.Conta;
+import br.agencia.model.UserLogged;
 import br.agencia.view.principal.TelaBackground;
 
 public class DepositoCliente extends JPanel {
@@ -36,6 +40,21 @@ public class DepositoCliente extends JPanel {
 
 		JCheckBox chkContaLogada = new JCheckBox("Conta logada");
 		chkContaLogada.setFont(new Font("Arial", Font.BOLD, 16));
+		chkContaLogada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chkContaLogada.isSelected()) {
+					Conta contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
+							"from Conta where con_idPessoa = %d", UserLogged.getUsuarioLogado().getPessoa().getId()));
+					tfAgencia.setText(contaDeposito.getAgencia().getNome());
+					tfConta.setText(contaDeposito.getNumero());
+					tfTitular.setText(contaDeposito.getPessoa().getNome());
+				} else {
+					tfAgencia.setText("");
+					tfConta.setText("");
+					tfTitular.setText("");
+				}
+			}
+		});
 		chkContaLogada.setSelected(true);
 
 		JFormattedTextField tfValor = new JFormattedTextField();
@@ -83,74 +102,75 @@ public class DepositoCliente extends JPanel {
 				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
-
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
+
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout
-				.setHorizontalGroup(
-						groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup().addContainerGap(458, Short.MAX_VALUE)
-										.addComponent(btnVoltar).addGap(18).addComponent(btnConfirmar).addGap(40))
-								.addGroup(Alignment.LEADING, groupLayout
-										.createSequentialGroup().addGap(28)
-										.addGroup(groupLayout
-												.createParallelGroup(Alignment.LEADING).addGroup(
-														groupLayout.createSequentialGroup().addGroup(groupLayout
-																.createParallelGroup(Alignment.LEADING)
-																.addComponent(lbAg).addComponent(tfAgencia,
-																		GroupLayout.PREFERRED_SIZE, 196,
-																		GroupLayout.PREFERRED_SIZE))
-																.addGap(18)
-																.addGroup(groupLayout
-																		.createParallelGroup(Alignment.LEADING)
-																		.addGroup(groupLayout.createSequentialGroup()
-																				.addComponent(lbConta,
-																						GroupLayout.PREFERRED_SIZE, 73,
-																						GroupLayout.PREFERRED_SIZE)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED, 148,
-																						Short.MAX_VALUE))
-																		.addComponent(tfConta,
-																				GroupLayout.DEFAULT_SIZE, 221,
-																				Short.MAX_VALUE)))
-												.addGroup(Alignment.TRAILING,
-														groupLayout.createParallelGroup(Alignment.LEADING)
-																.addComponent(lbTipoConta)
-																.addGroup(groupLayout.createSequentialGroup()
-																		.addComponent(lbTitular).addPreferredGap(
-																				ComponentPlacement.RELATED, 381,
-																				GroupLayout.PREFERRED_SIZE))
-																.addComponent(tfTitular, 435, 435, 435)
-																.addComponent(chkContaLogada)
-																.addGroup(groupLayout.createSequentialGroup()
-																		.addComponent(lbValorDeposito).addGap(18)
-																		.addComponent(tfValor, GroupLayout.DEFAULT_SIZE,
-																				166, Short.MAX_VALUE))
-																.addComponent(cbbTipoConta, 0, 435, Short.MAX_VALUE)))
-										.addGap(237)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addGap(38)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(lbValorDeposito).addComponent(
-						tfValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(28)
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup().addComponent(chkContaLogada).addGap(18)
-								.addComponent(lbAg).addPreferredGap(ComponentPlacement.RELATED).addComponent(tfAgencia,
-										GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+		// GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING,
+				groupLayout.createSequentialGroup().addGap(115).addGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup().addComponent(chkContaLogada).addContainerGap())
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addComponent(lbTipoConta)
+										.addContainerGap())
+								.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
+										.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createSequentialGroup().addComponent(btnVoltar).addGap(18)
+												.addComponent(btnConfirmar))
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(cbbTipoConta, 0, 436, Short.MAX_VALUE)
+												.addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
+														.createParallelGroup(Alignment.LEADING)
+														.addGroup(groupLayout.createSequentialGroup()
+																.addComponent(tfAgencia, GroupLayout.DEFAULT_SIZE, 196,
+																		Short.MAX_VALUE)
+																.addGap(18))
+														.addGroup(groupLayout.createSequentialGroup().addComponent(lbAg)
+																.addPreferredGap(ComponentPlacement.RELATED)))
+														.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+																.addComponent(lbConta, GroupLayout.PREFERRED_SIZE, 73,
+																		GroupLayout.PREFERRED_SIZE)
+																.addComponent(tfConta, GroupLayout.DEFAULT_SIZE, 222,
+																		Short.MAX_VALUE)))
+												.addGroup(groupLayout.createSequentialGroup().addGap(4)
+														.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+																.addComponent(lbTitular).addComponent(tfTitular,
+																		GroupLayout.DEFAULT_SIZE, 435,
+																		Short.MAX_VALUE)))
+												.addGroup(groupLayout.createSequentialGroup()
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(lbValorDeposito)
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, 184,
+																GroupLayout.PREFERRED_SIZE))))
+										.addGap(146))))));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(38)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(59).addComponent(chkContaLogada))
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lbValorDeposito)))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(lbConta)
+								.addComponent(lbAg))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(tfConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(tfAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup().addComponent(lbConta)
-								.addPreferredGap(ComponentPlacement.RELATED).addComponent(tfConta,
-										GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)))
-				.addGap(33).addComponent(lbTipoConta).addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.PREFERRED_SIZE)
-				.addGap(27).addComponent(lbTitular).addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(tfTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.PREFERRED_SIZE)
-				.addGap(24).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnConfirmar)
-						.addComponent(btnVoltar))
-				.addContainerGap(49, Short.MAX_VALUE)));
+						.addGap(33).addComponent(lbTipoConta).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(cbbTipoConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(33).addComponent(lbTitular).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(tfTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(18).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnVoltar)
+								.addComponent(btnConfirmar))
+						.addContainerGap(49, Short.MAX_VALUE)));
+		// setLayout(groupLayout);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 

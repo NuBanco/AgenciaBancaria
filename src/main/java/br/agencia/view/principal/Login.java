@@ -64,7 +64,7 @@ public class Login extends JFrame {
 					return;
 				}
 
-				usuarioLogin = (Usuario) GenericDao.consultarByString(
+				usuarioLogin = (Usuario) GenericDao.consultarByQuery(
 						String.format("from Usuario where usu_login like '%s'", tfUsuario.getText()));
 
 				if (usuarioLogin == null) {
