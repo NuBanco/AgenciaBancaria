@@ -36,9 +36,6 @@ public class MovimentoConta implements Serializable {
 	@Column(name = "mov_valor")
 	private BigDecimal valor;
 
-	@Column(name = "mov_descricao")
-	private String descricaoOperacao;
-
 	@OneToOne
 	@JoinColumn(name = "mov_idconta")
 	private Conta conta;
@@ -47,7 +44,7 @@ public class MovimentoConta implements Serializable {
 		return tipoMovimento;
 	}
 
-	public MovimentoConta setTipoMOvimento(String tipoMovimento) {
+	public MovimentoConta setTipoMovimento(String tipoMovimento) {
 		this.tipoMovimento = tipoMovimento;
 		return this;
 	}
@@ -76,15 +73,6 @@ public class MovimentoConta implements Serializable {
 
 	public MovimentoConta setValor(BigDecimal valor) {
 		this.valor = valor;
-		return this;
-	}
-
-	public String getDescricaoOperacao() {
-		return descricaoOperacao;
-	}
-
-	public MovimentoConta setDescricaoOperacao(String descricaoOperacao) {
-		this.descricaoOperacao = descricaoOperacao;
 		return this;
 	}
 }

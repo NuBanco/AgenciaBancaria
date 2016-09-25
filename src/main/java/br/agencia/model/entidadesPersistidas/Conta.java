@@ -118,9 +118,9 @@ public class Conta implements Serializable{
 		return saldo;
 	}
 
-	public Conta setSaldo(BigDecimal saldo) {
-		new AtualizarSaldo(this);
-		this.saldo = saldo;
+	public Conta setSaldo(BigDecimal valor) {
+		new AtualizarSaldo(this, valor);
+		this.saldo = valor;
 		return this;
 	}
 
