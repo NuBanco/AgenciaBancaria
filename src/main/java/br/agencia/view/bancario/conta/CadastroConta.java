@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.control.GenericDao;
-import br.agencia.model.CriptografiaSenha.CriptografiaSenhaCliente;
+import br.agencia.model.criptografiaSenha.CriptografiaSenhaCliente;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Pessoa;

@@ -1,4 +1,4 @@
-package br.agencia.model.CriptografiaSenha;
+package br.agencia.model.criptografiaSenha;
 
 public class CriptografiaSenhaBancario extends CriotografiaSenhaAbstrata implements CriptografiaSenhaInterface {
 

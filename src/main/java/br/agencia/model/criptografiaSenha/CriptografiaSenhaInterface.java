@@ -1,4 +1,4 @@
-package br.agencia.model.CriptografiaSenha;
+package br.agencia.model.criptografiaSenha;
 
 import br.agencia.model.enums.TipoUsuario;
 

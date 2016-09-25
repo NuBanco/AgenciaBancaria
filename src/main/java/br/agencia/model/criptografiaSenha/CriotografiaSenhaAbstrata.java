@@ -1,4 +1,4 @@
-package br.agencia.model.CriptografiaSenha;
+package br.agencia.model.criptografiaSenha;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
 import br.agencia.control.HibernateUtil;
-import br.agencia.model.CriptografiaSenha.CriptografiaSenhaFactory;
+import br.agencia.model.criptografiaSenha.CriptografiaSenhaFactory;
 import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.util.TelaFactory;
 import br.agencia.model.util.UsuarioLogado;
