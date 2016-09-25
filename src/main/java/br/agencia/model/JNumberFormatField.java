@@ -18,6 +18,8 @@ import javax.swing.text.PlainDocument;
  * Campo para a inserção de números com base em um formato.
  *
  * @author Dyorgio da Silva Nascimento
+ *
+ * retirado de http://www.guj.com.br/t/mascara-para-jtextfield-valor-real/85762/2
  */
 public class JNumberFormatField extends JTextField {
 	private static final long serialVersionUID = -7506506392528621022L;
