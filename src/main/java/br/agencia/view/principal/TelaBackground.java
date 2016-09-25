@@ -13,9 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.model.UserLogged;
-import br.agencia.model.Usuario;
+import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoUsuario;
+import br.agencia.model.util.UsuarioLogado;
 
 public class TelaBackground extends JFrame {
 
@@ -146,7 +146,7 @@ public class TelaBackground extends JFrame {
 	public static void configuraCabecalhoPadrao() {
 
 		Usuario tipoUsuario = new Usuario();
-		tipoUsuario = UserLogged.getUsuarioLogado();
+		tipoUsuario = UsuarioLogado.getUsuarioLogado();
 
 		if (tipoUsuario.getTipoUsuario() == TipoUsuario.BANCARIO) {
 			dataHoje.setVisible(false);

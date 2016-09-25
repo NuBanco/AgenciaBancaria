@@ -1,4 +1,4 @@
-package br.agencia.view.bancario;
+package br.agencia.view.bancario.conta;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -16,17 +16,18 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.control.GenericDao;
-import br.agencia.model.Agencia;
-import br.agencia.model.Conta;
-import br.agencia.model.ContaFacade;
-import br.agencia.model.EncodePasswordClient;
-import br.agencia.model.Pessoa;
-import br.agencia.model.Usuario;
+import br.agencia.model.CriptografiaSenha.CriptografiaSenhaCliente;
+import br.agencia.model.entidadesPersistidas.Agencia;
+import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.model.entidadesPersistidas.Pessoa;
+import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoUsuario;
+import br.agencia.model.util.ContaFacade;
+import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
-public class NovaConta extends JPanel {
+public class CadastroConta extends JPanel {
 
 	private static final long serialVersionUID = 5210607113046110764L;
 	public static final String ID = "NOVACONTA";
@@ -42,7 +43,7 @@ public class NovaConta extends JPanel {
 
 	Agencia agenciaValidar = null;
 
-	public NovaConta() {
+	public CadastroConta() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
@@ -125,7 +126,7 @@ public class NovaConta extends JPanel {
 
 					Usuario novoUsuario = new Usuario();
 					novoUsuario.setLogin(tfUsername.getText())
-							.setSenha(new EncodePasswordClient().encode(tfSenhaConta.getText()))
+							.setSenha(new CriptografiaSenhaCliente().encode(tfSenhaConta.getText()))
 							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
 					Conta novaConta = new Conta();
 					//novaConta.setDataAbertura(new Date(System.currentTimeMillis()))

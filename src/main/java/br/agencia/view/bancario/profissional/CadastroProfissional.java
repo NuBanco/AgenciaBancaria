@@ -1,4 +1,4 @@
-package br.agencia.view.bancario;
+package br.agencia.view.bancario.profissional;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -18,15 +18,15 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
-import br.agencia.model.Agencia;
-import br.agencia.model.EncodePasswordBanking;
-import br.agencia.model.Pessoa;
-import br.agencia.model.Usuario;
+import br.agencia.model.CriptografiaSenha.CriptografiaSenhaBancario;
+import br.agencia.model.entidadesPersistidas.Agencia;
+import br.agencia.model.entidadesPersistidas.Pessoa;
+import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.principal.TelaBackground;
 
-public class NovoProfissional extends JPanel {
+public class CadastroProfissional extends JPanel {
 
 	private static final long serialVersionUID = 5210607113046110764L;
 
@@ -40,7 +40,7 @@ public class NovoProfissional extends JPanel {
 
 	Agencia agenciaValidar = null;
 
-	public NovoProfissional(Usuario usuario) {
+	public CadastroProfissional(Usuario usuario) {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
@@ -105,7 +105,7 @@ public class NovoProfissional extends JPanel {
 				if (validarInformacoes(usuario)) {
 
 					if (usuario.getId() == null || tfSenhaConta.getText().length() != 0) {
-						senhaAuxiliar = new EncodePasswordBanking().encode(tfSenhaConta.getText());
+						senhaAuxiliar = new CriptografiaSenhaBancario().encode(tfSenhaConta.getText());
 					}
 
 					Pessoa novaPessoa = new Pessoa();

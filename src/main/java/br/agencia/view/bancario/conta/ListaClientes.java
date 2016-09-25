@@ -1,4 +1,4 @@
-package br.agencia.view.bancario;
+package br.agencia.view.bancario.conta;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -17,7 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.agencia.control.GenericDao;
-import br.agencia.model.Conta;
+import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaClientes extends JPanel {

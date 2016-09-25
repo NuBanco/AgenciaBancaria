@@ -1,4 +1,4 @@
-package br.agencia.view.bancario;
+package br.agencia.view.bancario.agencia;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -19,7 +19,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.agencia.control.GenericDao;
-import br.agencia.model.Agencia;
+import br.agencia.model.entidadesPersistidas.Agencia;
+import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaAgencia extends JPanel {
@@ -58,7 +59,7 @@ public class ListaAgencia extends JPanel {
 					Agencia agenciaEditar = (Agencia) GenericDao
 							.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'",
 									tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
-					TelaBackground.getPanelMenu().add(new NovaAgencia(agenciaEditar));
+					TelaBackground.getPanelMenu().add(new CadastroAgencia(agenciaEditar));
 				}
 			}
 		});
@@ -68,7 +69,7 @@ public class ListaAgencia extends JPanel {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new NovaAgencia(new Agencia()));
+				TelaBackground.getPanelMenu().add(new CadastroAgencia(new Agencia()));
 			}
 		});
 

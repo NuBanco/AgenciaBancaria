@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import br.agencia.model.Agencia;
+import br.agencia.model.entidadesPersistidas.Agencia;
 
 public class GenericDao {
 	private static Session session;

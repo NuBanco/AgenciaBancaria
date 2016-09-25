@@ -10,6 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import br.agencia.view.bancario.agencia.ListaAgencia;
+import br.agencia.view.bancario.conta.CadastroConta;
+import br.agencia.view.bancario.conta.ListaClientes;
+import br.agencia.view.bancario.profissional.ListaProfissional;
 import br.agencia.view.principal.TelaBackground;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -61,7 +65,7 @@ public class HomeMenuBancario extends JPanel {
 		btnOpNovaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				createPanel(new NovaConta());
+				createPanel(new CadastroConta());
 			}
 		});
 		btnOpNovaConta.setFont(new Font("Arial", Font.BOLD, 23));

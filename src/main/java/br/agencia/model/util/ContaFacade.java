@@ -1,6 +1,9 @@
-package br.agencia.model;
+package br.agencia.model.util;
 
 import br.agencia.control.GenericDao;
+import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.model.entidadesPersistidas.Pessoa;
+import br.agencia.model.entidadesPersistidas.Usuario;
 
 public class ContaFacade {
 

@@ -1,4 +1,4 @@
-package br.agencia.model;
+package br.agencia.model.util;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

@@ -19,11 +19,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import br.agencia.control.GenericDao;
-import br.agencia.model.Agencia;
-import br.agencia.model.Conta;
-import br.agencia.model.JNumberFormatField;
-import br.agencia.model.UserLogged;
+import br.agencia.model.entidadesPersistidas.Agencia;
+import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoConta;
+import br.agencia.model.util.JNumberFormatField;
+import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
 
 public class DepositoCliente extends JPanel {
@@ -49,7 +49,7 @@ public class DepositoCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
 					contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(String.format(
-							"from Conta where con_idPessoa = %d", UserLogged.getUsuarioLogado().getPessoa().getId()));
+							"from Conta where con_idPessoa = %d", UsuarioLogado.getUsuarioLogado().getPessoa().getId()));
 					tfAgencia.setText(contaDeposito.getAgencia().getCodAgencia());
 					tfConta.setText(contaDeposito.getNumero());
 					tfTitular.setText(contaDeposito.getPessoa().getNome());

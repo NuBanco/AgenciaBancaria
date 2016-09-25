@@ -1,9 +1,9 @@
-package br.agencia.model;
+package br.agencia.model.CriptografiaSenha;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public abstract class AbstractEncodePassword {
+public abstract class CriotografiaSenhaAbstrata {
 
 	protected static String hashString(String message, String algorithm) {
 		MessageDigest messageDigest = null;

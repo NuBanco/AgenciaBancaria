@@ -1,4 +1,4 @@
-package br.agencia.view.bancario;
+package br.agencia.view.bancario.agencia;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -17,17 +17,17 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
-import br.agencia.model.Agencia;
+import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.view.principal.TelaBackground;
 
-public class NovaAgencia extends JPanel {
+public class CadastroAgencia extends JPanel {
 
 	private static final long serialVersionUID = -673412907306051111L;
 	private JTextField tfNome;
 	private JTextField tfNumero;
 	private JTextField tfCidade;
 
-	public NovaAgencia(Agencia agencia) {
+	public CadastroAgencia(Agencia agencia) {
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JButton btnConfirmar = new JButton("Confirmar");

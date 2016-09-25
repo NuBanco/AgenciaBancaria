@@ -1,4 +1,4 @@
-package br.agencia.model;
+package br.agencia.model.entidadesPersistidas;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

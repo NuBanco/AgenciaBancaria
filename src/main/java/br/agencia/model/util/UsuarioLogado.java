@@ -1,8 +1,9 @@
-package br.agencia.model;
+package br.agencia.model.util;
 
+import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.view.principal.Login;
 
-public class UserLogged extends Usuario{
+public class UsuarioLogado extends Usuario{
 	private static Usuario usuarioLogado;
 
 	public static Usuario getUsuarioLogado() {

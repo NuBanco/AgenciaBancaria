@@ -1,4 +1,4 @@
-package br.agencia.model;
+package br.agencia.model.util;
 
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.bancario.HomeMenuBancario;

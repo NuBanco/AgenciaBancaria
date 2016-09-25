@@ -1,4 +1,4 @@
-package br.agencia.view.bancario;
+package br.agencia.view.bancario.profissional;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -18,7 +18,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.agencia.control.GenericDao;
-import br.agencia.model.Usuario;
+import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
 public class ListaProfissional extends JPanel {
@@ -51,7 +52,7 @@ public class ListaProfissional extends JPanel {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new NovoProfissional(new Usuario()));
+				TelaBackground.getPanelMenu().add(new CadastroProfissional(new Usuario()));
 			}
 		});
 
@@ -66,7 +67,7 @@ public class ListaProfissional extends JPanel {
 							1);
 					Usuario usuarioEditar = (Usuario) GenericDao.consultarByQuery(
 							String.format("from Usuario where usu_login like '%s'", usuarioSelecionado));
-					TelaBackground.getPanelMenu().add(new NovoProfissional(usuarioEditar));
+					TelaBackground.getPanelMenu().add(new CadastroProfissional(usuarioEditar));
 				}
 			}
 		});

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.model.JNumberFormatField;
+import br.agencia.model.util.JNumberFormatField;
 import br.agencia.view.principal.TelaBackground;
 
 public class PagamentoCliente extends JPanel {

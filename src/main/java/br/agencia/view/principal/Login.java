@@ -17,10 +17,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.control.GenericDao;
 import br.agencia.control.HibernateUtil;
-import br.agencia.model.EncodePasswordFactory;
-import br.agencia.model.TelaFactory;
-import br.agencia.model.UserLogged;
-import br.agencia.model.Usuario;
+import br.agencia.model.CriptografiaSenha.CriptografiaSenhaFactory;
+import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.util.TelaFactory;
+import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.cliente.HomeMenuCliente;
 
 public class Login extends JFrame {
@@ -72,14 +72,14 @@ public class Login extends JFrame {
 					return;
 				}
 
-				senhaLogin = new EncodePasswordFactory().create(usuarioLogin.getTipoUsuario()).encode(tfSenha.getText());
+				senhaLogin = new CriptografiaSenhaFactory().create(usuarioLogin.getTipoUsuario()).encode(tfSenha.getText());
 
 				if (!senhaLogin.equals(usuarioLogin.getSenha())) {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
 					return;
 				}
 
-				UserLogged.setNewUser(usuarioLogin);
+				UsuarioLogado.setNewUser(usuarioLogin);
 
 				new TelaFactory().create(usuarioLogin.getTipoUsuario());
 				TelaBackground.getTelaPrincipal().setSize(700, 650);
