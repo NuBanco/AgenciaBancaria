@@ -42,10 +42,11 @@ public class ListaClientes extends JPanel {
 		String coluna[] = { "Tipo Conta", "Agencia", "Numero", "Titular", "Aberta em", "Saldo" };
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
 
-		contas.forEach(
-				conta -> modelo.addRow(new String[] { conta.getTipoConta().toString(), conta.getAgencia().getNome(),
-						conta.getNumero(), conta.getPessoa().getNome(), conta.getDataAbertura().toString(), conta.getSaldo().toString() }));
-
+		if (contas.size() > 0) {
+			contas.forEach(conta -> modelo.addRow(new String[] { conta.getTipoConta().toString(),
+					conta.getAgencia().getNome(), conta.getNumero(), conta.getPessoa().getNome(),
+					conta.getDataAbertura().toString(), conta.getSaldo().toString() }));
+		}
 		tbContas.setModel(modelo);
 
 		JButton btnImprimir = new JButton("");
@@ -66,26 +67,25 @@ public class ListaClientes extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+		groupLayout
+				.setHorizontalGroup(
+						groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap(561, Short.MAX_VALUE)
+										.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 44,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnVoltar)
+										.addContainerGap())
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(561, Short.MAX_VALUE)
-					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnVoltar)
-					.addContainerGap())
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnImprimir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnVoltar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(30, Short.MAX_VALUE))
-		);
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
+						.addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnImprimir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addComponent(btnVoltar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE))
+						.addContainerGap(30, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
