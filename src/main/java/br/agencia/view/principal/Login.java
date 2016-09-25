@@ -18,10 +18,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.control.GenericDao;
 import br.agencia.control.HibernateUtil;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaFactory;
+import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.TelaFactory;
 import br.agencia.model.util.UsuarioLogado;
-import br.agencia.view.cliente.HomeMenuCliente;
 
 public class Login extends JFrame {
 
@@ -37,6 +38,7 @@ public class Login extends JFrame {
 		setTitle("Login");
 
 		HibernateUtil.getSession();
+		validarAdmin();
 
 		tfUsuario = new JTextField();
 		tfUsuario.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -64,15 +66,16 @@ public class Login extends JFrame {
 					return;
 				}
 
-				usuarioLogin = (Usuario) GenericDao.consultarByQuery(
-						String.format("from Usuario where usu_login like '%s'", tfUsuario.getText()));
+				usuarioLogin = (Usuario) GenericDao
+						.consultarByQuery(String.format("from Usuario where usu_login like '%s'", tfUsuario.getText()));
 
 				if (usuarioLogin == null) {
 					JOptionPane.showMessageDialog(null, "Usuario nao cadastrado!");
 					return;
 				}
 
-				senhaLogin = new CriptografiaSenhaFactory().create(usuarioLogin.getTipoUsuario()).encode(tfSenha.getText());
+				senhaLogin = new CriptografiaSenhaFactory().create(usuarioLogin.getTipoUsuario())
+						.encode(tfSenha.getText());
 
 				if (!senhaLogin.equals(usuarioLogin.getSenha())) {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
@@ -98,38 +101,36 @@ public class Login extends JFrame {
 		JLabel lbSenha = new JLabel("Senha :");
 		lbSenha.setFont(new Font("Arial", Font.BOLD, 16));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(26)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addGap(26)
+				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lbUsuario)
-								.addComponent(lbSenha))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(tfSenha)
-								.addComponent(tfUsuario, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))))
-					.addContainerGap(39, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbUsuario)
-						.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbSenha)
-						.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(btnLogin)
-					.addContainerGap(21, Short.MAX_VALUE))
-		);
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(lbUsuario)
+										.addComponent(lbSenha))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(tfSenha).addComponent(tfUsuario, GroupLayout.DEFAULT_SIZE, 219,
+												Short.MAX_VALUE))))
+				.addContainerGap(39, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(22)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbUsuario)
+								.addComponent(tfUsuario, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lbSenha)
+								.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+						.addGap(18).addComponent(btnLogin).addContainerGap(21, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
+	}
+
+	private void validarAdmin() {
+		Usuario usuarioAdmin = new Usuario();
+		Pessoa pessoaAdmin = new Pessoa();
+		pessoaAdmin.setCpf("00000000000").setIdade(99).setNome("ADMIN").setSenhaOperacao("123456");
+		usuarioAdmin.setLogin("admin").setSenha("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918").setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(pessoaAdmin);
+		GenericDao.getGenericDao().incluir(pessoaAdmin);
+		GenericDao.getGenericDao().incluir(usuarioAdmin);
 	}
 
 	public static void main(String[] args) {

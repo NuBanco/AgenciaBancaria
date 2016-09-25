@@ -95,7 +95,6 @@ public class GenericDao {
 		return null;
 	}
 
-
 	public static List<?> listar(String parameterQuery) {
 		List<Object> lista = new ArrayList<Object>();
 		try {
