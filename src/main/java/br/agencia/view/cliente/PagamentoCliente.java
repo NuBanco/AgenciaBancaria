@@ -37,7 +37,6 @@ public class PagamentoCliente extends JPanel {
 		tfCodigoDeBarra.setFont(new Font("Arial", Font.PLAIN, 17));
 		tfCodigoDeBarra.setColumns(10);
 
-		tfValor = new JFormattedTextField();
 		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 17));
 		try {
