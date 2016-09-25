@@ -33,31 +33,6 @@ public class SenhaCliente extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.LIGHT_GRAY);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lbDigiteSuaSenha)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-												.addComponent(btnConfirmar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(tfSenha, Alignment.LEADING, GroupLayout.PREFERRED_SIZE,
-														165, GroupLayout.PREFERRED_SIZE))
-										.addGap(18).addComponent(panel, GroupLayout.PREFERRED_SIZE, 248,
-												GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(19, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(21).addComponent(lbDigiteSuaSenha).addGap(18)
-						.addGroup(groupLayout
-								.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 30,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(11).addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 40,
-												GroupLayout.PREFERRED_SIZE))
-								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(102, Short.MAX_VALUE)));
 
 		JButton btn0 = new JButton("0");
 		btn0.setFont(new Font("Arial", Font.BOLD, 15));
@@ -88,6 +63,33 @@ public class SenhaCliente extends JFrame {
 
 		JButton btn9 = new JButton("9");
 		btn9.setFont(new Font("Arial", Font.BOLD, 15));
+
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lbDigiteSuaSenha)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+												.addComponent(btnConfirmar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(tfSenha, Alignment.LEADING, GroupLayout.PREFERRED_SIZE,
+														165, GroupLayout.PREFERRED_SIZE))
+										.addGap(18).addComponent(panel, GroupLayout.PREFERRED_SIZE, 248,
+												GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(19, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(21).addComponent(lbDigiteSuaSenha).addGap(18)
+						.addGroup(groupLayout
+								.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(tfSenha, GroupLayout.PREFERRED_SIZE, 30,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(11).addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 40,
+												GroupLayout.PREFERRED_SIZE))
+								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(102, Short.MAX_VALUE)));
+
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
 				.createSequentialGroup().addContainerGap()
