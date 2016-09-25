@@ -23,21 +23,21 @@ import br.agencia.view.principal.TelaBackground;
 public class NovaAgencia extends JPanel {
 
 	private static final long serialVersionUID = -673412907306051111L;
-	private JTextField txtNome;
-	private JTextField txtNumero;
-	private JTextField txtCidade;
+	private JTextField tfNome;
+	private JTextField tfNumero;
+	private JTextField tfCidade;
 
 	public NovaAgencia(Agencia agencia) {
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
 		JButton btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarNovaAgencia(agencia)) {
-					agencia.setNome(txtNome.getText());
-					agencia.setCodAgencia(txtNumero.getText());
-					agencia.setCidade(txtCidade.getText());
+					agencia.setNome(tfNome.getText());
+					agencia.setCodAgencia(tfNumero.getText());
+					agencia.setCidade(tfCidade.getText());
 
 					gravarAgencia(agencia);
 
@@ -46,19 +46,19 @@ public class NovaAgencia extends JPanel {
 			}
 		});
 
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbNome = new JLabel("Nome:");
+		lbNome.setFont(new Font("Arial", Font.BOLD, 16));
 
-		txtNome = new JTextField();
-		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtNome.setColumns(10);
+		tfNome = new JTextField();
+		tfNome.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfNome.setColumns(10);
 
-		JLabel lblNumero = new JLabel("N\u00FAmero");
-		lblNumero.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbNumero = new JLabel("N\u00FAmero");
+		lbNumero.setFont(new Font("Arial", Font.BOLD, 16));
 
-		txtNumero = new JTextField();
-		txtNumero.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtNumero.addKeyListener(new KeyAdapter() {
+		tfNumero = new JTextField();
+		tfNumero.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfNumero.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				String caracteres = "0987654321";
@@ -68,23 +68,23 @@ public class NovaAgencia extends JPanel {
 			}
 		});
 
-		txtNumero.setColumns(10);
+		tfNumero.setColumns(10);
 
-		txtCidade = new JTextField();
-		txtCidade.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtCidade.setColumns(10);
+		tfCidade = new JTextField();
+		tfCidade.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfCidade.setColumns(10);
 
 		if (agencia.getId() != null) {
-			txtNome.setText(agencia.getNome());
-			txtNumero.setText(agencia.getCodAgencia());
-			txtCidade.setText(agencia.getCidade());
+			tfNome.setText(agencia.getNome());
+			tfNumero.setText(agencia.getCodAgencia());
+			tfCidade.setText(agencia.getCidade());
 		}
 
-		JLabel lblCidade = new JLabel("Cidade");
-		lblCidade.setFont(new Font("Arial", Font.BOLD, 14));
+		JLabel lbCidade = new JLabel("Cidade");
+		lbCidade.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -92,71 +92,79 @@ public class NovaAgencia extends JPanel {
 			}
 		});
 
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(48)
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(btnVoltar).addGap(18).addComponent(btnConfirmar))
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(txtCidade, Alignment.LEADING).addComponent(txtNumero, Alignment.LEADING)
-								.addComponent(lblNome, Alignment.LEADING)
-								.addComponent(txtNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 304,
-										Short.MAX_VALUE)
-								.addComponent(lblCidade, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 87,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNumero, Alignment.LEADING)))
-				.addContainerGap(98, Short.MAX_VALUE)));
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(22).addComponent(lblNome)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(13).addComponent(lblNumero).addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblCidade)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(40)
-										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-												.addComponent(btnConfirmar).addComponent(btnVoltar))
-										.addContainerGap(51, Short.MAX_VALUE)));
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(108)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnVoltar)
+							.addGap(26)
+							.addComponent(btnConfirmar))
+						.addGroup(Alignment.TRAILING, groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(lbNome, Alignment.LEADING)
+							.addComponent(tfNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+							.addComponent(tfNumero, Alignment.LEADING)
+							.addComponent(lbNumero, Alignment.LEADING)
+							.addComponent(tfCidade, Alignment.LEADING)
+							.addComponent(lbCidade, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
+					.addGap(95))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(23)
+					.addComponent(lbNome)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tfNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(32)
+					.addComponent(lbNumero)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
+					.addComponent(lbCidade)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(119)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnConfirmar)
+						.addComponent(btnVoltar))
+					.addContainerGap(67, Short.MAX_VALUE))
+		);
+		//TelaBackground.getPanelMenu().
+		setLayout(groupLayout);
 
 	}
 
 	protected void gravarAgencia(Agencia agencia) {
 		if (agencia.getId() == null) {
 			GenericDao.getGenericDao().incluir(agencia);
-			JOptionPane.showMessageDialog(null, String.format("Agencia %s criada com sucesso!", txtNome.getText()));
+			JOptionPane.showMessageDialog(null, String.format("Agencia %s criada com sucesso!", tfNome.getText()));
 		} else {
 			GenericDao.getGenericDao().alterar(agencia);
-			JOptionPane.showMessageDialog(null, String.format("Agencia %s alterada com sucesso!", txtNome.getText()));
+			JOptionPane.showMessageDialog(null, String.format("Agencia %s alterada com sucesso!", tfNome.getText()));
 		}
 	}
 
 	protected void limparTela() {
-		txtNome.setText("");
-		txtNumero.setText("");
-		txtCidade.setText("");
+		tfNome.setText("");
+		tfNumero.setText("");
+		tfCidade.setText("");
 	}
 
 	protected boolean validarNovaAgencia(Agencia agencia) {
-		if (txtNome.getText().length() == 0 || txtNumero.getText().length() == 0 || txtCidade.getText().length() == 0) {
+		if (tfNome.getText().length() == 0 || tfNumero.getText().length() == 0 || tfCidade.getText().length() == 0) {
 			JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
 			return false;
 		}
 
 		if (agencia.getId() == null) {
 			Agencia agenciaValidar = (Agencia) GenericDao.consultarByString(
-					String.format("from Agencia where age_numAgencia like '%s'", txtNumero.getText()));
+					String.format("from Agencia where age_numAgencia like '%s'", tfNumero.getText()));
 
 			if (agenciaValidar != null) {
-				JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", txtNumero.getText()));
+				JOptionPane.showMessageDialog(null, String.format("Agencia %s já cadstrada!", tfNumero.getText()));
 				return false;
 			}
 		}

@@ -12,6 +12,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
@@ -25,9 +26,11 @@ public class ListaAgencia extends JPanel {
 
 	private static final long serialVersionUID = -2810545553216015257L;
 	public static final String ID = "LISTAGENCIA";
+	JScrollPane scrollPane = new JScrollPane();
 	private JTable tbAgencia;
 
 	public ListaAgencia() {
+		
 		List<Agencia> agencias = new ArrayList<>();
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
@@ -47,18 +50,19 @@ public class ListaAgencia extends JPanel {
 		tbAgencia.setModel(modelo);
 
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnEditar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				Agencia agenciaEditar = (Agencia) GenericDao.consultarByString(
-						String.format("from Agencia where age_numAgencia like '%s'", tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
+				Agencia agenciaEditar = (Agencia) GenericDao
+						.consultarByString(String.format("from Agencia where age_numAgencia like '%s'",
+								tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
 				TelaBackground.getPanelMenu().add(new NovaAgencia(agenciaEditar));
 			}
 		});
 
 		JButton btnAdicionar = new JButton("+");
-		btnAdicionar.setFont(new Font("Arial", Font.BOLD, 14));
+		btnAdicionar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -67,7 +71,7 @@ public class ListaAgencia extends JPanel {
 		});
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
@@ -75,21 +79,32 @@ public class ListaAgencia extends JPanel {
 			}
 		});
 
+		scrollPane.setViewportView(tbAgencia);
+
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap(253, Short.MAX_VALUE)
-						.addComponent(btnVoltar).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdicionar)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
-				.addComponent(tbAgencia, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addComponent(tbAgencia, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnEditar)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAdicionar)
-								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
-				.addGap(15)));
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(tbAgencia, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 680,
+										Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup().addComponent(btnVoltar)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 104,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnAdicionar)))
+						.addContainerGap()));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+										.addComponent(tbAgencia, GroupLayout.PREFERRED_SIZE, 343,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(34)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 31,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(btnEditar).addComponent(btnAdicionar))
+										.addGap(37)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
