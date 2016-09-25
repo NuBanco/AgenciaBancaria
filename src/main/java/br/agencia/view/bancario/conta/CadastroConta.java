@@ -109,10 +109,8 @@ public class CadastroConta extends JPanel {
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				TelaBackground.clearPanelMenu();
 				TelaBackground.getPanelMenu().add(new HomeMenuBancario());
-
 			}
 		});
 
@@ -148,7 +146,6 @@ public class CadastroConta extends JPanel {
 					TelaBackground.clearPanelMenu();
 					TelaBackground.getPanelMenu().add(new HomeMenuBancario());
 				}
-
 			}
 		});
 
