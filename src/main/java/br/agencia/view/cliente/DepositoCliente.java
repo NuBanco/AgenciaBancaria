@@ -116,7 +116,10 @@ public class DepositoCliente extends JPanel {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(null, tfValor.getText());
+				if (tfValor.getValue().doubleValue() <= 0){
+					JOptionPane.showMessageDialog(null, "Valor invalido para transferencia!");
+					return;
+				}
 
 				agenciaDeposito = (Agencia) GenericDao.getGenericDao().consultarByQuery(
 						String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
