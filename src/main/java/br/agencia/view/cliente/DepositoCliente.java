@@ -116,7 +116,7 @@ public class DepositoCliente extends JPanel {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (tfValor.getValue().doubleValue() <= 0){
+				if (tfValor.getValue().doubleValue() <= 0) {
 					JOptionPane.showMessageDialog(null, "Valor invalido para transferencia!");
 					return;
 				}
