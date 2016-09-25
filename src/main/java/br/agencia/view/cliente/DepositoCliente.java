@@ -76,7 +76,7 @@ public class DepositoCliente extends JPanel {
 
 		JLabel lbValorDeposito = new JLabel("Informe o valor a ser depositado:");
 		lbValorDeposito.setFont(new Font("Arial", Font.BOLD, 16));
-		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);;
+		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
 		tfValor.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfValor.setHorizontalAlignment(SwingConstants.RIGHT);
 
