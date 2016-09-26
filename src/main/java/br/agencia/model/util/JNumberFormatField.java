@@ -49,7 +49,7 @@ public class JNumberFormatField extends JTextField {
 						.append(str.replaceAll("[^0-9]", "")).toString();
 				super.remove(0, getLength());
 				if (text.isEmpty()) {
-					text = "";
+					text = "0";
 				} else {
 					text = new BigInteger(text).toString();
 				}
@@ -91,7 +91,7 @@ public class JNumberFormatField extends JTextField {
 			}
 		});// formato
 			// inicial
-		setText("");
+		setText("0");
 		setCaretPosition(getText().length());
 	}
 
