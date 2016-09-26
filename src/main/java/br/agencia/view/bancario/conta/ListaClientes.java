@@ -35,7 +35,6 @@ public class ListaClientes extends JPanel {
 		tbContas = new JTable();
 		tbContas.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbContas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(tbContas);
 
 		List<Conta> contas = (List<Conta>) GenericDao.listar("from Conta");
 
@@ -48,6 +47,7 @@ public class ListaClientes extends JPanel {
 					conta.getDataAbertura().toString(), conta.getSaldo().toString() }));
 		}
 		tbContas.setModel(modelo);
+		scrollPane.setViewportView(tbContas);
 
 		JButton btnImprimir = new JButton("");
 		btnImprimir.setFont(new Font("Arial", Font.PLAIN, 18));
