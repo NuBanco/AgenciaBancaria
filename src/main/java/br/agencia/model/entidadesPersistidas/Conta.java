@@ -118,6 +118,9 @@ public class Conta implements Serializable {
 	}
 
 	public BigDecimal getSaldo() {
+		if (saldo == null){
+			saldo = new BigDecimal(0F);
+		}
 		return saldo;
 	}
 
