@@ -176,7 +176,6 @@ public class TelaBackground extends JFrame {
 		panelMenu.setLayout(null);
 	}
 
-	@SuppressWarnings("static-access")
 	public static void configuraCabecalhoPadrao() {
 
 		Usuario tipoUsuario = new Usuario();
