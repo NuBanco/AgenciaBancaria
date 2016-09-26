@@ -46,7 +46,6 @@ public class DepositoCliente extends JPanel {
 		JCheckBox chkContaLogada = new JCheckBox("Conta logada");
 		chkContaLogada.setFont(new Font("Arial", Font.BOLD, 16));
 		chkContaLogada.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
 					contaDeposito = UsuarioLogado.getContaUsuarioLogado();
@@ -59,7 +58,6 @@ public class DepositoCliente extends JPanel {
 					tfConta.enable(false);
 					tfTitular.enable(false);
 					tfTipoConta.enable(false);
-
 				} else {
 					tfAgencia.setText("");
 					tfConta.setText("");
@@ -68,7 +66,6 @@ public class DepositoCliente extends JPanel {
 
 					tfAgencia.enable(true);
 					tfConta.enable(true);
-
 				}
 			}
 		});
