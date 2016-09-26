@@ -110,7 +110,10 @@ public class CadastroProfissional extends JPanel {
 
 					Pessoa novaPessoa = new Pessoa();
 					novaPessoa.setNome(tfNome.getText()).setIdade(Integer.parseInt(tfIdade.getText()))
-							.setSenhaOperacao(tfSenhaOperacoes.getText()).setCpf("").setId(usuario.getPessoa().getId());
+							.setSenhaOperacao(tfSenhaOperacoes.getText()).setCpf("");
+
+					if (usuario.getId() != null)
+						novaPessoa.setId(usuario.getPessoa().getId());
 
 					usuario.setLogin(tfUsername.getText()).setSenha(senhaAuxiliar).setTipoUsuario(TipoUsuario.BANCARIO)
 							.setPessoa(novaPessoa);
