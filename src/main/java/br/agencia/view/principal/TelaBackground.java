@@ -2,6 +2,7 @@ package br.agencia.view.principal;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -31,7 +31,7 @@ public class TelaBackground extends JFrame {
 	private static JLabel lbAgencia;
 	private static JLabel lbTipoConta;
 	private static JLabel lbSaldo;
-    private static JNumberFormatField lbResutSaldo = null;
+	private static JNumberFormatField lbResutSaldo = null;
 	private static JLabel lbResultAgencia;
 	private static JLabel lbResultConta;
 	public static Conta contaCliente;
@@ -102,7 +102,7 @@ public class TelaBackground extends JFrame {
 		lbResultConta.setFont(new Font("Arial", Font.BOLD, 16));
 
 		lbResutSaldo = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
-		//lbResutSaldo = new JLabel();
+		// lbResutSaldo = new JLabel();
 		lbResutSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbDivisor = new JLabel("-");
@@ -194,9 +194,10 @@ public class TelaBackground extends JFrame {
 			lbResultAgencia.setText(contaCliente.getAgencia().getCodAgencia());
 			lbResultConta.setText(contaCliente.getTipoConta().name());
 			lbResutSaldo.enable(false);
+			if (contaCliente.getSaldo() == null) {
+				contaCliente.setSaldo(new BigDecimal(0F));
+			}
 			lbResutSaldo.setText(contaCliente.getSaldo().toString());
-
-			//JOptionPane.showMessageDialog(null, contaCliente.getSaldo());
 		}
 	}
 }

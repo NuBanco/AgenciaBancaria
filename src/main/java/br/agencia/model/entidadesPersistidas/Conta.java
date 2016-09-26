@@ -122,14 +122,22 @@ public class Conta implements Serializable {
 	}
 
 	public Conta setSaldo(BigDecimal valor) {
+		if (saldo == null) {
+			saldo = new BigDecimal(0F);
+		}
+
 		this.saldo.add(valor);
 		return this;
 	}
 
 	public Conta setSaldo(BigDecimal valor, TipoMovimento tipoMovimento) {
+		if (saldo == null) {
+			saldo = new BigDecimal(0F);
+		}
+
 		BigDecimal saldoAuxiliar = new BigDecimal(0F);
 
-		saldo = saldo.add(saldoAuxiliar.add(valor));
+		this.saldo = saldo.add(saldoAuxiliar.add(valor));
 
 		GenericDao.getGenericDao().alterar(this);
 		new AtualizarSaldo(this, valor, tipoMovimento);
