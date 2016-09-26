@@ -25,7 +25,6 @@ public class ConfirmaOperacao extends JPanel {
 
 	private static final long serialVersionUID = 3993718123138322069L;
 	private JNumberFormatField tfValor = null;
-	
 
 	public ConfirmaOperacao(BigDecimal valor, TipoMovimento tipoMovimento) {
 
@@ -59,40 +58,43 @@ public class ConfirmaOperacao extends JPanel {
 		JButton btnOpImprimir = new JButton("");
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(1387, Short.MAX_VALUE)
-					.addComponent(btnOpImprimir, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(33)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lbOperacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))))
-					.addGap(1058))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(55)
-					.addComponent(lbOperacao)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbValor))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addGap(105)
-					.addComponent(btnOpImprimir, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		//setLayout(groupLayout);
+		groupLayout
+				.setHorizontalGroup(
+						groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout
+										.createSequentialGroup()
+										.addContainerGap(1387, Short.MAX_VALUE)
+										.addComponent(
+												btnOpImprimir, GroupLayout.PREFERRED_SIZE, 30,
+												GroupLayout.PREFERRED_SIZE)
+										.addContainerGap())
+								.addGroup(groupLayout.createSequentialGroup().addGap(33)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbOperacao, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+														.addComponent(btnOpRetornar,
+																GroupLayout.PREFERRED_SIZE, 110,
+																GroupLayout.PREFERRED_SIZE)
+														.addGroup(groupLayout.createSequentialGroup()
+																.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(ComponentPlacement.UNRELATED)
+																.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, 182,
+																		GroupLayout.PREFERRED_SIZE))))
+										.addGap(1058)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(55).addComponent(lbOperacao).addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbValor))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addGap(105)
+						.addComponent(btnOpImprimir, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		// setLayout(groupLayout);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }
