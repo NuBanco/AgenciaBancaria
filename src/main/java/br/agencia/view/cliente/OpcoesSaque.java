@@ -4,16 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
+import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
 
 public class OpcoesSaque extends JPanel {
@@ -29,6 +33,7 @@ public class OpcoesSaque extends JPanel {
 		btnOp50.setFont(new Font("Arial", Font.BOLD, 20));
 		btnOp50.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				OpcaoSacar(new BigDecimal(50.00));
 			}
 		});
 
@@ -36,7 +41,23 @@ public class OpcoesSaque extends JPanel {
 		btnOp100.setFont(new Font("Arial", Font.BOLD, 20));
 		btnOp100.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// OpcaoSacar(new BigDecimal(50.00));
+				OpcaoSacar(new BigDecimal(100.00));
+			}
+		});
+
+		JButton btnOp200 = new JButton("R$ 200,00");
+		btnOp200.setFont(new Font("Arial", Font.BOLD, 20));
+		btnOp200.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OpcaoSacar(new BigDecimal(200.00));
+			}
+		});
+
+		JButton btnOp300 = new JButton("R$ 300,00");
+		btnOp300.setFont(new Font("Arial", Font.BOLD, 20));
+		btnOp300.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OpcaoSacar(new BigDecimal(300.00));
 			}
 		});
 
@@ -44,7 +65,7 @@ public class OpcoesSaque extends JPanel {
 		btnOp500.setFont(new Font("Arial", Font.BOLD, 20));
 		btnOp500.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// OpcaoSacar(new BigDecimal(50.00));
+				OpcaoSacar(new BigDecimal(500.00));
 			}
 		});
 
@@ -52,15 +73,10 @@ public class OpcoesSaque extends JPanel {
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// OpcaoSacar(new BigDecimal(tfValor.getText()));
+				JOptionPane.showMessageDialog(null,tfValor.getText());
+				OpcaoSacar(tfValor.getValue());
 			}
 		});
-
-		JButton btnOp300 = new JButton("R$ 300,00");
-		btnOp300.setFont(new Font("Arial", Font.BOLD, 20));
-
-		JButton btnOp200 = new JButton("R$ 200,00");
-		btnOp200.setFont(new Font("Arial", Font.BOLD, 20));
 
 		JLabel lbValorEspecifico = new JLabel("Informe outro valor:");
 		lbValorEspecifico.setFont(new Font("Arial", Font.BOLD, 16));
@@ -130,11 +146,21 @@ public class OpcoesSaque extends JPanel {
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
-	// private void OpcaoSacar( BigDecimal valor ){
-	// OpcoesSaque saldo = null;
-	// saldo = new ConfirmaOperacao(saldo);
-	// saldo.setSize(580, 470);
-	// saldo.setLocation(null);
-	// saldo.setVisible(true);
-	// }
+	private void OpcaoSacar(BigDecimal valor) {
+		if (valor.doubleValue() <= 0) {
+			JOptionPane.showMessageDialog(null, "Valor invalido para saque!");
+			return;
+		}
+
+		if (valor.doubleValue() > UsuarioLogado.getContaUsuarioLogado().getSaldo().doubleValue()) {
+			JOptionPane.showMessageDialog(null, "Saldo insuficiente para operacao!");
+			return;
+		}
+
+		UsuarioLogado.getContaUsuarioLogado().setSaldo(valor.multiply(new BigDecimal(-1)), TipoMovimento.SAQUE);
+
+		TelaBackground.clearPanelMenu();
+		TelaBackground.getPanelMenu().add(new ConfirmaOperacao(valor, TipoMovimento.SAQUE));
+
+	}
 }

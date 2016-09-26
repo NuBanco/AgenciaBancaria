@@ -111,10 +111,12 @@ public class TransferenciaCliente extends JPanel {
 				tfTipoConta.setText(contaTransferencia.getTipoConta().name());
 
 				contaTransferencia.setSaldo(tfValor.getValue(), TipoMovimento.TRANSFERENCIA);
-				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)), TipoMovimento.TRANSFERENCIA);
+				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
+						TipoMovimento.TRANSFERENCIA);
 
 				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.DEPOSITO));
+				TelaBackground.getPanelMenu()
+						.add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.TRANSFERENCIA));
 
 			}
 		});
