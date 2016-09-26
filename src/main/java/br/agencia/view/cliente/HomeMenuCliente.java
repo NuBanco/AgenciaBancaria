@@ -3,17 +3,25 @@ package br.agencia.view.cliente;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
 
 public class HomeMenuCliente extends JPanel {
 
 	private static final long serialVersionUID = 5853409558338193456L;
+	public static Conta contaCliente;
+	DecimalFormat decimalFormat = new DecimalFormat("###,###,###,##0.00");
 
 	public HomeMenuCliente() {
 		createPanel(TelaBackground.getPanelMenu());
@@ -72,7 +80,10 @@ public class HomeMenuCliente extends JPanel {
 		btnOpFinalizar.setBounds(83, 176, 180, 30);
 		btnOpFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				encerrarConta();
 			}
+
+			
 		});
 		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 22));
 
@@ -109,6 +120,17 @@ public class HomeMenuCliente extends JPanel {
 												GroupLayout.PREFERRED_SIZE))
 						.addGap(111)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+	}
+	
+	private void encerrarConta() {
+		contaCliente = UsuarioLogado.getContaUsuarioLogado();
+		if (contaCliente.getSaldo().compareTo(new BigDecimal("0.00")) > 0) {
+			JOptionPane.showMessageDialog(null,"Você possui um crédito em conta no valor de R$: " 
+					+ (contaCliente.getSaldo()) 
+					+ (" . \n Para finalizar essa conta é necessário ter saldo zerado."),"Alerta", JOptionPane.WARNING_MESSAGE);
+		}else {
+			JOptionPane.showMessageDialog(null,"Conta " + contaCliente.getNumero().toString() + " finalizada com sucesso.");
+		}
 	}
 
 	private void createPanel(final JPanel panel) {
