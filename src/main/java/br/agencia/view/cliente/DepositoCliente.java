@@ -134,7 +134,6 @@ public class DepositoCliente extends JPanel {
 					contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
 
 				} else {
-					JOptionPane.showMessageDialog(null, UsuarioLogado.getContaUsuarioLogado().countObservers());
 					UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
 				}
 
