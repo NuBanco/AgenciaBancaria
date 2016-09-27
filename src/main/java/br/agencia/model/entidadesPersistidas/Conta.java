@@ -57,9 +57,6 @@ public class Conta extends Observable implements Serializable {
 	@JoinColumn(name = "con_idagencia")
 	private Agencia agencia;
 
-	@Transient
-	private ContaObserver contaObserver;
-
 	public Integer getId() {
 		return idConta;
 	}

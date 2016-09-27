@@ -48,11 +48,10 @@ public class DepositoCliente extends JPanel {
 		chkContaLogada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
-					contaDeposito = UsuarioLogado.getContaUsuarioLogado();
-					tfAgencia.setText(contaDeposito.getAgencia().getCodAgencia());
-					tfConta.setText(contaDeposito.getNumero());
-					tfTitular.setText(contaDeposito.getPessoa().getNome());
-					tfTipoConta.setText(contaDeposito.getTipoConta().name());
+					tfAgencia.setText(UsuarioLogado.getContaUsuarioLogado().getAgencia().getCodAgencia());
+					tfConta.setText(UsuarioLogado.getContaUsuarioLogado().getNumero());
+					tfTitular.setText(UsuarioLogado.getContaUsuarioLogado().getPessoa().getNome());
+					tfTipoConta.setText(UsuarioLogado.getContaUsuarioLogado().getTipoConta().name());
 
 					tfAgencia.enable(false);
 					tfConta.enable(false);
@@ -106,32 +105,38 @@ public class DepositoCliente extends JPanel {
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if (tfValor.getValue().doubleValue() <= 0) {
 					JOptionPane.showMessageDialog(null, "Valor invalido para transferencia!");
 					return;
 				}
 
-				agenciaDeposito = (Agencia) GenericDao.getGenericDao().consultarByQuery(
-						String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
-				if (agenciaDeposito == null) {
-					JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
-					return;
+				if (!chkContaLogada.isSelected()) {
+
+					agenciaDeposito = (Agencia) GenericDao.getGenericDao().consultarByQuery(
+							String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
+					if (agenciaDeposito == null) {
+						JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
+						return;
+					}
+
+					contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(
+							String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
+									tfConta.getText().trim(), agenciaDeposito.getId()));
+
+					if (contaDeposito == null) {
+						JOptionPane.showMessageDialog(null, "Conta nao encontrada!");
+						return;
+					}
+
+					tfTitular.setText(contaDeposito.getPessoa().getNome());
+					tfTipoConta.setText(contaDeposito.getTipoConta().name());
+
+					contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
+
+				} else {
+					JOptionPane.showMessageDialog(null, UsuarioLogado.getContaUsuarioLogado().countObservers());
+					UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
 				}
-
-				contaDeposito = (Conta) GenericDao.getGenericDao()
-						.consultarByQuery(String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
-								tfConta.getText().trim(), agenciaDeposito.getId()));
-
-				if (contaDeposito == null) {
-					JOptionPane.showMessageDialog(null, "Conta nao encontrada!");
-					return;
-				}
-
-				tfTitular.setText(contaDeposito.getPessoa().getNome());
-				tfTipoConta.setText(contaDeposito.getTipoConta().name());
-
-				contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
 
 				TelaBackground.clearPanelMenu();
 				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.DEPOSITO));
