@@ -73,7 +73,6 @@ public class OpcoesSaque extends JPanel {
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,tfValor.getText());
 				OpcaoSacar(tfValor.getValue());
 			}
 		});

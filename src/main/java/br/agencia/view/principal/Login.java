@@ -20,6 +20,7 @@ import br.agencia.control.HibernateUtil;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaFactory;
 import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.TelaFactory;
 import br.agencia.model.util.UsuarioLogado;
@@ -81,9 +82,15 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
 					return;
 				}
+				
 
 				UsuarioLogado.setNewUser(usuarioLogin);
 
+				if (UsuarioLogado.getContaUsuarioLogado().getSituacaoConta() == SituacaoConta.INATIVA){
+					JOptionPane.showMessageDialog(null, "Esta conta esta desativada.", "Alerta", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				
 				new TelaFactory().create(usuarioLogin.getTipoUsuario());
 				TelaBackground.getTelaPrincipal().setSize(700, 660);
 				TelaBackground.getTelaPrincipal().setLocationRelativeTo(null);

@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
@@ -28,7 +27,6 @@ public class PagamentoCliente extends JPanel {
 
 	private static final long serialVersionUID = -3894477076695872825L;
 	private JNumberFormatField tfValor = null;
-	private Conta pagamento;
 	private JTextField tfCodigoDeBarra;
 
 	public PagamentoCliente() {

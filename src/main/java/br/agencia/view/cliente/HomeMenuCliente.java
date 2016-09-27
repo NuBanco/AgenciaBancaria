@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.agencia.model.entidadesPersistidas.Conta;
-import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.enums.SituacaoConta;
+import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
 
@@ -80,10 +81,9 @@ public class HomeMenuCliente extends JPanel {
 		btnOpFinalizar.setBounds(83, 176, 180, 30);
 		btnOpFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				encerrarConta();
+				new FinalizaConta();
 			}
 
-			
 		});
 		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 22));
 
@@ -120,17 +120,6 @@ public class HomeMenuCliente extends JPanel {
 												GroupLayout.PREFERRED_SIZE))
 						.addGap(111)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
-	}
-	
-	private void encerrarConta() {
-		contaCliente = UsuarioLogado.getContaUsuarioLogado();
-		if (contaCliente.getSaldo().compareTo(new BigDecimal("0.00")) > 0) {
-			JOptionPane.showMessageDialog(null,"Você possui um crédito em conta no valor de R$: " 
-					+ (contaCliente.getSaldo()) 
-					+ (" . \n Para finalizar essa conta é necessário ter saldo zerado."),"Alerta", JOptionPane.WARNING_MESSAGE);
-		}else {
-			JOptionPane.showMessageDialog(null,"Conta " + contaCliente.getNumero().toString() + " finalizada com sucesso.");
-		}
 	}
 
 	private void createPanel(final JPanel panel) {
