@@ -163,7 +163,6 @@ public class TelaBackground extends JFrame implements Observer {
 		panel.setLayout(gl_panel);
 
 		getContentPane().add(getPanelMenu(), BorderLayout.CENTER);
-		panelMenu.setLayout(null);
 	}
 
 	public static JFrame getTelaPrincipal() {
