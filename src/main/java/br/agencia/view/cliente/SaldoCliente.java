@@ -10,7 +10,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,6 +18,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+
+import com.towel.swing.calendar.CalendarView;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.entidadesPersistidas.MovimentoConta;
@@ -56,7 +57,7 @@ public class SaldoCliente extends JPanel {
 		txtDataFinal.setEditable(false);
 		txtDataFinal.setColumns(10);
 
-		JButton btnAvancaDia = new JButton(">");
+		CalendarView btnAvancaDia = new CalendarView();
 		btnAvancaDia.setFont(new Font("Arial", Font.BOLD, 12));
 
 		JButton btnAvancaMes = new JButton(">>");
@@ -104,7 +105,8 @@ public class SaldoCliente extends JPanel {
 			}
 		});
 
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
+		GroupLayout groupLayout = new GroupLayout(this);
+//		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout
 				.setHorizontalGroup(
 						groupLayout.createParallelGroup(Alignment.LEADING)
