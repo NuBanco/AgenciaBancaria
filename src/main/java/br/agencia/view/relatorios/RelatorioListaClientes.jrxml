@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-09-27T01:00:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioListaClientes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4d76ffe-71e1-4b5d-89df-2dcbec7d2629">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Modelo Custom"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="DataBanco" uuid="ab09b519-d57d-442c-8e53-81b9f4da173b">
+		<property name="com.jaspersoft.studio.data.sql.tables" value="cHVibGljLmFnZW5jaWEgQVMgLDIwLDczLGJkMDdkYTU0LTAxZDYtNDBmNy1iYTI3LTAwMjFlZDQ2&#xA;MmE1ZjtwdWJsaWMucGVzc29hIEFTICwzNDEsNjAsNzQ3NThiZmYtNzQyZC00ZGY5LTkxNjctZGEw&#xA;OTRlODIyYzI5O3B1YmxpYy5jb250YSBBUyAsMTgwLDIwLDIxNGE4MzUyLWE2MGEtNGYwMy1iZDc1&#xA;LTZiMzM3YmY3M2E5NDs="/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Nubanco"/>
+		<queryString>
+			<![CDATA[SELECT public.agencia.age_numagencia,
+	public.conta.con_dataabertura,
+	public.conta.con_tipoconta,
+	public.conta.con_saldo,
+	public.pessoa.pes_nome,
+	public.conta.con_numero
+FROM public.agencia,
+	public.conta,
+	public.pessoa
+
+]]>
+		</queryString>
+		<field name="con_tipoconta" class="java.lang.Integer"/>
+		<field name="age_numagencia" class="java.lang.String"/>
+		<field name="con_numero" class="java.lang.String"/>
+		<field name="pes_nome" class="java.lang.String"/>
+		<field name="con_dataabertura" class="java.sql.Timestamp"/>
+		<field name="con_saldo" class="java.math.BigDecimal"/>
+		<group name="con_tipoconta">
+			<groupExpression><![CDATA[$F{con_tipoconta}]]></groupExpression>
+		</group>
+		<group name="age_numagencia">
+			<groupExpression><![CDATA[$F{age_numagencia}]]></groupExpression>
+		</group>
+		<group name="con_numero">
+			<groupExpression><![CDATA[$F{con_numero}]]></groupExpression>
+		</group>
+		<group name="pes_nome">
+			<groupExpression><![CDATA[$F{pes_nome}]]></groupExpression>
+		</group>
+		<group name="con_dataabertura">
+			<groupExpression><![CDATA[$F{con_dataabertura}]]></groupExpression>
+		</group>
+		<group name="con_saldo">
+			<groupExpression><![CDATA[$F{con_saldo}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="66" width="230" height="29" uuid="03a522ab-548c-40ba-958a-7b3dabeb2c57"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Um dia fica pronto!]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="98" y="0" width="232" height="66" forecolor="#000000" uuid="d200fa3f-4c2c-4ac7-bf66-07e5db23dc17"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[NuBanco]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="370" y="0" width="165" height="20" forecolor="#000000" uuid="b62c591a-5706-4b7f-a1f6-c978ec811ebb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+			</textField>
+			<image>
+				<reportElement x="0" y="10" width="96" height="77" uuid="57d2ad30-3322-4f4d-88c1-ea8c75cdd143"/>
+				<imageExpression><![CDATA["img/logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="201" splitType="Stretch">
+			<componentElement>
+				<reportElement x="10" y="1" width="545" height="200" uuid="8becd3a9-bd5d-432a-86ec-b173e12e5709">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataBanco" uuid="7b28b0d9-cb9a-4c77-8cd9-e88cdf493dbb">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="33" uuid="89822e3e-7acd-4676-b2fe-1fb8f9ec3f47">
+						<jr:tableHeader style="Table 1_TH" height="30"/>
+						<jr:tableFooter style="Table 1_TH" height="30"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="33" height="30" uuid="f1cba5b6-e1b4-43df-99e7-0eea4e92fc9a"/>
+								<text><![CDATA[con_tipoconta]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table 1_CH" height="30"/>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="33" height="30" uuid="eebde6fd-9171-46c5-94a4-9c5e0e951644"/>
+								<textFieldExpression><![CDATA[$F{con_tipoconta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="33" uuid="cf68f34c-c284-4598-be6f-6ceada498ef0">
+						<jr:tableHeader style="Table 1_TH" height="30"/>
+						<jr:tableFooter style="Table 1_TH" height="30"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="33" height="30" uuid="d5598582-9235-49c6-8f3a-9e2e8125293e"/>
+								<text><![CDATA[age_numagencia]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table 1_CH" height="30"/>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="33" height="30" uuid="1c0be04a-7ee8-459d-9773-9cb57a038b70"/>
+								<textFieldExpression><![CDATA[$F{age_numagencia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="33" uuid="2fd3f3a5-3456-49a2-b5e7-0b6234bcc2ad">
+						<jr:tableHeader style="Table 1_TH" height="30"/>
+						<jr:tableFooter style="Table 1_TH" height="30"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="33" height="30" uuid="6f5e3498-68ec-408f-96cf-896cbaaa0409"/>
+								<text><![CDATA[con_numero]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table 1_CH" height="30"/>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="33" height="30" uuid="a59fd5d6-ab9a-443e-8a8e-6ca857149155"/>
+								<textFieldExpression><![CDATA[$F{con_numero}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="33" uuid="3c924081-f725-42b6-8b5a-306b5b87846b">
+						<jr:tableHeader style="Table 1_TH" height="30"/>
+						<jr:tableFooter style="Table 1_TH" height="30"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="33" height="30" uuid="ca08e8a7-016b-4221-a520-18e20271fe69"/>
+								<text><![CDATA[pes_nome]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table 1_CH" height="30"/>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="33" height="30" uuid="3a1b9cc4-be20-4a13-b200-981515dea02d"/>
+								<textFieldExpression><![CDATA[$F{pes_nome}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="33" uuid="ea08e162-dce7-47a6-96f3-77303f7592bb">
+						<jr:tableHeader style="Table 1_TH" height="30"/>
+						<jr:tableFooter style="Table 1_TH" height="30"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="33" height="30" uuid="493ccbf7-3883-46ca-af62-80d528d14765"/>
+								<text><![CDATA[con_dataabertura]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table 1_CH" height="30"/>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="33" height="30" uuid="bde72c3d-39df-451b-8775-726988fe4f1c"/>
+								<textFieldExpression><![CDATA[$F{con_dataabertura}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="33" uuid="33053b31-a6d5-486f-acc8-a49b54d926cc">
+						<jr:tableHeader style="Table 1_TH" height="30"/>
+						<jr:tableFooter style="Table 1_TH" height="30"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="33" height="30" uuid="b3b380e3-2766-4c3f-96f7-047b6659be97"/>
+								<text><![CDATA[con_saldo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table 1_CH" height="30"/>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="33" height="30" uuid="77030d67-f8f6-4872-bc38-de6db31aa184"/>
+								<textFieldExpression><![CDATA[$F{con_saldo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="226" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
