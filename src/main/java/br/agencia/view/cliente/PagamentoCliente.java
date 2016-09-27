@@ -4,24 +4,32 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
+import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
 
 public class PagamentoCliente extends JPanel {
 
 	private static final long serialVersionUID = -3894477076695872825L;
-	private JTextField tfCodigoDeBarra;
 	private JNumberFormatField tfValor = null;
+	private Conta pagamento;
+	private JTextField tfCodigoDeBarra;
 
 	public PagamentoCliente() {
 
@@ -32,6 +40,14 @@ public class PagamentoCliente extends JPanel {
 
 		tfCodigoDeBarra = new JTextField();
 		tfCodigoDeBarra.setFont(new Font("Arial", Font.PLAIN, 17));
+		tfCodigoDeBarra.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				String caracteres = "0987654321";
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+			}
+		});
 		tfCodigoDeBarra.setColumns(10);
 
 		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
@@ -40,7 +56,26 @@ public class PagamentoCliente extends JPanel {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if (tfCodigoDeBarra.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "Código de barras deve ser preenchido!");
+					return;
+				}
 
+				if (tfValor.getValue().doubleValue() <= 0) {
+					JOptionPane.showMessageDialog(null, "Valor invalido para Pagamento!");
+					return;
+				}
+
+				if (tfValor.getValue().doubleValue() > UsuarioLogado.getContaUsuarioLogado().getSaldo().doubleValue()) {
+					JOptionPane.showMessageDialog(null, "Saldo insuficiente para pagamento!");
+					return;
+				}
+
+				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
+						TipoMovimento.PAGAMENTO);
+
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.PAGAMENTO));
 			}
 		});
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
