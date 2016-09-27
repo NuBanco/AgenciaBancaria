@@ -45,7 +45,9 @@ public class TelaBackground extends JFrame implements Observer {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		UsuarioLogado.getContaUsuarioLogado().registrarObservadores(this);
+		if (UsuarioLogado.getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.CLIENTE)) {
+			UsuarioLogado.getContaUsuarioLogado().addObserver(this);
+		}
 
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
 		setTitle("Banco Tads");
@@ -206,10 +208,9 @@ public class TelaBackground extends JFrame implements Observer {
 	}
 
 	@Override
-	public void update(Observable conta, Object novoSaldo) {
-		JOptionPane.showMessageDialog(null, "update observer!");
-		if (conta instanceof Conta) {
-			lbResutSaldo.setText(new BigDecimal((char[]) novoSaldo).toString());
+	public void update(Observable observable, Object object) {
+		if (observable instanceof Conta) {
+			lbResutSaldo.setText(UsuarioLogado.getContaUsuarioLogado().getSaldo().toString());
 		}
 
 	}

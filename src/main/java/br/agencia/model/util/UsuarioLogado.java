@@ -7,6 +7,7 @@ import br.agencia.view.principal.Login;
 
 public class UsuarioLogado extends Usuario {
 	private static Usuario usuarioLogado;
+	private static Conta contaUsuario;
 
 	public static Usuario getUsuarioLogado() {
 		if (usuarioLogado == null) {
@@ -16,8 +17,11 @@ public class UsuarioLogado extends Usuario {
 	}
 
 	public static Conta getContaUsuarioLogado() {
-		return (Conta) GenericDao.getGenericDao().consultarByQuery(
-				String.format("from Conta where con_idPessoa = %d", getUsuarioLogado().getPessoa().getId()));
+		if (contaUsuario == null) {
+			contaUsuario = (Conta) GenericDao.getGenericDao().consultarByQuery(
+					String.format("from Conta where con_idPessoa = %d", getUsuarioLogado().getPessoa().getId()));
+		}
+		return contaUsuario;
 	}
 
 	public static Usuario setNewUser(Usuario usuarioLogin) {

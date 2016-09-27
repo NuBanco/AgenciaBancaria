@@ -2,11 +2,8 @@ package br.agencia.model.entidadesPersistidas;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,16 +22,12 @@ import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.AtualizarSaldo;
-import br.agencia.model.util.UsuarioLogado;
 
 @Entity
 @Table(name = "conta")
 public class Conta extends Observable implements Serializable {
 
 	private static final long serialVersionUID = -5010028474742069862L;
-
-	@Transient
-	private List<Observer> observadores;
 
 	@Id
 	@GeneratedValue
@@ -63,6 +56,9 @@ public class Conta extends Observable implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "con_idagencia")
 	private Agencia agencia;
+
+	@Transient
+	private ContaObserver contaObserver;
 
 	public Integer getId() {
 		return idConta;
@@ -151,26 +147,12 @@ public class Conta extends Observable implements Serializable {
 
 		this.saldo = saldo.add(saldoAuxiliar.add(valor));
 
-		notificarObservadores(saldo);
-
 		GenericDao.getGenericDao().alterar(this);
 		new AtualizarSaldo(this, valor, tipoMovimento);
 
+		setChanged();
+		notifyObservers();
+
 		return this;
-	}
-
-	public void notificarObservadores(BigDecimal valor) {
-		UsuarioLogado.getContaUsuarioLogado().getObservadores().forEach(observer -> observer.update(this, valor));
-	}
-
-	public void registrarObservadores(Observer observer) {
-		UsuarioLogado.getContaUsuarioLogado().getObservadores().add(observer);
-	}
-
-	public List<Observer> getObservadores() {
-		if (observadores == null){
-			observadores = new ArrayList<>();
-		}
-		return observadores;
 	}
 }
