@@ -22,6 +22,7 @@ import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.ContaFacade;
@@ -130,11 +131,9 @@ public class CadastroConta extends JPanel {
 							.setSenha(new CriptografiaSenhaCliente().encode(tfSenhaConta.getText()))
 							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
 					Conta novaConta = new Conta();
-					// novaConta.setDataAbertura(new
-					// Date(System.currentTimeMillis()))
 					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))
 							.setTipoConta(TipoConta.valueOf(cbbTipoConta.getSelectedItem().toString()))
-							.setAgencia(agenciaValidar).setPessoa(novaPessoa)
+							.setSituacaoConta(SituacaoConta.ATIVA).setAgencia(agenciaValidar).setPessoa(novaPessoa)
 							.setNumero(String.valueOf(getNumeroContaDisponivel()));
 
 					new ContaFacade(novaPessoa, novoUsuario, novaConta);
