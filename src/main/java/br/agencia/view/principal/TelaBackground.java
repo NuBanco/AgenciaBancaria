@@ -6,12 +6,15 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -21,7 +24,7 @@ import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
 
-public class TelaBackground extends JFrame {
+public class TelaBackground extends JFrame implements Observer {
 
 	private static final long serialVersionUID = -4312697814718930403L;
 
@@ -38,27 +41,11 @@ public class TelaBackground extends JFrame {
 
 	protected static JPanel panelMenu = new JPanel();
 
-	public static JFrame getTelaPrincipal() {
-		if (telaPrincipal == null) {
-			telaPrincipal = new TelaBackground();
-		}
-		configuraCabecalhoPadrao();
-		return telaPrincipal;
-	}
-
-	public static JPanel getPanelMenu() {
-		return panelMenu;
-	}
-
-	public static void clearPanelMenu() {
-		getPanelMenu().setLayout(null);
-		getPanelMenu().removeAll();
-		getPanelMenu().updateUI();
-	}
-
 	public TelaBackground() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		UsuarioLogado.getContaUsuarioLogado().registrarObservadores(this);
 
 		ImageIcon logo = new ImageIcon("img\\logo.jpg");
 		setTitle("Banco Tads");
@@ -176,6 +163,24 @@ public class TelaBackground extends JFrame {
 		panelMenu.setLayout(null);
 	}
 
+	public static JFrame getTelaPrincipal() {
+		if (telaPrincipal == null) {
+			telaPrincipal = new TelaBackground();
+		}
+		configuraCabecalhoPadrao();
+		return telaPrincipal;
+	}
+
+	public static JPanel getPanelMenu() {
+		return panelMenu;
+	}
+
+	public static void clearPanelMenu() {
+		getPanelMenu().setLayout(null);
+		getPanelMenu().removeAll();
+		getPanelMenu().updateUI();
+	}
+
 	public static void configuraCabecalhoPadrao() {
 
 		Usuario tipoUsuario = new Usuario();
@@ -199,4 +204,14 @@ public class TelaBackground extends JFrame {
 			lbResutSaldo.setText(contaCliente.getSaldo().toString());
 		}
 	}
+
+	@Override
+	public void update(Observable conta, Object novoSaldo) {
+		JOptionPane.showMessageDialog(null, "update observer!");
+		if (conta instanceof Conta) {
+			lbResutSaldo.setText(new BigDecimal((char[]) novoSaldo).toString());
+		}
+
+	}
+
 }
