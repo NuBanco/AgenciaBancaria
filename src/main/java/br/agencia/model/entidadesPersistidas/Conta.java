@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.swing.JOptionPane;
 
 import br.agencia.control.GenericDao;
 import br.agencia.model.enums.SituacaoConta;

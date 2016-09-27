@@ -14,7 +14,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -34,7 +33,8 @@ public class TelaBackground extends JFrame implements Observer {
 	private static JLabel lbAgencia;
 	private static JLabel lbTipoConta;
 	private static JLabel lbSaldo;
-	private static JNumberFormatField lbResutSaldo = null;
+	private static JNumberFormatField nfSaldo = null;
+	private static JLabel lbResultSaldo;
 	private static JLabel lbResultAgencia;
 	private static JLabel lbResultConta;
 	public static Conta contaCliente;
@@ -90,9 +90,10 @@ public class TelaBackground extends JFrame implements Observer {
 		lbResultConta = new JLabel();
 		lbResultConta.setFont(new Font("Arial", Font.BOLD, 16));
 
-		lbResutSaldo = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
-		// lbResutSaldo = new JLabel();
-		lbResutSaldo.setFont(new Font("Arial", Font.BOLD, 16));
+		nfSaldo = new JNumberFormatField(new DecimalFormat("R$ ###,###,##0.00")).setLimit(11);
+		nfSaldo.setVisible(false);
+		lbResultSaldo = new JLabel("");
+		lbResultSaldo.setFont(new Font("Arial", Font.BOLD, 16));
 
 		JLabel lbDivisor = new JLabel("-");
 		lbDivisor.setFont(new Font("Arial Black", Font.BOLD, 16));
@@ -128,7 +129,7 @@ public class TelaBackground extends JFrame implements Observer {
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 										.addComponent(lbResultAgencia, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
 												137, Short.MAX_VALUE)
-										.addComponent(lbResutSaldo, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+										.addComponent(lbResultSaldo, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
 										.addComponent(lbResultConta, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 137,
 												Short.MAX_VALUE))
 								.addContainerGap())
@@ -154,7 +155,7 @@ public class TelaBackground extends JFrame implements Observer {
 												.addComponent(lbTipoConta).addComponent(lbResultConta))
 										.addPreferredGap(ComponentPlacement.RELATED)
 										.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lbSaldo)
-												.addComponent(lbResutSaldo))
+												.addComponent(lbResultSaldo))
 										.addGap(17))
 								.addComponent(lbLogo, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
 						.addContainerGap()));
@@ -192,25 +193,25 @@ public class TelaBackground extends JFrame implements Observer {
 			lbAgencia.setVisible(false);
 			lbTipoConta.setVisible(false);
 			lbSaldo.setVisible(false);
-			lbResutSaldo.setVisible(false);
 			lbResultConta.setVisible(false);
 			lbResultAgencia.setVisible(false);
 		} else {
 			contaCliente = UsuarioLogado.getContaUsuarioLogado();
 			lbResultAgencia.setText(contaCliente.getAgencia().getCodAgencia());
 			lbResultConta.setText(contaCliente.getTipoConta().name());
-			lbResutSaldo.enable(false);
 			if (contaCliente.getSaldo() == null) {
 				contaCliente.setSaldo(new BigDecimal(0F));
 			}
-			lbResutSaldo.setText(contaCliente.getSaldo().toString());
+			nfSaldo.setText(contaCliente.getSaldo().toString());
+			lbResultSaldo.setText(nfSaldo.getText());
 		}
 	}
 
 	@Override
 	public void update(Observable observable, Object object) {
 		if (observable instanceof Conta) {
-			lbResutSaldo.setText(UsuarioLogado.getContaUsuarioLogado().getSaldo().toString());
+			nfSaldo.setText(UsuarioLogado.getContaUsuarioLogado().getSaldo().toString());
+			lbResultSaldo.setText(nfSaldo.getText());
 		}
 
 	}

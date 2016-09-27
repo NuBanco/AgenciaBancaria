@@ -87,8 +87,6 @@ public class Login extends JFrame {
 
 				UsuarioLogado.setNewUser(usuarioLogin);
 
-				UsuarioLogado.getContaUsuarioLogado().setSituacaoConta(SituacaoConta.ATIVA);
-				GenericDao.getGenericDao().alterar(UsuarioLogado.getUsuarioLogado());
 				if (UsuarioLogado.getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.CLIENTE)) {
 					if (UsuarioLogado.getContaUsuarioLogado().getSituacaoConta() == SituacaoConta.INATIVA) {
 						JOptionPane.showMessageDialog(null, "Esta conta esta desativada.", "Alerta",
