@@ -95,7 +95,7 @@ public class HomeMenuCliente extends JPanel {
 
 		});
 		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 22));
-
+/***/
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(82)
