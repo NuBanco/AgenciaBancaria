@@ -60,6 +60,7 @@ public class SaldoCliente extends JPanel {
 
 		CalendarView calendarInicial = new CalendarView();
 		calendarInicial.setTodayString("Hoje");
+
 		CalendarView calendarFinal = new CalendarView();
 		calendarFinal.setTodayString("Hoje");
 
