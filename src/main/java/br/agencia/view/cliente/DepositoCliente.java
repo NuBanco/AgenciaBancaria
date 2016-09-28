@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoConta;
@@ -112,14 +112,14 @@ public class DepositoCliente extends JPanel {
 
 				if (!chkContaLogada.isSelected()) {
 
-					agenciaDeposito = (Agencia) GenericDao.getGenericDao().consultarByQuery(
+					agenciaDeposito = (Agencia) ObjectDao.getObjectDao().consultarByQuery(
 							String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
 					if (agenciaDeposito == null) {
 						JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
 						return;
 					}
 
-					contaDeposito = (Conta) GenericDao.getGenericDao().consultarByQuery(
+					contaDeposito = (Conta) ObjectDao.getObjectDao().consultarByQuery(
 							String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
 									tfConta.getText().trim(), agenciaDeposito.getId()));
 

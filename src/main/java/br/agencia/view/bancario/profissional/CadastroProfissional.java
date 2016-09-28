@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaBancario;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Pessoa;
@@ -220,12 +220,12 @@ public class CadastroProfissional extends JPanel {
 
 	protected void gravarUsuario(Usuario usuario) {
 		if (usuario.getId() == null) {
-			GenericDao.getGenericDao().incluir(usuario.getPessoa());
-			GenericDao.getGenericDao().incluir(usuario);
+			ObjectDao.getObjectDao().incluir(usuario.getPessoa());
+			ObjectDao.getObjectDao().incluir(usuario);
 			JOptionPane.showMessageDialog(null, String.format("Usuario %s criado com sucesso!", tfNome.getText()));
 		} else {
-			GenericDao.getGenericDao().alterar(usuario.getPessoa());
-			GenericDao.getGenericDao().alterar(usuario);
+			ObjectDao.getObjectDao().alterar(usuario.getPessoa());
+			ObjectDao.getObjectDao().alterar(usuario);
 			JOptionPane.showMessageDialog(null, String.format("Usuario %s alterado com sucesso!", tfNome.getText()));
 		}
 	}
@@ -247,7 +247,7 @@ public class CadastroProfissional extends JPanel {
 		}
 
 		if (usuario.getId() == null) {
-			Usuario usuarioValidar = (Usuario) GenericDao
+			Usuario usuarioValidar = (Usuario) ObjectDao
 					.consultarByQuery("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
 			if (usuarioValidar != null) {

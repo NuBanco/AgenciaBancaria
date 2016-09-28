@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import org.hibernate.loader.GeneratedCollectionAliases;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.control.HibernateUtil;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaFactory;
 import br.agencia.model.entidadesPersistidas.Pessoa;
@@ -69,7 +69,7 @@ public class Login extends JFrame {
 					return;
 				}
 
-				usuarioLogin = (Usuario) GenericDao
+				usuarioLogin = (Usuario) ObjectDao
 						.consultarByQuery(String.format("from Usuario where usu_login like '%s'", tfUsuario.getText()));
 
 				if (usuarioLogin == null) {
@@ -143,15 +143,15 @@ public class Login extends JFrame {
 	}
 
 	private void validarAdmin() {
-		Usuario usuarioAdmin = (Usuario) GenericDao.consultarByQuery("from Usuario where usu_login like 'admin'");
+		Usuario usuarioAdmin = (Usuario) ObjectDao.consultarByQuery("from Usuario where usu_login like 'admin'");
 		if (usuarioAdmin == null) {
 			usuarioAdmin = new Usuario();
 			Pessoa pessoaAdmin = new Pessoa();
 			pessoaAdmin.setCpf("00000000000").setIdade(99).setNome("ADMIN").setSenhaOperacao("123456");
 			usuarioAdmin.setLogin("admin").setSenha("8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918")
 					.setTipoUsuario(TipoUsuario.BANCARIO).setPessoa(pessoaAdmin);
-			GenericDao.getGenericDao().incluir(pessoaAdmin);
-			GenericDao.getGenericDao().incluir(usuarioAdmin);
+			ObjectDao.getObjectDao().incluir(pessoaAdmin);
+			ObjectDao.getObjectDao().incluir(usuarioAdmin);
 		}
 	}
 

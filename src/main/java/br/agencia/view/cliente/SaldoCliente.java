@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.towel.swing.calendar.CalendarView;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.MovimentoConta;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
@@ -178,7 +178,7 @@ public class SaldoCliente extends JPanel {
 		String coluna[] = { "Operacao", "Data", "Valor" };
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
 
-		movimentos = (List<MovimentoConta>) GenericDao.listar(query);
+		movimentos = (List<MovimentoConta>) ObjectDao.listar(query);
 		movimentos.forEach(mov -> modelo.addRow(new String[] { mov.getTipoMovimento().name(),
 				mov.getDataEvento().toString(), mov.getValor().toString() }));
 

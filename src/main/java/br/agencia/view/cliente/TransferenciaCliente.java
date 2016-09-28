@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
@@ -93,14 +93,14 @@ public class TransferenciaCliente extends JPanel {
 					return;
 				}
 
-				agenciaTransferencia = (Agencia) GenericDao.getGenericDao().consultarByQuery(
+				agenciaTransferencia = (Agencia) ObjectDao.getObjectDao().consultarByQuery(
 						String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
 				if (agenciaTransferencia == null) {
 					JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
 					return;
 				}
 
-				contaTransferencia = (Conta) GenericDao.getGenericDao()
+				contaTransferencia = (Conta) ObjectDao.getObjectDao()
 						.consultarByQuery(String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
 								tfConta.getText().trim(), agenciaTransferencia.getId()));
 

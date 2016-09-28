@@ -18,7 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
@@ -36,7 +36,7 @@ public class ListaAgencia extends JPanel {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
-		agencias = (List<Agencia>) GenericDao.listar("from Agencia");
+		agencias = (List<Agencia>) ObjectDao.listar("from Agencia");
 
 		tbAgencia = new JTable();
 		tbAgencia.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -56,7 +56,7 @@ public class ListaAgencia extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (tbAgencia.getSelectedRow() != -1) {
 					TelaBackground.clearPanelMenu();
-					Agencia agenciaEditar = (Agencia) GenericDao
+					Agencia agenciaEditar = (Agencia) ObjectDao
 							.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'",
 									tbAgencia.getValueAt(tbAgencia.getSelectedRow(), 1)));
 					TelaBackground.getPanelMenu().add(new CadastroAgencia(agenciaEditar));

@@ -19,7 +19,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.MovimentoConta;
@@ -120,19 +120,19 @@ public class Balanco extends JPanel {
 		btnConsultar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				agenciaConsultar = (Agencia) GenericDao.getGenericDao().consultarByQuery(
+				agenciaConsultar = (Agencia) ObjectDao.getObjectDao().consultarByQuery(
 						String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
 				if (agenciaConsultar == null) {
 					JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
 					return;
 				}
 
-				List<Conta> contas = (List<Conta>) GenericDao
+				List<Conta> contas = (List<Conta>) ObjectDao
 						.listar(String.format("from Conta where con_idagencia = %d", agenciaConsultar.getId()));
 
 				if (contas.size() > 0) {
 					contas.forEach(conta -> {
-						List<MovimentoConta> movimentos = (List<MovimentoConta>) GenericDao
+						List<MovimentoConta> movimentos = (List<MovimentoConta>) ObjectDao
 								.listar(String.format("from MovimentoConta where mov_idconta = %d", conta.getId()));
 
 						if (movimentos.size() > 0) {

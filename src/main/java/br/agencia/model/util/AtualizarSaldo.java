@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.MovimentoConta;
 import br.agencia.model.enums.TipoMovimento;
@@ -19,7 +19,7 @@ public class AtualizarSaldo implements Observable {
 	public AtualizarSaldo(Conta conta, BigDecimal valor, TipoMovimento tipoMovimento) {
 		MovimentoConta movimento = new MovimentoConta();
 		movimento.setValor(valor).setDataEvento(new Date(System.currentTimeMillis())).setTipoMovimento(tipoMovimento).setConta(conta);
-		GenericDao.getGenericDao().incluir(movimento);
+		ObjectDao.getObjectDao().incluir(movimento);
 	}
 
 	@Override

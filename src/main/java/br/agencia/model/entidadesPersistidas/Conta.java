@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoMovimento;
@@ -142,7 +142,7 @@ public class Conta extends Observable implements Serializable {
 
 		this.saldo = saldo.add(saldoAuxiliar.add(valor));
 
-		GenericDao.getGenericDao().alterar(this);
+		ObjectDao.getObjectDao().alterar(this);
 		new AtualizarSaldo(this, valor, tipoMovimento);
 
 		setChanged();

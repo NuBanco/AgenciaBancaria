@@ -9,22 +9,22 @@ import org.hibernate.Session;
 
 import br.agencia.model.entidadesPersistidas.Agencia;
 
-public class GenericDao {
+public class ObjectDao {
 	private static Session session;
-	private static GenericDao genericDao;
+	private static ObjectDao objectDao;
 
-	public static GenericDao getGenericDao() {
-		if (genericDao == null){
-			genericDao = new GenericDao();
+	public static ObjectDao getObjectDao() {
+		if (objectDao == null){
+			objectDao = new ObjectDao();
 		}
-		return genericDao;
+		return objectDao;
 	}
 
-	public void incluir(Object objetoGeneric) {
+	public void incluir(Object objetoDao) {
 		try {
 			session = HibernateUtil.getSession();
 			session.beginTransaction();
-			session.save(objetoGeneric);
+			session.save(objetoDao);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -34,11 +34,11 @@ public class GenericDao {
 		}
 	}
 
-	public void alterar(Object objetoGeneric) {
+	public void alterar(Object objetoDao) {
 		try {
 			session = HibernateUtil.getSession();
 			session.beginTransaction();
-			session.update(objetoGeneric);
+			session.update(objetoDao);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -48,11 +48,11 @@ public class GenericDao {
 		}
 	}
 
-	public void excluir(Object objetoGeneric) {
+	public void excluir(Object objetoDao) {
 		try {
 			session = HibernateUtil.getSession();
 			session.beginTransaction();
-			session.delete(objetoGeneric);
+			session.delete(objetoDao);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
@@ -61,23 +61,6 @@ public class GenericDao {
 			session.close();
 		}
 	}
-
-	public Object consultarById(int idPesquisa) {
-		Object retorno = new Object();
-		try {
-			session = HibernateUtil.getSession();
-			session.beginTransaction();
-			retorno = (Object) session.get(Object.class, idPesquisa);
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			session.getTransaction().rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return retorno;
-	}
-
 
 	public static Object consultarByQuery(String parameterQuery) {
 		List<Object> list = new ArrayList<>();
@@ -108,16 +91,4 @@ public class GenericDao {
 		}
 		return lista;
 	}
-
-	/*
-	 * Verificar se este metodo sera utilizado
-	 *
-	 * @SuppressWarnings("unchecked") public List<Object> listar(Object
-	 * objetoGeneric) { Criteria criteria =
-	 * session.createCriteria(Object.class); if
-	 * (objetoGeneric.getLogin().length() > 0) {
-	 * criteria.add(Restrictions.like("nome", objetoGeneric.getLogin() + "%"));
-	 * } criteria.addOrder(Order.asc("nome")); return (List<Object>)
-	 * criteria.list(); }
-	 */
 }

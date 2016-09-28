@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
@@ -36,7 +36,7 @@ public class ListaProfissional extends JPanel {
 		tbProfissionais.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbProfissionais.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		List<Usuario> profissionais = (List<Usuario>) GenericDao.listar("from Usuario where usu_tipousuario = 0");
+		List<Usuario> profissionais = (List<Usuario>) ObjectDao.listar("from Usuario where usu_tipousuario = 0");
 
 		String coluna[] = { "Nome", "Username" };
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
@@ -65,7 +65,7 @@ public class ListaProfissional extends JPanel {
 
 					String usuarioSelecionado = (String) tbProfissionais.getValueAt(tbProfissionais.getSelectedRow(),
 							1);
-					Usuario usuarioEditar = (Usuario) GenericDao.consultarByQuery(
+					Usuario usuarioEditar = (Usuario) ObjectDao.consultarByQuery(
 							String.format("from Usuario where usu_login like '%s'", usuarioSelecionado));
 					TelaBackground.getPanelMenu().add(new CadastroProfissional(usuarioEditar));
 				}

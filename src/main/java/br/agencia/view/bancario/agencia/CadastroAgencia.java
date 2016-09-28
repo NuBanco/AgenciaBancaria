@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.view.principal.TelaBackground;
 
@@ -133,10 +133,10 @@ public class CadastroAgencia extends JPanel {
 
 	protected void gravarAgencia(Agencia agencia) {
 		if (agencia.getId() == null) {
-			GenericDao.getGenericDao().incluir(agencia);
+			ObjectDao.getObjectDao().incluir(agencia);
 			JOptionPane.showMessageDialog(null, String.format("Agencia %s criada com sucesso!", tfNome.getText()));
 		} else {
-			GenericDao.getGenericDao().alterar(agencia);
+			ObjectDao.getObjectDao().alterar(agencia);
 			JOptionPane.showMessageDialog(null, String.format("Agencia %s alterada com sucesso!", tfNome.getText()));
 		}
 	}
@@ -154,7 +154,7 @@ public class CadastroAgencia extends JPanel {
 		}
 
 		if (agencia.getId() == null) {
-			Agencia agenciaValidar = (Agencia) GenericDao
+			Agencia agenciaValidar = (Agencia) ObjectDao
 					.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'", tfNumero.getText()));
 
 			if (agenciaValidar != null) {

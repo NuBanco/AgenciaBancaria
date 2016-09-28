@@ -1,6 +1,6 @@
 package br.agencia.model.util;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
@@ -14,14 +14,14 @@ public class ContaFacade {
 	}
 
 	private void criarConta(Conta conta) {
-		GenericDao.getGenericDao().incluir(conta);
+		ObjectDao.getObjectDao().incluir(conta);
 	}
 
 	private void criarUsuario(Usuario usuario) {
-		GenericDao.getGenericDao().incluir(usuario);
+		ObjectDao.getObjectDao().incluir(usuario);
 	}
 
 	private void criarPessoa(Pessoa pessoa) {
-		GenericDao.getGenericDao().incluir(pessoa);
+		ObjectDao.getObjectDao().incluir(pessoa);
 	}
 }

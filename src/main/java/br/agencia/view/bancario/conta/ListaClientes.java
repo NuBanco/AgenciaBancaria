@@ -16,7 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
@@ -36,7 +36,7 @@ public class ListaClientes extends JPanel {
 		tbContas.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbContas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		List<Conta> contas = (List<Conta>) GenericDao.listar("from Conta");
+		List<Conta> contas = (List<Conta>) ObjectDao.listar("from Conta");
 
 		String coluna[] = { "Tipo Conta", "Agencia", "Numero", "Titular", "Aberta em", "Saldo" };
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);

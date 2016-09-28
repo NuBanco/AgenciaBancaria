@@ -1,6 +1,6 @@
 package br.agencia.model.util;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.view.principal.Login;
@@ -18,7 +18,7 @@ public class UsuarioLogado extends Usuario {
 
 	public static Conta getContaUsuarioLogado() {
 		if (contaUsuario == null) {
-			contaUsuario = (Conta) GenericDao.getGenericDao().consultarByQuery(
+			contaUsuario = (Conta) ObjectDao.getObjectDao().consultarByQuery(
 					String.format("from Conta where con_idPessoa = %d", getUsuarioLogado().getPessoa().getId()));
 		}
 		return contaUsuario;

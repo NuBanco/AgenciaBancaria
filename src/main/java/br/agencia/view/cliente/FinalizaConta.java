@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import javax.swing.JOptionPane;
 
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.util.UsuarioLogado;
@@ -28,7 +28,7 @@ public class FinalizaConta {
 					"Alerta", JOptionPane.WARNING_MESSAGE);
 		} else {
 			UsuarioLogado.getContaUsuarioLogado().setSituacaoConta(SituacaoConta.INATIVA);
-			GenericDao.getGenericDao().alterar(UsuarioLogado.getContaUsuarioLogado());
+			ObjectDao.getObjectDao().alterar(UsuarioLogado.getContaUsuarioLogado());
 			JOptionPane.showMessageDialog(null,
 					"Conta " + contaCliente.getNumero().toString() + " finalizada com sucesso.");
 			System.exit(0);

@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import br.agencia.control.GenericDao;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaCliente;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
@@ -269,7 +269,7 @@ public class CadastroConta extends JPanel {
 
 	protected int getNumeroContaDisponivel() {
 		int numeroConta = (int) (10000 * Math.random());
-		Conta buscaConta = (Conta) GenericDao.getGenericDao()
+		Conta buscaConta = (Conta) ObjectDao.getObjectDao()
 				.consultarByQuery(String.format("from Conta where con_numero LIKE '%s'", numeroConta));
 
 		if (buscaConta == null) {
@@ -298,7 +298,7 @@ public class CadastroConta extends JPanel {
 			return false;
 		}
 
-		agenciaValidar = (Agencia) GenericDao
+		agenciaValidar = (Agencia) ObjectDao
 				.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
 
 		if (agenciaValidar == null) {
@@ -306,7 +306,7 @@ public class CadastroConta extends JPanel {
 			return false;
 		}
 
-		Usuario usuarioValidar = (Usuario) GenericDao
+		Usuario usuarioValidar = (Usuario) ObjectDao
 				.consultarByQuery("from Usuario where usu_login like '" + tfUsername.getText() + "'");
 
 		if (usuarioValidar != null) {
