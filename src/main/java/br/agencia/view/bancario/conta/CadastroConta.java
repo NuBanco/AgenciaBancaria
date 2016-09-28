@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -49,6 +50,9 @@ public class CadastroConta extends JPanel {
 	public CadastroConta() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
+
+		java.sql.Date dataSql = new java.sql.Date(System.currentTimeMillis());
+		Date dataConvertidaEmUtil = new Date(dataSql.getTime());
 
 		tfNome = new JTextField();
 		tfNome.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -121,6 +125,7 @@ public class CadastroConta extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				if (validarInformacoes()) {
+					String teste = new SimpleDateFormat("yyyy-MM-dd").format(dataConvertidaEmUtil);
 
 					Pessoa novaPessoa = new Pessoa();
 					novaPessoa.setNome(tfNome.getText()).setIdade(Integer.parseInt(tfIdade.getText()))
