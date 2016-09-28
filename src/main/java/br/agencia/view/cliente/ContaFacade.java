@@ -44,8 +44,14 @@ public class ContaFacade {
 	}
 
 	public void atualizarSaldo(BigDecimal valor, TipoMovimento tipo) {
-		contaOperacao.setSaldo(valor, tipo);
-		UsuarioLogado.getContaUsuarioLogado().notifyAll();
+		if (contaOperacao.getId() == UsuarioLogado.getContaUsuarioLogado().getId()){
+			UsuarioLogado.getContaUsuarioLogado().setSaldo(valor, tipo);
+		} else {
+			contaOperacao.setSaldo(valor, tipo);
+		}
+
+
+
 	}
 
 	public void sacar(String agencia, String conta, BigDecimal valorSaque) throws ValidacoesException {
@@ -55,13 +61,13 @@ public class ContaFacade {
 		atualizarSaldo(valorSaque.multiply(new BigDecimal(-1)), TipoMovimento.SAQUE);
 	}
 
-	public void depositar(String agencia, String conta, BigDecimal valorDeposito) throws SaldoInsuficienteException {
+	public void depositar(String agencia, String conta, BigDecimal valorDeposito) throws ValidacoesException {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
 		atualizarSaldo(valorDeposito, TipoMovimento.DEPOSITO);
 	}
 
-	public void pagar(String agencia, String conta, BigDecimal valorPagamento) throws SaldoInsuficienteException {
+	public void pagar(String agencia, String conta, BigDecimal valorPagamento) throws ValidacoesException {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
 		validarSaldo(valorPagamento);
