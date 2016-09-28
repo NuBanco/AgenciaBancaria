@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.model.enums.TipoMovimento;
+import br.agencia.model.util.OperacoesFacade;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.model.util.ValidacoesException;
@@ -148,7 +149,7 @@ public class SaqueCliente extends JPanel {
 
 	private void OpcaoSacar(BigDecimal valor) {
 		try {
-			ContaFacade contaSaque = new ContaFacade();
+			OperacoesFacade contaSaque = new OperacoesFacade();
 			contaSaque.sacar(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
 					UsuarioLogado.getContaUsuarioLogado().getNumero(), valor.multiply(new BigDecimal(-1)));
 		} catch (ValidacoesException exception) {

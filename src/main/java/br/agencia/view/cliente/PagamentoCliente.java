@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.model.enums.TipoMovimento;
+import br.agencia.model.util.OperacoesFacade;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.model.util.ValidacoesException;
@@ -60,7 +61,7 @@ public class PagamentoCliente extends JPanel {
 					return;
 				}
 
-				ContaFacade contaPagar = new ContaFacade();
+				OperacoesFacade contaPagar = new OperacoesFacade();
 				try {
 					contaPagar.pagar(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
 							UsuarioLogado.getContaUsuarioLogado().getNumero(), tfValor.getValue().multiply(new BigDecimal(-1)));

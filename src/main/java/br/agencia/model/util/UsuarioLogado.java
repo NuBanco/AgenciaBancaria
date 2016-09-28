@@ -3,6 +3,7 @@ package br.agencia.model.util;
 import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Usuario;
+import br.agencia.model.enums.TipoUsuario;
 import br.agencia.view.principal.Login;
 
 public class UsuarioLogado extends Usuario {
@@ -24,6 +25,13 @@ public class UsuarioLogado extends Usuario {
 		return contaUsuario;
 	}
 
+	public static void SetContaUsuarioLogado(Conta conta){
+		if (getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.BANCARIO)){
+			contaUsuario = conta;
+		}
+	}
+
+
 	public static Usuario setNewUser(Usuario usuarioLogin) {
 		if (getUsuarioLogado() == null) {
 			usuarioLogado = usuarioLogin;
@@ -31,3 +39,4 @@ public class UsuarioLogado extends Usuario {
 		return getUsuarioLogado();
 	}
 }
+

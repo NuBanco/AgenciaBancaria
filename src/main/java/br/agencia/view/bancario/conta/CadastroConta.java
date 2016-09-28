@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import br.agencia.control.ObjectDao;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaCliente;
 import br.agencia.model.entidadesPersistidas.Agencia;
@@ -26,10 +28,9 @@ import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoUsuario;
-import br.agencia.model.util.ContaFacade;
 import br.agencia.model.util.JNumberFormatField;
+import br.agencia.model.util.OperacoesFacade;
 import br.agencia.view.bancario.HomeMenuBancario;
-import br.agencia.view.bancario.agencia.ListaAgencia;
 import br.agencia.view.principal.TelaBackground;
 
 public class CadastroConta extends JPanel {
@@ -141,7 +142,8 @@ public class CadastroConta extends JPanel {
 							.setSituacaoConta(SituacaoConta.ATIVA).setAgencia(agenciaValidar).setPessoa(novaPessoa)
 							.setNumero(String.valueOf(getNumeroContaDisponivel()));
 
-					new ContaFacade(novaPessoa, novoUsuario, novaConta);
+					OperacoesFacade operacao = new OperacoesFacade();
+					operacao.criarConta(novaPessoa, novoUsuario, novaConta);
 
 					JOptionPane.showMessageDialog(null,
 							String.format("Conta %s criada com sucesso!", novaConta.getNumero()));
