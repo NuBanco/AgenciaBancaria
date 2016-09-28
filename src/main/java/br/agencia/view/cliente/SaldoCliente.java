@@ -54,7 +54,7 @@ public class SaldoCliente extends JPanel {
 		JLabel lblSaldoCliente = new JLabel("Saldo Cliente");
 		lblSaldoCliente.setFont(new Font("Arial", Font.BOLD, 14));
 
-		JLabel lblSaldoNoPeriodo = new JLabel("Saldo no periodo:");
+		JLabel lblSaldoNoPeriodo = new JLabel("Saldo periodo:");
 		lblSaldoNoPeriodo.setFont(new Font("Arial", Font.BOLD, 17));
 
 		tbSaldo = new JTable();
@@ -101,75 +101,71 @@ public class SaldoCliente extends JPanel {
 
 		JLabel lblFinal = new JLabel("FINAL >");
 
-		// GroupLayout groupLayout = new GroupLayout(this);
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(groupLayout
-				.createParallelGroup(
-						Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE).addGap(10))
-						.addGroup(groupLayout.createSequentialGroup().addGap(170)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(label)
-										.addComponent(lblFinal))
-								.addGap(6)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(groupLayout.createSequentialGroup().addGap(98)
-												.addComponent(lblSaldoCliente))
-										.addGroup(groupLayout.createSequentialGroup().addGap(3)
-												.addComponent(
-														calendarFinal, GroupLayout.PREFERRED_SIZE, 173,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-														.addGroup(groupLayout.createSequentialGroup()
-																.addComponent(btnConsultar)
-																.addPreferredGap(ComponentPlacement.RELATED)
-																.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 61,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.UNRELATED)
-																.addComponent(btnImprimir))
-														.addGroup(groupLayout.createSequentialGroup()
-																.addComponent(lblSaldoNoPeriodo,
-																		GroupLayout.PREFERRED_SIZE, 148,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.RELATED)
-																.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE,
-																		85, GroupLayout.PREFERRED_SIZE)))))
-								.addContainerGap())))
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addComponent(calendarInicial, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(530, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap().addComponent(lblSaldoCliente)
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE).addGap(6)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup().addGap(16)
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 15,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblSaldoNoPeriodo, GroupLayout.PREFERRED_SIZE, 14,
-												GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED)
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+						.addGroup(Alignment.TRAILING, groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(lblSaldoCliente)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(calendarInicial, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+								.addGap(8)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(calendarFinal, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-										.addComponent(calendarInicial, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGroup(
-												groupLayout.createSequentialGroup().addComponent(label)
-														.addPreferredGap(ComponentPlacement.RELATED, 13,
-																Short.MAX_VALUE)
-														.addComponent(lblFinal)))))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnVoltar)
-								.addComponent(btnConsultar)))
-				.addContainerGap()));
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
-		// setLayout(groupLayout);
+									.addComponent(label)
+									.addComponent(lblFinal))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(calendarFinal, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(lblSaldoNoPeriodo, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(btnConsultar)
+										.addGap(14)
+										.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(btnImprimir)))
+								.addGap(21))))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblSaldoCliente)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(6)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(label)
+									.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+									.addComponent(lblFinal))
+								.addComponent(calendarFinal, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+								.addComponent(calendarInicial, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(41))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbValorSaldo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSaldoNoPeriodo, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(btnConsultar)
+									.addComponent(btnVoltar))
+								.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+							.addGap(19))))
+		);
+        TelaBackground.getPanelMenu().setLayout(groupLayout);
+		//setLayout(groupLayout);
 	}
 
 	protected String getFormatedDate(Date date) {
@@ -187,8 +183,8 @@ public class SaldoCliente extends JPanel {
 		movimentos = (List<MovimentoConta>) ObjectDao.listar(query);
 		movimentos.forEach(mov -> {
 			saldoCliente = saldoCliente.add(mov.getValor());
-			modelo.addRow(new String[] { mov.getTipoMovimento().name(),
-				mov.getDataEvento().toString(), mov.getValor().toString() });
+			modelo.addRow(new String[] { mov.getTipoMovimento().name(), mov.getDataEvento().toString(),
+					mov.getValor().toString() });
 		});
 
 		lbValorSaldo.setText(saldoCliente.toString());
