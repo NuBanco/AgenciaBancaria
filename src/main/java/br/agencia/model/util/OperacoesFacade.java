@@ -1,4 +1,4 @@
-package br.agencia.view.cliente;
+package br.agencia.model.util;
 
 import java.math.BigDecimal;
 import java.util.Observer;
@@ -6,15 +6,12 @@ import java.util.Observer;
 import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.model.entidadesPersistidas.Pessoa;
+import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoMovimento;
-import br.agencia.model.util.AgencaInexistenteException;
-import br.agencia.model.util.ContaInexistenteException;
-import br.agencia.model.util.SaldoInsuficienteException;
-import br.agencia.model.util.UsuarioLogado;
-import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
 
-public class ContaFacade {
+public class OperacoesFacade {
 
 	private Conta contaOperacao;
 	private Agencia agenciaOperacao;
@@ -72,5 +69,11 @@ public class ContaFacade {
 		validarConta(conta, agenciaOperacao.getId());
 		validarSaldo(valorPagamento);
 		atualizarSaldo(valorPagamento, TipoMovimento.PAGAMENTO);
+	}
+
+	public void criarConta(Pessoa novaPessoa, Usuario novoUsuario, Conta novaConta) {
+		ObjectDao.getObjectDao().incluir(novaPessoa);
+		ObjectDao.getObjectDao().incluir(novoUsuario);
+		ObjectDao.getObjectDao().incluir(novaConta);
 	}
 }

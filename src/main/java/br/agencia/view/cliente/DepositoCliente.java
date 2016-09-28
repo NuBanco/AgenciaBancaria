@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
+import br.agencia.model.util.OperacoesFacade;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.model.util.ValidacoesException;
@@ -103,7 +104,7 @@ public class DepositoCliente extends JPanel {
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ContaFacade contaPagamento = new ContaFacade();
+				OperacoesFacade contaPagamento = new OperacoesFacade();
 
 				try {
 					if (!chkContaLogada.isSelected()) {
