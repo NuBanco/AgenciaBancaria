@@ -23,6 +23,7 @@ import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
+import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
 
 public class TransferenciaCliente extends JPanel {
@@ -110,11 +111,16 @@ public class TransferenciaCliente extends JPanel {
 				tfTitular.setText(contaTransferencia.getPessoa().getNome());
 				tfTipoConta.setText(contaTransferencia.getTipoConta().name());
 
-				SenhaCliente popUpSenhaOperacao = new SenhaCliente();
-				popUpSenhaOperacao.setResizable(false);
-				popUpSenhaOperacao.setVisible(true);
-				popUpSenhaOperacao.setTitle("NuBanco");
-				popUpSenhaOperacao.setSize(520, 245);
+				try {
+					SenhaCliente popUpSenhaOperacao = new SenhaCliente();
+					popUpSenhaOperacao.setResizable(false);
+					popUpSenhaOperacao.setVisible(true);
+					popUpSenhaOperacao.setTitle("NuBanco");
+					popUpSenhaOperacao.setSize(520, 245);
+				} catch (ValidacoesException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+					return;
+				}
 
 				contaTransferencia.setSaldo(tfValor.getValue(), TipoMovimento.TRANSFERENCIA);
 				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
