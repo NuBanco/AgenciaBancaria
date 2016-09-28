@@ -4,10 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +35,7 @@ public class SaldoCliente extends JPanel {
 	private JTable tbSaldo;
 
 	List<MovimentoConta> movimentos;
+	private JScrollPane scrollPane;
 
 	public SaldoCliente() {
 
@@ -65,20 +63,6 @@ public class SaldoCliente extends JPanel {
 		CalendarView calendarFinal = new CalendarView();
 		calendarFinal.setTodayString("Hoje");
 
-		movimentos = preencheListaMovimento(String.format("from MovimentoConta where mov_idconta = %d",
-				UsuarioLogado.getContaUsuarioLogado().getId()));
-
-		String coluna[] = { "Operacao", "Data", "Valor" };
-		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
-
-		movimentos.forEach(mov -> modelo.addRow(new String[] { mov.getTipoMovimento().name(),
-				mov.getDataEvento().toString(), mov.getValor().toString() }));
-
-		tbSaldo.setModel(modelo);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportView(tbSaldo);
-
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,10 +71,15 @@ public class SaldoCliente extends JPanel {
 			}
 		});
 
+		scrollPane = new JScrollPane();
+		preencheListaMovimento(String.format("from MovimentoConta where mov_idconta = %d",
+				UsuarioLogado.getContaUsuarioLogado().getId()));
+
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (calendarInicial.getSelectedDate().getTime().compareTo(calendarFinal.getSelectedDate().getTime()) >= 0) {
+				if (calendarInicial.getSelectedDate().getTime()
+						.compareTo(calendarFinal.getSelectedDate().getTime()) >= 0) {
 					JOptionPane.showMessageDialog(null, "Data inicial deve ser MENOR que a final!");
 					return;
 				}
@@ -98,16 +87,9 @@ public class SaldoCliente extends JPanel {
 				String dataInicial = getFormatedDate(calendarInicial.getSelectedDate().getTime());
 				String dataFinal = getFormatedDate(calendarFinal.getSelectedDate().getTime());
 
-				movimentos = new ArrayList<>();
-				movimentos = preencheListaMovimento(String.format(
+				preencheListaMovimento(String.format(
 						"from MovimentoConta where mov_idconta = %d and mov_dataevento >= '%s' and mov_dataevento <= '%s'",
 						UsuarioLogado.getContaUsuarioLogado().getId(), dataInicial, dataFinal));
-
-				movimentos.forEach(mov -> modelo.addRow(new String[] { mov.getTipoMovimento().name(), mov.getDataEvento().toString(),
-							mov.getValor().toString() } ));
-
-				tbSaldo.setModel(modelo);
-				scrollPane.setViewportView(tbSaldo);
 			}
 		});
 
@@ -192,7 +174,16 @@ public class SaldoCliente extends JPanel {
 		return new SimpleDateFormat("yyyy-MM-dd").format(dataConvertidaEmUtil);
 	}
 
-	private List<MovimentoConta> preencheListaMovimento(String query) {
-		return (List<MovimentoConta>) GenericDao.listar(query);
+	private void preencheListaMovimento(String query) {
+		String coluna[] = { "Operacao", "Data", "Valor" };
+		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
+
+		movimentos = (List<MovimentoConta>) GenericDao.listar(query);
+		movimentos.forEach(mov -> modelo.addRow(new String[] { mov.getTipoMovimento().name(),
+				mov.getDataEvento().toString(), mov.getValor().toString() }));
+
+		tbSaldo.setModel(modelo);
+
+		scrollPane.setViewportView(tbSaldo);
 	}
 }
