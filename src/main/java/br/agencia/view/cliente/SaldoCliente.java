@@ -90,22 +90,21 @@ public class SaldoCliente extends JPanel {
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (calendarInicial.getSelectedDate().getTime().compareTo(calendarFinal.getSelectedDate().getTime()) >= 0) {
+					JOptionPane.showMessageDialog(null, "Data inicial deve ser MENOR que a final!");
+					return;
+				}
+
 				String dataInicial = getFormatedDate(calendarInicial.getSelectedDate().getTime());
 				String dataFinal = getFormatedDate(calendarFinal.getSelectedDate().getTime());
-
-				JOptionPane.showMessageDialog(null, dataInicial);
-				JOptionPane.showMessageDialog(null, dataFinal);
 
 				movimentos = new ArrayList<>();
 				movimentos = preencheListaMovimento(String.format(
 						"from MovimentoConta where mov_idconta = %d and mov_dataevento >= '%s' and mov_dataevento <= '%s'",
 						UsuarioLogado.getContaUsuarioLogado().getId(), dataInicial, dataFinal));
 
-				movimentos.forEach(mov -> {
-					JOptionPane.showMessageDialog(null, mov.getDataEvento());
-					modelo.addRow(new String[] { mov.getTipoMovimento().name(),
-						mov.getDataEvento().toString(), mov.getValor().toString() });
-			});
+				movimentos.forEach(mov -> modelo.addRow(new String[] { mov.getTipoMovimento().name(), mov.getDataEvento().toString(),
+							mov.getValor().toString() } ));
 
 				tbSaldo.setModel(modelo);
 				scrollPane.setViewportView(tbSaldo);
