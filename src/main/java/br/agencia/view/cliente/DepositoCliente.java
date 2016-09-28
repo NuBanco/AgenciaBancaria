@@ -48,7 +48,7 @@ public class DepositoCliente extends JPanel {
 		chkContaLogada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chkContaLogada.isSelected()) {
-					tfAgencia.setText(UsuarioLogado.getContaUsuarioLogado().getAgencia().getCodAgencia());
+					tfAgencia.setText(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia());
 					tfConta.setText(UsuarioLogado.getContaUsuarioLogado().getNumero());
 					tfTitular.setText(UsuarioLogado.getContaUsuarioLogado().getPessoa().getNome());
 					tfTipoConta.setText(UsuarioLogado.getContaUsuarioLogado().getTipoConta().name());
@@ -156,7 +156,6 @@ public class DepositoCliente extends JPanel {
 		tfTipoConta.setColumns(10);
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		// GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(115).addGroup(groupLayout.createParallelGroup(
 						Alignment.LEADING)
@@ -216,7 +215,6 @@ public class DepositoCliente extends JPanel {
 						.addGap(18).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnVoltar)
 								.addComponent(btnConfirmar))
 						.addContainerGap(47, Short.MAX_VALUE)));
-		// setLayout(groupLayout);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 

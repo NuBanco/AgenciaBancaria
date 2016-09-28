@@ -43,7 +43,7 @@ public class ListaClientes extends JPanel {
 
 		if (contas.size() > 0) {
 			contas.forEach(conta -> modelo.addRow(new String[] { conta.getTipoConta().toString(),
-					conta.getAgencia().getNome(), conta.getNumero(), conta.getPessoa().getNome(),
+					conta.getAgencia().getNumAgencia(), conta.getNumero(), conta.getPessoa().getNome(),
 					conta.getDataAbertura().toString(), conta.getSaldo().toString() }));
 		}
 		tbContas.setModel(modelo);

@@ -196,7 +196,7 @@ public class TelaBackground extends JFrame implements Observer {
 			lbResultAgencia.setVisible(false);
 		} else {
 			contaCliente = UsuarioLogado.getContaUsuarioLogado();
-			lbResultAgencia.setText(contaCliente.getAgencia().getCodAgencia());
+			lbResultAgencia.setText(contaCliente.getAgencia().getNumAgencia());
 			lbResultConta.setText(contaCliente.getTipoConta().name());
 			if (contaCliente.getSaldo() == null) {
 				contaCliente.setSaldo(new BigDecimal(0F));

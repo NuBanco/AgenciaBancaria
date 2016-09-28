@@ -2,6 +2,7 @@ package br.agencia.view.cliente;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -23,6 +24,7 @@ import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
+import br.agencia.view.bancario.InformacoesConta;
 import br.agencia.view.principal.TelaBackground;
 
 public class TransferenciaCliente extends JPanel {
@@ -114,9 +116,16 @@ public class TransferenciaCliente extends JPanel {
 				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
 						TipoMovimento.TRANSFERENCIA);
 
-				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu()
-						.add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.TRANSFERENCIA));
+				SenhaCliente popUpSenhaOperacao = new SenhaCliente();
+				popUpSenhaOperacao.setResizable(false);
+				popUpSenhaOperacao.setVisible(true);
+				popUpSenhaOperacao.setTitle("NuBanco");
+				popUpSenhaOperacao.setBounds(100, 100, 460, 201);
+
+				// TelaBackground.clearPanelMenu();
+				// TelaBackground.getPanelMenu()
+				// .add(new ConfirmaOperacao(tfValor.getValue(),
+				// TipoMovimento.TRANSFERENCIA));
 
 			}
 		});
@@ -134,7 +143,6 @@ public class TransferenciaCliente extends JPanel {
 			}
 		});
 
-		// GroupLayout groupLayout = new GroupLayout(this);
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
 				groupLayout
@@ -229,6 +237,5 @@ public class TransferenciaCliente extends JPanel {
 										.addComponent(btnConfirmar).addComponent(btnVoltar))
 								.addContainerGap(91, Short.MAX_VALUE)));
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
-		// setLayout(groupLayout);
 	}
 }

@@ -7,18 +7,28 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
-public class SenhaCliente extends JFrame {
 
+//public class SenhaCliente extends JInternalFrame {
+public class SenhaCliente extends JFrame {
 	private static final long serialVersionUID = 3187868024721495012L;
 	private JPasswordField tfSenha;
 
 	public SenhaCliente() {
+		
+		JOptionPane.showMessageDialog(null, "AKIIIIIIII");
+		
+//		setBounds(100, 100, 460, 201);
+//		setResizable(false);
+//		setTitle("NuBanco");
+//		setVisible(true);
 
 		tfSenha = new JPasswordField();
 		tfSenha.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -90,13 +100,13 @@ public class SenhaCliente extends JFrame {
 								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(102, Short.MAX_VALUE)));
 
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
+		GroupLayout panel_numeros = new GroupLayout(panel);
+		panel_numeros.setHorizontalGroup(panel_numeros.createParallelGroup(Alignment.LEADING).addGroup(panel_numeros
 				.createSequentialGroup().addContainerGap()
 				.addGroup(
-						gl_panel.createParallelGroup(Alignment.LEADING)
+						panel_numeros.createParallelGroup(Alignment.LEADING)
 								.addGroup(
-										gl_panel.createSequentialGroup()
+										panel_numeros.createSequentialGroup()
 												.addComponent(btn0, GroupLayout.PREFERRED_SIZE, 40,
 														GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED)
@@ -109,7 +119,7 @@ public class SenhaCliente extends JFrame {
 														GroupLayout.PREFERRED_SIZE, 40,
 														GroupLayout.PREFERRED_SIZE))
 								.addGroup(
-										gl_panel.createSequentialGroup()
+										panel_numeros.createSequentialGroup()
 												.addComponent(btn5, GroupLayout.PREFERRED_SIZE, 40,
 														GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED)
@@ -121,30 +131,30 @@ public class SenhaCliente extends JFrame {
 												.addGap(6).addComponent(btn8, GroupLayout.PREFERRED_SIZE, 40,
 														GroupLayout.PREFERRED_SIZE)))
 				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(panel_numeros.createParallelGroup(Alignment.LEADING)
 						.addComponent(btn4, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btn9, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 				.addGap(81)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+		panel_numeros.setVerticalGroup(panel_numeros.createParallelGroup(Alignment.LEADING)
+				.addGroup(panel_numeros.createSequentialGroup().addContainerGap()
+						.addGroup(panel_numeros.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btn0, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btn2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btn3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btn4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(panel_numeros.createParallelGroup(Alignment.LEADING)
 								.addComponent(btn5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addGroup(panel_numeros.createParallelGroup(Alignment.BASELINE)
 										.addComponent(btn7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 										.addComponent(btn6, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addGroup(panel_numeros.createParallelGroup(Alignment.BASELINE)
 										.addComponent(btn8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 										.addComponent(btn9, GroupLayout.PREFERRED_SIZE, 35,
 												GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(31, Short.MAX_VALUE)));
-		panel.setLayout(gl_panel);
+		panel.setLayout(panel_numeros);
 		getContentPane().setLayout(groupLayout);
 	}
 }

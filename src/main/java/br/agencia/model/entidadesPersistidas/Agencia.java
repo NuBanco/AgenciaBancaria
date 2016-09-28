@@ -2,13 +2,10 @@ package br.agencia.model.entidadesPersistidas;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -58,11 +55,11 @@ public class Agencia implements Serializable  {
 		return this;
 	}
 
-	public String getCodAgencia() {
+	public String getNumAgencia() {
 		return numAgencia;
 	}
 
-	public Agencia setCodAgencia(String numAgencia) {
+	public Agencia setNumAgencia(String numAgencia) {
 		this.numAgencia = numAgencia;
 		return this;
 	}

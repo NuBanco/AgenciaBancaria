@@ -46,7 +46,7 @@ public class ListaAgencia extends JPanel {
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
 
 		agencias.forEach(agencia -> modelo
-				.addRow(new String[] { agencia.getNome(), agencia.getCodAgencia(), agencia.getCidade() }));
+				.addRow(new String[] { agencia.getNome(), agencia.getNumAgencia(), agencia.getCidade() }));
 
 		tbAgencia.setModel(modelo);
 

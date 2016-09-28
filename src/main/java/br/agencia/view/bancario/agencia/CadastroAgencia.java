@@ -36,7 +36,7 @@ public class CadastroAgencia extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarNovaAgencia(agencia)) {
 					agencia.setNome(tfNome.getText());
-					agencia.setCodAgencia(tfNumero.getText());
+					agencia.setNumAgencia(tfNumero.getText());
 					agencia.setCidade(tfCidade.getText());
 
 					gravarAgencia(agencia);
@@ -76,7 +76,7 @@ public class CadastroAgencia extends JPanel {
 
 		if (agencia.getId() != null) {
 			tfNome.setText(agencia.getNome());
-			tfNumero.setText(agencia.getCodAgencia());
+			tfNumero.setText(agencia.getNumAgencia());
 			tfCidade.setText(agencia.getCidade());
 		}
 
