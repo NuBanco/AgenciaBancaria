@@ -2,7 +2,6 @@ package br.agencia.view.cliente;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -24,7 +23,6 @@ import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
-import br.agencia.view.bancario.InformacoesConta;
 import br.agencia.view.principal.TelaBackground;
 
 public class TransferenciaCliente extends JPanel {
@@ -112,20 +110,19 @@ public class TransferenciaCliente extends JPanel {
 				tfTitular.setText(contaTransferencia.getPessoa().getNome());
 				tfTipoConta.setText(contaTransferencia.getTipoConta().name());
 
-				contaTransferencia.setSaldo(tfValor.getValue(), TipoMovimento.TRANSFERENCIA);
-				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
-						TipoMovimento.TRANSFERENCIA);
-
 				SenhaCliente popUpSenhaOperacao = new SenhaCliente();
 				popUpSenhaOperacao.setResizable(false);
 				popUpSenhaOperacao.setVisible(true);
 				popUpSenhaOperacao.setTitle("NuBanco");
-				popUpSenhaOperacao.setBounds(100, 100, 460, 201);
+				popUpSenhaOperacao.setSize(520, 245);
 
-				// TelaBackground.clearPanelMenu();
-				// TelaBackground.getPanelMenu()
-				// .add(new ConfirmaOperacao(tfValor.getValue(),
-				// TipoMovimento.TRANSFERENCIA));
+				contaTransferencia.setSaldo(tfValor.getValue(), TipoMovimento.TRANSFERENCIA);
+				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
+						TipoMovimento.TRANSFERENCIA);
+
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu()
+						.add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.TRANSFERENCIA));
 
 			}
 		});
