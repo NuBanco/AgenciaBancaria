@@ -16,6 +16,7 @@ import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoMovimento;
+import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.view.principal.TelaBackground;
 
@@ -96,40 +97,54 @@ public class HomeMenuCliente extends JPanel {
 		});
 		btnOpFinalizar.setFont(new Font("Arial", Font.BOLD, 22));
 
+		JButton btnVoltar = new JButton("Voltar");
+		if (UsuarioLogado.getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
+			btnVoltar.setVisible(false);
+		}
+
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(82)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnOpSaldo, GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
-								.addComponent(btnOpDeposito, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-								.addComponent(btnOpSaque, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-						.addGap(68)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnOpPagamento, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-								.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 230, Short.MAX_VALUE)
-								.addComponent(btnOpFinalizar, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
-						.addGap(90)));
-		groupLayout
-				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-						.createSequentialGroup()
-						.addGap(98).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 50,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnOpSaque, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-						.addGap(50)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnOpSaldo, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-								.addComponent(btnOpPagamento, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-						.addGap(41)
-						.addGroup(
-								groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnOpDeposito, GroupLayout.PREFERRED_SIZE, 50,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnOpFinalizar, GroupLayout.PREFERRED_SIZE, 50,
-												GroupLayout.PREFERRED_SIZE))
-						.addGap(111)));
-		configurarHome();
+//		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(82)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOpSaldo, GroupLayout.PREFERRED_SIZE, 230, Short.MAX_VALUE)
+						.addComponent(btnOpDeposito, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+						.addComponent(btnOpSaque, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+					.addGap(68)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnOpPagamento, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+						.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 230, Short.MAX_VALUE)
+						.addComponent(btnOpFinalizar, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+					.addGap(90))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(601, Short.MAX_VALUE)
+					.addComponent(btnVoltar)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnVoltar)
+					.addGap(64)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnOpTransferencia, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnOpSaque, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(50)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnOpSaldo, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnOpPagamento, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+					.addGap(41)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnOpDeposito, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnOpFinalizar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(111))
+		);
+//		configurarHome();
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		setLayout(groupLayout);
 	}
 
 	private void configurarHome() {
@@ -145,5 +160,4 @@ public class HomeMenuCliente extends JPanel {
 		panel.setSize(700, 450);
 		panel.setVisible(true);
 	}
-
 }

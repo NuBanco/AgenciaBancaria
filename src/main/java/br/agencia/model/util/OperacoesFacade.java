@@ -3,6 +3,8 @@ package br.agencia.model.util;
 import java.math.BigDecimal;
 import java.util.Observer;
 
+import com.sun.glass.ui.GestureSupport;
+
 import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
@@ -46,9 +48,6 @@ public class OperacoesFacade {
 		} else {
 			contaOperacao.setSaldo(valor, tipo);
 		}
-
-
-
 	}
 
 	public void sacar(String agencia, String conta, BigDecimal valorSaque) throws ValidacoesException {
@@ -71,9 +70,22 @@ public class OperacoesFacade {
 		atualizarSaldo(valorPagamento, TipoMovimento.PAGAMENTO);
 	}
 
+	public void transferir(String agencia, String conta, BigDecimal valorPagamento) throws ValidacoesException {
+		validarAgencia(agencia);
+		validarConta(conta, agenciaOperacao.getId());
+		validarSaldo(valorPagamento);
+		atualizarSaldo(valorPagamento, TipoMovimento.PAGAMENTO);
+	}
+
 	public void criarConta(Pessoa novaPessoa, Usuario novoUsuario, Conta novaConta) {
 		ObjectDao.getObjectDao().incluir(novaPessoa);
 		ObjectDao.getObjectDao().incluir(novoUsuario);
 		ObjectDao.getObjectDao().incluir(novaConta);
+	}
+
+	public void adaptarBancario(String agencia, String conta) {
+		validarAgencia(agencia);
+		validarConta(conta, agenciaOperacao.getId());
+		UsuarioLogado.SetContaUsuarioLogado(contaOperacao);
 	}
 }

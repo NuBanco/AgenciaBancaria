@@ -11,10 +11,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.agencia.model.util.OperacoesFacade;
+import br.agencia.model.util.ValidacoesException;
 
 public class InformacoesConta extends JFrame {
 
@@ -78,8 +80,13 @@ public class InformacoesConta extends JFrame {
 		btnConfirme.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OperacoesFacade operaccao = new OperacoesFacade();
-				//operacao.
+				try {
+					OperacoesFacade operacao = new OperacoesFacade();
+					operacao.adaptarBancario(tfAgencia.getText(), tfConta.getText());
+				} catch (ValidacoesException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+					return;
+				}
 			}
 		});
 
