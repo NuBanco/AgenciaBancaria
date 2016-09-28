@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,8 @@ public class SaldoCliente extends JPanel {
 
 	List<MovimentoConta> movimentos;
 	private JScrollPane scrollPane;
+	private BigDecimal saldoCliente;
+	private JLabel lbValorSaldo;
 
 	public SaldoCliente() {
 
@@ -44,7 +47,7 @@ public class SaldoCliente extends JPanel {
 		JButton btnImprimir = new JButton("");
 		btnImprimir.setFont(new Font("Arial", Font.BOLD, 12));
 
-		JLabel lbValorSaldo = new JLabel("0,00");
+		lbValorSaldo = new JLabel("0,00");
 		lbValorSaldo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbValorSaldo.setFont(new Font("Arial", Font.BOLD, 14));
 
@@ -179,10 +182,16 @@ public class SaldoCliente extends JPanel {
 		String coluna[] = { "Operacao", "Data", "Valor" };
 		DefaultTableModel modelo = new DefaultTableModel(coluna, 0);
 
-		movimentos = (List<MovimentoConta>) ObjectDao.listar(query);
-		movimentos.forEach(mov -> modelo.addRow(new String[] { mov.getTipoMovimento().name(),
-				mov.getDataEvento().toString(), mov.getValor().toString() }));
+		saldoCliente = new BigDecimal(0F);
 
+		movimentos = (List<MovimentoConta>) ObjectDao.listar(query);
+		movimentos.forEach(mov -> {
+			saldoCliente = saldoCliente.add(mov.getValor());
+			modelo.addRow(new String[] { mov.getTipoMovimento().name(),
+				mov.getDataEvento().toString(), mov.getValor().toString() });
+		});
+
+		lbValorSaldo.setText(saldoCliente.toString());
 		tbSaldo.setModel(modelo);
 
 		scrollPane.setViewportView(tbSaldo);
