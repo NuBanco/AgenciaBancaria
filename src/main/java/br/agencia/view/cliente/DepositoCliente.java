@@ -10,7 +10,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,13 +17,12 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
-import br.agencia.model.enums.TipoConta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
+import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
 
 public class DepositoCliente extends JPanel {
@@ -105,36 +103,18 @@ public class DepositoCliente extends JPanel {
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tfValor.getValue().doubleValue() <= 0) {
-					JOptionPane.showMessageDialog(null, "Valor invalido para transferencia!");
+				ContaFacade contaPagamento = new ContaFacade();
+
+				try {
+					if (!chkContaLogada.isSelected()) {
+						contaPagamento.depositar(tfAgencia.getText(), tfConta.getText(), tfValor.getValue());
+					} else {
+						contaPagamento.depositar(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
+								UsuarioLogado.getContaUsuarioLogado().getNumero(), tfValor.getValue());
+					}
+				} catch (ValidacoesException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
-				}
-
-				if (!chkContaLogada.isSelected()) {
-
-					agenciaDeposito = (Agencia) ObjectDao.getObjectDao().consultarByQuery(
-							String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
-					if (agenciaDeposito == null) {
-						JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
-						return;
-					}
-
-					contaDeposito = (Conta) ObjectDao.getObjectDao().consultarByQuery(
-							String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
-									tfConta.getText().trim(), agenciaDeposito.getId()));
-
-					if (contaDeposito == null) {
-						JOptionPane.showMessageDialog(null, "Conta nao encontrada!");
-						return;
-					}
-
-					tfTitular.setText(contaDeposito.getPessoa().getNome());
-					tfTipoConta.setText(contaDeposito.getTipoConta().name());
-
-					contaDeposito.setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
-
-				} else {
-					UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue(), TipoMovimento.DEPOSITO);
 				}
 
 				TelaBackground.clearPanelMenu();

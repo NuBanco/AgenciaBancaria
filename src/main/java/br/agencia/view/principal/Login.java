@@ -15,10 +15,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import org.hibernate.loader.GeneratedCollectionAliases;
-
-import br.agencia.control.ObjectDao;
 import br.agencia.control.HibernateUtil;
+import br.agencia.control.ObjectDao;
 import br.agencia.model.criptografiaSenha.CriptografiaSenhaFactory;
 import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
@@ -78,7 +76,7 @@ public class Login extends JFrame {
 				}
 
 				senhaLogin = new CriptografiaSenhaFactory().create(usuarioLogin.getTipoUsuario())
-						.encode(tfSenha.getText());
+						.encode(getTipeEncode(usuarioLogin.getTipoUsuario()));
 
 				if (!senhaLogin.equals(usuarioLogin.getSenha())) {
 					JOptionPane.showMessageDialog(null, "Senha invalida!");
@@ -101,6 +99,16 @@ public class Login extends JFrame {
 				TelaBackground.getTelaPrincipal().setVisible(true);
 
 				dispose();
+			}
+
+			private String getTipeEncode(TipoUsuario tipoUsuario) {
+				String textoRetorno = "";
+				if (tipoUsuario.equals(TipoUsuario.CLIENTE)){
+					textoRetorno  = tfUsuario.getText() + tfSenha.getText();
+				} else {
+					textoRetorno  = tfSenha.getText();
+				}
+				return textoRetorno;
 			}
 		});
 

@@ -21,6 +21,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
+import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
 
 public class PagamentoCliente extends JPanel {
@@ -55,22 +56,18 @@ public class PagamentoCliente extends JPanel {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (tfCodigoDeBarra.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Código de barras deve ser preenchido!");
+					JOptionPane.showMessageDialog(null, "Codigo de barras deve ser informado!");
 					return;
 				}
 
-				if (tfValor.getValue().doubleValue() <= 0) {
-					JOptionPane.showMessageDialog(null, "Valor invalido para Pagamento!");
+				ContaFacade contaPagar = new ContaFacade();
+				try {
+					contaPagar.pagar(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
+							UsuarioLogado.getContaUsuarioLogado().getNumero(), tfValor.getValue().multiply(new BigDecimal(-1)));
+				} catch (ValidacoesException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
 				}
-
-				if (tfValor.getValue().doubleValue() > UsuarioLogado.getContaUsuarioLogado().getSaldo().doubleValue()) {
-					JOptionPane.showMessageDialog(null, "Saldo insuficiente para pagamento!");
-					return;
-				}
-
-				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
-						TipoMovimento.PAGAMENTO);
 
 				TelaBackground.clearPanelMenu();
 				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.PAGAMENTO));

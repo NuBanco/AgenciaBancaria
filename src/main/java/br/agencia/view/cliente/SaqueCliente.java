@@ -18,14 +18,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.UsuarioLogado;
+import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
 
-public class OpcoesSaque extends JPanel {
+public class SaqueCliente extends JPanel {
 
 	private static final long serialVersionUID = 2914438307389368709L;
 	private JNumberFormatField tfValor = null;
 
-	public OpcoesSaque() {
+	public SaqueCliente() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
 
@@ -146,17 +147,14 @@ public class OpcoesSaque extends JPanel {
 	}
 
 	private void OpcaoSacar(BigDecimal valor) {
-		if (valor.doubleValue() <= 0) {
-			JOptionPane.showMessageDialog(null, "Valor invalido para saque!");
+		try {
+			ContaFacade contaSaque = new ContaFacade();
+			contaSaque.sacar(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
+					UsuarioLogado.getContaUsuarioLogado().getNumero(), valor.multiply(new BigDecimal(-1)));
+		} catch (ValidacoesException exception) {
+			JOptionPane.showMessageDialog(null, exception.getMessage());
 			return;
 		}
-
-		if (valor.doubleValue() > UsuarioLogado.getContaUsuarioLogado().getSaldo().doubleValue()) {
-			JOptionPane.showMessageDialog(null, "Saldo insuficiente para operacao!");
-			return;
-		}
-
-		UsuarioLogado.getContaUsuarioLogado().setSaldo(valor.multiply(new BigDecimal(-1)), TipoMovimento.SAQUE);
 
 		TelaBackground.clearPanelMenu();
 		TelaBackground.getPanelMenu().add(new ConfirmaOperacao(valor, TipoMovimento.SAQUE));

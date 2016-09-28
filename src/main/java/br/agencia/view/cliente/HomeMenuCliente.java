@@ -41,7 +41,7 @@ public class HomeMenuCliente extends JPanel {
 		btnOpSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaBackground.clearPanelMenu();
-				createPanel(new OpcoesSaque());
+				createPanel(new SaqueCliente());
 			}
 		});
 		btnOpSaque.setFont(new Font("Arial", Font.BOLD, 22));
