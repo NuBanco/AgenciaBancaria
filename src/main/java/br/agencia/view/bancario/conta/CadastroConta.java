@@ -128,7 +128,7 @@ public class CadastroConta extends JPanel {
 
 					Usuario novoUsuario = new Usuario();
 					novoUsuario.setLogin(tfUsername.getText())
-							.setSenha(new CriptografiaSenhaCliente().encode(tfSenhaConta.getText()))
+							.setSenha(new CriptografiaSenhaCliente().encode(tfUsername.getText() + tfSenhaConta.getText()))
 							.setTipoUsuario(TipoUsuario.CLIENTE).setPessoa(novaPessoa);
 					Conta novaConta = new Conta();
 					novaConta.setDataAbertura(new Date(System.currentTimeMillis()))

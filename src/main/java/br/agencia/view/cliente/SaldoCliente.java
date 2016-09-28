@@ -59,9 +59,9 @@ public class SaldoCliente extends JPanel {
 		tbSaldo.setFont(new Font("Arial", Font.PLAIN, 13));
 		tbSaldo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		CalendarView calendarFinal = new CalendarView();
-
 		CalendarView calendarInicial = new CalendarView();
+
+		CalendarView calendarFinal = new CalendarView();
 
 		movimentos = preencheListaMovimento(String.format("from MovimentoConta where mov_idconta = %d",
 				UsuarioLogado.getContaUsuarioLogado().getId()));
