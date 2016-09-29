@@ -54,47 +54,43 @@ public class ConfirmaOperacao extends JPanel {
 				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
-
-		JButton btnOpImprimir = new JButton("");
+		
+		JButton btnImprimir = new JButton("Imprimir");
+		btnImprimir.setFont(new Font("Arial", Font.BOLD, 17));
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout
-				.setHorizontalGroup(
-						groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout
-										.createSequentialGroup()
-										.addContainerGap(1387, Short.MAX_VALUE)
-										.addComponent(
-												btnOpImprimir, GroupLayout.PREFERRED_SIZE, 30,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
-								.addGroup(groupLayout.createSequentialGroup().addGap(33)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(lbOperacao, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-														.addComponent(btnOpRetornar,
-																GroupLayout.PREFERRED_SIZE, 110,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(groupLayout.createSequentialGroup()
-																.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(ComponentPlacement.UNRELATED)
-																.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, 182,
-																		GroupLayout.PREFERRED_SIZE))))
-										.addGap(1058)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(55).addComponent(lbOperacao).addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(tfValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lbValor))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addGap(105)
-						.addComponent(btnOpImprimir, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		// setLayout(groupLayout);
+		//GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(33)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbOperacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED))))
+					.addGap(1058))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(340)
+					.addComponent(btnImprimir)
+					.addContainerGap(998, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(55)
+					.addComponent(lbOperacao)
+					.addGap(18)
+					.addComponent(lbValor)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+					.addComponent(btnImprimir)
+					.addGap(26))
+		);
+		//setLayout(groupLayout);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }

@@ -49,7 +49,7 @@ public class ListaClientes extends JPanel {
 		tbContas.setModel(modelo);
 		scrollPane.setViewportView(tbContas);
 
-		JButton btnImprimir = new JButton("");
+		JButton btnImprimir = new JButton("Imprimir");
 		btnImprimir.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -67,26 +67,29 @@ public class ListaClientes extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		groupLayout
-				.setHorizontalGroup(
-						groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup().addContainerGap(561, Short.MAX_VALUE)
-										.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 44,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnVoltar)
-										.addContainerGap())
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		//GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnImprimir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addComponent(btnVoltar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE))
-						.addContainerGap(30, Short.MAX_VALUE)));
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnVoltar)
+					.addContainerGap())
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnVoltar)
+						.addComponent(btnImprimir))
+					.addContainerGap())
+		);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		//setLayout(groupLayout);
 	}
 
 }

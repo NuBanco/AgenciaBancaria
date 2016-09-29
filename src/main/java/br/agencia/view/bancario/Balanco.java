@@ -61,8 +61,8 @@ public class Balanco extends JPanel {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), SwingConstants.CENTER);
 
-		JButton btnImprimir = new JButton("");
-		btnImprimir.setFont(new Font("Arial", Font.BOLD, 12));
+		JButton btnImprimir = new JButton("Imprimir");
+		btnImprimir.setFont(new Font("Arial", Font.PLAIN, 18));
 
 		JLabel lbSaldoPerodoCaixa = new JLabel("(=)Saldo em Caixa R$");
 		lbSaldoPerodoCaixa.setFont(new Font("Arial", Font.BOLD, 14));
@@ -148,8 +148,8 @@ public class Balanco extends JPanel {
 
 		JLabel lblFinal = new JLabel("FINAL >");
 
-		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		// GroupLayout groupLayout = new GroupLayout(this);
+		//GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
+		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout
 				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup().addContainerGap().addGroup(groupLayout
@@ -249,8 +249,8 @@ public class Balanco extends JPanel {
 								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 21, Short.MAX_VALUE))
 						.addGap(11)));
 
-		// setLayout(groupLayout);
-		TelaBackground.getPanelMenu().setLayout(groupLayout);
+		setLayout(groupLayout);
+		//TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 
 	protected String getFormatedDate(Date date) {
