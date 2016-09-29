@@ -3,21 +3,18 @@ package br.agencia.view.cliente;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.agencia.model.entidadesPersistidas.Conta;
-import br.agencia.model.enums.SituacaoConta;
 import br.agencia.model.enums.TipoConta;
-import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.enums.TipoUsuario;
 import br.agencia.model.util.UsuarioLogado;
+import br.agencia.view.bancario.HomeMenuBancario;
 import br.agencia.view.principal.TelaBackground;
 
 public class HomeMenuCliente extends JPanel {
@@ -101,6 +98,14 @@ public class HomeMenuCliente extends JPanel {
 		if (UsuarioLogado.getUsuarioLogado().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
 			btnVoltar.setVisible(false);
 		}
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UsuarioLogado.SetContaUsuarioLogado(null);
+
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu().add(new HomeMenuBancario());
+			}
+		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 //		GroupLayout groupLayout = new GroupLayout(this);
@@ -142,9 +147,9 @@ public class HomeMenuCliente extends JPanel {
 						.addComponent(btnOpFinalizar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addGap(111))
 		);
-//		configurarHome();
+		configurarHome();
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
-		setLayout(groupLayout);
+//		setLayout(groupLayout);
 	}
 
 	private void configurarHome() {

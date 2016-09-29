@@ -11,6 +11,7 @@ import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoMovimento;
+import br.agencia.view.cliente.HomeMenuCliente;
 import br.agencia.view.principal.TelaBackground;
 
 public class OperacoesFacade {
@@ -87,5 +88,8 @@ public class OperacoesFacade {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
 		UsuarioLogado.SetContaUsuarioLogado(contaOperacao);
+
+		TelaBackground.clearPanelMenu();
+		TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 	}
 }

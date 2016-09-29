@@ -71,9 +71,11 @@ public class InformacoesConta extends JFrame {
 
 		tfTipoConta = new JTextField();
 		tfTipoConta.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfTipoConta.enable(false);
 
 		tfTitular = new JTextField();
 		tfTitular.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tfTitular.enable(false);
 		tfTitular.setColumns(10);
 
 		JButton btnConfirme = new JButton("Confirmar");
@@ -83,6 +85,7 @@ public class InformacoesConta extends JFrame {
 				try {
 					OperacoesFacade operacao = new OperacoesFacade();
 					operacao.adaptarBancario(tfAgencia.getText(), tfConta.getText());
+					dispose();
 				} catch (ValidacoesException exception) {
 					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
