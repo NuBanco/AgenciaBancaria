@@ -184,11 +184,7 @@ public class TelaBackground extends JFrame implements Observer {
 	}
 
 	public static void configuraCabecalhoPadrao() {
-
-		Usuario tipoUsuario = new Usuario();
-		tipoUsuario = UsuarioLogado.getUsuarioLogado();
-
-		if (tipoUsuario.getTipoUsuario() == TipoUsuario.BANCARIO) {
+		if (UsuarioLogado.getContaUsuarioLogado() == null) {
 			lbAgencia.setVisible(false);
 			lbTipoConta.setVisible(false);
 			lbSaldo.setVisible(false);
@@ -211,6 +207,7 @@ public class TelaBackground extends JFrame implements Observer {
 		if (observable instanceof Conta) {
 			nfSaldo.setText(UsuarioLogado.getContaUsuarioLogado().getSaldo().toString());
 			lbResultSaldo.setText(nfSaldo.getText());
+			configuraCabecalhoPadrao();
 		}
 
 	}

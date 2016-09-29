@@ -71,11 +71,12 @@ public class OperacoesFacade {
 		atualizarSaldo(valorPagamento, TipoMovimento.PAGAMENTO);
 	}
 
-	public void transferir(String agencia, String conta, BigDecimal valorPagamento) throws ValidacoesException {
+	public void transferir(String agencia, String conta, BigDecimal valorTransferencia) throws ValidacoesException {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
-		validarSaldo(valorPagamento);
-		atualizarSaldo(valorPagamento, TipoMovimento.PAGAMENTO);
+		validarSaldo(valorTransferencia);
+		atualizarSaldo(valorTransferencia, TipoMovimento.TRANSFERENCIA);
+		UsuarioLogado.getContaUsuarioLogado().setSaldo(valorTransferencia.multiply(new BigDecimal(-1)));
 	}
 
 	public void criarConta(Pessoa novaPessoa, Usuario novoUsuario, Conta novaConta) {
