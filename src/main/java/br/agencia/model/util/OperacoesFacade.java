@@ -44,7 +44,7 @@ public class OperacoesFacade {
 	}
 
 	public void atualizarSaldo(BigDecimal valor, TipoMovimento tipo) {
-		if (contaOperacao.getId() == UsuarioLogado.getContaUsuarioLogado().getId()){
+		if (contaOperacao.getId() == UsuarioLogado.getContaUsuarioLogado().getId()) {
 			UsuarioLogado.getContaUsuarioLogado().setSaldo(valor, tipo);
 		} else {
 			contaOperacao.setSaldo(valor, tipo);
@@ -73,8 +73,10 @@ public class OperacoesFacade {
 
 	public void transferir(String agencia, String conta, BigDecimal valorTransferencia) throws ValidacoesException {
 		validarAgencia(agencia);
-		validarConta(conta, agenciaOperacao.getId());
+		validarConta(UsuarioLogado.getContaUsuarioLogado().getNumero(),
+				UsuarioLogado.getContaUsuarioLogado().getAgencia().getId());
 		validarSaldo(valorTransferencia);
+		validarConta(conta, agenciaOperacao.getId());
 		atualizarSaldo(valorTransferencia, TipoMovimento.TRANSFERENCIA);
 		UsuarioLogado.getContaUsuarioLogado().setSaldo(valorTransferencia.multiply(new BigDecimal(-1)));
 	}
