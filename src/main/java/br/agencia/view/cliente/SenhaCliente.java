@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
 import br.agencia.model.entidadesPersistidas.Conta;
-import br.agencia.model.util.SenhaException;
+import br.agencia.model.util.SenhaInvalidaException;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.model.util.ValidacoesException;
 
@@ -41,7 +41,6 @@ public class SenhaCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) throws ValidacoesException {
 				validarSenhaOperacao();
 			}
-
 		});
 
 		JPanel panel = new JPanel();
@@ -242,14 +241,14 @@ public class SenhaCliente extends JFrame {
 
 	private void validarSenhaOperacao() throws ValidacoesException {
 		if (tfSenha.getText().length() != 6) {
-			JOptionPane.showMessageDialog(null, "A senha de opera��es do usuario deve possuir 6 digitos!");
+			JOptionPane.showMessageDialog(null, "A senha de operacoes do usuario deve possuir 6 digitos!");
 			limpaCampoSenha();
 			return;
 		}
 
 		contaUsuario = UsuarioLogado.getContaUsuarioLogado();
 		if (!contaUsuario.getPessoa().getSenhaOperacao().equals(tfSenha.getText().toString())) {
-			throw new SenhaException("Senha de operac�o invalida.");
+			throw new SenhaInvalidaException("Senha de operacoes invalida.");
 		}
 		dispose();
 	}

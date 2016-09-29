@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import javax.swing.GroupLayout;
@@ -17,11 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
 import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
+import br.agencia.model.util.OperacoesFacade;
 import br.agencia.model.util.UsuarioLogado;
 import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
@@ -34,10 +33,7 @@ public class TransferenciaCliente extends JPanel {
 	private JTextField tfTitular;
 	private JTextField tfTipoConta;
 	private JNumberFormatField tfValor = null;
-
-	private Agencia agenciaTransferencia;
-	private Conta contaTransferencia;
-
+	
 	public TransferenciaCliente() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
@@ -82,34 +78,19 @@ public class TransferenciaCliente extends JPanel {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (tfValor.getValue().doubleValue() <= 0) {
-					JOptionPane.showMessageDialog(null, "Valor invalido para transferencia!");
+
+				OperacoesFacade contaTransferencia = new OperacoesFacade();
+
+				try {
+					contaTransferencia.transferir(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
+							UsuarioLogado.getContaUsuarioLogado().getNumero(), tfValor.getValue());
+				} catch (ValidacoesException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
 				}
 
-				if (tfValor.getValue().doubleValue() > UsuarioLogado.getContaUsuarioLogado().getSaldo().doubleValue()) {
-					JOptionPane.showMessageDialog(null, "Saldo insuficiente para operacao!");
-					return;
-				}
-
-				agenciaTransferencia = (Agencia) ObjectDao.getObjectDao().consultarByQuery(
-						String.format("from Agencia where age_numAgencia like '%s'", tfAgencia.getText()));
-				if (agenciaTransferencia == null) {
-					JOptionPane.showMessageDialog(null, "Agencia nao encontrada!");
-					return;
-				}
-
-				contaTransferencia = (Conta) ObjectDao.getObjectDao()
-						.consultarByQuery(String.format("from Conta where con_numero like '%s' and con_idagencia = %d",
-								tfConta.getText().trim(), agenciaTransferencia.getId()));
-
-				if (contaTransferencia == null) {
-					JOptionPane.showMessageDialog(null, "Conta nao encontrada!");
-					return;
-				}
-
-				tfTitular.setText(contaTransferencia.getPessoa().getNome());
-				tfTipoConta.setText(contaTransferencia.getTipoConta().name());
+//				tfTitular.setText(contaTransferencia.getPessoa().getNome());
+//				tfTipoConta.setText(contaTransferencia.getTipoConta().name());
 
 				try {
 					SenhaCliente popUpSenhaOperacao = new SenhaCliente();
@@ -121,10 +102,6 @@ public class TransferenciaCliente extends JPanel {
 					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
 				}
-
-				contaTransferencia.setSaldo(tfValor.getValue(), TipoMovimento.TRANSFERENCIA);
-				UsuarioLogado.getContaUsuarioLogado().setSaldo(tfValor.getValue().multiply(new BigDecimal(-1)),
-						TipoMovimento.TRANSFERENCIA);
 
 				TelaBackground.clearPanelMenu();
 				TelaBackground.getPanelMenu()
