@@ -40,7 +40,7 @@ public class ConfirmaOperacao extends JPanel {
 				String.format("Opera\u00E7\u00E3o %s realizada com sucesso!", tipoMovimento.name()));
 		lbOperacao.setFont(new Font("Arial", Font.PLAIN, 17));
 
-		JLabel lbValor = new JLabel("Valor: R$ ");
+		JLabel lbValor = new JLabel("Valor: R$ " + valor.toString());
 		lbValor.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		tfValor = new JLabel(valor.toString());
@@ -63,17 +63,14 @@ public class ConfirmaOperacao extends JPanel {
 		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JasperPrint rel = null;
-				String arquivoJasper = "";
 
 				try {
 					HashMap map = new HashMap();
-					arquivoJasper = "RelatorioConfirmar.jasper";
-					JasperPrint printReport = JasperFillManager.fillReport(arquivoJasper, null,
-							DriverManager.getConnection("jdbc:postgresql://localhost:5432/NuBanco", "postgres", "postgres"));
+					JasperPrint printReport = JasperFillManager.fillReport(
+							"NuBanco//src//main//java//br//agencia//view//relatorios//RelatorioConfirmar.jasper", null,
+							DriverManager.getConnection("jdbc:postgresql://localhost:5432/NuBanco", "postgres",
+									"postgres"));
 					JasperExportManager.exportReportToPdfFile(printReport, "relatorio/reportex.pdf");
-
-					// rel = JasperFillManager.fillReport(arquivoJasper, map,
-					// HibernateUtil.getSession());
 				} catch (Exception x) {
 					JOptionPane.showMessageDialog(null, "Erro: " + x.getMessage());
 				}
@@ -82,31 +79,37 @@ public class ConfirmaOperacao extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		// GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addGap(33)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		//GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(33)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lbOperacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 110,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED))))
-				.addGap(1058))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup().addGap(340).addComponent(btnImprimir)
-						.addContainerGap(998, Short.MAX_VALUE)));
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(55).addComponent(lbOperacao)
-										.addGap(18).addComponent(lbValor).addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-										.addComponent(btnImprimir).addGap(26)));
-		// setLayout(groupLayout);
+						.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+							.addGap(111)))
+					.addGap(1058))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(340)
+					.addComponent(btnImprimir)
+					.addContainerGap(990, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(55)
+					.addComponent(lbOperacao)
+					.addGap(18)
+					.addComponent(lbValor)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+					.addComponent(btnImprimir)
+					.addGap(26))
+		);
+		//setLayout(groupLayout);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }
