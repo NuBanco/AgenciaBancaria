@@ -70,8 +70,12 @@ public class PagamentoCliente extends JPanel {
 					return;
 				}
 
-				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.PAGAMENTO));
+				SenhaCliente popUpSenhaOperacao = new SenhaCliente(tfValor.getValue(), TipoMovimento.PAGAMENTO);
+				popUpSenhaOperacao.setResizable(false);
+				popUpSenhaOperacao.setVisible(true);
+				popUpSenhaOperacao.setTitle("NuBanco");
+				popUpSenhaOperacao.setSize(520, 245);
+
 			}
 		});
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 18));

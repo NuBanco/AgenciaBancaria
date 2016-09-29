@@ -54,9 +54,14 @@ public class ConfirmaOperacao extends JPanel {
 				TelaBackground.getPanelMenu().add(new HomeMenuCliente());
 			}
 		});
-		
+
 		JButton btnImprimir = new JButton("Imprimir");
 		btnImprimir.setFont(new Font("Arial", Font.BOLD, 17));
+		btnImprimir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
 		//GroupLayout groupLayout = new GroupLayout(this);

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,16 +18,18 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
 import br.agencia.model.entidadesPersistidas.Conta;
+import br.agencia.model.enums.TipoMovimento;
+import br.agencia.model.util.OperacoesFacade;
 import br.agencia.model.util.SenhaInvalidaException;
 import br.agencia.model.util.UsuarioLogado;
-import br.agencia.model.util.ValidacoesException;
+import br.agencia.view.principal.TelaBackground;
 
 public class SenhaCliente extends JFrame {
 	private static final long serialVersionUID = 3187868024721495012L;
 	private JPasswordField tfSenha;
 	private Conta contaUsuario;
 
-	public SenhaCliente() throws ValidacoesException{
+	public SenhaCliente(BigDecimal valor, TipoMovimento tipo) {
 
 		tfSenha = new JPasswordField();
 		tfSenha.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -38,8 +41,25 @@ public class SenhaCliente extends JFrame {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setFont(new Font("Arial", Font.BOLD, 20));
 		btnConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) throws ValidacoesException {
-				validarSenhaOperacao();
+			public void actionPerformed(ActionEvent e) {
+				if (tfSenha.getText().length() != 6) {
+					JOptionPane.showMessageDialog(null, "A senha de operacoes do usuario deve possuir 6 digitos!");
+					limpaCampoSenha();
+					return;
+				}
+
+				try {
+					OperacoesFacade operacao = new OperacoesFacade();
+					operacao.validarSenha(UsuarioLogado.getContaUsuarioLogado(), tfSenha.getText(), valor, tipo);
+				} catch (SenhaInvalidaException exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+					return;
+				}
+
+				TelaBackground.clearPanelMenu();
+				TelaBackground.getPanelMenu()
+						.add(new ConfirmaOperacao(valor, tipo));
+				dispose();
 			}
 		});
 
@@ -50,7 +70,7 @@ public class SenhaCliente extends JFrame {
 		JButton btn0 = new JButton("0");
 		btn0.setFont(new Font("Arial", Font.BOLD, 13));
 		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				inserirSenhaOperacao(0);
 			}
 		});
@@ -237,20 +257,6 @@ public class SenhaCliente extends JFrame {
 
 	private void limpaCampoSenha() {
 		tfSenha.setText("");
-	}
-
-	private void validarSenhaOperacao() throws ValidacoesException {
-		if (tfSenha.getText().length() != 6) {
-			JOptionPane.showMessageDialog(null, "A senha de operacoes do usuario deve possuir 6 digitos!");
-			limpaCampoSenha();
-			return;
-		}
-
-		contaUsuario = UsuarioLogado.getContaUsuarioLogado();
-		if (!contaUsuario.getPessoa().getSenhaOperacao().equals(tfSenha.getText().toString())) {
-			throw new SenhaInvalidaException("Senha de operacoes invalida.");
-		}
-		dispose();
 	}
 
 }

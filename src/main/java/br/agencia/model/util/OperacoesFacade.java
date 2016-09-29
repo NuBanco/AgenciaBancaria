@@ -1,9 +1,6 @@
 package br.agencia.model.util;
 
 import java.math.BigDecimal;
-import java.util.Observer;
-
-import com.sun.glass.ui.GestureSupport;
 
 import br.agencia.control.ObjectDao;
 import br.agencia.model.entidadesPersistidas.Agencia;
@@ -11,7 +8,9 @@ import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.entidadesPersistidas.Pessoa;
 import br.agencia.model.entidadesPersistidas.Usuario;
 import br.agencia.model.enums.TipoMovimento;
+import br.agencia.view.cliente.ConfirmaOperacao;
 import br.agencia.view.cliente.HomeMenuCliente;
+import br.agencia.view.cliente.SenhaCliente;
 import br.agencia.view.principal.TelaBackground;
 
 public class OperacoesFacade {
@@ -19,7 +18,7 @@ public class OperacoesFacade {
 	private Conta contaOperacao;
 	private Agencia agenciaOperacao;
 
-	public void validarConta(final String conta, final int agencia) {
+	private void validarConta(final String conta, final int agencia) {
 		this.contaOperacao = (Conta) ObjectDao.getObjectDao().consultarByQuery(
 				String.format("from Conta where con_numero like '%s' and con_idagencia = %d", conta, agencia));
 
@@ -29,7 +28,7 @@ public class OperacoesFacade {
 
 	}
 
-	public void validarAgencia(final String agencia) {
+	private void validarAgencia(final String agencia) {
 		this.agenciaOperacao = (Agencia) ObjectDao.getObjectDao()
 				.consultarByQuery(String.format("from Agencia where age_numAgencia like '%s'", agencia));
 		if (agenciaOperacao == null) {
@@ -37,17 +36,20 @@ public class OperacoesFacade {
 		}
 	}
 
-	public void validarSaldo(BigDecimal valor) throws SaldoInsuficienteException {
+	private void validarSaldo(BigDecimal valor) throws SaldoInsuficienteException {
 		if (Math.abs(valor.doubleValue()) > contaOperacao.getSaldo().doubleValue()) {
 			throw new SaldoInsuficienteException("Saldo insuficiente para operacao");
 		}
 	}
 
-	public void atualizarSaldo(BigDecimal valor, TipoMovimento tipo) {
-		if (contaOperacao.getId() == UsuarioLogado.getContaUsuarioLogado().getId()) {
+	private void atualizarSaldo(Conta conta, BigDecimal valor, TipoMovimento tipo) {
+		if (conta.getId() != UsuarioLogado.getContaUsuarioLogado().getId()) {
+			UsuarioLogado.getContaUsuarioLogado().setSaldo(valor.multiply(new BigDecimal(-1)), tipo);
+		}
+		if (tipo.equals(TipoMovimento.DEPOSITO) && conta.getId() == UsuarioLogado.getContaUsuarioLogado().getId()) {
 			UsuarioLogado.getContaUsuarioLogado().setSaldo(valor, tipo);
 		} else {
-			contaOperacao.setSaldo(valor, tipo);
+			conta.setSaldo(valor, tipo);
 		}
 	}
 
@@ -55,20 +57,18 @@ public class OperacoesFacade {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
 		validarSaldo(valorSaque);
-		atualizarSaldo(valorSaque.multiply(new BigDecimal(-1)), TipoMovimento.SAQUE);
 	}
 
 	public void depositar(String agencia, String conta, BigDecimal valorDeposito) throws ValidacoesException {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
-		atualizarSaldo(valorDeposito, TipoMovimento.DEPOSITO);
+		atualizarSaldo(contaOperacao, valorDeposito, TipoMovimento.DEPOSITO);
 	}
 
 	public void pagar(String agencia, String conta, BigDecimal valorPagamento) throws ValidacoesException {
 		validarAgencia(agencia);
 		validarConta(conta, agenciaOperacao.getId());
 		validarSaldo(valorPagamento);
-		atualizarSaldo(valorPagamento, TipoMovimento.PAGAMENTO);
 	}
 
 	public void transferir(String agencia, String conta, BigDecimal valorTransferencia) throws ValidacoesException {
@@ -77,8 +77,13 @@ public class OperacoesFacade {
 				UsuarioLogado.getContaUsuarioLogado().getAgencia().getId());
 		validarSaldo(valorTransferencia);
 		validarConta(conta, agenciaOperacao.getId());
-		atualizarSaldo(valorTransferencia, TipoMovimento.TRANSFERENCIA);
-		UsuarioLogado.getContaUsuarioLogado().setSaldo(valorTransferencia.multiply(new BigDecimal(-1)));
+	}
+
+	public void validarSenha(Conta conta, String senha, BigDecimal valor, TipoMovimento tipo) {
+		if (!UsuarioLogado.getUsuarioLogado().getPessoa().getSenhaOperacao().equals(senha)) {
+			throw new SenhaInvalidaException("Senha de operacoes invalida.");
+		}
+		atualizarSaldo(conta, valor, TipoMovimento.TRANSFERENCIA);
 	}
 
 	public void criarConta(Pessoa novaPessoa, Usuario novoUsuario, Conta novaConta) {

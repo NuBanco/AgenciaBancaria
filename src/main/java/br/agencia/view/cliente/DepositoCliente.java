@@ -118,8 +118,6 @@ public class DepositoCliente extends JPanel {
 					return;
 				}
 
-				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.DEPOSITO));
 			}
 		});
 

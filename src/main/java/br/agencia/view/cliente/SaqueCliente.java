@@ -157,8 +157,12 @@ public class SaqueCliente extends JPanel {
 			return;
 		}
 
-		TelaBackground.clearPanelMenu();
-		TelaBackground.getPanelMenu().add(new ConfirmaOperacao(valor, TipoMovimento.SAQUE));
+		SenhaCliente popUpSenhaOperacao = new SenhaCliente(tfValor.getValue(), TipoMovimento.SAQUE);
+		popUpSenhaOperacao.setResizable(false);
+		popUpSenhaOperacao.setVisible(true);
+		popUpSenhaOperacao.setTitle("NuBanco");
+		popUpSenhaOperacao.setSize(520, 245);
+
 
 	}
 }

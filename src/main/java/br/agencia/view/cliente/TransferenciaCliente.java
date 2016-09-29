@@ -16,13 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.agencia.model.entidadesPersistidas.Agencia;
-import br.agencia.model.entidadesPersistidas.Conta;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.model.util.OperacoesFacade;
+import br.agencia.model.util.SenhaInvalidaException;
 import br.agencia.model.util.UsuarioLogado;
-import br.agencia.model.util.ValidacoesException;
 import br.agencia.view.principal.TelaBackground;
 
 public class TransferenciaCliente extends JPanel {
@@ -84,28 +82,16 @@ public class TransferenciaCliente extends JPanel {
 				try {
 					contaTransferencia.transferir(UsuarioLogado.getContaUsuarioLogado().getAgencia().getNumAgencia(),
 							UsuarioLogado.getContaUsuarioLogado().getNumero(), tfValor.getValue());
-				} catch (ValidacoesException exception) {
+				} catch (SenhaInvalidaException exception) {
 					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
 				}
 
-				// tfTitular.setText(contaTransferencia.getPessoa().getNome());
-				// tfTipoConta.setText(contaTransferencia.getTipoConta().name());
-
-				try {
-					SenhaCliente popUpSenhaOperacao = new SenhaCliente();
-					popUpSenhaOperacao.setResizable(false);
-					popUpSenhaOperacao.setVisible(true);
-					popUpSenhaOperacao.setTitle("NuBanco");
-					popUpSenhaOperacao.setSize(520, 245);
-				} catch (ValidacoesException exception) {
-					JOptionPane.showMessageDialog(null, exception.getMessage());
-					return;
-				}
-
-				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu()
-						.add(new ConfirmaOperacao(tfValor.getValue(), TipoMovimento.TRANSFERENCIA));
+				SenhaCliente popUpSenhaOperacao = new SenhaCliente(tfValor.getValue(), TipoMovimento.TRANSFERENCIA);
+				popUpSenhaOperacao.setResizable(false);
+				popUpSenhaOperacao.setVisible(true);
+				popUpSenhaOperacao.setTitle("NuBanco");
+				popUpSenhaOperacao.setSize(520, 245);
 
 			}
 		});
