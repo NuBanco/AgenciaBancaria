@@ -14,10 +14,14 @@ public class ObjectDao {
 	private static ObjectDao objectDao;
 
 	public static ObjectDao getObjectDao() {
-		if (objectDao == null){
+		if (objectDao == null) {
 			objectDao = new ObjectDao();
 		}
 		return objectDao;
+	}
+
+	public static Session getSession() {
+		return session;
 	}
 
 	public void incluir(Object objetoDao) {
@@ -67,9 +71,9 @@ public class ObjectDao {
 		try {
 			session = HibernateUtil.getSession();
 			list = session.createQuery(parameterQuery).list();
-			for (Object retorno: list) {
-	            return retorno;
-	        }
+			for (Object retorno : list) {
+				return retorno;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -31,6 +31,7 @@ public class SenhaCliente extends JFrame {
 
 	public SenhaCliente(BigDecimal valor, TipoMovimento tipo) {
 
+		JOptionPane.showMessageDialog(null, "1   " + valor.toString());
 		tfSenha = new JPasswordField();
 		tfSenha.setFont(new Font("Arial", Font.PLAIN, 14));
 		tfSenha.setEditable(false);
@@ -55,10 +56,9 @@ public class SenhaCliente extends JFrame {
 					JOptionPane.showMessageDialog(null, exception.getMessage());
 					return;
 				}
-
+				JOptionPane.showMessageDialog(null, "2   " + valor.toString());
 				TelaBackground.clearPanelMenu();
-				TelaBackground.getPanelMenu()
-						.add(new ConfirmaOperacao(valor, tipo));
+				TelaBackground.getPanelMenu().add(new ConfirmaOperacao(valor, tipo));
 				dispose();
 			}
 		});

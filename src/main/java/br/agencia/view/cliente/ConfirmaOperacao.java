@@ -6,7 +6,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.sql.DriverManager;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,11 +22,14 @@ import javax.swing.UIManager;
 import br.agencia.model.enums.TipoMovimento;
 import br.agencia.model.util.JNumberFormatField;
 import br.agencia.view.principal.TelaBackground;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public class ConfirmaOperacao extends JPanel {
 
 	private static final long serialVersionUID = 3993718123138322069L;
-	private JNumberFormatField tfValor = null;
+	private JLabel tfValor = null;
 
 	public ConfirmaOperacao(BigDecimal valor, TipoMovimento tipoMovimento) {
 
@@ -38,13 +43,11 @@ public class ConfirmaOperacao extends JPanel {
 		JLabel lbValor = new JLabel("Valor: R$ ");
 		lbValor.setFont(new Font("Arial", Font.PLAIN, 17));
 
-		tfValor = new JNumberFormatField(new DecimalFormat("R$ ###,###,###,##0.00")).setLimit(14);
+		tfValor = new JLabel(valor.toString());
+		tfValor.setText(valor.toString());
 		tfValor.setForeground(Color.BLACK);
 		tfValor.setFont(new Font("Arial", Font.BOLD, 17));
 		tfValor.setEnabled(false);
-		tfValor.setBackground(UIManager.getColor("Button.light"));
-		tfValor.setColumns(10);
-		tfValor.setText(decimalFormat.format(valor));
 
 		JButton btnOpRetornar = new JButton("Retornar");
 		btnOpRetornar.setFont(new Font("Arial", Font.BOLD, 17));
@@ -59,43 +62,51 @@ public class ConfirmaOperacao extends JPanel {
 		btnImprimir.setFont(new Font("Arial", Font.BOLD, 17));
 		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JasperPrint rel = null;
+				String arquivoJasper = "";
+
+				try {
+					HashMap map = new HashMap();
+					arquivoJasper = "RelatorioConfirmar.jasper";
+					JasperPrint printReport = JasperFillManager.fillReport(arquivoJasper, null,
+							DriverManager.getConnection("jdbc:postgresql://localhost:5432/NuBanco", "postgres", "postgres"));
+					JasperExportManager.exportReportToPdfFile(printReport, "relatorio/reportex.pdf");
+
+					// rel = JasperFillManager.fillReport(arquivoJasper, map,
+					// HibernateUtil.getSession());
+				} catch (Exception x) {
+					JOptionPane.showMessageDialog(null, "Erro: " + x.getMessage());
+				}
 
 			}
 		});
 
 		GroupLayout groupLayout = new GroupLayout(TelaBackground.getPanelMenu());
-		//GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(33)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		// GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
+				.createSequentialGroup().addGap(33)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lbOperacao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED))))
-					.addGap(1058))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(340)
-					.addComponent(btnImprimir)
-					.addContainerGap(998, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(55)
-					.addComponent(lbOperacao)
-					.addGap(18)
-					.addComponent(lbValor)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-					.addComponent(btnImprimir)
-					.addGap(26))
-		);
-		//setLayout(groupLayout);
+								.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 110,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(lbValor, GroupLayout.PREFERRED_SIZE, 73,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED))))
+				.addGap(1058))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup().addGap(340).addComponent(btnImprimir)
+						.addContainerGap(998, Short.MAX_VALUE)));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(55).addComponent(lbOperacao)
+										.addGap(18).addComponent(lbValor).addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(btnOpRetornar, GroupLayout.PREFERRED_SIZE, 30,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+										.addComponent(btnImprimir).addGap(26)));
+		// setLayout(groupLayout);
 		TelaBackground.getPanelMenu().setLayout(groupLayout);
 	}
 }

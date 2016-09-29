@@ -70,7 +70,7 @@ public class PagamentoCliente extends JPanel {
 					return;
 				}
 
-				SenhaCliente popUpSenhaOperacao = new SenhaCliente(tfValor.getValue(), TipoMovimento.PAGAMENTO);
+				SenhaCliente popUpSenhaOperacao = new SenhaCliente(tfValor.getValue().multiply(new BigDecimal(-1)), TipoMovimento.PAGAMENTO);
 				popUpSenhaOperacao.setResizable(false);
 				popUpSenhaOperacao.setVisible(true);
 				popUpSenhaOperacao.setTitle("NuBanco");
