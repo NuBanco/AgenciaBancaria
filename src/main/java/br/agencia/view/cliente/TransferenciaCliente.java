@@ -33,7 +33,7 @@ public class TransferenciaCliente extends JPanel {
 	private JTextField tfTitular;
 	private JTextField tfTipoConta;
 	private JNumberFormatField tfValor = null;
-	
+
 	public TransferenciaCliente() {
 
 		TelaBackground.getPanelMenu().add(new JPanel(), BorderLayout.CENTER);
@@ -89,8 +89,8 @@ public class TransferenciaCliente extends JPanel {
 					return;
 				}
 
-//				tfTitular.setText(contaTransferencia.getPessoa().getNome());
-//				tfTipoConta.setText(contaTransferencia.getTipoConta().name());
+				// tfTitular.setText(contaTransferencia.getPessoa().getNome());
+				// tfTipoConta.setText(contaTransferencia.getTipoConta().name());
 
 				try {
 					SenhaCliente popUpSenhaOperacao = new SenhaCliente();
